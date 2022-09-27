@@ -70,7 +70,7 @@ const noticias = [
       "Recientemente nuestro estudio ha sido invitado al evento del lanzamiento de Soul Luxury Beach Resort, un complejo de lujo pionero de 580 acres situado en Egipto, en medio de uno de los paisajes de playa natural más impresionantes del mundo en la costa norte. </br>Nuestro estudio ha participado en el masterplan diseñando la Villa de Autor con la propuesta The Sphinx, una vivienda de lujo rodeada de mansiones en la playa y casas conectadas con la naturaleza, las inigualables vistas al mar del Mediterráneo y las lagunas frente al mar, exuberantes espacios verdes y gran una variedad de comodidades únicas.",
   },
   {
-    estaNoticia:
+    estaNoticias:
       "https://fransilvestrearquitectos.com/2022/05/02/nuevo-proyecto-terminado-n-290/",
     title: "",
     image: "",
