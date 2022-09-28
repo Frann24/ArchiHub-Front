@@ -17,16 +17,12 @@ export default function News() {
           <img src={spotlight.image} width="800px" alt="news" />
         </div>
         <div>
-          <h3>COMPONENTE NEWS</h3>
-
           <div>{spotlight.title}</div>
-
           <div>{spotlight.date}</div>
           <div>{spotlight.description}</div>
         </div>
       </div>
       <div>
-        newsReels:
         <NewsReel newsId={spotlight.id} />
       </div>
     </div>

@@ -86,16 +86,6 @@ const news = [
       "Recientemente ha tenido lugar el shooting fotográfico de uno de los últimos proyectos finalizados por el estudio: La casa vacía.</br>Para la fotografía contamos con la colaboración de Fernando Guerra.",
   },
   {
-    title: "Nuevo proyecto terminado | MRG",
-    image:
-      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382443/news/la-casa-vacia-scaled_ovtywk.jpg",
-    date: "02/05/2022",
-    shortDescription:
-      "El proyecto consiste en la actualización interior de un apartamento en el centro de la ciudad de Valencia. Ordenamos el espacio buscando la....",
-    description:
-      "El proyecto consiste en la actualización interior de un apartamento en el centro de la ciudad de Valencia. Ordenamos el espacio buscando la continuidad de las estancias, integrando los elementos estructurales del edificio existente dentro de las divisiones y de la carpintería. </br>Se entiende la planta como tres bandas longitudinales que permiten una ventilación pasante. Se incorpora en la zona principal de la casa un área donde poder trabajar con una iluminación natural generosa. Un sistema de carpinterías correderas permite incorporar o dividir el espacio de la cocina del salón dependiendo de la situación. Un gimnasio, una zona de aguas, una chimenea, una terraza orientada al sur sobre las copas de los árboles de la Gran Vía (la saludable biofilia) y diversas facilidades confieren al apartamento de un nivel de confort del que en ocasiones no apetece salir.",
-  },
-  {
     estaNoticias:
       "https://fransilvestrearquitectos.com/2022/03/25/ga-houses-roca-views-ibiza/",
     title: "GA Houses | Roca Views Ibiza",
