@@ -3,7 +3,7 @@ import React from "react";
 import news from "../../../api/news";
 import NewsReel from "./NewsReel";
 
-export default function spotlight() {
+export default function News() {
   // const params = useParams();
   // const dispatch= useDispatch
   const spotlight = news[0];
@@ -12,13 +12,19 @@ export default function spotlight() {
 
   return (
     <div>
-      <div>
-        <h3>Spotlight</h3>
-        <img src={spotlight.image} width="300px" alt="news" />
+      <div className="grid grid-cols-2">
+        <div>
+        <img src={spotlight.image} width="800px" alt="news" />
+        </div>
+        <div>
+        <h3>COMPONENTE NEWS</h3>
+        
         <div>{spotlight.title}</div>
 
         <div>{spotlight.date}</div>
-        <div>{spotlight.shortDescription}</div>
+        <div>{spotlight.description}</div>
+        </div>
+        
       </div>
       <div>
         newsReels:
