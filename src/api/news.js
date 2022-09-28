@@ -66,14 +66,46 @@ const news = [
       "Recientemente nuestro estudio ha sido invitado al evento del lanzamiento de Soul Luxury Beach Resort, un complejo de lujo pionero de 580 acres situado en Egipto, en medio de uno de los paisajes de playa natural más impresionantes del mundo en la costa norte. </br>Nuestro estudio ha participado en el masterplan diseñando la Villa de Autor con la propuesta The Sphinx, una vivienda de lujo rodeada de mansiones en la playa y casas conectadas con la naturaleza, las inigualables vistas al mar del Mediterráneo y las lagunas frente al mar, exuberantes espacios verdes y gran una variedad de comodidades únicas.",
   },
   {
+    title: "Nuevo proyecto terminado | N 290",
+    image:
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382362/news/N290-arquitectos-valencia-fran-silvestre-scaled_iytanq.jpg",
+    date: "02/05/2022",
+    shortDescription:
+      "El modelo N290 tiene la planta más singular, donde un patio central distribuye y organiza unas estancias que se abren a las cuatro...",
+    description:
+      "El modelo N290 tiene la planta más singular, donde un patio central distribuye y organiza unas estancias que se abren a las cuatro direcciones del entorno. Esta vivienda, desarrollada en planta baja, se organiza en torno a un luminoso patio central. Alrededor de este patio se distribuye el programa de la vivienda, dividido en cuatro zonas diferenciadas, que, abiertas a cuatro direcciones, mantienen completamente su independencia.",
+  },
+  {
+    title: "Photoshooting | La casa vacía",
+    image:
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382443/news/la-casa-vacia-scaled_ovtywk.jpg",
+    date: "02/05/2022",
+    shortDescription:
+      "Recientemente ha tenido lugar el shooting fotográfico de uno de los últimos proyectos finalizados por el estudio: La casa vacía....",
+    description:
+      "Recientemente ha tenido lugar el shooting fotográfico de uno de los últimos proyectos finalizados por el estudio: La casa vacía.</br>Para la fotografía contamos con la colaboración de Fernando Guerra.",
+  },
+  {
+    title: "Nuevo proyecto terminado | MRG",
+    image:
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382443/news/la-casa-vacia-scaled_ovtywk.jpg",
+    date: "02/05/2022",
+    shortDescription:
+      "El proyecto consiste en la actualización interior de un apartamento en el centro de la ciudad de Valencia. Ordenamos el espacio buscando la....",
+    description:
+      "El proyecto consiste en la actualización interior de un apartamento en el centro de la ciudad de Valencia. Ordenamos el espacio buscando la continuidad de las estancias, integrando los elementos estructurales del edificio existente dentro de las divisiones y de la carpintería. </br>Se entiende la planta como tres bandas longitudinales que permiten una ventilación pasante. Se incorpora en la zona principal de la casa un área donde poder trabajar con una iluminación natural generosa. Un sistema de carpinterías correderas permite incorporar o dividir el espacio de la cocina del salón dependiendo de la situación. Un gimnasio, una zona de aguas, una chimenea, una terraza orientada al sur sobre las copas de los árboles de la Gran Vía (la saludable biofilia) y diversas facilidades confieren al apartamento de un nivel de confort del que en ocasiones no apetece salir.",
+  },
+  {
     estaNoticias:
-      "https://fransilvestrearquitectos.com/2022/05/02/nuevo-proyecto-terminado-n-290/",
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  }
- 
+      "https://fransilvestrearquitectos.com/2022/03/25/ga-houses-roca-views-ibiza/",
+    title: "GA Houses | Roca Views Ibiza",
+    image:
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382670/news/ROCA-VIEWS-IBIZA-FRAN-SILVESTRE-ARQUITECTOS-scaled_qfmwla.jpg",
+    date: "25/03/2022",
+    shortDescription:
+      "Nuestro reciente proyecto Roca Views Ibiza ha sido publicado en el número 181 de GA Houses, una revista japonesa que centra sus artículos....",
+    description:
+      "Nuestro reciente proyecto Roca Views Ibiza ha sido publicado en el número 181 de GA Houses, una revista japonesa que centra sus artículos en proyectos arquitectónicos de todo el mundo con algo único que ofrecer en tema de diseño.</br>En la publicación se muestran fotografías de los proyectos acompañadas de sus respectivos planos e información.",
+  },
 ];
-export default news
+export default news;
