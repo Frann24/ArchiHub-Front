@@ -15,9 +15,7 @@ export default function spotlight() {
       <div>
         <h3>Spotlight</h3>
         <img src={spotlight.image} width="300px" alt="news" />
-      
-
-        {/* "http://fransilvestrearquitectos.com/wp-content/uploads/2022/08/arquitectura-fran-silvestre-1024x683.jpg" */}
+        <div>{spotlight.title}</div>
 
         <div>{spotlight.date}</div>
         <div>{spotlight.shortDescription}</div>
