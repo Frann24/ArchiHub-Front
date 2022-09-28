@@ -3,7 +3,7 @@ const news = [
     id: "01",
     title: "En construcción | Well Villa",
     image:
-      "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/arquitectura-fran-silvestre-1024x683.jpg",
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334142/news/id01_cmfdd8.jpg",
     date: "29/08/2022",
     shortDescription:
       "Las obras del proyecto se encuentran actualmente en fase de estructura.  Ubicada en el campo de golf de PGA, en Girona...",
@@ -14,7 +14,7 @@ const news = [
     id: "02",
     title: "Publicaciones | Casa del Acantilado",
     image:
-      "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/arquitectura-mediterranea-scaled.jpg",
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334226/news/arquitectura-mediterranea-scaled_rjymps.jpg",
     date: "22/08/2022",
     shortDescription:
       "La Casa del Acantilado ha sido publicada en el libro Vivir en el Agua editado por Phaidon, una de las editoriales líderes mundiales en la...",
@@ -25,7 +25,7 @@ const news = [
     id: "03",
     title: "Enjoy your summer",
     image:
-      "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/FRAN-SILVESTRE-ARQUITECTOS_PIERA-HOUSE_PHOTOS_HIGH_0011-copia-1-scaled.jpg",
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334279/news/FRAN-SILVESTRE-ARQUITECTOS_PIERA-HOUSE_PHOTOS_HIGH_0011-copia-1-scaled_bxni9g.jpg",
     date: "15/08/2022",
     shortDescription:
       "Enjoy your summer! Proyecto: Casa Piera. Fotografía: Fernando Guerra",
@@ -33,21 +33,10 @@ const news = [
       "Enjoy your summer! Proyecto: Casa Piera. Fotografía: Fernando Guerra",
   },
   {
-    id: "04",
-    title: "Publicaciones | Casa del Acantilado",
-    image:
-      "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/arquitectura-mediterranea-scaled.jpg",
-    date: "22/08/2022",
-    shortDescription:
-      "La Casa del Acantilado ha sido publicada en el libro Vivir en el Agua editado por Phaidon, una de las editoriales líderes mundiales en la...",
-    description:
-      "La Casa del Acantilado ha sido publicada en el libro Vivir en el Agua editado por Phaidon, una de las editoriales líderes mundiales en la publicación de libros de artes visuales, arquitectura, arte, fotografía y diseño con sede en Nueva York. </br>El libro recopila una cuidada selección de 55 casas modernas que ofrecen una mirada accesible a la relación entre arquitectura y agua, cómo ambos elementos se armonizan, equilibran y apoyan para crear una estética verdaderamente dinámica.",
-  },
-  {
     id: "05",
     title: "Photoshooting GANDIABLASCO | Casa del Silencio",
     image:
-      "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/gandiablasco-fran-silvestre-arquitectos-scaled.jpg",
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334340/news/gandiablasco-fran-silvestre-arquitectos-scaled_aulspj.jpg",
     date: "09/08/2022",
     shortDescription:
       "La marca GANDIABLASCO ha realizado un photoshooting recientemente en nuestro proyecto terminado Casa del Silencio",
@@ -58,7 +47,7 @@ const news = [
     id: "06",
     title: "Nuevo proyecto terminado | La casa Vacía",
     image:
-      "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/casa-vacia-arquitectos-valencia-fran-silvestre-scaled.jpg",
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334389/news/casa-vacia-arquitectos-valencia-fran-silvestre-scaled_gpnber.jpg",
     date: "03/08/2022",
     shortDescription:
       "El proyecto establece un diálogo entre dos tiempos; una relación entre una casa antigua y un nuevo proyecto...",
@@ -69,7 +58,7 @@ const news = [
     id: "07",
     title: "Soul Luxury Beach Resort | The Sphinx",
     image:
-      "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/THE-SPHINX-arquitectos-valencia-fran-silvestre-scaled.jpg",
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334473/news/THE-SPHINX-arquitectos-valencia-fran-silvestre-scaled_k7neou.jpg",
     date: "28/07/2022",
     shortDescription:
       "Recientemente nuestro estudio ha sido invitado al evento del lanzamiento de Soul Luxury Beach Resort, un complejo de lujo pionero...",
@@ -84,63 +73,7 @@ const news = [
     date: "",
     shortDescription: "",
     description: "",
-  },
-  {
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
-  {
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
-  {
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
-  {
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
-  {
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
-  {
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
-  {
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
-  {
-    id,
-    title: "",
-    image: "",
-    date: "",
-    shortDescription: "",
-    description: "",
-  },
+  }
+ 
 ];
 export default news
