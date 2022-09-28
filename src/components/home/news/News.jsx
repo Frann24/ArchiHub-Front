@@ -14,17 +14,16 @@ export default function News() {
     <div>
       <div className="grid grid-cols-2">
         <div>
-        <img src={spotlight.image} width="800px" alt="news" />
+          <img src={spotlight.image} width="800px" alt="news" />
         </div>
         <div>
-        <h3>COMPONENTE NEWS</h3>
-        
-        <div>{spotlight.title}</div>
+          <h3>COMPONENTE NEWS</h3>
 
-        <div>{spotlight.date}</div>
-        <div>{spotlight.description}</div>
+          <div>{spotlight.title}</div>
+
+          <div>{spotlight.date}</div>
+          <div>{spotlight.description}</div>
         </div>
-        
       </div>
       <div>
         newsReels:
