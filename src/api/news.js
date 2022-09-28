@@ -1,5 +1,6 @@
-const noticias = [
+const news = [
   {
+    id: "01",
     title: "En construcción | Well Villa",
     image:
       "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/arquitectura-fran-silvestre-1024x683.jpg",
@@ -10,6 +11,7 @@ const noticias = [
       "Las obras del proyecto se encuentran actualmente en fase de estructura.  Ubicada en el campo de golf de PGA, en Girona, la casa busca las mejores vistas del lugar en el que se encuentra. El proyecto se resuelve con dos espacios extrusionados, dos volúmenes que se superponen, en el que el superior se desplaza en dirección al lago que tiene delante dando lugar a un voladizo que busca generar una gran terraza en sombra. Dos elementos que conforman un solo proyecto, en el que se distinguen unas fachadas de gran dinamismo generadas por los huecos que se abren en ellas, aberturas que permiten una cómoda lectura de la envolvente.",
   },
   {
+    id: "02",
     title: "Publicaciones | Casa del Acantilado",
     image:
       "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/arquitectura-mediterranea-scaled.jpg",
@@ -20,6 +22,7 @@ const noticias = [
       "La Casa del Acantilado ha sido publicada en el libro Vivir en el Agua editado por Phaidon, una de las editoriales líderes mundiales en la publicación de libros de artes visuales, arquitectura, arte, fotografía y diseño con sede en Nueva York. El libro recopila una cuidada selección de 55 casas modernas que ofrecen una mirada accesible a la relación entre arquitectura y agua, cómo ambos elementos se armonizan, equilibran y apoyan para crear una estética verdaderamente dinámica.",
   },
   {
+    id: "03",
     title: "Enjoy your summer",
     image:
       "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/FRAN-SILVESTRE-ARQUITECTOS_PIERA-HOUSE_PHOTOS_HIGH_0011-copia-1-scaled.jpg",
@@ -30,6 +33,7 @@ const noticias = [
       "Enjoy your summer! Proyecto: Casa Piera. Fotografía: Fernando Guerra",
   },
   {
+    id: "04",
     title: "Publicaciones | Casa del Acantilado",
     image:
       "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/arquitectura-mediterranea-scaled.jpg",
@@ -40,6 +44,7 @@ const noticias = [
       "La Casa del Acantilado ha sido publicada en el libro Vivir en el Agua editado por Phaidon, una de las editoriales líderes mundiales en la publicación de libros de artes visuales, arquitectura, arte, fotografía y diseño con sede en Nueva York. </br>El libro recopila una cuidada selección de 55 casas modernas que ofrecen una mirada accesible a la relación entre arquitectura y agua, cómo ambos elementos se armonizan, equilibran y apoyan para crear una estética verdaderamente dinámica.",
   },
   {
+    id: "05",
     title: "Photoshooting GANDIABLASCO | Casa del Silencio",
     image:
       "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/gandiablasco-fran-silvestre-arquitectos-scaled.jpg",
@@ -50,6 +55,7 @@ const noticias = [
       "La marca GANDIABLASCO ha realizado un photoshooting recientemente en nuestro proyecto terminado Casa del Silencio. Puedes conocer más imágenes de este proyecto aquí . </br>Project manager y dirección de fotografía: Alejandra Gandía-Blasco. </br>Dirección de arte: Isa Garcia y Alejandra Gandía-Blasco. </br>Fotografía: Angel Segura",
   },
   {
+    id: "06",
     title: "Nuevo proyecto terminado | La casa Vacía",
     image:
       "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/casa-vacia-arquitectos-valencia-fran-silvestre-scaled.jpg",
@@ -60,6 +66,7 @@ const noticias = [
       "El proyecto establece un diálogo entre dos tiempos; una relación entre una casa antigua y un nuevo proyecto.</br>El objeto es ser extremadamente respetuoso con la preexistencia, conservando la parte protegida y más valiosa de la estructura original, y adaptando la casa al momento presente. Es por esto que se realiza una reposición del espacio interior, vaciándolo para regularizar los espacios y dando origen al nombre del proyecto.",
   },
   {
+    id: "07",
     title: "Soul Luxury Beach Resort | The Sphinx",
     image:
       "https://fransilvestrearquitectos.com/wp-content/uploads/2022/08/THE-SPHINX-arquitectos-valencia-fran-silvestre-scaled.jpg",
@@ -128,6 +135,7 @@ const noticias = [
     description: "",
   },
   {
+    id,
     title: "",
     image: "",
     date: "",
@@ -135,3 +143,4 @@ const noticias = [
     description: "",
   },
 ];
+export default news
