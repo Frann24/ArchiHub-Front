@@ -1,14 +1,14 @@
 const news = [
   {
     id: "01",
-    title: "En construcción | Well Villa",
+    title: "In construction | Well Villa",
     image:
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334142/news/id01_cmfdd8.jpg",
     date: "29/08/2022",
     shortDescription:
-      "Las obras del proyecto se encuentran actualmente en fase de estructura.  Ubicada en el campo de golf de PGA, en Girona...",
+    "The project works are currently in the structure phase. Located on the PGA golf course, in Girona...",
     description:
-      "Las obras del proyecto se encuentran actualmente en fase de estructura.  Ubicada en el campo de golf de PGA, en Girona, la casa busca las mejores vistas del lugar en el que se encuentra. El proyecto se resuelve con dos espacios extrusionados, dos volúmenes que se superponen, en el que el superior se desplaza en dirección al lago que tiene delante dando lugar a un voladizo que busca generar una gran terraza en sombra. Dos elementos que conforman un solo proyecto, en el que se distinguen unas fachadas de gran dinamismo generadas por los huecos que se abren en ellas, aberturas que permiten una cómoda lectura de la envolvente.",
+    "A landscape surrounded by consolidated gardens, an elevated and elongated plot with a distant view of the sea, and a pleasant breeze, constitute the sought-after and fortunate starting point for this story.</br>Three elements make up the project by the Valencia Fran Silvestre Architects studio.An extruded roof in the longitudinal direction of the land in the shape of a T constitutes the structure under which the inhabited space is located.This geometry allows you to feel the sea while protecting yourself from the gaze of others, seeking the sensation of living without neighbors.Helps control the southern sun during the summer and lets it through in the winter.The walkable roof is transformed into a kind of belvedere that enjoys the entire surface of the plot.</br> A single free-standing piece of furniture houses the structure of the Hofmann House and distributes the spaces filtering privacy, opening possibilities in the way of circulating and using the space. room, under the cantilevered shadow, is arranged in continuity with the outside. The interior of the furniture includes the wet parts and delimits the scale of the night areas that fall to the quieter portion of the garden. The studio opens on the corner with the best views.</br>These two elements, cover and furniture, are deposited on the stone base in which the sheet of water and the rest of the uses of the house are excavated, giving rise to the third element. These spaces adapt to the natural unevenness that exists on the plot.</br>A project by Fran Silvestre Arquitecto Valencia.",
   },
   {
     id: "02",
