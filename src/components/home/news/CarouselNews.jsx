@@ -12,14 +12,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import news from "../../../api/news";
+import { getNews } from "../../../redux/slices/sliceNews/newsSlice";
 
 const Carousel = () => {
   const dispatch = useDispatch();
-  // const { courses } = useSelector((state) => state.programandoando);
+  const { news } = useSelector((state) => state.programandoando);
 
-  // useEffect(() => {
-  //   dispatch(getAllCourses());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getNews());
+  }, [dispatch]);
 
   const carouselNews = [];
 
@@ -101,9 +102,9 @@ const Carousel = () => {
                                 display: "flex",
                                 color: "rgb(201, 196, 184)",
                                 justifyContent: "center",
-                                backgroundColor: 'rgb(55, 109, 109)',
+                                backgroundColor: "rgb(55, 109, 109)",
                                 paddingTop: 10,
-                                paddingBottom: 10
+                                paddingBottom: 10,
                               }}
                             >
                               {e.title}
@@ -118,18 +119,16 @@ const Carousel = () => {
                                   minHeight: 230,
                                   paddingLeft: 35,
                                   paddingRight: 35,
-                                  textAlign: "center"
+                                  textAlign: "center",
                                 }}
                               >
                                 {e.date}
                                 {e.description}
-
-
                               </h3>
                             </div>
                             <NavLink to={`/newsDetail/${e.id}`}>
                               <div
-                              className="z-30"
+                                className="z-30"
                                 style={{
                                   display: "flex",
                                   justifyContent: "center",
@@ -137,7 +136,6 @@ const Carousel = () => {
                                 }}
                               >
                                 <button
-                                
                                   style={{
                                     backgroundColor: "rgb(17, 52, 82)",
                                     color: "rgb(201, 196, 184)",
@@ -180,11 +178,6 @@ const Carousel = () => {
             </ButtonNext>
           </div>
         </CarouselProvider>
-
-
-
-
-
 
         {/* Carousel for tablet and medium size devices */}
         <CarouselProvider
@@ -254,9 +247,9 @@ const Carousel = () => {
                                 display: "flex",
                                 color: "rgb(201, 196, 184)",
                                 justifyContent: "center",
-                                backgroundColor: 'rgb(55, 109, 109)',
+                                backgroundColor: "rgb(55, 109, 109)",
                                 paddingTop: 10,
-                                paddingBottom: 10
+                                paddingBottom: 10,
                               }}
                             >
                               {e.name}
@@ -271,7 +264,7 @@ const Carousel = () => {
                                   minHeight: 230,
                                   paddingLeft: 35,
                                   paddingRight: 35,
-                                  textAlign: "center"
+                                  textAlign: "center",
                                 }}
                               >
                                 {e.description}
@@ -279,7 +272,7 @@ const Carousel = () => {
                             </div>
                             <NavLink to={`/course/${e._id}`}>
                               <div
-                              className="z-30 "
+                                className="z-30 "
                                 style={{
                                   display: "flex",
                                   justifyContent: "center",
@@ -397,7 +390,7 @@ const Carousel = () => {
                                 display: "flex",
                                 color: "rgb(201, 196, 184)",
                                 justifyContent: "center",
-                                backgroundColor: 'rgb(55, 109, 109)',
+                                backgroundColor: "rgb(55, 109, 109)",
                                 paddingTop: 10,
                                 paddingBottom: 10,
                               }}
@@ -414,7 +407,7 @@ const Carousel = () => {
                                   minHeight: 230,
                                   paddingLeft: 35,
                                   paddingRight: 35,
-                                  textAlign: "center"
+                                  textAlign: "center",
                                 }}
                               >
                                 {e.description}
@@ -422,7 +415,7 @@ const Carousel = () => {
                             </div>
                             <NavLink to={`/course/${e._id}`}>
                               <div
-                              className="z-30"
+                                className="z-30"
                                 style={{
                                   display: "flex",
                                   justifyContent: "center",
