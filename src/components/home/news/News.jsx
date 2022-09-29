@@ -12,17 +12,17 @@ export default function News() {
 
   return (
     <div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 mb-8 ml-16 gap-1">
         <div>
           <img src={spotlight.image} width="800px" alt="news" />
         </div>
-        <div>
+        <div className="ml-1 mr-16">
           <div>{spotlight.title}</div>
           <div>{spotlight.date}</div>
           <div>{spotlight.description}</div>
         </div>
       </div>
-      <div>
+      <div >
         <NewsReel newsId={spotlight.id} />
       </div>
     </div>
