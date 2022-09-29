@@ -1,5 +1,5 @@
 import React from "react";
-import News from "./news/News";
+import NewsReel from "./news/NewsReel";
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
           class="object-cover my-8 mt-16"
         />
       </div>
-      <News />
+      <NewsReel />
     </div>
   );
 }
