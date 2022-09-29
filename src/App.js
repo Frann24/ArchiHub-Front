@@ -1,14 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./components/home/news/NewsReel";
-import Spotlight from "./components/home/news/Spotlight";
+// import News from "./components/home/news/News";
+import Home from "./components/home/Home";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/news" element={<Spotlight/>} />
+          <Route path="/" element={<Home/>} />
         </Routes>
       </div>
     </BrowserRouter>

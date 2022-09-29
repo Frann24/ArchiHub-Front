@@ -1,25 +1,25 @@
 const news = [
   {
     id: "01",
-    title: "En construcción | Well Villa",
+    title: "In construction | Well Villa",
     image:
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334142/news/id01_cmfdd8.jpg",
     date: "29/08/2022",
     shortDescription:
-      "Las obras del proyecto se encuentran actualmente en fase de estructura.  Ubicada en el campo de golf de PGA, en Girona...",
+      "The project works are currently in the structure phase. Located on the PGA golf course, in Girona...",
     description:
-      "Las obras del proyecto se encuentran actualmente en fase de estructura.  Ubicada en el campo de golf de PGA, en Girona, la casa busca las mejores vistas del lugar en el que se encuentra. El proyecto se resuelve con dos espacios extrusionados, dos volúmenes que se superponen, en el que el superior se desplaza en dirección al lago que tiene delante dando lugar a un voladizo que busca generar una gran terraza en sombra. Dos elementos que conforman un solo proyecto, en el que se distinguen unas fachadas de gran dinamismo generadas por los huecos que se abren en ellas, aberturas que permiten una cómoda lectura de la envolvente.",
+      "A landscape surrounded by consolidated gardens, an elevated and elongated plot with a distant view of the sea, and a pleasant breeze, constitute the sought-after and fortunate starting point for this story.</br>Three elements make up the project by the Valencia Fran Silvestre Architects studio.An extruded roof in the longitudinal direction of the land in the shape of a T constitutes the structure under which the inhabited space is located.This geometry allows you to feel the sea while protecting yourself from the gaze of others, seeking the sensation of living without neighbors.Helps control the southern sun during the summer and lets it through in the winter.The walkable roof is transformed into a kind of belvedere that enjoys the entire surface of the plot.</br> A single free-standing piece of furniture houses the structure of the Hofmann House and distributes the spaces filtering privacy, opening possibilities in the way of circulating and using the space. room, under the cantilevered shadow, is arranged in continuity with the outside. The interior of the furniture includes the wet parts and delimits the scale of the night areas that fall to the quieter portion of the garden. The studio opens on the corner with the best views.</br>These two elements, cover and furniture, are deposited on the stone base in which the sheet of water and the rest of the uses of the house are excavated, giving rise to the third element. These spaces adapt to the natural unevenness that exists on the plot.</br>A project by Fran Silvestre Arquitecto Valencia.",
   },
   {
     id: "02",
-    title: "Publicaciones | Casa del Acantilado",
+    title: "Publications | Casa del Acantilado",
     image:
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334226/news/arquitectura-mediterranea-scaled_rjymps.jpg",
     date: "22/08/2022",
     shortDescription:
-      "La Casa del Acantilado ha sido publicada en el libro Vivir en el Agua editado por Phaidon, una de las editoriales líderes mundiales en la...",
+      "The House on the Cliff has been published in the book Living on the Water edited by Phaidon, one of the worlds leading publishers of visual arts,...",
     description:
-      "La Casa del Acantilado ha sido publicada en el libro Vivir en el Agua editado por Phaidon, una de las editoriales líderes mundiales en la publicación de libros de artes visuales, arquitectura, arte, fotografía y diseño con sede en Nueva York. El libro recopila una cuidada selección de 55 casas modernas que ofrecen una mirada accesible a la relación entre arquitectura y agua, cómo ambos elementos se armonizan, equilibran y apoyan para crear una estética verdaderamente dinámica.",
+      "The House on the Cliff has been published in the book Living on the Water edited by Phaidon, one of the worlds leading publishers of visual arts, architecture, art, photography and design books based in New York. The book compiles a careful selection of 55 modern houses that offer an accessible look at the relationship between architecture and water, how both elements harmonize, balance and support each other to create a truly dynamic aesthetic.",
   },
   {
     id: "03",
@@ -28,9 +28,9 @@ const news = [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334279/news/FRAN-SILVESTRE-ARQUITECTOS_PIERA-HOUSE_PHOTOS_HIGH_0011-copia-1-scaled_bxni9g.jpg",
     date: "15/08/2022",
     shortDescription:
-      "Enjoy your summer! Proyecto: Casa Piera. Fotografía: Fernando Guerra",
+      "Enjoy your summer! Project: Casa Piera. Photography: Fernando Guerra",
     description:
-      "Enjoy your summer! Proyecto: Casa Piera. Fotografía: Fernando Guerra",
+      "Enjoy your summer! Project: Casa Piera. Photography: Fernando Guerra",
   },
   {
     id: "05",
@@ -39,9 +39,9 @@ const news = [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334340/news/gandiablasco-fran-silvestre-arquitectos-scaled_aulspj.jpg",
     date: "09/08/2022",
     shortDescription:
-      "La marca GANDIABLASCO ha realizado un photoshooting recientemente en nuestro proyecto terminado Casa del Silencio",
+      "The GANDIABLASCO brand has recently carried out a photoshooting in our finished project Casa del Silencio. ",
     description:
-      "La marca GANDIABLASCO ha realizado un photoshooting recientemente en nuestro proyecto terminado Casa del Silencio. Puedes conocer más imágenes de este proyecto aquí . </br>Project manager y dirección de fotografía: Alejandra Gandía-Blasco. </br>Dirección de arte: Isa Garcia y Alejandra Gandía-Blasco. </br>Fotografía: Angel Segura",
+      "The GANDIABLASCO brand has recently carried out a photoshooting in our finished project Casa del Silencio. You can see more images of this project here. </br>Project manager and director of photography: Alejandra Gandía-Blasco. </br>Art direction: Isa Garcia and Alejandra Gandía-Blasco. </br>Photography: Angel Segura",
   },
   {
     id: "06",
@@ -50,9 +50,9 @@ const news = [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334389/news/casa-vacia-arquitectos-valencia-fran-silvestre-scaled_gpnber.jpg",
     date: "03/08/2022",
     shortDescription:
-      "El proyecto establece un diálogo entre dos tiempos; una relación entre una casa antigua y un nuevo proyecto...",
+      "The project establishes a dialogue between two times; a relationship between an old house and a new project...",
     description:
-      "El proyecto establece un diálogo entre dos tiempos; una relación entre una casa antigua y un nuevo proyecto.</br>El objeto es ser extremadamente respetuoso con la preexistencia, conservando la parte protegida y más valiosa de la estructura original, y adaptando la casa al momento presente. Es por esto que se realiza una reposición del espacio interior, vaciándolo para regularizar los espacios y dando origen al nombre del proyecto.",
+      "The project establishes a dialogue between two times; a relationship between an old house and a new project.</br>The aim is to be extremely respectful of the pre-existence, conserving the protected and most valuable part of the original structure, and adapting the house to the present moment. This is why a replacement of the interior space is carried out, emptying it to regularize the spaces and giving rise to the name of the project.",
   },
   {
     id: "07",
@@ -61,19 +61,19 @@ const news = [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664334473/news/THE-SPHINX-arquitectos-valencia-fran-silvestre-scaled_k7neou.jpg",
     date: "28/07/2022",
     shortDescription:
-      "Recientemente nuestro estudio ha sido invitado al evento del lanzamiento de Soul Luxury Beach Resort, un complejo de lujo pionero...",
+      "Our studio has recently been invited to the launch event for Soul Luxury Beach Resort, a pioneering 580-acre luxury resort located in Egypt...",
     description:
-      "Recientemente nuestro estudio ha sido invitado al evento del lanzamiento de Soul Luxury Beach Resort, un complejo de lujo pionero de 580 acres situado en Egipto, en medio de uno de los paisajes de playa natural más impresionantes del mundo en la costa norte. </br>Nuestro estudio ha participado en el masterplan diseñando la Villa de Autor con la propuesta The Sphinx, una vivienda de lujo rodeada de mansiones en la playa y casas conectadas con la naturaleza, las inigualables vistas al mar del Mediterráneo y las lagunas frente al mar, exuberantes espacios verdes y gran una variedad de comodidades únicas.",
+      "Our studio has recently been invited to the launch event for Soul Luxury Beach Resort, a pioneering 580-acre luxury resort located in Egypt, amidst one of the world's most impressive natural beach landscapes on the north coast. </br>Our studio has participated in the masterplan by designing the Signature Villa with The Sphinx proposal, a luxury home surrounded by mansions on the beach and houses connected with nature, the unparalleled views of the Mediterranean Sea and the lagoons in front to the sea, lush green spaces and a wide variety of unique amenities.",
   },
   {
-    title: "Nuevo proyecto terminado | N 290",
+    title: "New finished project | N 290",
     image:
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382362/news/N290-arquitectos-valencia-fran-silvestre-scaled_iytanq.jpg",
     date: "02/05/2022",
     shortDescription:
-      "El modelo N290 tiene la planta más singular, donde un patio central distribuye y organiza unas estancias que se abren a las cuatro...",
+      "The N290 model has the most unique floor plan, where a central patio distributes and organizes rooms that open to the four directions of the environment...",
     description:
-      "El modelo N290 tiene la planta más singular, donde un patio central distribuye y organiza unas estancias que se abren a las cuatro direcciones del entorno. Esta vivienda, desarrollada en planta baja, se organiza en torno a un luminoso patio central. Alrededor de este patio se distribuye el programa de la vivienda, dividido en cuatro zonas diferenciadas, que, abiertas a cuatro direcciones, mantienen completamente su independencia.",
+      "The N290 model has the most unique floor plan, where a central patio distributes and organizes rooms that open to the four directions of the environment. This house, developed on the ground floor, is organized around a bright central patio. The program of the house is distributed around this patio, divided into four different areas, which, open to four directions, fully maintain their independence.",
   },
   {
     title: "Photoshooting | La casa vacía",
@@ -81,19 +81,9 @@ const news = [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382443/news/la-casa-vacia-scaled_ovtywk.jpg",
     date: "02/05/2022",
     shortDescription:
-      "Recientemente ha tenido lugar el shooting fotográfico de uno de los últimos proyectos finalizados por el estudio: La casa vacía....",
+      "The photographic shooting of one of the latest projects completed by the studio has recently taken place: The empty house....",
     description:
-      "Recientemente ha tenido lugar el shooting fotográfico de uno de los últimos proyectos finalizados por el estudio: La casa vacía.</br>Para la fotografía contamos con la colaboración de Fernando Guerra.",
-  },
-  {
-    title: "Nuevo proyecto terminado | MRG",
-    image:
-      "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382443/news/la-casa-vacia-scaled_ovtywk.jpg",
-    date: "02/05/2022",
-    shortDescription:
-      "El proyecto consiste en la actualización interior de un apartamento en el centro de la ciudad de Valencia. Ordenamos el espacio buscando la....",
-    description:
-      "El proyecto consiste en la actualización interior de un apartamento en el centro de la ciudad de Valencia. Ordenamos el espacio buscando la continuidad de las estancias, integrando los elementos estructurales del edificio existente dentro de las divisiones y de la carpintería. </br>Se entiende la planta como tres bandas longitudinales que permiten una ventilación pasante. Se incorpora en la zona principal de la casa un área donde poder trabajar con una iluminación natural generosa. Un sistema de carpinterías correderas permite incorporar o dividir el espacio de la cocina del salón dependiendo de la situación. Un gimnasio, una zona de aguas, una chimenea, una terraza orientada al sur sobre las copas de los árboles de la Gran Vía (la saludable biofilia) y diversas facilidades confieren al apartamento de un nivel de confort del que en ocasiones no apetece salir.",
+      "The photographic shooting of one of the latest projects completed by the studio has recently taken place: The empty house.</br>For the photography we have the collaboration of Fernando Guerra.",
   },
   {
     estaNoticias:
@@ -103,9 +93,9 @@ const news = [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664382670/news/ROCA-VIEWS-IBIZA-FRAN-SILVESTRE-ARQUITECTOS-scaled_qfmwla.jpg",
     date: "25/03/2022",
     shortDescription:
-      "Nuestro reciente proyecto Roca Views Ibiza ha sido publicado en el número 181 de GA Houses, una revista japonesa que centra sus artículos....",
+      "Our recent project Roca Views Ibiza has been published in number 181 of GA Houses...",
     description:
-      "Nuestro reciente proyecto Roca Views Ibiza ha sido publicado en el número 181 de GA Houses, una revista japonesa que centra sus artículos en proyectos arquitectónicos de todo el mundo con algo único que ofrecer en tema de diseño.</br>En la publicación se muestran fotografías de los proyectos acompañadas de sus respectivos planos e información.",
+      "Our recent project Roca Views Ibiza has been published in number 181 of GA Houses, a Japanese magazine that focuses its articles on architectural projects from around the world with something unique to offer in terms of design.</br>The publication shows photographs of the projects accompanied by their respective plans and information.",
   },
 ];
 export default news;
