@@ -1,7 +1,16 @@
 import React from "react";
-import NewsReel from "./news/NewsReel";
+// import NewsReel from "./news/NewsReel";
+import Paginado from "./news/Paginado";
+import CarouselNews from "./news/CarouselNews";
 
-function Home() {
+
+
+function Home(newsPerPage,
+  newsFilter,
+  paginado,
+  currentPage) {
+
+
   return (
     <div>
       <div className="object-fill: fill">
@@ -12,7 +21,9 @@ function Home() {
           class="object-cover my-8 mt-16"
         />
       </div>
-      <NewsReel />
+      <CarouselNews />
+
+
     </div>
   );
 }
