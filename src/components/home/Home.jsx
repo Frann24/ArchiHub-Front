@@ -1,5 +1,6 @@
 import React from "react";
 import NewsReel from "./news/NewsReel";
+import PostsReel from "./posts/PostsReel";
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
         />
       </div>
       <NewsReel />
+      <PostsReel />
     </div>
   );
 }
