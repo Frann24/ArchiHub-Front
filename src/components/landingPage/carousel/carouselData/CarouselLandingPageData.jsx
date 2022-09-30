@@ -1,6 +1,6 @@
 import React from "react";
 
-function CarouselLandingPageData({ arch, quotes, description, img, constructionName }) {
+function CarouselLandingPageData({ arch, quotes, description, img, buildingName }) {
   return (
     <div className="flex flex-row w-full mt-8 ">
       <div className="w-5/12 flex flex-col justify-center ">
@@ -15,10 +15,10 @@ function CarouselLandingPageData({ arch, quotes, description, img, constructionN
         <img
           className="w-full"
           src={img}
-          alt={`${constructionName}`}
+          alt={`${buildingName}`}
         />
         <p className="m-auto py-2 text-xl">
-          <span className="font-bold">{constructionName}</span>
+          <span className="font-bold">{buildingName}</span>
           {description}
         </p>
       </div>
