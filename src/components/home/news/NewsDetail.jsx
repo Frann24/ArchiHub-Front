@@ -1,22 +1,24 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import news from "../../../api/news";
+import { getNews1 } from "../../../redux/slices/sliceNews/newsActions";
 
 export default function NewsDetail(props) {
+  const newNews = useSelector((state) => state.newsSlice.news);
   const params = useParams();
-  const detail = news.filter((e) => e.id === params.id);
-  //   const dispatch = useDispatch();
-  //   const id = params.id;
+  const detail = newNews.length > 0 && newNews.filter((e) => e.id == params.id);
+  const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     dispatch(getDetail(params.id));
-  //     return () => {
-  //       dispatch(cleanFilter());
-  //     };
-  //   }, [dispatch]);
-  console.log(detail);
+  useEffect(() => {
+    dispatch(getNews1());
+  }, [dispatch]);
+
+  console.log("params: ", params.id);
+  console.log("typeof params: ", typeof params.id);
+  console.log("detail: ", detail);
+  console.log("newNews:", newNews);
+
   return (
     <div>
       <div>
