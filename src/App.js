@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-// import "./components/home/news/NewsReel";
+
 import NewsDetail from "./components/home/news/NewsDetail";
 
 // import News from "./components/home/news/News";

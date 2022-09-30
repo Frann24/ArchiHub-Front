@@ -10,11 +10,8 @@ export const newsSlice = createSlice({
     getNews: (state, action) => {
       state.news = action.payload;
     },
-    getNewsById: (state, action) => {
-      state.detail = action.payload;
-    },
   },
 });
 
-export const { getNews, getNewsById } = newsSlice.actions;
+export const { getNews } = newsSlice.actions;
 export default newsSlice.reducer;
