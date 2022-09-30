@@ -15,6 +15,15 @@ const posts = [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664393594/news/Screen_Shot_2022-09-28_at_16.24.19_oxy6un.png",
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664393599/news/Screen_Shot_2022-09-28_at_16.24.27_so50eq.png",
     ],
+    // comments: [
+    //   {
+    //     image: image,
+    //     userName: userName,
+    //     date: date,
+    //     comment: comment
+    //   }, {}, {}, 
+    // ],
+
     shortDescription:
       "The house faces the Mediterranean, in a place where an imposing dune protects the coastline from storms. This starting point defines the configuration...",
     description:
@@ -112,12 +121,14 @@ const posts = [
     description:
       "We have always been fascinated by the work of Andreu Alfaro -The door of the Universe- made in 1983. A circle rotated and suspended on a square. For some years it was located at the door of our studio, and its ability to make us reflect was surprising, to locate ourselves at the base at the end of the day and think that we were indeed before a threshold that opened the door to an infinite space.</br>An analogous effect is felt when visiting the “In Praise of the Horizon IV” made by Eduardo Chillida in 1989 in Gijón. Where, according to the author himself, the viewer is put in direct relation with the work and with the Universe. Chillida himself wondered Isn't the present, like the horizon, another frontier, another limit, another dimensionless place always full of questions?</br>>This idea of ​​open centrality, as a representation of something unfathomable, has always fascinated humanity and architecture has echoed this fascination countless times.</br>With these references continually floating around in our minds, a place located in the city of Marbella appeared, on a plot with a large slope and at an elevated level that provides fantastic views. The place would seem ideal to place an astronomical observatory, but the proposed program is that of a house. We propose to embrace with a circumference a space open to the sky and the horizon, and simultaneously protected from the gaze of others and the powerful winds of the area.</br>The rooms on the upper level open in a controlled manner towards specific landmarks in the landscape, while the public area enjoys the relationship with the main and open space. Perhaps in this way we can live on a daily basis in this space that has always captivated us, a place in which what is evident in nature is difficult or impossible to achieve is revealed.",
   },
-  {
-    id: "07",
-    title: "",
-    location: "",
-    images: ["", "", "", "", "", "", ""],
-    shortDescription: "...",
-    description: "",
-  },
+  // {
+  //   id: "07",
+  //   title: "",
+  //   location: "",
+  //   images: ["", "", "", "", "", "", ""],
+  //   shortDescription: "...",
+  //   description: "",
+  // },
 ];
+
+export default posts;
