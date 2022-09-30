@@ -6,7 +6,7 @@ function CarouselLandingPage() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [selectedComponent, setSelectedComponent] = useState(infoCarousel[0])
   const [loaded, setLoaded] = useState(true)
-  const {arch, quotes, img, description, constructionName} = infoCarousel[selectedIndex]
+  const {arch, quotes, img, description, buildingName} = infoCarousel[selectedIndex]
 
   useEffect(()=>{
     const interval = setInterval(()=>{
@@ -28,13 +28,6 @@ function CarouselLandingPage() {
     }, 500);
   }
 
-  /* const previous = () => {
-    selectNewComponent(selectedImage, infoCarousel, false)
-  }
-
-  const next = () => {
-    selectNewComponent(selectedImage, infoCarousel)
-  } */
   return (
     <div className={` absolute mx-32 transition-all duration-1000 opacity-0 ${loaded ? 'opacity-100': ''}`}>
       <CarouselLandingPageData 
@@ -42,10 +35,8 @@ function CarouselLandingPage() {
       quotes={quotes}
       img={img}
       description={description}
-      constructionName={constructionName}
+      buildingName={buildingName}
       />
-      {/* <button onClick={previous}>{'< Previous'}</button>
-      <button onClick={next}>{'Next >'}</button> */}
     </div>
   )
 }
