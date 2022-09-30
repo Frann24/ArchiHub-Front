@@ -12,7 +12,7 @@ function Header() {
   return (
     <div className="select-none">
       <div className="border-b-2 border-gray-200">
-        <div className="mx-32 h-28 flex justify-between items-center ">
+        <div className="mx-32 xl:h-20 flex justify-between items-center ">
           <Logo />
           {auth ? <Logged/> : <Guest />}
         </div>
