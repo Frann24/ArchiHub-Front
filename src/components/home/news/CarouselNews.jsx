@@ -8,25 +8,27 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useSelector, useDispatch } from "react-redux";
-// import { getAllCourses } from "../redux/actions";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import news from "../../../api/news";
-import { getNews } from "../../../redux/slices/sliceNews/newsSlice";
+import { getNews1 } from "../../../redux/slices/sliceNews/luciano";
+// import { getNews1 } from "../../../redux/slices/sliceNews/luciano";
 
-const Carousel = () => {
+// import news from "../../../api/news";
+
+export default function CarouselNews() {
   const dispatch = useDispatch();
-  const { news } = useSelector((state) => state.programandoando);
+  const newNews = useSelector((state) => state.newsSlice);
 
+console.log("useSelector: ", newNews)
   useEffect(() => {
-    dispatch(getNews());
+    dispatch(getNews1());
   }, [dispatch]);
 
   const carouselNews = [];
 
-  for (let i = 0; i < news.length; i++) {
+  for (let i = 0; i < newNews.news.length; i++) {
     if (carouselNews.length < 3) {
-      carouselNews.push(news[i]);
+      carouselNews.push(newNews.news[i]);
     }
   }
 
@@ -468,6 +470,4 @@ const Carousel = () => {
       </div>
     </div>
   );
-};
-
-export default Carousel;
+}
