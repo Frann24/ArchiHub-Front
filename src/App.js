@@ -10,7 +10,7 @@ import Home from "./components/home/Home";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="App font-raleway">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
