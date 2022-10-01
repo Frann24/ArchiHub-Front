@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import usersReducer from "./slices/GetUsers/getUsersSlice"
 // import newsSlice from "./slices/sliceNews/newsSlice";
 import news from "./slices/sliceNews/newsSlice";
 import newsSlice from "./slices/sliceNews/newsSlice"
@@ -8,6 +9,11 @@ import headerReducer from "./slices/header/headerSlice"
 import userProjectReducer from "./slices/userProject/userProjectSlice";
 import favouriteReducer from "./slices/favourite/favouriteSlice";
 import userReducer from "./slices/user/userSlice";
+import loginReducer from "./slices/auth/loginSlice"
+
+
+
+
 export const store = configureStore({
   reducer:{
     post: postReducer,
@@ -15,9 +21,8 @@ export const store = configureStore({
     header: headerReducer,
     project:projectReducer,
     userProject:userProjectReducer,
+    user:userReducer,
     favourite:favouriteReducer,
-    user:userReducer
-  },
+    login: loginReducer,
+  }  
 });
-
-
