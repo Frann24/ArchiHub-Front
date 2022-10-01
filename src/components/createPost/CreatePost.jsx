@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Select from "react-select";
+import { getAllUsers } from "../../redux/slices/user/userActions";
+import { createPost } from "../../redux/slices/post/postActions";
 
 const CreatePost = () => {
   const [form, setForm] = useState({
@@ -19,9 +21,9 @@ const CreatePost = () => {
   const [loading] = useState(false);
   const [response, setResponse] = useState(null);
   const dispatch = useDispatch();
-  const allUsers = useSelector((state) => state.users.users);
+  const allUsers = useSelector((state) => state.user.allUsers);
   useEffect(() => {
-
+    dispatch(getAllUsers())
   }, [dispatch]);
 
   const options = allUsers.map((e) => {
@@ -112,7 +114,7 @@ const CreatePost = () => {
     e.preventDefault();
     setErrors(validationsForm(form));
     if (Object.keys(errors).length === 0) {
-      
+      dispatch(createPost(form))
       setResponse(true);
     }
     setForm({

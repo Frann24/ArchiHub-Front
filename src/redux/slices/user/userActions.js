@@ -1,4 +1,4 @@
-import { allUsers, showUser, responseUser } from "./postSlice";
+import { allUsers, showUser, responseUser } from "./userSlice";
 const axios = require("axios");
 
 export const getAllUsers = () => {
