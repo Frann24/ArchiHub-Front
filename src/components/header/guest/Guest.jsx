@@ -19,10 +19,7 @@ function Guest() {
 
   return (
     <div>
-      <ul className="text-lg flex gap-12 items-center">
-
       <ul className="xl:text-base flex gap-16 items-center">
-
         <div>
           <li onClick={toggleSignIn} className="inline relative group cursor-pointer">
             <span>Sign in</span>
@@ -42,7 +39,6 @@ function Guest() {
       <Modal active={signUp} toggle={toggleSignUp}>
         <SignUp/>
       </Modal>
-
     </div>
   );
 }
