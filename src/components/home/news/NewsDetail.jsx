@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getNews1 } from "../../../redux/slices/sliceNews/newsActions";
+import { Link } from "react-router-dom";
 
 export default function NewsDetail(props) {
   const newNews = useSelector((state) => state.newsSlice.news);
@@ -29,6 +30,10 @@ export default function NewsDetail(props) {
             {detail[0].title}
           </p>
           <div className="font-light max-w-prose">{detail[0].description}</div>
+         
+            <div className="font-light max-w-prose">{detail[0].url}</div>
+            
+        
         </div>
       </div>
     </div>
