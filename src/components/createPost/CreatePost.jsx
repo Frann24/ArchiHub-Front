@@ -7,15 +7,16 @@ import { createPost } from "../../redux/slices/post/postActions";
 
 const CreatePost = () => {
   const [form, setForm] = useState({
-    title: "qqwe",
-    description: "qweqweqw",
-    project_type: "qweqwe",
-    mts2: "500",
-    rooms: "6",
+    title: "",
+    description: "",
+    project_type: "",
+    mts2: "",
+    rooms: "",
     year: "",
-    bathrooms: "3",
+    bathrooms: "",
+    image: "",
     authors: [],
-    additional_data: "qweqwfqwdqwd",
+    additional_data: "",
   });
   const [errors, setErrors] = useState({});
   const [loading] = useState(false);
@@ -23,7 +24,7 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
   useEffect(() => {
-    dispatch(getAllUsers())
+    dispatch(getAllUsers());
   }, [dispatch]);
 
   const options = allUsers.map((e) => {
@@ -61,6 +62,9 @@ const CreatePost = () => {
     }
     if (Object.keys(form.year).length === 0) {
       errors.year = "Select any date";
+    }
+    if (Object.keys(form.image).length === 0) {
+      errors.image = "Upload one image at least";
     }
     if (Object.keys(form.bathrooms).length === 0) {
       errors.bathrooms = "'bathrooms' is required";
@@ -114,7 +118,7 @@ const CreatePost = () => {
     e.preventDefault();
     setErrors(validationsForm(form));
     if (Object.keys(errors).length === 0) {
-      dispatch(createPost(form))
+      dispatch(createPost(form));
       setResponse(true);
     }
     setForm({
@@ -140,7 +144,7 @@ const CreatePost = () => {
           <h2>Create Post</h2>
           <form onSubmit={(e) => handleFormSubmit(e)}>
             <label>Title</label>
-            <br />
+
             <input
               type="text"
               name="title"
@@ -150,11 +154,11 @@ const CreatePost = () => {
               value={form.title}
               required
             />
-            <br></br>
+
             {!errors.title ? <span></span> : <p>{errors.title}</p>}
-            <br></br>
+
             <label>Description</label>
-            <br />
+
             <textarea
               type="text"
               name="description"
@@ -165,11 +169,11 @@ const CreatePost = () => {
               requiredcols="30"
               rows="10"
             ></textarea>
-            <br></br>
+
             {!errors.description ? <span></span> : <p>{errors.description}</p>}
-            <br></br>
+
             <label>Project Type(Apartament, House, Building, etc.)</label>
-            <br />
+
             <input
               type="text"
               name="project_type"
@@ -179,15 +183,15 @@ const CreatePost = () => {
               value={form.project_type}
               required
             />
-            <br></br>
+
             {!errors.project_type ? (
               <span></span>
             ) : (
               <p>{errors.project_type}</p>
             )}
-            <br></br>
+
             <label>mts2(min-max)</label>
-            <br />
+
             <input
               type="range"
               name="mts2"
@@ -199,10 +203,10 @@ const CreatePost = () => {
               required
             />
             <label>{form.mts2}</label>
-            <br></br>
+
             {!errors.mts2 ? <span></span> : <p>{errors.mts2}</p>}
             <label>Rooms</label>
-            <br />
+
             <input
               type="text"
               name="rooms"
@@ -212,11 +216,11 @@ const CreatePost = () => {
               value={form.rooms}
               required
             />
-            <br />
+
             {!errors.rooms ? <span></span> : <p>{errors.rooms}</p>}
-            <br />
+
             <label>Year</label>
-            <br />
+
             <input
               type="date"
               name="year"
@@ -225,11 +229,11 @@ const CreatePost = () => {
               value={form.year}
               required
             />
-            <br />
+
             {!errors.year ? <span></span> : <p>{errors.year}</p>}
-            <br />
+
             <label>Bathrooms</label>
-            <br />
+
             <input
               type="text"
               name="bathrooms"
@@ -239,9 +243,9 @@ const CreatePost = () => {
               value={form.bathrooms}
               required
             />
-            <br />
+
             {!errors.bathrooms ? <span></span> : <p>{errors.bathrooms}</p>}
-            <br />
+
             <label>Authors</label>
             <Select
               onBlur={handleFormBlur}
@@ -251,6 +255,9 @@ const CreatePost = () => {
               options={options}
               value={form.authors}
             />
+            <label>Image</label>
+            <button type="button">Subir Foto</button>
+
             {/* <div>
              {form.authors?.map((e, index) => {
                 return (
@@ -263,9 +270,9 @@ const CreatePost = () => {
                 );
               })}
             </div>
-            <br></br>
+            
             {!errors.authors ? <span></span> : <p>{errors.authors}</p>}
-            <br></br>
+            
             <select
               id="select"
               name="authors"
@@ -279,9 +286,9 @@ const CreatePost = () => {
                 );
               })}
             </select> */}
-            <br></br>
+
             <label>Additional Data</label>
-            <br />
+
             <textarea
               type="text"
               name="additional_data"
@@ -292,13 +299,13 @@ const CreatePost = () => {
               requiredcols="30"
               rows="10"
             ></textarea>
-            <br></br>
+
             {!errors.additional_data ? (
               <span></span>
             ) : (
               <p>{errors.additional_data}</p>
             )}
-            <br></br>
+
             <button
               id="send"
               type="submit"
