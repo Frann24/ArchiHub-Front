@@ -14,7 +14,7 @@ function BtnMenu() {
   };
   return (
     <div
-      className="cursor-pointer text-2xl p-2 hover:bg-gray-200 rounded-full active:scale-90 transition-all duration-100 ease-in"
+      className="text-xl cursor-pointer"
       onClick={handleClick}
     >
       <FontAwesomeIcon className="font-bold " 
