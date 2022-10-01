@@ -1,17 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux"
+import { logUser,logOutUser } from "../../redux/slices/auth/loginActions"
+
 
 function SigIn() {
+
+  const dispatch = useDispatch()
+
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const [user, setUser] = useState({
+    email: null,
+    password: null,
+    loggedIn: false
+  })
+
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setUser({ email: email, password: password, loggedIn:true })
+    dispatch(logUser(user))
+  }
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    setUser({ email: null, password: null, loggedIn:false })
+    dispatch(logOutUser(user))
+  }
+
+
+
+
+
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
+    
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">Sign In</h3>
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={handleLogin}>
         <div>
           <label for="email" className="block mb-2 text-sm font-medium text-gray-900">
             Your email
           </label>
-          <input type="email" 
+          <input type="email"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
             placeholder="name@example.com"
+            value={email} name='email' onChange={handleEmailChange}
           />
         </div>
         <div>
@@ -25,32 +67,33 @@ function SigIn() {
             id="password"
             placeholder="••••••••"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
+            value={password} onChange={handlePasswordChange}
           />
         </div>
         <div className="flex justify-between">
           <div className="flex items-start">
-              <div className="flex items-center h-5">
-                <input
-                  id="remember"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 bg-gray-50 border-gray-300 focus:ring-3 focus:ring-gray-600"
-                />
-              </div>
-              <label for="remember"
-                class="ml-2 text-sm font-medium text-gray-900">
-                Remember me
-              </label>
+            <div className="flex items-center h-5">
+              <input
+                id="remember"
+                type="checkbox"
+                value=""
+                className="w-4 h-4 bg-gray-50 border-gray-300 focus:ring-3 focus:ring-gray-600"
+              />
             </div>
-          <span className="cursor-pointer text-sm text-gray-900 hover:underline">
+            <label for="remember"
+              class="ml-2 text-sm font-medium text-gray-900">
+              Remember me
+            </label>
+          </div>
+           {/* <span className="cursor-pointer text-sm text-gray-900 hover:underline">
             Lost Password?
-          </span>
+          </span> */}
         </div>
         <button
           type="submit"
           className="w-full text-white bg-gray-700 hover:bg-gray-800 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
         >
-          Sign in
+          Login
         </button>
         <button
           type="submit"
@@ -59,13 +102,13 @@ function SigIn() {
           Sign in with Google
         </button>
         <div class="text-sm font-medium text-gray-900">
-          Not registered?{" "}
-          <span class="cursor-pointer text-gray-600 hover:underline">
-            Create account
-          </span>
+        {/* //NAVLINK  A SIGNUP*/}
+        Not registered?{" "}
+        <span class="cursor-pointer text-gray-600 hover:underline">
+        </span> 
         </div>
       </form>
-    </div>
+      </div>
   );
 }
 
