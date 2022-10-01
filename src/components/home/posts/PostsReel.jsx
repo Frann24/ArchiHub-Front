@@ -13,21 +13,35 @@ function PostsReel() {
 
   return (
     <div>
-      <h4 class="ml-16 ">Posts</h4>
-      <div className="grid grid-cols-3 ml-16  container mx-auto">
-        {currentCards.map((post) => {
-          return (
-            <div>
-              <img width="600px" src={post.images[0]} alt="foto" />
-              <Link to={`/postDetail/${post.id}`}>
-                <h4 className="font-bold ">{post.title}</h4>
-              </Link>
-              <p className="font-light">{post.shortDescription}</p>
-            </div>
-          );
-        })}
+
+      <h4 class="ml-6 mb-6 font-semibold ">Posts</h4>
+      <div className="container mx-auto">
+        <div className="grid grid-cols-3 gap-9">
+          {currentCards.map((post) => {
+            return (
+              <div>
+                <img
+                  width="600px"
+                  src={post.images[0]}
+                  alt="foto"
+                  className="w-full aspect-[3/2]"
+                />
+                <Link to={`/postDetail/${post.id}`}>
+                  <h4 className="font-bold text-transform: uppercase mt-6">
+                    {post.title}
+                  </h4>
+                </Link>
+                <p className="font-light truncate">{post.shortDescription}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div class="ml-16 text-xl" onClick={(e) => paginado(e)}>
+      <div
+        class="mr-8 text-xl my-9 font-semibold flex flex-row-reverse"
+        onClick={(e) => paginado(e)}
+      >
+        {" "}
         See more...
       </div>
     </div>

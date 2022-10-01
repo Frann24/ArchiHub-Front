@@ -22,11 +22,13 @@ export default function NewsDetail(props) {
   return (
     <div>
       <div>
-        <div>
+        <div className="container mx-40 mt-40">
           <img src={detail[0].image} width="600px" alt="news" />
-          <div>{detail[0].date}</div>
-          <p className="font-[5100]">{detail[0].title}</p>
-          <div className="font-weight:200">{detail[0].description}</div>
+          <div className="text-gray-400 mt-6">{detail[0].date}</div>
+          <p className="font-semibold text-transform: uppercase">
+            {detail[0].title}
+          </p>
+          <div className="font-light max-w-prose">{detail[0].description}</div>
         </div>
       </div>
     </div>

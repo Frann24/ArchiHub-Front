@@ -22,24 +22,40 @@ export default function NewsReel() {
   }
   console.log("newsPaginado: ", newsPaginado);
   return (
-    <div>
-      <div className="grid grid-cols-3 ml-16  container mx-auto">
-        {newsPaginado.map((e) => (
-          <Link to={`/newsDetail/${e.id}`}>
-            <div className="pr-8">
-              {e.id === 2 ? (
-                <img src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664405309/news/Screen_Shot_2022-09-28_at_19.44.45_zocf1r.png" />
-              ) : (
-                <img src={e.image} width="600px" alt="news" />
-              )}
-              <div class="text-gray-400">{e.date}</div>
-              <p className="font-semibold truncate">{e.title}</p>
-              <div className="font-light">{e.shortDescription}</div>
-            </div>
-          </Link>
-        ))}
+    <div >
+      <h4 className="ml-6 mb-6 font-semibold font-size:26px">News</h4>
+      <div className="container mx-auto margin-top: 16px">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
+          {newsPaginado.map((e) => (
+            <Link to={`/newsDetail/${e.id}`}>
+              <div>
+                {e.id === 2 ? (
+                  <img
+                    src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664405309/news/Screen_Shot_2022-09-28_at_19.44.45_zocf1r.png"
+                    className="w-full aspect-[3/2]"
+                  />
+                ) : (
+                  <img
+                    src={e.image}
+                    width="600px"
+                    alt="news"
+                    className="w-full aspect-[3/2]"
+                  />
+                )}
+                <div className="text-gray-400 mt-6">{e.date}</div>
+                <p className="font-semibold truncate text-transform: uppercase ">
+                  {e.title}
+                </p>
+                <div className="font-light truncate" >{e.description}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
-      <div class="ml-16 text-xl my-9 font-semibold" onClick={(e) => paginado(e)}>
+      <div
+        class="mr-8 text-xl my-9 font-semibold flex flex-row-reverse"
+        onClick={(e) => paginado(e)}
+      >
         See more...
       </div>
     </div>
