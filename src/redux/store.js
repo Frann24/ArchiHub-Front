@@ -7,6 +7,7 @@ import  postReducer  from "./slices/post/postSlice";
 import headerReducer from "./slices/header/headerSlice"
 import userProjectReducer from "./slices/userProject/userProjectSlice";
 import favouriteReducer from "./slices/favourite/favouriteSlice";
+import userReducer from "./slices/user/userSlice";
 export const store = configureStore({
   reducer:{
     post: postReducer,
@@ -14,7 +15,8 @@ export const store = configureStore({
     header: headerReducer,
     project:projectReducer,
     userProject:userProjectReducer,
-    favourite:favouriteReducer
+    favourite:favouriteReducer,
+    user:userReducer
   },
 });
 
