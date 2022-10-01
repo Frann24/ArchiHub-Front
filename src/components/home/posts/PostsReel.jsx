@@ -1,17 +1,28 @@
-import React, { useState } from 'react'
-import posts from "../../../api/posts";
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPosts } from '../../../redux/slices/posts/postsActions';
 
 function PostsReel() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllPosts())
+  }, [dispatch])
+
+
+const allPosts = useSelector(state => state.posts.allPosts)
+console.log(allPosts)
 const [page, setPage] = useState(1)
 const indexLastCard = 3 * page
-const currentCards = posts.slice(0, indexLastCard)
-
+const currentCards = allPosts.slice(0, indexLastCard)
 
 
 function paginado () {
   setPage(page+1)
 }
+
+
+
 
   return (
     <div>

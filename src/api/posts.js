@@ -3,6 +3,9 @@ const posts = [
     id: "01",
     title: "Sand home",
     location: "Valencia",
+    m2: 2000,
+    bedrooms: 5,
+    toilets: 6,
     images: [
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664393564/news/Screen_Shot_2022-09-28_at_16.25.35_qwo0d9.png",
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1664393573/news/Screen_Shot_2022-09-28_at_16.25.25_bqpteh.png",
