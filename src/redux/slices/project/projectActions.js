@@ -18,10 +18,10 @@ export const getProject = (id) => {
   };
 };
 
-export const createProject = (id, info) => {
+export const createProject = (info) => {
   return (dispatch) => {
     axios
-      .post(`http://localhost:3001/api/project/${id}`, info)
+      .post(`http://localhost:3001/api/project`, info)
       .then((res) => dispatch(responseProject(res.data)))
       .catch((err) => console.log(err));
   };

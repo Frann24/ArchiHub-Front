@@ -8,6 +8,8 @@ import headerReducer from "./slices/header/headerSlice"
 import userProjectReducer from "./slices/userProject/userProjectSlice";
 import favouriteReducer from "./slices/favourite/favouriteSlice";
 import userReducer from "./slices/user/userSlice";
+import loginReducer from "./slices/auth/loginSlice"
+
 export const store = configureStore({
   reducer:{
     post: postReducer,
@@ -16,8 +18,8 @@ export const store = configureStore({
     project:projectReducer,
     userProject:userProjectReducer,
     favourite:favouriteReducer,
-    user:userReducer
+    user:userReducer,
+    login:loginReducer,
   },
 });
-
 

@@ -18,10 +18,10 @@ export const getPost = (id) => {
   };
 };
 
-export const createPost = (id, info) => {
+export const createPost = (info) => {
   return (dispatch) => {
     axios
-      .post(`http://localhost:3001/api/post/${id}`, info)
+      .post(`http://localhost:3001/api/post`, info)
       .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };
