@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux"
-import { logUser,logOutUser } from "../../redux/slices/auth/loginActions"
+import { useDispatch, useSelector } from "react-redux"
+import { logUser } from "../../redux/slices/auth/loginActions"
+import { getUserByEmail } from "../../redux/slices/user/userAction";
+import { useNavigate} from "react-router-dom"
 
 
 function SigIn() {
+  
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
 
-  const dispatch = useDispatch()
+  useEffect(()=>{
 
+  },[dispatch])
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -24,21 +30,16 @@ function SigIn() {
     loggedIn: false
   })
 
+  
+  const handleLogin = async(e) => {
+      e.preventDefault();
+      setUser({ email: email, password: password, loggedIn:true })
+      dispatch(logUser(user))
+      navigate("/home")
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setUser({ email: email, password: password, loggedIn:true })
-    dispatch(logUser(user))
-  }
-
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    setUser({ email: null, password: null, loggedIn:false })
-    dispatch(logOutUser(user))
-  }
-
-
-
+    }
+  
+  
 
 
   return (
@@ -103,7 +104,7 @@ function SigIn() {
         </button>
         <div class="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
-        Not registered?{" "}
+        Not registered?
         <span class="cursor-pointer text-gray-600 hover:underline">
         </span> 
         </div>

@@ -1,11 +1,14 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
+import {Navlink, useNavigate} from "react-router-dom"
+
 
 function SignUp() {
-
+  
   const dispatch = useDispatch()
- 
+  const navigate = useNavigate();
+
 
   const [name, setName]=useState("")
   const [lastname, setLastname]=useState("")
@@ -37,6 +40,7 @@ const handleRegister=async(e)=>{
         loggedIn:true
       })
       dispatch(registerUser(user))
+      navigate("/home")
 }
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
