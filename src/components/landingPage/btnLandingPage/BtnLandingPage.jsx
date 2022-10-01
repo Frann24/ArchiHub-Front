@@ -5,8 +5,8 @@ function BtnLandingPage() {
   return (
     <div className="mx-32 fixed bottom-8">
       <Link to="/home">
-      <button className="text-4xl bg-gray-200  mt-12 py-4 px-8 rounded-xl hover:bg-opacity-50 flex items-center group ">
-        <span className="tracking-widest text-2xl pr-8 uppercase transition-all duration-300 ease-linear group-active:scale-90">
+      <button className="bg-gray-200  mt-12 py-4 px-8 rounded-xl hover:bg-opacity-50 flex items-center group ">
+        <span className="tracking-widest xl:text-2xl pr-8 uppercase transition-all duration-300 ease-linear group-active:scale-90">
           Start now
         </span>
         <svg
