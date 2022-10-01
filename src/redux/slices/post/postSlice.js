@@ -14,12 +14,12 @@ export const postSlice = createSlice({
     showPost: (state, { payload }) => {
       state.post = payload;
     },
-    response: (state, { payload }) => {
+    responsePost: (state, { payload }) => {
       state.response = payload;
     },
   },
 });
 
-export const { allPosts, post, response } = postSlice.actions;
+export const { allPosts, post, responsePost } = postSlice.actions;
 
 export default postSlice.reducer;
