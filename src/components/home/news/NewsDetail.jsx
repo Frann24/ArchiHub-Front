@@ -30,10 +30,8 @@ export default function NewsDetail(props) {
             {detail[0].title}
           </p>
           <div className="font-light max-w-prose">{detail[0].description}</div>
-         
-            <div className="font-light max-w-prose">{detail[0].url}</div>
-            
-        
+
+          <div className="font-light max-w-prose">{detail[0].url}</div>
         </div>
       </div>
     </div>
