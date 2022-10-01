@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { logUser } from "../../redux/slices/auth/loginActions"
-import { getUserByEmail } from "../../redux/slices/user/userAction";
 import { useNavigate} from "react-router-dom"
 
 
@@ -24,19 +23,17 @@ function SigIn() {
     setPassword(e.target.value)
   }
 
-  const [user, setUser] = useState({
-    email: null,
-    password: null,
-    loggedIn: false
-  })
+  // const [user, setUser] = useState({
+  //   email: null,
+  //   password: null,
+  //   loggedIn: false
+  // })
 
   
   const handleLogin = async(e) => {
       e.preventDefault();
-      setUser({ email: email, password: password, loggedIn:true })
-      dispatch(logUser(user))
+      dispatch(logUser(email, password))
       navigate("/home")
-
     }
   
   

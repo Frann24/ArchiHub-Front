@@ -1,54 +1,49 @@
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
-import {Navlink, useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 function SignUp() {
-  
+
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
+  useEffect(() => {
 
-  const [name, setName]=useState("")
-  const [lastname, setLastname]=useState("")
-  const [nickname, setNickname]=useState("")
-  const [email, setEmail]=useState("")
-  const [password, setPassword]=useState("")
-  const [confirmPassword, setConfirmPassword]=useState("")
+  }, [dispatch])
+
+  const [name, setName] = useState("")
+  const [lastname, setLastname] = useState("")
+  const [nickname, setNickname] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
 
 
-  const[user,setUser]=useState({
-    name:null,
-    lastname:null,
-    nickname:null,
-    email:null,
-    password:null,
-    confirmPassword:null,
-    loggedIn:false
-  })
+  // const[user,setUser]=useState({
+  //   name:null,
+  //   lastname:null,
+  //   nickname:null,
+  //   email:null,
+  //   password:null,
+  //   confirmPassword:null,
+  //   loggedIn:false
+  // })
 
-const handleRegister=async(e)=>{
-  e.preventDefault();
-      setUser({
-        name,
-        lastname,
-        nickname,
-        email,
-        password,
-        confirmPassword,
-        loggedIn:true
-      })
-      dispatch(registerUser(user))
-      navigate("/home")
-}
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    dispatch(registerUser(name, lastname, nickname, email, password, confirmPassword))
+    navigate("/home")
+  }
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">
         Sign Up
       </h3>
       <form className="space-y-6" onSubmit={handleRegister}>
-      <div>
+        <div>
           <label
             for="name"
             className="block mb-2 text-sm font-medium text-gray-900"
@@ -61,7 +56,7 @@ const handleRegister=async(e)=>{
             id="name"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
             placeholder="first name"
-            onChange={(e)=>setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             value={name}
           />
         </div>
@@ -78,7 +73,7 @@ const handleRegister=async(e)=>{
             id="lastname"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
             placeholder="lastname"
-            onChange={(e)=>setLastname(e.target.value)}
+            onChange={(e) => setLastname(e.target.value)}
             value={lastname}
           />
         </div>
@@ -95,12 +90,12 @@ const handleRegister=async(e)=>{
             id="nickname"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
             placeholder="nickname"
-            onChange={(e)=>setNickname(e.target.value)}
+            onChange={(e) => setNickname(e.target.value)}
             value={nickname}
 
           />
         </div>
-       
+
         <div>
           <label
             for="email"
@@ -114,7 +109,7 @@ const handleRegister=async(e)=>{
             id="email"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
             placeholder="name@example.com"
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             value={email}
 
 
@@ -133,7 +128,7 @@ const handleRegister=async(e)=>{
             id="password"
             placeholder="••••••••"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            onChange={(e)=>setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             value={password}
 
 
@@ -152,9 +147,9 @@ const handleRegister=async(e)=>{
             id="confirmPassword"
             placeholder="••••••••"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            onChange={(e)=>setConfirmPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             value={confirmPassword}
-         />
+          />
         </div>
         <div className="flex justify-between"></div>
         <button
