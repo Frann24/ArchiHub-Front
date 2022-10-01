@@ -33,13 +33,13 @@ export default function NewsReel() {
                 <img src={e.image} width="600px" alt="news" />
               )}
               <div class="text-gray-400">{e.date}</div>
-              <p className="font-normal">{e.title}</p>
+              <p className="font-semibold truncate">{e.title}</p>
               <div className="font-light">{e.shortDescription}</div>
             </div>
           </Link>
         ))}
       </div>
-      <div class="ml-16 text-xl" onClick={(e) => paginado(e)}>
+      <div class="ml-16 text-xl my-9 font-semibold" onClick={(e) => paginado(e)}>
         See more...
       </div>
     </div>
