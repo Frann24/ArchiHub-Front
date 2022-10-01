@@ -1,4 +1,4 @@
-import { allPosts, post, response } from "./postSlice";
+import { allPosts, post, responsePost } from "./postSlice";
 const axios = require("axios");
 export const getAllPosts = () => {
   return (dispatch) => {
@@ -22,7 +22,7 @@ export const createPost = (id, info) => {
   return (dispatch) => {
     axios
       .post(`http://localhost:3001/api/post/${id}`, info)
-      .then((res) => dispatch(response(res.data)))
+      .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };
 };
@@ -31,7 +31,7 @@ export const updatePost = (id, info) => {
   return (dispatch) => {
     axios
       .put(`http://localhost:3001/api/post/${id}`, info)
-      .then((res) => dispatch(response(res.data)))
+      .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };
 };
