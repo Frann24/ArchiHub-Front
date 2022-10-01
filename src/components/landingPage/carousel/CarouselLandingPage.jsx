@@ -11,7 +11,7 @@ function CarouselLandingPage() {
   useEffect(()=>{
     const interval = setInterval(()=>{
       selectNewComponent(selectedIndex, infoCarousel)
-    },10000)
+    },7000)
     return () => clearInterval(interval);
   })
 

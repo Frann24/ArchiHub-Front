@@ -24,7 +24,11 @@ function Header() {
   return (
     <div className="select-none">
       <div className="border-b-2 border-gray-200">
-        <div className="mx-32 xl:h-20 flex justify-between items-center ">
+        <div className="flex justify-between m-4 items-center h-14
+        md:mx-8
+        lg:mx-16 lg:h-16
+        xl:mx-32
+        ">
           <Logo />
          {token  ? <Logged/> : <Guest/>}
         </div>
