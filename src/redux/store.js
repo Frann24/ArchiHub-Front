@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import usersReducer from "./slices/GetUsers/getUsersSlice"
 // import newsSlice from "./slices/sliceNews/newsSlice";
 import news from "./slices/sliceNews/newsSlice";
 import newsSlice from "./slices/sliceNews/newsSlice"
@@ -12,6 +13,9 @@ export const store = configureStore({
     post: postReducer,
     newsSlice: newsSlice,
     header: headerReducer,
+    post: postReducer,
+    users: usersReducer,
     login: loginReducer,
   }  
 })
+
