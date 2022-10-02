@@ -39,7 +39,7 @@ export default function NewsDetail(props) {
 
           <div
             onClick={handleLink}
-            className="font-light max-w-prose underline decoration-solid text-sky-600 color: rgb(3 105 161); mb-40"
+            className="font-light max-w-prose underline decoration-solid text-sky-600 color: rgb(3 105 161); mb-6"
           >
             read original post
           </div>
