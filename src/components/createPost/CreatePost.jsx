@@ -4,6 +4,7 @@ import { useState } from "react";
 import Select from "react-select";
 import { getAllUsers } from "../../redux/slices/user/userActions";
 import { createPost } from "../../redux/slices/post/postActions";
+import infoTypePost from "../../api/projectTypeData";
 
 const CreatePost = () => {
   const [form, setForm] = useState({
@@ -40,6 +41,22 @@ const CreatePost = () => {
     });
   };
 
+  // cambio
+  const options2 = infoTypePost?.map((e, index) => {
+    return {
+      id: index,
+      value: e.value,
+      label: e.name,
+    };
+  });
+  const handleSelectType = (value) => {
+    setForm({
+      ...form,
+      project_type: value,
+    });
+  };
+  // cambio
+
   const validationsForm = () => {
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
@@ -52,7 +69,7 @@ const CreatePost = () => {
       errors.description = "'description' is required";
     }
     if (Object.keys(form.project_type.trim()).length === 0) {
-      errors.project_type = "'project_type' is required";
+      errors.project_type = "'project type' is required";
     }
     if (Object.keys(form.mts2.trim()).length === 0) {
       errors.mts2 = "'mts2' is required";
@@ -206,8 +223,15 @@ const CreatePost = () => {
             <label className="text-2xl">
               Project Type(Apartament, House, Building, etc.)
             </label>
+            <Select
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
+              onBlur={handleFormBlur}
+              onChange={handleSelectType}
+              options={options2}
+              value={form.project_type}
+            />
 
-            <input
+            {/* <input
               className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="project_type"
@@ -216,7 +240,7 @@ const CreatePost = () => {
               onChange={(e) => handleFormChange(e)}
               value={form.project_type}
               required
-            />
+            /> */}
 
             {!errors.project_type ? (
               <span></span>
@@ -258,7 +282,7 @@ const CreatePost = () => {
               value={form.rooms}
               required
             />
-
+            {/* //with-auto */}
             {!errors.rooms ? (
               <span></span>
             ) : (
