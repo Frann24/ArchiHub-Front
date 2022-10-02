@@ -1,6 +1,8 @@
 import React from "react";
 import Search from "../header/menu/search/Search";
 import NewsReel from "./news/NewsReel";
+import FilterType from "./posts/filterType/FilterType";
+import Order from "./posts/order/Order";
 import PostsReel from "./posts/PostsReel";
 
 function Home() {
@@ -16,6 +18,9 @@ function Home() {
       </div>
       <div id="news_id">
       <NewsReel />
+      </div>
+      <div>
+        <FilterType /> <Order />
       </div>
       <div id="posts_id">
         <PostsReel />
