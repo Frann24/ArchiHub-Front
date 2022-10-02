@@ -14,7 +14,7 @@ const CreatePost = () => {
     rooms: "",
     year: "",
     bathrooms: "",
-    image: "",
+    image: [],
     authors: [],
     additional_data: "",
   });
@@ -128,6 +128,7 @@ const CreatePost = () => {
       mts2: "",
       rooms: "",
       year: "",
+      image: [],
       bathrooms: "",
       authors: [],
       additional_data: "",
