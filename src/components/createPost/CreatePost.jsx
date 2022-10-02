@@ -109,6 +109,25 @@ const CreatePost = () => {
       });
     }
   };
+  const uploadImage = async (e) => {
+    console.log(e.target.file);
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "Arquihub");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dfcd64nhm/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    console.log(file.secure_url);
+    if (file.secure_url !== undefined) {
+      setForm({ ...form, image: [...form.image, file.secure_url] });
+    }
+  };
 
   const handleFormBlur = (e) => {
     handleFormChange(e);
@@ -252,41 +271,17 @@ const CreatePost = () => {
               onBlur={handleFormBlur}
               onChange={handleSelectAuthors}
               isMulti
-              // key={options.value}
               options={options}
               value={form.authors}
             />
             <label>Image</label>
-            <button type="button">Subir Foto</button>
 
-            {/* <div>
-             {form.authors?.map((e, index) => {
-                return (
-                  <input
-                    type="button"
-                    value={e}
-                    key={index}
-                    onClick={(e) => handleDeleteAuthors(e)}
-                  />
-                );
-              })}
-            </div>
-            
-            {!errors.authors ? <span></span> : <p>{errors.authors}</p>}
-            
-            <select
-              id="select"
-              name="authors"
-              onChange={(e) => handleSelectAuthors(e)}
-            >
-              {allUsers?.map((author) => {
-                return (
-                  <option key={author._id} value={author.nickname}>
-                    {author.name}
-                  </option>
-                );
-              })}
-            </select> */}
+            <input
+              id="exampleFile"
+              name="file"
+              type="file"
+              onChange={uploadImage}
+            />
 
             <label>Additional Data</label>
 
@@ -315,6 +310,27 @@ const CreatePost = () => {
               <span>Send</span>
             </button>
           </form>
+        </div>
+        <div>
+          <div>
+            {form.image?.map((e) => {
+              return <img src={e} alt={e} />;
+            })}
+          </div>
+          <div>
+            {
+              <div>
+                <h1>{form.title}</h1>
+                <h3>{form.description}</h3>
+                <h3>{form.project_type}</h3>
+                <h4>{form.mts2}</h4>
+                <h4>{form.rooms}</h4>
+                <h4>{form.year}</h4>
+                <h4>{form.bathrooms}</h4>
+                <h4>{form.additional_data}</h4>
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>
