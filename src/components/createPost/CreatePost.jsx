@@ -223,13 +223,13 @@ const CreatePost = () => {
             <label className="text-2xl">
               Project Type(Apartament, House, Building, etc.)
             </label>
-            <Select
+            {/* <Select
               className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               onBlur={handleFormBlur}
               onChange={handleSelectType}
               options={options2}
               value={form.project_type}
-            />
+            /> */}
 
             {/* <input
               className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
