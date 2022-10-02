@@ -1,49 +1,58 @@
-import React, { useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import posts from "../../../api/posts";
+import { getPost } from '../../../redux/slices/post/postActions';
 
 
 function PostDetail() {
-    const [comment, setComment] = useState('')
-    // const dispatch = useDispatch();    
-     const { id } = useParams()
-    
-    // useEffect (() => {
-    // dispatch(postDetail(id))
-    // }, [dispatch])
+    const dispatch = useDispatch();    
+    const { id } = useParams()
+    const post = useSelector((state) => state.post.post)
+    useEffect (() => {
+    dispatch(getPost(id))
+    }, [dispatch])
 
-
-    //const posts = useSelector((state) => state.posts)
-    
-    const post = posts.find(post => post.id == id)
-
-    function handleComment (e) {
-        setComment(comment + e.target.value)
-    }
-    // function saveComment () {
-    //     dispatch(newComment(comment, id))
-    // }
-
+ 
     return (
         <div>
-            <img width='200px' height='200px' src={post.images[0]} ></img>
-            <div>
+            {
+                post.image.length !== 0 ? (
+                    <img width='200px' height='200px' src={post.image[0]} ></img>
+                ) : null
+            }
+
+
+            {/* <div>
                 {
-                post.images.map((img) => {
+                post.image.map((img) => {
                     return (
                         <img width='50px' height='50px' src={img} ></img>
                     )
                     }
                     )
                 }
-            </div>
+            </div> */}
             <div>
                 <h2>{post.title}</h2>
-                <h3>Nombre del arquitecto</h3>
-                <p>{post.description}</p>
+                {
+                    post.authors.map((el) => {
+                        return (
+                            <h3>{el}</h3>
+                        )
+                    })
+                }
             </div>
             <div>
+                <h4>{post.mts2} m2</h4>
+                <h4></h4>
+                <h4></h4>
+                <h4></h4>
+                <h4></h4>
+            </div>
+            <div>
+                <p>{post.description}</p>
+            </div>
+            {/* <div>
                 <img/>
                 <textarea
                 placeholder='add a comment'
@@ -51,7 +60,7 @@ function PostDetail() {
                 <button 
                 //onClick={saveComment()}    
                 >Send</button>
-            </div>
+            </div> */}
             {/* <div>
                 {
                     post.comments.map((c) => {
