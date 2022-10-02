@@ -158,31 +158,38 @@ const CreatePost = () => {
   };
 
   return (
-    <div>
+    <div className=" grid grid-cols-2 bg-slate-100 gap-12">
       <div>
-        <div>
-          <h2>Create Post</h2>
+        <div className="md:container px-10 py-4 bg-slate-100">
+          <h2 className="text-2xl mb-8">Create Post</h2>
           <form onSubmit={(e) => handleFormSubmit(e)}>
-            <label>Title</label>
+            <label className="text-2xl">Title</label>
+            <span className="block font-bold text-slate-700 text-2x1 ">
+              <input
+                className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-400 invalid:border-4"
+                type="text"
+                name="title"
+                placeholder="Title of the project..."
+                onBlur={(e) => handleFormBlur(e)}
+                onChange={(e) => handleFormChange(e)}
+                value={form.title}
+                required
+              />
+            </span>
 
-            <input
-              type="text"
-              name="title"
-              placeholder="Title..."
-              onBlur={(e) => handleFormBlur(e)}
-              onChange={(e) => handleFormChange(e)}
-              value={form.title}
-              required
-            />
+            {!errors.title ? (
+              <span></span>
+            ) : (
+              <p className="text-2xl mb-6 text-red-400">{errors.title}</p>
+            )}
 
-            {!errors.title ? <span></span> : <p>{errors.title}</p>}
-
-            <label>Description</label>
+            <div className="text-2xl mt-6">Description</div>
 
             <textarea
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-400 invalid:border-4"
               type="text"
               name="description"
-              placeholder="Type any description..."
+              placeholder="Type a description..."
               onBlur={(e) => handleFormBlur(e)}
               onChange={(e) => handleFormChange(e)}
               value={form.description}
@@ -190,14 +197,21 @@ const CreatePost = () => {
               rows="10"
             ></textarea>
 
-            {!errors.description ? <span></span> : <p>{errors.description}</p>}
+            {!errors.description ? (
+              <span></span>
+            ) : (
+              <p className="text-2xl mb-6 text-red-400">{errors.description}</p>
+            )}
 
-            <label>Project Type(Apartament, House, Building, etc.)</label>
+            <label className="text-2xl">
+              Project Type(Apartament, House, Building, etc.)
+            </label>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="project_type"
-              placeholder="Type your project_type..."
+              placeholder="Type your project type..."
               onBlur={(e) => handleFormBlur(e)}
               onChange={(e) => handleFormChange(e)}
               value={form.project_type}
@@ -207,12 +221,15 @@ const CreatePost = () => {
             {!errors.project_type ? (
               <span></span>
             ) : (
-              <p>{errors.project_type}</p>
+              <p className="text-2xl mb-6 text-red-400">
+                {errors.project_type}
+              </p>
             )}
 
-            <label>mts2(min-max)</label>
+            <div className="text-2xl mt-6">mts2(min-max)</div>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="range"
               name="mts2"
               min="100"
@@ -224,24 +241,52 @@ const CreatePost = () => {
             />
             <label>{form.mts2}</label>
 
-            {!errors.mts2 ? <span></span> : <p>{errors.mts2}</p>}
-            <label>Rooms</label>
+            {!errors.mts2 ? (
+              <span></span>
+            ) : (
+              <p className="text-2xl mb-6 text-red-400">{errors.mts2}</p>
+            )}
+            <div className="text-2xl mt-8">Rooms</div>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="rooms"
-              placeholder="Select the amount of rooms..."
+              placeholder="Amount of rooms..."
               onBlur={handleFormBlur}
               onChange={handleFormChange}
               value={form.rooms}
               required
             />
 
-            {!errors.rooms ? <span></span> : <p>{errors.rooms}</p>}
+            {!errors.rooms ? (
+              <span></span>
+            ) : (
+              <p className="text-2xl mb-6 text-red-400">{errors.rooms}</p>
+            )}
 
-            <label>Year</label>
+            <label className="text-2xl">Bathrooms</label>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
+              type="text"
+              name="bathrooms"
+              placeholder="Amount of bathrooms..."
+              onBlur={handleFormBlur}
+              onChange={handleFormChange}
+              value={form.bathrooms}
+              required
+            />
+            {!errors.bathrooms ? (
+              <span></span>
+            ) : (
+              <p className="text-2xl mb-6 text-red-400">{errors.bathrooms}</p>
+            )}
+
+            <label className="text-2xl">Year</label>
+
+            <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="date"
               name="year"
               onBlur={handleFormBlur}
@@ -250,45 +295,38 @@ const CreatePost = () => {
               required
             />
 
-            {!errors.year ? <span></span> : <p>{errors.year}</p>}
+            {!errors.year ? (
+              <span></span>
+            ) : (
+              <p className="text-2xl mb-6 text-red-400">{errors.year}</p>
+            )}
 
-            <label>Bathrooms</label>
-
-            <input
-              type="text"
-              name="bathrooms"
-              placeholder="Select the amount of bathrooms..."
-              onBlur={handleFormBlur}
-              onChange={handleFormChange}
-              value={form.bathrooms}
-              required
-            />
-
-            {!errors.bathrooms ? <span></span> : <p>{errors.bathrooms}</p>}
-
-            <label>Authors</label>
+            <div className="text-2xl mt-6">Authors</div>
             <Select
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               onBlur={handleFormBlur}
               onChange={handleSelectAuthors}
               isMulti
               options={options}
               value={form.authors}
             />
-            <label>Image</label>
+            <div className="text-2xl mt-6">Image</div>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               id="exampleFile"
               name="file"
               type="file"
               onChange={uploadImage}
             />
 
-            <label>Additional Data</label>
+            <div className="text-2xl mt-6">Additional Data</div>
 
             <textarea
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="additional_data"
-              placeholder="Type your additional data"
+              placeholder="Type additional data"
               onBlur={(e) => handleFormBlur(e)}
               onChange={(e) => handleFormChange(e)}
               value={form.additional_data}
@@ -299,10 +337,13 @@ const CreatePost = () => {
             {!errors.additional_data ? (
               <span></span>
             ) : (
-              <p>{errors.additional_data}</p>
+              <p className="text-2xl mb-6 text-red-400">
+                {errors.additional_data}
+              </p>
             )}
 
             <button
+              className="bg-gray-200 text-2xl mt-12 py-4 px-8 rounded-xl hover:bg-opacity-50 flex items-center group "
               id="send"
               type="submit"
               disabled={Object.keys(errors).length !== 0}
@@ -311,26 +352,36 @@ const CreatePost = () => {
             </button>
           </form>
         </div>
+      </div>
+      <div className="mx-12">
         <div>
-          <div>
-            {form.image?.map((e) => {
-              return <img src={e} alt={e} />;
-            })}
-          </div>
-          <div>
-            {
-              <div>
-                <h1>{form.title}</h1>
-                <h3>{form.description}</h3>
-                <h3>{form.project_type}</h3>
-                <h4>{form.mts2}</h4>
-                <h4>{form.rooms}</h4>
-                <h4>{form.year}</h4>
-                <h4>{form.bathrooms}</h4>
-                <h4>{form.additional_data}</h4>
+          {
+            <div>
+              <div className="text-2xl mt-6">Title of the project: </div>
+              <div className="text-2xl font-bold mb-6">{form.title}</div>
+              <div className="text-2xl mt-6">Description: </div>
+              <div className="text-2xl font-bold mb-6">{form.description}</div>
+              <div className="text-2xl mb-6">Type of project: </div>
+              <div className="text-2xl font-bold mb-6">{form.project_type}</div>
+              <div className="text-2xl mt-6">Mts2: </div>
+              <div className="text-2xl font-bold mb-6">{form.mts2}</div>
+              <div className="text-2xl mt-6">Year of construction: </div>
+              <div className="text-2xl font-bold mb-6">{form.year}</div>
+              <div className="text-2xl mt-6">Amount of rooms: </div>
+              <div className="text-2xl font-bold mb-6">{form.rooms}</div>
+              <div className="text-2xl mt-6">Amount of bathrooms: </div>
+              <div className="text-2xl font-bold mb-6">{form.bathrooms}</div>
+              <div className="text-2xl mt-6">Additional information: </div>
+              <div className="text-2xl font-bold mb-6">
+                {form.additional_data}
               </div>
-            }
-          </div>
+            </div>
+          }
+        </div>
+        <div>
+          {form.image?.map((e) => {
+            return <img src={e} alt={e} width="300px" />;
+          })}
         </div>
       </div>
     </div>
