@@ -7,15 +7,16 @@ import { createPost } from "../../redux/slices/post/postActions";
 
 const CreatePost = () => {
   const [form, setForm] = useState({
-    title: "qqwe",
-    description: "qweqweqw",
-    project_type: "qweqwe",
-    mts2: "500",
-    rooms: "6",
+    title: "",
+    description: "",
+    project_type: "",
+    mts2: "",
+    rooms: "",
     year: "",
-    bathrooms: "3",
+    bathrooms: "",
+    image: [],
     authors: [],
-    additional_data: "qweqwfqwdqwd",
+    additional_data: "",
   });
   const [errors, setErrors] = useState({});
   const [loading] = useState(false);
@@ -23,7 +24,7 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
   useEffect(() => {
-    dispatch(getAllUsers())
+    dispatch(getAllUsers());
   }, [dispatch]);
 
   const options = allUsers.map((e) => {
@@ -61,6 +62,9 @@ const CreatePost = () => {
     }
     if (Object.keys(form.year).length === 0) {
       errors.year = "Select any date";
+    }
+    if (Object.keys(form.image).length === 0) {
+      errors.image = "Upload one image at least";
     }
     if (Object.keys(form.bathrooms).length === 0) {
       errors.bathrooms = "'bathrooms' is required";
@@ -105,6 +109,25 @@ const CreatePost = () => {
       });
     }
   };
+  const uploadImage = async (e) => {
+    console.log(e.target.file);
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "Arquihub");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dfcd64nhm/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    console.log(file.secure_url);
+    if (file.secure_url !== undefined) {
+      setForm({ ...form, image: [...form.image, file.secure_url] });
+    }
+  };
 
   const handleFormBlur = (e) => {
     handleFormChange(e);
@@ -114,7 +137,7 @@ const CreatePost = () => {
     e.preventDefault();
     setErrors(validationsForm(form));
     if (Object.keys(errors).length === 0) {
-      dispatch(createPost(form))
+      dispatch(createPost(form));
       setResponse(true);
     }
     setForm({
@@ -124,6 +147,7 @@ const CreatePost = () => {
       mts2: "",
       rooms: "",
       year: "",
+      image: [],
       bathrooms: "",
       authors: [],
       additional_data: "",
@@ -137,57 +161,58 @@ const CreatePost = () => {
     <div>
       <div>
         <div>
-          <h2>Create Post</h2>
           <form onSubmit={(e) => handleFormSubmit(e)}>
-            <label>Title</label>
-            <br />
-            <input
-              type="text"
-              name="title"
-              placeholder="Title..."
-              onBlur={(e) => handleFormBlur(e)}
-              onChange={(e) => handleFormChange(e)}
-              value={form.title}
-              required
-            />
-            <br></br>
-            {!errors.title ? <span></span> : <p>{errors.title}</p>}
-            <br></br>
-            <label>Description</label>
-            <br />
-            <textarea
-              type="text"
-              name="description"
-              placeholder="Type any description..."
-              onBlur={(e) => handleFormBlur(e)}
-              onChange={(e) => handleFormChange(e)}
-              value={form.description}
-              requiredcols="30"
-              rows="10"
-            ></textarea>
-            <br></br>
-            {!errors.description ? <span></span> : <p>{errors.description}</p>}
-            <br></br>
-            <label>Project Type(Apartament, House, Building, etc.)</label>
-            <br />
-            <input
-              type="text"
-              name="project_type"
-              placeholder="Type your project_type..."
-              onBlur={(e) => handleFormBlur(e)}
-              onChange={(e) => handleFormChange(e)}
-              value={form.project_type}
-              required
-            />
-            <br></br>
-            {!errors.project_type ? (
-              <span></span>
-            ) : (
-              <p>{errors.project_type}</p>
-            )}
-            <br></br>
+            <div className="container ml-6 grid grid-cols-10 ">
+              <div className="col-span-4">Create Post</div>
+              <div className="col-start-6 col-span-5">Preview</div>
+
+              <div className="bg-pink-400 col-span-4">
+                {/* <label>Title</label> */}
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title..."
+                  onBlur={(e) => handleFormBlur(e)}
+                  onChange={(e) => handleFormChange(e)}
+                  value={form.title}
+                  required
+                />
+              </div>
+
+              <div className="bg-blue-500 col-start-6 col-span-5">
+                Title: {form.title}
+              </div>
+
+              <div className="bg-blue-200 text-rose-600 col-span-4">
+                {!errors.title ? <div></div> : <div>{errors.title}</div>}
+              </div>
+              <div className="col-start-1 bg-yellow-400 col-span-4">
+                Project Type(Apartament, House, Building, etc.)
+                <div className="bg-blue-200 text-rose-600">
+                  <input
+                    type="text"
+                    name="project_type"
+                    placeholder="Type your project_type..."
+                    onBlur={(e) => handleFormBlur(e)}
+                    onChange={(e) => handleFormChange(e)}
+                    value={form.project_type}
+                    required
+                  />
+                  {!errors.project_type ? (
+                    <span></span>
+                  ) : (
+                    <p>{errors.project_type}</p>
+                  )}
+                </div>
+              </div>
+              <div className="bg-orange-200 col-start-6 col-span-5">
+                {" "}
+                Proyect type: {form.project_type}
+              </div>
+            </div>
+
             <label>mts2(min-max)</label>
-            <br />
+
             <input
               type="range"
               name="mts2"
@@ -199,10 +224,10 @@ const CreatePost = () => {
               required
             />
             <label>{form.mts2}</label>
-            <br></br>
+
             {!errors.mts2 ? <span></span> : <p>{errors.mts2}</p>}
             <label>Rooms</label>
-            <br />
+
             <input
               type="text"
               name="rooms"
@@ -212,11 +237,11 @@ const CreatePost = () => {
               value={form.rooms}
               required
             />
-            <br />
+
             {!errors.rooms ? <span></span> : <p>{errors.rooms}</p>}
-            <br />
+
             <label>Year</label>
-            <br />
+
             <input
               type="date"
               name="year"
@@ -225,11 +250,11 @@ const CreatePost = () => {
               value={form.year}
               required
             />
-            <br />
+
             {!errors.year ? <span></span> : <p>{errors.year}</p>}
-            <br />
+
             <label>Bathrooms</label>
-            <br />
+
             <input
               type="text"
               name="bathrooms"
@@ -239,49 +264,46 @@ const CreatePost = () => {
               value={form.bathrooms}
               required
             />
-            <br />
+
             {!errors.bathrooms ? <span></span> : <p>{errors.bathrooms}</p>}
-            <br />
+
             <label>Authors</label>
             <Select
               onBlur={handleFormBlur}
               onChange={handleSelectAuthors}
               isMulti
-              // key={options.value}
               options={options}
               value={form.authors}
             />
-            {/* <div>
-             {form.authors?.map((e, index) => {
-                return (
-                  <input
-                    type="button"
-                    value={e}
-                    key={index}
-                    onClick={(e) => handleDeleteAuthors(e)}
-                  />
-                );
-              })}
+            <label>Image</label>
+
+            <input
+              id="exampleFile"
+              name="file"
+              type="file"
+              onChange={uploadImage}
+            />
+            <div>
+              <label>Description</label>
+              <textarea
+                type="text"
+                name="description"
+                placeholder="Type any description..."
+                onBlur={(e) => handleFormBlur(e)}
+                onChange={(e) => handleFormChange(e)}
+                value={form.description}
+                requiredcols="30"
+                rows="10"
+              ></textarea>
+              {!errors.description ? (
+                <span></span>
+              ) : (
+                <p>{errors.description}</p>
+              )}
             </div>
-            <br></br>
-            {!errors.authors ? <span></span> : <p>{errors.authors}</p>}
-            <br></br>
-            <select
-              id="select"
-              name="authors"
-              onChange={(e) => handleSelectAuthors(e)}
-            >
-              {allUsers?.map((author) => {
-                return (
-                  <option key={author._id} value={author.nickname}>
-                    {author.name}
-                  </option>
-                );
-              })}
-            </select> */}
-            <br></br>
+
             <label>Additional Data</label>
-            <br />
+
             <textarea
               type="text"
               name="additional_data"
@@ -292,13 +314,13 @@ const CreatePost = () => {
               requiredcols="30"
               rows="10"
             ></textarea>
-            <br></br>
+
             {!errors.additional_data ? (
               <span></span>
             ) : (
               <p>{errors.additional_data}</p>
             )}
-            <br></br>
+
             <button
               id="send"
               type="submit"
@@ -307,6 +329,26 @@ const CreatePost = () => {
               <span>Send</span>
             </button>
           </form>
+        </div>
+        <div>
+          <div>
+            {
+              <div>
+                <h3>{form.description}</h3>
+
+                <h4>{form.mts2}</h4>
+                <h4>{form.rooms}</h4>
+                <h4>{form.year}</h4>
+                <h4>{form.bathrooms}</h4>
+                <h4>{form.additional_data}</h4>
+                <div className="col-start-6 col-span-5 row-span-4 h-32 w-full object-contain">
+                  {form.image?.map((e) => {
+                    return <img src={e} alt={e} />;
+                  })}
+                </div>
+              </div>
+            }
+          </div>
         </div>
       </div>
     </div>
