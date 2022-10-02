@@ -160,29 +160,32 @@ const CreatePost = () => {
   return (
     <div>
       <div>
-        <div>
-          <h2>Create Post</h2>
+        <div className="md: container px-10 py-4 bg-slate-100">
+          <h2 className="text-2xl mb-8">Create Post</h2>
           <form onSubmit={(e) => handleFormSubmit(e)}>
-            <label>Title</label>
+            <label className="text-2xl">Title</label>
+            <span className="block font-bold text-slate-700 text-2x1 ">
+              <input
+                className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-400 invalid:border-4"
+                type="text"
+                name="title"
+                placeholder="Title..."
+                onBlur={(e) => handleFormBlur(e)}
+                onChange={(e) => handleFormChange(e)}
+                value={form.title}
+                required
+              />
+            </span>
 
-            <input
-              type="text"
-              name="title"
-              placeholder="Title..."
-              onBlur={(e) => handleFormBlur(e)}
-              onChange={(e) => handleFormChange(e)}
-              value={form.title}
-              required
-            />
+            {!errors.title ? <span></span> : <p className="text-2xl mb-6 text-red-400">{errors.title}</p>}
 
-            {!errors.title ? <span></span> : <p>{errors.title}</p>}
-
-            <label>Description</label>
+            <div className="text-2xl mt-6">Description</div>
 
             <textarea
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-400 invalid:border-4"
               type="text"
               name="description"
-              placeholder="Type any description..."
+              placeholder="Type a description..."
               onBlur={(e) => handleFormBlur(e)}
               onChange={(e) => handleFormChange(e)}
               value={form.description}
@@ -190,11 +193,12 @@ const CreatePost = () => {
               rows="10"
             ></textarea>
 
-            {!errors.description ? <span></span> : <p>{errors.description}</p>}
+            {!errors.description ? <span></span> : <p className="text-2xl mb-6 text-red-400">{errors.description}</p>}
 
-            <label>Project Type(Apartament, House, Building, etc.)</label>
+            <label className="text-2xl">Project Type(Apartament, House, Building, etc.)</label>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="project_type"
               placeholder="Type your project_type..."
@@ -207,12 +211,13 @@ const CreatePost = () => {
             {!errors.project_type ? (
               <span></span>
             ) : (
-              <p>{errors.project_type}</p>
+              <p className="text-2xl mb-6 text-red-400" >{errors.project_type}</p>
             )}
 
-            <label>mts2(min-max)</label>
+            <label className="text-2xl">mts2(min-max)</label>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="range"
               name="mts2"
               min="100"
@@ -224,24 +229,40 @@ const CreatePost = () => {
             />
             <label>{form.mts2}</label>
 
-            {!errors.mts2 ? <span></span> : <p>{errors.mts2}</p>}
-            <label>Rooms</label>
+            {!errors.mts2 ? <span></span> : <p className="text-2xl mb-6 text-red-400">{errors.mts2}</p>}
+            <label className="text-2xl">Rooms</label>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="rooms"
-              placeholder="Select the amount of rooms..."
+              placeholder="Amount of rooms..."
               onBlur={handleFormBlur}
               onChange={handleFormChange}
               value={form.rooms}
               required
             />
 
-            {!errors.rooms ? <span></span> : <p>{errors.rooms}</p>}
+            {!errors.rooms ? <span></span> : <p className="text-2xl mb-6 text-red-400">{errors.rooms}</p>}
 
-            <label>Year</label>
+            <label className="text-2xl">Bathrooms</label>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
+              type="text"
+              name="bathrooms"
+              placeholder="Amount of bathrooms..."
+              onBlur={handleFormBlur}
+              onChange={handleFormChange}
+              value={form.bathrooms}
+              required
+            />
+            {!errors.bathrooms ? <span></span> : <p className="text-2xl mb-6 text-red-400">{errors.bathrooms}</p>}
+
+            <label className="text-2xl">Year</label>
+
+            <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="date"
               name="year"
               onBlur={handleFormBlur}
@@ -250,42 +271,31 @@ const CreatePost = () => {
               required
             />
 
-            {!errors.year ? <span></span> : <p>{errors.year}</p>}
+            {!errors.year ? <span></span> : <p className="text-2xl mb-6 text-red-400">{errors.year}</p>}
 
-            <label>Bathrooms</label>
-
-            <input
-              type="text"
-              name="bathrooms"
-              placeholder="Select the amount of bathrooms..."
-              onBlur={handleFormBlur}
-              onChange={handleFormChange}
-              value={form.bathrooms}
-              required
-            />
-
-            {!errors.bathrooms ? <span></span> : <p>{errors.bathrooms}</p>}
-
-            <label>Authors</label>
+            <div className="text-2xl mt-6" >Authors</div>
             <Select
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               onBlur={handleFormBlur}
               onChange={handleSelectAuthors}
               isMulti
               options={options}
               value={form.authors}
             />
-            <label>Image</label>
+            <div className="text-2xl mt-6">Image</div>
 
             <input
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               id="exampleFile"
               name="file"
               type="file"
               onChange={uploadImage}
             />
 
-            <label>Additional Data</label>
+            <div className="text-2xl mt-6">Additional Data</div>
 
             <textarea
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="additional_data"
               placeholder="Type your additional data"
@@ -299,7 +309,7 @@ const CreatePost = () => {
             {!errors.additional_data ? (
               <span></span>
             ) : (
-              <p>{errors.additional_data}</p>
+              <p className="text-2xl mb-6 text-red-400">{errors.additional_data}</p>
             )}
 
             <button
