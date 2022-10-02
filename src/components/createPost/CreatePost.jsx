@@ -207,7 +207,7 @@ const CreatePost = () => {
               </div>
               <div className="bg-orange-200 col-start-6 col-span-5">
                 {" "}
-                Proyect type: {form.project_type}
+                Proyect Type: {form.project_type}
               </div>
             </div>
 
