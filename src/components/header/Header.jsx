@@ -2,25 +2,21 @@ import React, { useEffect } from "react";
 import Logo from "./logo/Logo";
 import Guest from "./guest/Guest";
 import Menu from "./menu/Menu";
-import {useSelector} from "react-redux";
-import useLocalStorage from "../hooks/useLocalStorage";
+import {useDispatch, useSelector} from "react-redux";
 import Logged from "./logged/Logged";
-import axios from "axios"
-
+import {getUser} from "../../redux/slices/user/userActions"
 function Header() {
-  
-  // const token:  ? JSON.parse(localStorage.getItem('user')!) : null;
-
-  const [token, setToken]= useLocalStorage("token","")
-  axios.defaults.baseURL = "http://localhost:3000"
-  axios.defaults.headers.common = {"Authorization" : `x-access-token ${token}`}
-
- 
-  useEffect(()=>{
     
-  },[token])
 
-  const {menu} = useSelector(state => state.header)
+  
+  const dispatch = useDispatch()
+  let {menu} = useSelector(state => state.header)
+  const user = localStorage.getItem("user")
+  const formattedUser = (JSON.parse(user))
+  const {token, avatar, username} = formattedUser
+
+  
+
   return (
     <div className="select-none">
       <div className="border-b-2 border-gray-200">
@@ -30,7 +26,7 @@ function Header() {
         xl:mx-32
         ">
           <Logo />
-         {token  ? <Logged/> : <Guest/>}
+         {token  ? <Logged username={username} avatar={avatar}/> : <Guest/>}
         </div>
       </div>
       {menu ? <Menu/> : <></>}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux"
 import { logUser } from "../../redux/slices/auth/loginActions"
 import { useNavigate} from "react-router-dom"
@@ -9,9 +9,6 @@ function SigIn() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-  useEffect(()=>{
-
-  },[dispatch])
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -23,12 +20,6 @@ function SigIn() {
     setPassword(e.target.value)
   }
 
-  // const [user, setUser] = useState({
-  //   email: null,
-  //   password: null,
-  //   loggedIn: false
-  // })
-
   
   const handleLogin = async(e) => {
       e.preventDefault();
@@ -36,9 +27,6 @@ function SigIn() {
       navigate("/home")
     }
   
-  
-
-
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
     

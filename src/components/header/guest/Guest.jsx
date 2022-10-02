@@ -3,12 +3,10 @@ import Modal from "../../modal/Modal";
 import SigIn from "../../signIn/SigIn";
 import SignUp from "../../signUp/SignUp";
 import BtnMenu from "../btnMenu/BtnMenu";
-import Logged from "../logged/Logged";
 
 function Guest() {
   const [signIn, setSignIn] = useState(false)
   const [signUp, setSignUp] = useState(false)
-  // const token = window.localStorage.getItem("token")
 
   const toggleSignIn = () => {
     setSignIn(!signIn)

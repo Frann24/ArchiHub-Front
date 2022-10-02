@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import BtnMenu from '../btnMenu/BtnMenu'
 import { logOutUser } from "../../../redux/slices/auth/loginActions"
 import { useDispatch } from "react-redux"
 import { useNavigate} from "react-router-dom"
+import {useSelector} from "react-redux"
 
-function Logged() {
-  const userName = "Franco"
+function Logged({username, avatar}) {
 
 
   const dispatch = useDispatch()
@@ -13,14 +13,15 @@ function Logged() {
 
 
   const handleLogout =  (e) => {
-    // e.preventDefault();
     dispatch(logOutUser())
+    localStorage.removeItem("user")
     navigate("/")
   }
 
   return (
     <div className='text-lg flex gap-12 items-center'>
-      <p>Hello! {userName}</p>
+      <p>Hello! {username}</p>
+       <img src={avatar} alt="avatar"/> 
       <BtnMenu />
       <button onClick={handleLogout}>Logout</button>
     </div>
