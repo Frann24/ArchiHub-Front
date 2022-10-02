@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Search from "../header/menu/search/Search";
 import NewsReel from "./news/NewsReel";
 import PostsReel from "./posts/PostsReel";
 
 function Home() {
+  const {queryPost} = useSelector(state => state.post) 
+  console.log("Query Post: ",queryPost)
   return (
     <div>
       <Search />
