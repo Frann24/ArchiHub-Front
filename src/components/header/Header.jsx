@@ -11,15 +11,6 @@ function Header() {
   let {menu} = useSelector(state => state.header)
   const user = JSON.parse(localStorage.getItem("user"))
  
-  useEffect(()=>{
-    if(!user){
-      console.log("no hay ");
-    }else{
-      console.log(user.userImg);
-    }
-  },[user])
-
-  console.log(user);
 
   return (
     <div className="select-none">
