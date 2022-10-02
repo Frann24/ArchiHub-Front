@@ -5,7 +5,7 @@ import { getAllPosts } from "../../../redux/slices/post/postActions";
 
 function PostsReel() {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post)
+  const posts = useSelector((state) => state.post.allPosts)
 
   useEffect(() => {
     dispatch(getAllPosts())
@@ -13,13 +13,13 @@ function PostsReel() {
 
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
-  const currentCards = posts.allPosts.slice(0, indexLastCard);
+  const currentCards = posts.slice(0, indexLastCard);
   function paginado() {
     setPage(page + 1);
   }
 
   
-
+console.log(posts);
   return (
     <div>
 
@@ -31,7 +31,7 @@ function PostsReel() {
               <div>
                 <img
                   width="600px"
-                  src={post.image}
+                  src={post.image[0]}
                   alt="foto"
                   className="w-full aspect-[3/2]"
                 />
