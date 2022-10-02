@@ -1,4 +1,4 @@
-import { responseFavourite } from "./postSlice";
+import { responseFavourite } from "./userProjectSlice";
 const axios = require("axios");
 
 export const updateFavourite = (post_id, user_id) => {
