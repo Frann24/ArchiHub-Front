@@ -38,6 +38,7 @@ export default function Order() {
   return (
     <div>
       <Select
+        placeholder="Order..."
         options={GroupedOption}
         onChange={handleOrder}
         value={order.value}
