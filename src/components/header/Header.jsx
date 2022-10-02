@@ -5,17 +5,17 @@ import Menu from "./menu/Menu";
 import {useSelector} from "react-redux"
 import Logged from "./logged/Logged";
 import Search from "./menu/search/Search";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../home/Home";
 import PostDetail from "../home/posts/PostDetail";
 import CreatePost from "../createPost/CreatePost";
 import NewsDetail from "../home/news/NewsDetail";
 
 function Header() {
-  
+  const {pathname} = useLocation()
+
   let token = window.localStorage.getItem("token")
   let auth = false;
- 
 
   const {menu} = useSelector(state => state.header)
   return (
@@ -30,8 +30,9 @@ function Header() {
          {token !== null ? <Logged/> : <Guest/>}
         </div>
       </div>
-      {menu ? <Menu/> : <></>}
-      <Search/>
+      <div className="bg-gray-100 bg-opacity-50">
+        {menu ? <Menu path={pathname}/> : <></>}
+      </div>
       <Routes>
         <Route path="home" element={<Home/>} />
         <Route path="newsDetail/:id" element={<NewsDetail />} />

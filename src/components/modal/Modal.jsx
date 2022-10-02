@@ -5,12 +5,12 @@ function Modal({ children, toggle, active }) {
   return (
     <Portal>
       {active && (
-        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center ">
           <div
             onClick={toggle}
-            className="absolute w-full h-full top-0 left-0 bg-black opacity-40"
+            className="fixed w-full h-full top-0 left-0 bg-black opacity-40 "
           ></div>
-          <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+          <div className="fixed p-4 w-full max-w-md h-full md:h-auto">
             <div className="relative bg-gray-50 shadow">
               <button
                 onClick={toggle}
