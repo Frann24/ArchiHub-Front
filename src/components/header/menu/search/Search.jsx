@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
-
+import { useDispatch, useSelector } from "react-redux";
+import { getQueryPost } from "../../../../redux/slices/post/ordenAndFilterActions";
 function Search() {
   const [inputSearch, setInputSearch] = useState("");
-
+  const {allPosts} = useSelector(state=>state.post)
+  const dispatch = useDispatch();
   const handleChange = (e) => {
-    setInputSearch(e.target.value);
+    setInputSearch(e.target.value)
+    dispatch(getQueryPost(allPosts,e.target.value))
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setInputSearch("");
+    dispatch(getQueryPost(allPosts,inputSearch))
   };
 
   const clearInputSearch = (e) => {
     e.preventDefault();
     setInputSearch("");
+    dispatch(getQueryPost(allPosts,""))
   };
 
   return (
@@ -38,19 +44,19 @@ function Search() {
               type="text"
               placeholder="Search..."
               value={inputSearch}
-              onChange={handleChange}
+              onChange={e=>{handleChange(e)}}
             />
           </div>
-          <span
+           <span
             title="Search clean"
             className=" px-2 text-gray-300 cursor-pointer"
           >
             {inputSearch && (
               <FontAwesomeIcon onClick={clearInputSearch} icon={faXmark} />
             )}
-          </span>
+          </span> 
         </div>
-        <div className="w-24 bg-gray-700 text-center text-gray-50 cursor-pointer shadow-lg hover:bg-gray-600">
+        <div onClick={handleSubmit} className="w-24 bg-gray-700 text-center text-gray-50 cursor-pointer shadow-lg hover:bg-gray-600">
           <button className="p-2">Search</button>
         </div>
       </div>
