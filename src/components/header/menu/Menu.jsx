@@ -12,7 +12,7 @@ function Menu() {
         <Link to="/about-us" className="navbar-item">About us</Link>
         <Link to="/my-perfil" className="navbar-item">My profile</Link>
       </div>
-      <Search />
+     {/*  <Search /> */}
     </div>
   );
 }

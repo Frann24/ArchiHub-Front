@@ -1,4 +1,5 @@
 import React from "react";
+import Search from "../header/menu/search/Search";
 import NewsReel from "./news/NewsReel";
 import PostsReel from "./posts/PostsReel";
 

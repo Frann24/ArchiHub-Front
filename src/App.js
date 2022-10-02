@@ -14,13 +14,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App font-raleway">
-        <Header />
+        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/*" element={<Header/>}/>
+          {/* lAS RUTAS ESTAN EN EL COMPONENTE Header. */}
+          {/* <Route path="/home" element={<Home />} />
           <Route path="/newsDetail/:id" element={<NewsDetail />} />
           <Route path="/postDetail/:id" element={<PostDetail />} />
-          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/createpost" element={<CreatePost />} /> */}
         </Routes>
       </div>
     </BrowserRouter>
