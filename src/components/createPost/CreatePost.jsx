@@ -343,7 +343,7 @@ const CreatePost = () => {
                 <h4>{form.additional_data}</h4>
                 <div className="col-start-6 col-span-5 row-span-4 h-32 w-full object-contain">
                   {form.image?.map((e) => {
-                    return <img src={e} alt={e} />;
+                    return <img src={e} alt={e} width="200px" />;
                   })}
                 </div>
               </div>
