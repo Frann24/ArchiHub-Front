@@ -9,11 +9,13 @@ function Menu({ path }) {
     anchor.scrollIntoView({ behavior: "smooth", block: "center" });
   };
   return (
-    <div className="mx-4 h-96
+    <div
+      className="mx-4 h-96
     md:mx-8
     lg:mx-16
     xl:mx-32
-    ">
+    "
+    >
       <div className="flex flex-col justify-between h-full">
         <div className="menu-div">
           <div className="menu">
@@ -59,8 +61,22 @@ function Menu({ path }) {
           </div>
         </div>
         <div className="div-icon">
-          <FontAwesomeIcon className="icon" icon={faGithub} />
-          <FontAwesomeIcon className="icon" icon={faInstagram} />
+          <a
+            href="https://github.com/Frann24/ArchiHub-Front"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Github"
+          >
+            <FontAwesomeIcon className="icon" icon={faGithub} />
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Instagram"
+          >
+            <FontAwesomeIcon className="icon" icon={faInstagram} />
+          </a>
         </div>
       </div>
     </div>
