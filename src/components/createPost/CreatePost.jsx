@@ -4,12 +4,13 @@ import { useState } from "react";
 import Select from "react-select";
 import { getAllUsers } from "../../redux/slices/user/userActions";
 import { createPost } from "../../redux/slices/post/postActions";
+import infoTypePost from "../../api/projectTypeData";
 
 const CreatePost = () => {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    project_type: "",
+    project_type: [],
     mts2: "",
     rooms: "",
     year: "",
@@ -40,6 +41,22 @@ const CreatePost = () => {
     });
   };
 
+  // cambio
+  const options2 = infoTypePost?.map((e, index) => {
+    return {
+      id: index,
+      value: e.value,
+      label: e.name,
+    };
+  });
+  const handleSelectType = ({ value }) => {
+    setForm({
+      ...form,
+      project_type: value,
+    });
+  };
+  // cambio
+
   const validationsForm = () => {
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
@@ -52,7 +69,7 @@ const CreatePost = () => {
       errors.description = "'description' is required";
     }
     if (Object.keys(form.project_type.trim()).length === 0) {
-      errors.project_type = "'project_type' is required";
+      errors.project_type = "'project type' is required";
     }
     if (Object.keys(form.mts2.trim()).length === 0) {
       errors.mts2 = "'mts2' is required";
@@ -61,7 +78,7 @@ const CreatePost = () => {
       errors.rooms = "'rooms' is required";
     }
     if (Object.keys(form.year).length === 0) {
-      errors.year = "Select any date";
+      errors.year = "Select a date";
     }
     if (Object.keys(form.image).length === 0) {
       errors.image = "Upload one image at least";
@@ -143,7 +160,7 @@ const CreatePost = () => {
     setForm({
       title: "",
       description: "",
-      project_type: "",
+      project_type: [],
       mts2: "",
       rooms: "",
       year: "",
@@ -158,7 +175,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className=" grid grid-cols-2 bg-slate-100 gap-12">
+    <div className="  md:grid-cols-2  sm:grid grid-cols-1  bg-slate-100 gap-12">
       <div>
         <div className="md:container px-10 py-4 bg-slate-100">
           <h2 className="text-2xl mb-8">Create Post</h2>
@@ -166,7 +183,7 @@ const CreatePost = () => {
             <label className="text-2xl">Title</label>
             <span className="block font-bold text-slate-700 text-2x1 ">
               <input
-                className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-400 invalid:border-4"
+                className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
                 type="text"
                 name="title"
                 placeholder="Title of the project..."
@@ -186,7 +203,7 @@ const CreatePost = () => {
             <div className="text-2xl mt-6">Description</div>
 
             <textarea
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-400 invalid:border-4"
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
               type="text"
               name="description"
               placeholder="Type a description..."
@@ -206,8 +223,15 @@ const CreatePost = () => {
             <label className="text-2xl">
               Project Type(Apartament, House, Building, etc.)
             </label>
+            <Select
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
+              onBlur={handleFormBlur}
+              onChange={handleSelectType}
+              options={options2}
+              value={form.project_type.value}
+            />
 
-            <input
+            {/* <input
               className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
               type="text"
               name="project_type"
@@ -216,7 +240,7 @@ const CreatePost = () => {
               onChange={(e) => handleFormChange(e)}
               value={form.project_type}
               required
-            />
+            /> */}
 
             {!errors.project_type ? (
               <span></span>
@@ -229,7 +253,7 @@ const CreatePost = () => {
             <div className="text-2xl mt-6">mts2(min-max)</div>
 
             <input
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
               type="range"
               name="mts2"
               min="100"
@@ -239,81 +263,104 @@ const CreatePost = () => {
               value={form.mts2}
               required
             />
-            <label>{form.mts2}</label>
+            <label className="text-2xl">{form.mts2}</label>
 
             {!errors.mts2 ? (
               <span></span>
             ) : (
               <p className="text-2xl mb-6 text-red-400">{errors.mts2}</p>
             )}
-            <div className="text-2xl mt-8">Rooms</div>
 
-            <input
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
-              type="text"
-              name="rooms"
-              placeholder="Amount of rooms..."
-              onBlur={handleFormBlur}
-              onChange={handleFormChange}
-              value={form.rooms}
-              required
-            />
+            <div className="flex flex-row ">
+            </div>
 
-            {!errors.rooms ? (
-              <span></span>
-            ) : (
-              <p className="text-2xl mb-6 text-red-400">{errors.rooms}</p>
-            )}
+            <div>
+              {/* fdjaksfhdaljksnfjkanfjkasdfjkasdjkfkjasdf */}
+         
+              <div className="md:grid-cols-3  sm:grid grid-cols-1" >
+                <div>
 
-            <label className="text-2xl">Bathrooms</label>
+              <div className="text-2xl mt-8 px-6">Year</div>
+                <input
+                  className="mt-1 mx-6 pl-4 w-full md:w-auto px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                  type="date"
+                  name="year"
+                  onBlur={handleFormBlur}
+                  onChange={handleFormChange}
+                  value={form.year}
+                  required
+                  />
+                  </div>
+<div>
 
-            <input
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
-              type="text"
-              name="bathrooms"
-              placeholder="Amount of bathrooms..."
-              onBlur={handleFormBlur}
-              onChange={handleFormChange}
-              value={form.bathrooms}
-              required
-            />
-            {!errors.bathrooms ? (
-              <span></span>
-            ) : (
-              <p className="text-2xl mb-6 text-red-400">{errors.bathrooms}</p>
-            )}
+              <div className="text-2xl mt-8 px-6">Rooms</div>
+                <input
+                  className="mt-1 w-full md:w-auto px-6 mx-6 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500  "
+                  type="text"
+                  name="rooms"
+                  placeholder="Amount of rooms..."
+                  onBlur={handleFormBlur}
+                  onChange={handleFormChange}
+                  value={form.rooms}
+                  required
+                  />
+                  </div>
+                {/* //with-auto */}
 
-            <label className="text-2xl">Year</label>
+                {/* <label className="text-2xl">Bathrooms</label> */}
+<div>
 
-            <input
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
-              type="date"
-              name="year"
-              onBlur={handleFormBlur}
-              onChange={handleFormChange}
-              value={form.year}
-              required
-            />
+              <div className="text-2xl mt-8 px-6">Bathrooms</div>
+                <input
+                  className="mt-1 mx-6 w-full md:w-auto px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
+                  type="text"
+                  name="bathrooms"
+                  placeholder="Amount of bathrooms..."
+                  onBlur={handleFormBlur}
+                  onChange={handleFormChange}
+                  value={form.bathrooms}
+                  required
+                  />
+                  </div>
 
-            {!errors.year ? (
-              <span></span>
-            ) : (
-              <p className="text-2xl mb-6 text-red-400">{errors.year}</p>
-            )}
+                {/* <label className="text-2xl">Year</label> */}
+              </div>
+              {!errors.year ? (
+                <span></span>
+              ) : (
+                <p className="text-2xl mb-6 text-red-400">{errors.year}</p>
+              )}
 
+              {!errors.rooms ? (
+                <span></span>
+              ) : (
+                <p className="text-2xl mb-6 text-red-400">{errors.rooms}</p>
+              )}
+
+              <div className="flex flex-col ">
+                {!errors.bathrooms ? (
+                  <span></span>
+                ) : (
+                  <p className="text-2xl mb-6 text-red-400">
+                    {errors.bathrooms}
+                  </p>
+                )}
+              </div>
+            </div>
             <div className="text-2xl mt-6">Authors</div>
             <Select
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               onBlur={handleFormBlur}
               onChange={handleSelectAuthors}
               isMulti
               options={options}
               value={form.authors}
             />
+
             <div className="text-2xl mt-6">Image</div>
 
             <input
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
               id="exampleFile"
               name="file"
               type="file"
@@ -323,7 +370,7 @@ const CreatePost = () => {
             <div className="text-2xl mt-6">Additional Data</div>
 
             <textarea
-              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
+              className="mt-1 w-full px-3 py-2 text-2xl bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
               type="text"
               name="additional_data"
               placeholder="Type additional data"

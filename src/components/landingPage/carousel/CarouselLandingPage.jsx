@@ -3,8 +3,9 @@ import CarouselLandingPageData from './carouselData/CarouselLandingPageData'
 import infoCarousel from '../../../api/carouselData'
 
 function CarouselLandingPage() {
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [selectedComponent, setSelectedComponent] = useState(infoCarousel[0])
+  const aleatorio = Math.round(Math.random()* 8)
+  const [selectedIndex, setSelectedIndex] = useState(aleatorio)
+  const [selectedComponent, setSelectedComponent] = useState(infoCarousel[aleatorio])
   const [loaded, setLoaded] = useState(true)
   const {arch, quotes, img, description, buildingName} = infoCarousel[selectedIndex]
 
