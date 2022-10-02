@@ -41,7 +41,7 @@ const CreatePost = () => {
     });
   };
 
-  // cambio
+ 
   const options2 = infoTypePost?.map((e, index) => {
     return {
       id: index,
@@ -55,7 +55,7 @@ const CreatePost = () => {
       project_type: value,
     });
   };
-  // cambio
+
 
   const validationsForm = () => {
     let errors = {};
@@ -180,7 +180,7 @@ const CreatePost = () => {
         <div className="md:container px-10 py-4 bg-slate-100">
           <h2 className=" mb-8">Create Post</h2>
           <form onSubmit={(e) => handleFormSubmit(e)}>
-            <label >Title</label>
+            <label>Title</label>
             <span className="block font-bold text-slate-700 text-2x1 ">
               <input
                 className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
@@ -231,23 +231,12 @@ const CreatePost = () => {
               value={form.project_type.value}
             />
 
-            {/* <input
-              className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-red-600 invalid:border-4"
-              type="text"
-              name="project_type"
-              placeholder="Type your project type..."
-              onBlur={(e) => handleFormBlur(e)}
-              onChange={(e) => handleFormChange(e)}
-              value={form.project_type}
-              required
-            /> */}
+
 
             {!errors.project_type ? (
               <span></span>
             ) : (
-              <p className=" mb-6 text-red-400">
-                {errors.project_type}
-              </p>
+              <p className=" mb-6 text-red-400">{errors.project_type}</p>
             )}
 
             <div className=" mt-6">mts2(min-max)</div>
@@ -271,59 +260,51 @@ const CreatePost = () => {
               <p className=" mb-6 text-red-400">{errors.mts2}</p>
             )}
 
-            <div className="flex flex-row ">
-            </div>
+            <div className="flex flex-row "></div>
 
             <div>
-              {/* fdjaksfhdaljksnfjkanfjkasdfjkasdjkfkjasdf */}
-         
-              <div className="md:grid-cols-3  sm:grid grid-cols-1" >
+    
+
+              <div className="md:grid-cols-3  sm:grid grid-cols-1">
                 <div>
-
-              <div className=" mt-8 px-6">Year</div>
-                <input
-                  className="mt-1 mx-6 pl-4 w-full md:w-auto px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
-                  type="date"
-                  name="year"
-                  onBlur={handleFormBlur}
-                  onChange={handleFormChange}
-                  value={form.year}
-                  required
+                  <div className=" mt-8 px-6">Year</div>
+                  <input
+                    className="mt-1 mx-6 pl-4 w-full md:w-auto px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                    type="date"
+                    name="year"
+                    onBlur={handleFormBlur}
+                    onChange={handleFormChange}
+                    value={form.year}
+                    required
                   />
-                  </div>
-<div>
-
-              <div className=" mt-8 px-6">Rooms</div>
-                <input
-                  className="mt-1 w-full md:w-auto px-6 mx-6 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500  "
-                  type="text"
-                  name="rooms"
-                  placeholder="Amount of rooms..."
-                  onBlur={handleFormBlur}
-                  onChange={handleFormChange}
-                  value={form.rooms}
-                  required
+                </div>
+                <div>
+                  <div className=" mt-8 px-6">Rooms</div>
+                  <input
+                    className="mt-1 w-full md:w-auto px-6 mx-6 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500  "
+                    type="text"
+                    name="rooms"
+                    placeholder="Amount of rooms..."
+                    onBlur={handleFormBlur}
+                    onChange={handleFormChange}
+                    value={form.rooms}
+                    required
                   />
-                  </div>
-                {/* //with-auto */}
+                </div>
 
-                {/* <label >Bathrooms</label> */}
-<div>
-
-              <div className=" mt-8 px-6">Bathrooms</div>
-                <input
-                  className="mt-1 mx-6 w-full md:w-auto px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
-                  type="text"
-                  name="bathrooms"
-                  placeholder="Amount of bathrooms..."
-                  onBlur={handleFormBlur}
-                  onChange={handleFormChange}
-                  value={form.bathrooms}
-                  required
+                <div>
+                  <div className=" mt-8 px-6">Bathrooms</div>
+                  <input
+                    className="mt-1 mx-6 w-full md:w-auto px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
+                    type="text"
+                    name="bathrooms"
+                    placeholder="Amount of bathrooms..."
+                    onBlur={handleFormBlur}
+                    onChange={handleFormChange}
+                    value={form.bathrooms}
+                    required
                   />
-                  </div>
-
-                {/* <label>Year</label> */}
+                </div>
               </div>
               {!errors.year ? (
                 <span></span>
@@ -341,9 +322,7 @@ const CreatePost = () => {
                 {!errors.bathrooms ? (
                   <span></span>
                 ) : (
-                  <p className=" mb-6 text-red-400">
-                    {errors.bathrooms}
-                  </p>
+                  <p className=" mb-6 text-red-400">{errors.bathrooms}</p>
                 )}
               </div>
             </div>
@@ -384,9 +363,7 @@ const CreatePost = () => {
             {!errors.additional_data ? (
               <span></span>
             ) : (
-              <p className=" mb-6 text-red-400">
-                {errors.additional_data}
-              </p>
+              <p className=" mb-6 text-red-400">{errors.additional_data}</p>
             )}
 
             <button
@@ -419,9 +396,7 @@ const CreatePost = () => {
               <div className="mt-6">Amount of bathrooms: </div>
               <div className="font-bold mb-6">{form.bathrooms}</div>
               <div className="mt-6">Additional information: </div>
-              <div className="font-bold mb-6">
-                {form.additional_data}
-              </div>
+              <div className="font-bold mb-6">{form.additional_data}</div>
             </div>
           }
         </div>
