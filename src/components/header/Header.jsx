@@ -2,20 +2,24 @@ import React, { useEffect } from "react";
 import Logo from "./logo/Logo";
 import Guest from "./guest/Guest";
 import Menu from "./menu/Menu";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import Logged from "./logged/Logged";
-import {getUser} from "../../redux/slices/user/userActions"
+
 function Header() {
     
-
   
-  const dispatch = useDispatch()
   let {menu} = useSelector(state => state.header)
-  const user = localStorage.getItem("user")
-  const formattedUser = (JSON.parse(user))
-  const {token, avatar, username} = formattedUser
+  const user = JSON.parse(localStorage.getItem("user"))
+ 
+  useEffect(()=>{
+    if(!user){
+      console.log("no hay ");
+    }else{
+      console.log(user.userImg);
+    }
+  },[user])
 
-  
+  console.log(user);
 
   return (
     <div className="select-none">
@@ -26,7 +30,7 @@ function Header() {
         xl:mx-32
         ">
           <Logo />
-         {token  ? <Logged username={username} avatar={avatar}/> : <Guest/>}
+         {user  ? <Logged/> : <Guest/>}
         </div>
       </div>
       {menu ? <Menu/> : <></>}

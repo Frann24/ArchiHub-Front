@@ -81,12 +81,12 @@ function SigIn() {
         >
           Login
         </button>
-        <button
+        {/* <button
           type="submit"
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
         >
           Sign in with Google
-        </button>
+        </button> */}
         <div class="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
         Not registered?
