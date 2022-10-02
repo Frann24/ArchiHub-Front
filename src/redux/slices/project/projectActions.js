@@ -1,5 +1,4 @@
-import { allProjects, showProject, responseProject } from "./postSlice";
-const axios = require("axios");
+import { allProjects, showProject, responseProject } from "./projectSlice"
 export const getAllProjects = () => {
   return (dispatch) => {
     axios

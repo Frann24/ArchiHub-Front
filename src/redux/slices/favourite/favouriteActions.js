@@ -1,4 +1,4 @@
-import { responseUserProject } from "./postSlice";
+import { responseUserProject } from "./favouriteSlice";
 const axios = require("axios");
 
 export const updateProject = (project_id, user_id) => {
