@@ -158,7 +158,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 bg-slate-100">
+    <div className=" grid grid-cols-2 bg-slate-100 gap-12">
       <div>
         <div className="md:container px-10 py-4 bg-slate-100">
           <h2 className="text-2xl mb-8">Create Post</h2>
@@ -353,7 +353,7 @@ const CreatePost = () => {
           </form>
         </div>
       </div>
-      <div>
+      <div className="mx-12">
         <div>
           {
             <div>
