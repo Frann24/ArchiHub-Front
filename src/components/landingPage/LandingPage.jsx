@@ -6,7 +6,7 @@ import HeaderLandingPage from "./headerLandingPage/HeaderLandingPage";
 function LandingPage() {
   return (
     <div className="font-raleway h-full static">
-      {/* <HeaderLandingPage /> */}
+      <HeaderLandingPage />
       <CarouselLandingPage />
       <BtnLandingPage />
     </div>

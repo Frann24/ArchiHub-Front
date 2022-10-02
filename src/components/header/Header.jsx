@@ -4,6 +4,12 @@ import Guest from "./guest/Guest";
 import Menu from "./menu/Menu";
 import {useSelector} from "react-redux"
 import Logged from "./logged/Logged";
+import Search from "./menu/search/Search";
+import { Route, Routes } from "react-router-dom";
+import Home from "../home/Home";
+import PostDetail from "../home/posts/PostDetail";
+import CreatePost from "../createPost/CreatePost";
+import NewsDetail from "../home/news/NewsDetail";
 
 function Header() {
   
@@ -25,7 +31,13 @@ function Header() {
         </div>
       </div>
       {menu ? <Menu/> : <></>}
-      
+      <Search/>
+      <Routes>
+        <Route path="home" element={<Home/>} />
+        <Route path="newsDetail/:id" element={<NewsDetail />} />
+        <Route path="postDetail/:id" element={<PostDetail />} />
+        <Route path="createpost" element={<CreatePost />} />
+      </Routes>
     </div>
   );
 }
