@@ -2,22 +2,35 @@ import React, { useEffect } from "react";
 import Logo from "./logo/Logo";
 import Guest from "./guest/Guest";
 import Menu from "./menu/Menu";
-import {useSelector} from "react-redux"
+import { useSelector} from "react-redux";
 import Logged from "./logged/Logged";
 
 function Header() {
+    
   
-  let token = window.localStorage.getItem("token")
-  let auth = false;
+  let {menu} = useSelector(state => state.header)
+  const user = JSON.parse(localStorage.getItem("user"))
  
+  useEffect(()=>{
+    if(!user){
+      console.log("no hay ");
+    }else{
+      console.log(user.userImg);
+    }
+  },[user])
 
-  const {menu} = useSelector(state => state.header)
+  console.log(user);
+
   return (
     <div className="select-none">
       <div className="border-b-2 border-gray-200">
-        <div className="mx-32 h-28 flex justify-between items-center ">
+        <div className="flex justify-between m-4 items-center h-14
+        md:mx-8
+        lg:mx-16 lg:h-16
+        xl:mx-32
+        ">
           <Logo />
-         {token !== null ? <Logged/> : <Guest/>}
+         {user  ? <Logged/> : <Guest/>}
         </div>
       </div>
       {menu ? <Menu/> : <></>}

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState } from "react";
+import { useDispatch } from "react-redux"
 import { logUser } from "../../redux/slices/auth/loginActions"
-import { getUserByEmail } from "../../redux/slices/user/userAction";
 import { useNavigate} from "react-router-dom"
 
 
@@ -10,9 +9,6 @@ function SigIn() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-  useEffect(()=>{
-
-  },[dispatch])
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -24,24 +20,13 @@ function SigIn() {
     setPassword(e.target.value)
   }
 
-  const [user, setUser] = useState({
-    email: null,
-    password: null,
-    loggedIn: false
-  })
-
   
   const handleLogin = async(e) => {
       e.preventDefault();
-      setUser({ email: email, password: password, loggedIn:true })
-      dispatch(logUser(user))
+      dispatch(logUser(email, password))
       navigate("/home")
-
     }
   
-  
-
-
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
     
@@ -96,12 +81,12 @@ function SigIn() {
         >
           Login
         </button>
-        <button
+        {/* <button
           type="submit"
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
         >
           Sign in with Google
-        </button>
+        </button> */}
         <div class="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
         Not registered?

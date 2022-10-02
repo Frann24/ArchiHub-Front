@@ -1,25 +1,25 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 export const userSlice = createSlice({
-    name:"user",
-    initialState:{
-        userDetail:{},
-        users:[],
-        allUsers:[]
+  name: "user",
+  initialState: {
+    allUsers: [],
+    user: [],
+    response: {},
+  },
+  reducers: {
+    allUsers: (state, { payload }) => {
+      state.allUsers = payload;
     },
-    reducers:{
-        getUser:(state,action)=>{
-            state.userDetail = action.payload
-        },
-        getAllUsers:(state, action)=>{
-            state.users = action.payload
-            state.allUsers= action.payload
-        }
-    }
-})
+    showUser: (state, { payload }) => {
+      state.user = payload;
+    },
+    responseUser: (state, { payload }) => {
+      state.response = payload;
+    },
+  },
+});
 
-export const {getUser,getAllUsers}= userSlice.actions;
+export const { allUsers, showUser, responseUser } = userSlice.actions;
 
-// export const selectUser = (state)=> state.user.user
-
-export default userSlice.reducer
+export default userSlice.reducer;
