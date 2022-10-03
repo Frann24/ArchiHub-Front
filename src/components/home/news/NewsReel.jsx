@@ -20,19 +20,20 @@ export default function NewsReel() {
   function paginado() {
     setPage(page + 1);
   }
-  console.log("newsPaginado: ", newsPaginado);
+  /* console.log("newsPaginado: ", newsPaginado); */
   return (
     <div >
       <h4 className="ml-6 mb-6 font-semibold font-size:26px">News</h4>
       <div className="container mx-auto margin-top: 16px">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
-          {newsPaginado.map((e) => (
-            <Link to={`/newsDetail/${e.id}`}>
+          {newsPaginado.map((e,index) => (
+            <Link key={index} to={`/newsDetail/${e.id}`}>
               <div>
                 {e.id === 2 ? (
                   <img
                     src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664405309/news/Screen_Shot_2022-09-28_at_19.44.45_zocf1r.png"
                     className="w-full aspect-[3/2]"
+                    alt=""
                   />
                 ) : (
                   <img
@@ -53,7 +54,7 @@ export default function NewsReel() {
         </div>
       </div>
       <div
-        class="mr-8 text-xl my-9 font-semibold flex flex-row-reverse"
+        className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
         onClick={(e) => paginado(e)}
       >
         See more...
