@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPost } from "../../../redux/slices/post/postActions";
+import Loader from "../../loader/Loader";
 
 function PostDetail() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function PostDetail() {
 
   return (
     <div>
-      {postDetail.length === 0 ? <div></div> : 
+      {postDetail.length === 0 ? <Loader /> : 
       <div>
         <img width="200px" height="200px" src={postDetail.image[0]}></img>
       <div>
