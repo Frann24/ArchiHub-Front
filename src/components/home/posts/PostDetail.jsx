@@ -12,8 +12,6 @@ function PostDetail() {
     dispatch(getPost(id));
   }, [dispatch]);
 
-  console.log(postDetail.authors);
-
   return (
     <div>
       {postDetail.length === 0 ? <div></div> : 
@@ -26,22 +24,21 @@ function PostDetail() {
           })}
       </div>
       <div>
-        <h2>{postDetail.title}</h2>
-        <h3>{postDetail.created_by_data[0].name} {postDetail.created_by_data[0].lastname}</h3>
+        <h2>Title: {postDetail.title}</h2>
+        <h3>Created By: {postDetail.created_by_data[0].name} {postDetail.created_by_data[0].lastname}</h3>
+        Authors: 
         {postDetail.authors.map((el) => {
-          return (<div>
-            <h3>{el.name}</h3>
-            <h3>{el.lastname}</h3>
+          return (
+          <div>
+            <h3>{el.name} {el.lastname}</h3>
           </div>);
         })}
       </div>
-        
         <div>
           <h4>{postDetail.mts2} m2</h4>
           <h4>{postDetail.rooms} rooms</h4>
           <h4>{postDetail.bathrooms} bathrooms</h4>
-          <h4></h4>
-          <h4></h4>
+          <h4>Year: {postDetail.year}</h4>
         </div>
         <div>
           <p>{postDetail.description}</p>
