@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# This is our final group work from our Full Stack Developer studies at HENRY.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We used mongoDB, nodeJS, express, Javascript, React, React Toolkit and Tailwind CSS.
 
-## Available Scripts
+Members: 
+Luciano Juan Balbiano
+Ivo Alegre
+Paula Carolina Celman Vilches
+Sebastián Eduardo Díaz
+Gonzalo Pirovano
+Franco Maximiliano Ferreyra
+Tomás Federico Pastore
 
-In the project directory, you can run:
+Our mentor: 
+Tobias Piraino
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run the frontend type npm run
+To run the backend type npm run dev
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Here´s our original proposal: 
+Both in architecture and programming, in large projects, we work as a group. There is not yet a way to share files between architects and comment on changes in a centralized way.
+ARCHIHUB will solve this problem by creating a GitHub for autocad files, where each user can choose their collaborators, share files and upload the different updates.
+Even working individually, it is important to have a place where you can record the changes and be able to later go back and study the different alternatives or solutions that were proposed.
+Unlike GitHub, at the moment we will not make updates on the same file but with each "push" the new version of the file will be uploaded. 
+In the image on page 6 (not attached yet) we show one of the possible user dashboards where you can see a general image of the project in the foreground and then the different "commits". On the right side you can see the updates made by the user who owns the repository and on the left a modification by a collaborator. We wanted to emulate a WhatsApp chat where the user sees his and the other person's comments, like a conversation, in the form of a waterfall.
+At the same time, we offer a space for users to show their work, such as a blog.
+On page 5 we render another of the user dashboards, with a section where you can see your posts and another where you can see your repositories.
+On page 7 we propose a form where the user can create a new publication. Once published, it would look like on page 9.
+To implement the payment gateway we propose to offer a paid membership for professionals and a free option for students. The administrator dashboard (pg 10) will tell you which user has what type of membership, how many publications and repositories they have, and you can also activate and deactivate users.
+Posts could allow adding comments and a rating system, which will reach post authors as notifications. We may give the admin the ability to review comments before posting or we may filter comments (if they have words we don't want posted), posting only comments that pass the filter.
+If necessary, we would add a marketplace section, where architects can sell completed works or plans.
+In principle, ARCHIHUB would serve as a work tool, organizing your files and as a page where you can publish your work and thus connect with potential clients and network.
