@@ -175,7 +175,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="  md:grid-cols-2  sm:grid grid-cols-1  bg-slate-100 gap-12">
+    <div className="md:grid-cols-2  sm:grid grid-cols-1  bg-slate-100 gap-12">
       <div>
         <div className="md:container px-10 py-4 bg-slate-100">
           <h2 className=" mb-8">Create Post</h2>
@@ -197,10 +197,10 @@ const CreatePost = () => {
             {!errors.title ? (
               <span></span>
             ) : (
-              <p className=" mb-6 text-red-400">{errors.title}</p>
+              <p className="mb-6 text-red-400">{errors.title}</p>
             )}
 
-            <div className=" mt-6">Description</div>
+            <div className="mt-6">Description</div>
 
             <textarea
               className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
