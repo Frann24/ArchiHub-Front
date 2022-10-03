@@ -27,9 +27,32 @@ function PostDetail() {
               {/* <div className="grid grid-col-3 ">
               </div> */}
               <div className="flex my-6">
-                <img src={postDetail.image[1]} width="210" />
-                <img src={postDetail.image[2]} width="210" />
-                <img src={postDetail.image[4]} width="210" />
+                {postDetail.image[1] ? (
+                  <img src={postDetail.image[1]} width="210" />
+                ) : (
+                  <img
+                    src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png "
+                    width="210"
+                  />
+                )}
+                {postDetail.image[2] ? (
+                  <img src={postDetail.image[1]} width="210" />
+                ) : (
+                  <img
+                    src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png "
+                    width="210"
+                  />
+                )}
+                {postDetail.image[3] ? (
+                  <img src={postDetail.image[1]} width="210" />
+                ) : (
+                  <img
+                    src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png "
+                    width="210"
+                  />
+                )}
+                {/* <img src={postDetail.image[2]} width="210" />
+                <img src={postDetail.image[4]} width="210" /> */}
               </div>
 
               {/* <div className="flex flex-wrap mb-12">
