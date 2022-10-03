@@ -3,6 +3,9 @@ import img2 from "../assets/ImgCarousel/carousel2.jpeg"
 import img3 from "../assets/ImgCarousel/carousel3.jpg"
 import img4 from "../assets/ImgCarousel/carousel4.jpeg"
 import img5 from "../assets/ImgCarousel/carousel5.jpg"
+import img6 from "../assets/ImgCarousel/carousel6.jpg"
+import img7 from "../assets/ImgCarousel/carousel7.jpg"
+import img8 from "../assets/ImgCarousel/carousel8.jpg"
 
 const infoCarousel = [
   {
@@ -39,6 +42,27 @@ const infoCarousel = [
     img: img5,
     buildingName: "Heydar Aliyev Center, Baku, ",
     description: "The Heydar Aliyev Center represents a fluid form which emerges by the folding of the landscape's natural topography and by the wrapping of individual functions of the Center. All functions of the Center, together with entrances, are represented by folds in a single continuous surface."
+  },
+  {
+    arch: "Reem Koolhaas",
+    quotes: "“Architecture is a dangerous mix of power and importance.”",
+    img: img6,
+    buildingName: "CCTV Tower, Beijing, ",
+    description: "Koolhaas envisioned a building whose three-dimensional form would offer CCTV personnel the ability to perform functions within “a continuous loop”, alluding to closed circuit television, and presented the beginning of an engineering challenge."
+  },
+  {
+    arch: "Richard Meier",
+    quotes: "“I think white is the most wonderful color of all, because within it one can find every color of the rainbow.”",
+    img: img7,
+    buildingName: "Douglas House, Michigan, ",
+    description: "The intention is to create a strong visual contrast in the landscape. The volume is a white prism that emerges among the trees. The rear face is treated as a closed facade with small openings while the front face is an open facade with large glazed panels offering wide views of the horizon."
+  },
+  {
+    arch: "Amancio Williams",
+    quotes: "“La primera tarea del hombre nuevo es diagnosticar el problema de su época. La segunda, solucionarlo.”",
+    img: img8,
+    buildingName: "Casa sobre el arroyo, Mar del Plata, ",
+    description: "Although currently the work is manifested as a paradigmatic and representative example of the architecture of the twentieth century, being considered an obligatory reference to understand the influences of the Modern Movement in Argentina and Latin America."
   }
 ]
 

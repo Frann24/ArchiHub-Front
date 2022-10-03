@@ -1,16 +1,25 @@
-import React, { useState } from "react";
-import posts from "../../../api/posts";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPosts } from "../../../redux/slices/post/postActions";
 
 function PostsReel() {
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.post.allPosts)
+
+  useEffect(() => {
+    dispatch(getAllPosts())
+  }, [dispatch])
+
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
   const currentCards = posts.slice(0, indexLastCard);
-
   function paginado() {
     setPage(page + 1);
   }
 
+  
+console.log(posts);
   return (
     <div>
 
@@ -22,16 +31,16 @@ function PostsReel() {
               <div>
                 <img
                   width="600px"
-                  src={post.images[0]}
+                  src={post.image[0]}
                   alt="foto"
                   className="w-full aspect-[3/2]"
                 />
-                <Link to={`/postDetail/${post.id}`}>
+                <Link to={`/postDetail/${post._id}`}>
                   <h4 className="font-bold text-transform: uppercase mt-6">
                     {post.title}
                   </h4>
                 </Link>
-                <p className="font-light truncate">{post.shortDescription}</p>
+                    <p className="font-light truncate">{post.description}</p>
               </div>
             );
           })}

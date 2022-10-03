@@ -1,4 +1,4 @@
-import { order, filterType } from "./postSlice";
+import { order, filterType, getQuery } from "./postSlice";
 
 export const filterTypePost = (allPosts, type) =>
   type !== "default"
@@ -16,6 +16,11 @@ export const orderPosts = (filter, type) => {
     old: { method: (a, b) => (new Date(a.year) > new Date(b.year) ? -1 : 1) },
   };
   const filterF = [...filter];
-  console.log("filtro",filter,"type",type)
   return order(filterF.sort(orderMethod[type].method));
 };
+
+export function getQueryPost(allPosts, name) {
+  const allPosts2 = [...allPosts]
+  return name?getQuery(allPosts2.filter((e) => e.title.toLowerCase().includes(name.toLowerCase()))):getQuery(allPosts)
+  };
+
