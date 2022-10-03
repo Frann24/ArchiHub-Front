@@ -1,6 +1,6 @@
 import React, { useEffect, useState, CSSProperties } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { orderPosts } from "../../../../redux/slices/post/ordenAndFilterActions";
+import { clearAllPosts, orderPosts } from "../../../../redux/slices/post/ordenAndFilterActions";
 import Select from "react-select";
 export default function Order() {
   const [order, setOrder] = useState("default");
