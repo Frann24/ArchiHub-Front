@@ -21,7 +21,8 @@ function Home() {
         />
       </div>
       <Search />
-      <div id="posts_id">
+      <div>
+        <div id="posts_id"></div>
         <div className="flex flex-col gap-2 pb-4 w-full
         sm:flex-row
         xl:w-2/5 xl:mx-auto
@@ -35,7 +36,8 @@ function Home() {
         </div>
         <PostsReel />
       </div>
-      <div id="news_id">
+      <div>
+        <div id="news_id"></div>
         <NewsReel />
       </div>
     </div>

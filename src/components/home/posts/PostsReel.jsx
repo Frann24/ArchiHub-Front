@@ -2,24 +2,26 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../../../redux/slices/post/postActions";
+import { orderPosts } from "../../../redux/slices/post/ordenAndFilterActions";
 
 function PostsReel() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.post.orderPosts);
-  const post = useSelector((state) => state.post.queryPost);
+/*   const post = useSelector((state) => state.post.queryPost); */
+/*   console.log(post);
   const condition = post.length ? true : false;
-
+console.log(condition) */
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
-  const currentCards = condition
+  const currentCards =posts.slice(0, indexLastCard) /* condition
     ? post.slice(0, indexLastCard)
     : posts.slice(0, indexLastCard);
-
+ */
   function paginado() {
     setPage(page + 1);
   }
