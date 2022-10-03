@@ -6,6 +6,7 @@ import { getAllPosts } from "../../../redux/slices/post/postActions";
 function PostsReel() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.post.allPosts)
+
   useEffect(() => {
     dispatch(getAllPosts())
   }, [dispatch])
@@ -13,13 +14,14 @@ function PostsReel() {
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
   const currentCards = posts.slice(0, indexLastCard);
-    function paginado() {
+
+  function paginado() {
     setPage(page + 1);
   }
   // const shortDescription = posts.description.slice(0, 50)
 
   
-
+console.log(posts);
   return (
     <div>
 
