@@ -1,9 +1,10 @@
 import axios from "axios";
+import { AUTH_SIGNUP, AUTH_LOGIN } from "../constants";
 import { login, logout, register } from "./loginSlice";
-const baseUrl= "http://localhost:3001/api/auth/login"
+
 
 export const logUser=(credentials)=>(dispatch)=>{
-    axios.post(baseUrl, credentials)
+    axios.post(AUTH_LOGIN, credentials)
     .then(res=>dispatch(login(res.data)))
     .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload.token)))
     .catch(e=>{
@@ -21,7 +22,7 @@ export const logOutUser=()=>(dispatch)=>{
 }
 
 export const registerUser=(credentials)=>(dispatch)=>{
-    axios.post("http://localhost:3001/api/auth/signup", credentials)
+    axios.post(AUTH_SIGNUP, credentials)
     .then(res=>dispatch(register(res.data)))
     .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload.token)))
     .catch(e=>{
