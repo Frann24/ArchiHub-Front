@@ -28,7 +28,7 @@ function PostDetail() {
 <div className="flex my-6">
   <img src={postDetail.image[1]} width="210"/>
   <img src={postDetail.image[2]} width="210"/>
-  <img src={postDetail.image[3]} width="210"/>
+  <img src={postDetail.image[4]} width="210"/>
 </div>
 
 
