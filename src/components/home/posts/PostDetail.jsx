@@ -15,20 +15,20 @@ function PostDetail() {
 
   return (
     <div>
-      <div className="container mx-40 mt-40">
+      <div className="container mx-40 mt-20">
         {postDetail.length === 0 ? (
           <div></div>
         ) : (
           <div>
-            <img width="600px" alt="image" src={postDetail.image[0]}></img>
+            <img width="630px" alt="image" src={postDetail.image[0]}></img>
             <div>
               {/* <div className="w-full h-60"> */}
                 {/* <div className="grid grid-col-3 ">
               </div> */}
 <div className="flex my-6">
-  <img src={postDetail.image[1]} width="200"/>
-  <img src={postDetail.image[2]} width="200"/>
-  <img src={postDetail.image[3]} width="200"/>
+  <img src={postDetail.image[1]} width="210"/>
+  <img src={postDetail.image[2]} width="210"/>
+  <img src={postDetail.image[3]} width="210"/>
 </div>
 
 
@@ -58,14 +58,14 @@ function PostDetail() {
                 );
               })} </div> 
             </div>
-            <div className="grid grid-cols-9 gap-0">
-              <div className="mx-4">{postDetail.mts2} m2</div>
-              <div className="mx-4">{postDetail.rooms} rooms</div>
-              <div className="mx-4">{postDetail.bathrooms} bathrooms</div>
-              <div className="mx-4">Year: {postDetail.year}</div>
+            <div className="grid grid-cols-9 gap-0 mb-4">
+              <div className="mx-2">{postDetail.mts2} m2</div>
+              <div className="mx-2">{postDetail.rooms} rooms</div>
+              <div className="mx-2">{postDetail.bathrooms} bathrooms</div>
+              <div className="mx-2"> {postDetail.year}</div>
             </div>
             <div>
-              <div className="font-light max-w-prose mb-6 text-justify">
+              <div className="font-light max-w-prose mb-20 text-justify">
                 {postDetail.description}
               </div>
             </div>
