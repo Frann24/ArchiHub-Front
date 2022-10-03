@@ -15,6 +15,7 @@ export const postSlice = createSlice({
       state.allPosts = payload;
       state.filterType = payload;
       state.orderPosts = payload;
+      state.queryPost = payload;
     },
     showPost: (state, { payload }) => {
       state.post = payload;

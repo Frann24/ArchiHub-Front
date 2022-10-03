@@ -1,9 +1,10 @@
 import { order, filterType, getQuery } from "./postSlice";
 
-export const filterTypePost = (allPosts, type) =>
-  type !== "default"
+export const filterTypePost = (allPosts, type) =>{
+console.log("filtro",type);
+   return type !== "default"
     ? filterType(allPosts.filter((e) => e.project_type === type))
-    : filterType(allPosts);
+    : filterType(allPosts);}
 
 export const orderPosts = (filter, type) => {
   const orderMethod = {

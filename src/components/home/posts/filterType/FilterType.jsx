@@ -8,7 +8,7 @@ export default function FilterType() {
   const { allPosts } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(filterTypePost(allPosts, filterType));
+    dispatch(filterTypePost(allPosts, filterType.value));
   }, [filterType]);
 
   const onChangeSelect = (value) => {
