@@ -14,9 +14,11 @@ function PostsReel() {
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
   const currentCards = posts.slice(0, indexLastCard);
+
   function paginado() {
     setPage(page + 1);
   }
+  // const shortDescription = posts.description.slice(0, 50)
 
   
 console.log(posts);
@@ -25,7 +27,7 @@ console.log(posts);
 
       <h4 class="ml-6 mb-6 font-semibold ">Posts</h4>
       <div className="container mx-auto">
-        <div className="grid grid-cols-3 gap-9">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
           {currentCards.map((post) => {
             return (
               <div>
@@ -40,7 +42,7 @@ console.log(posts);
                     {post.title}
                   </h4>
                 </Link>
-                    <p className="font-light truncate">{post.description}</p>
+                    <p className="font-light truncate">{post.description}...</p>
               </div>
             );
           })}
