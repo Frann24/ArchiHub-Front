@@ -1,4 +1,4 @@
-import { order, filterType, getQuery } from "./postSlice";
+import { order, filterType, getQuery, clearDetail } from "./postSlice";
 
 export const filterTypePost = (allPosts, type) =>{
 console.log("filtro",type);
@@ -25,3 +25,4 @@ export function getQueryPost(allPosts, name) {
   return name?getQuery(allPosts2.filter((e) => e.title.toLowerCase().includes(name.toLowerCase()))):getQuery(allPosts)
   };
 
+  export const clearPostDetail = () => clearDetail();

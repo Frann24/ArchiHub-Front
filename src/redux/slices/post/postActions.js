@@ -3,8 +3,9 @@ import { allPosts, showPost, responsePost } from "./postSlice";
 const axios = require("axios");
 export const getAllPosts = () => {
   return (dispatch) => {
+    console.log(POST)
     axios
-      .get(POST)
+      .get(`${POST}`)
       .then((info) => dispatch(allPosts(info.data)))
       .catch((err) => console.log(err));
   };
@@ -22,7 +23,7 @@ export const getPost = (id) => {
 export const createPost = (info) => {
   return (dispatch) => {
     axios
-      .post(POST, info)
+      .post(`${POST}`,info)
       .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };
