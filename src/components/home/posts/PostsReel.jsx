@@ -45,8 +45,8 @@ function PostsReel() {
                     <h4 className="font-bold text-transform: uppercase mt-6">
                       {post.title}
                     </h4>
-                    <p className="font-light truncate">{post.description}...</p>
-                  </Link>
+                    <p className=" font-light truncate">{post.description}...</p>
+                  </Link >
                 </div>
               );
             })
