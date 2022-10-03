@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { clearPostDetail } from "../../../redux/slices/post/ordenAndFilterActions";
 import { getPost } from "../../../redux/slices/post/postActions";
 
 function PostDetail() {
@@ -10,7 +11,11 @@ function PostDetail() {
 
   useEffect(() => {
     dispatch(getPost(id));
+    return () => {
+        dispatch(clearPostDetail());
+      }
   }, [dispatch]);
+
 
   return (
     // <div className="place-self-center mt-40">
