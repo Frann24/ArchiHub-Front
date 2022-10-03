@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
-import { useNavigate } from "react-router-dom"
 
 
 function SignUp() {
@@ -12,8 +11,8 @@ function SignUp() {
 
   }, [dispatch])
 
-  // const [name, setName] = useState("")
-  // const [lastname, setLastname] = useState("")
+  const [name, setName] = useState("")
+  const [lastname, setLastname] = useState("")
   const [nickname, setNickname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -22,11 +21,8 @@ function SignUp() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(email);
 
     dispatch(registerUser(
-      // name,
-      // lastname,
       nickname,
       email,
       password,
@@ -40,8 +36,8 @@ function SignUp() {
         Sign Up
       </h3>
       <form className="space-y-6" onSubmit={handleRegister}>
-         {/* <div>
-           <label
+        <div>
+          <label
             for="name"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
@@ -72,27 +68,6 @@ function SignUp() {
             placeholder="lastname"
             onChange={(e) => setLastname(e.target.value)}
             value={lastname}
-          /> 
-        </div>  */}
-
-
-        <div>
-          <label
-            for="email"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
-            Your email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
-            placeholder="name@example.com"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-
-
           />
         </div>
         <div>
@@ -114,6 +89,25 @@ function SignUp() {
           />
         </div>
 
+        <div>
+          <label
+            for="email"
+            className="block mb-2 text-sm font-medium text-gray-900"
+          >
+            Your email
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
+            placeholder="name@example.com"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+
+
+          />
+        </div>
         <div>
           <label
             for="password"

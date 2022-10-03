@@ -5,12 +5,12 @@ import PostDetail from "./components/home/posts/PostDetail";
 import Header from "./components/header/Header";
 import "./components/home/news/NewsReel";
 import LandingPage from "./components/landingPage/LandingPage";
-
 // import News from "./components/home/news/News";
 import Home from "./components/home/Home";
 import CreatePost from "./components/createPost/CreatePost";
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className="App font-raleway">

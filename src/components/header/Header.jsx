@@ -7,10 +7,10 @@ import Logged from "./logged/Logged";
 
 function Header() {
     
-  
   let {menu} = useSelector(state => state.header)
   const user = JSON.parse(localStorage.getItem("user"))
- 
+  const googleUser =JSON.parse(localStorage.getItem("google"))
+
 
   return (
     <div className="select-none">
@@ -21,7 +21,7 @@ function Header() {
         xl:mx-32
         ">
           <Logo />
-         {user  ? <Logged/> : <Guest/>}
+         {user || googleUser ? <Logged/> : <Guest/>}
         </div>
       </div>
       {menu ? <Menu/> : <></>}

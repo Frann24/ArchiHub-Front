@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux"
 import { logUser } from "../../redux/slices/auth/loginActions"
 import { useNavigate} from "react-router-dom"
-
-
+import jwt_decode from "jwt-decode"
+import useLocalStorage from "../hooks/useLocalStorage"
 function SigIn() {
+
+
+  const google = window.google
+  const handleCallbackResponse=(response)=>{
+    var userObject = jwt_decode(response.credential)
+    console.log(userObject);
+    setGoogleUser(userObject)
+    document.getElementById("signDiv").hidden = true
+  }
+
+  useEffect(()=>{
+    //global google login
+    google.accounts.id.initialize({
+      client_id: "168699059386-nhog3hm7cgg52demaihgsskd49r5aetq.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    })
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme:"outline", size:"large"}
+    )
+
+  },[])
   
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-
+  const [googleUser, setGoogleUser]=useLocalStorage("google",{})
+  // const [user, setUser]=useLocalStorage("user",{})
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -26,11 +49,14 @@ function SigIn() {
       dispatch(logUser(email, password))
       navigate("/home")
     }
+
+
   
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
     
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">Sign In</h3>
+
       <form className="space-y-6" onSubmit={handleLogin}>
         <div>
           <label for="email" className="block mb-2 text-sm font-medium text-gray-900">
@@ -81,12 +107,19 @@ function SigIn() {
         >
           Login
         </button>
-        {/* <button
+
+
+
+         {/* <button
           type="submit"
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
-        >
+          >
           Sign in with Google
-        </button> */}
+        </button>  */}
+        <div id="signInDiv"></div>
+        {/* {Object.keys(googleUser).length !== 0 && }*/}
+        
+        
         <div class="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
         Not registered?
