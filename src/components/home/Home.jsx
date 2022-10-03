@@ -8,24 +8,28 @@ import PostsReel from "./posts/PostsReel";
 
 function Home() {
   const { queryPost } = useSelector((state) => state.post);
-  const condition = queryPost.length ? true : false;
+  const condition = queryPost ? true : false;
 
   return (
     <div>
-      <Search />
-      <div className={`${condition ? 'hidden' : 'block'}`}>
+      
+      <div className={`${queryPost.length ? 'block' : 'block'}`}>
         <img
           src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664395439/news/Screen_Shot_2022-09-28_at_16.59.36_cfhqzs.png"
           alt="imagen"
           className="object-cover my-8 mt-16 shadow-lg"
         />
       </div>
+      <Search />
       <div id="posts_id">
-        <div className="flex flex-col gap-2 pb-4">
-          <div className="mx-4">
+        <div className="flex flex-col gap-2 pb-4 w-full
+        sm:flex-row
+        xl:w-2/5 xl:mx-auto
+        ">
+          <div className="mx-4 sm:w-1/2">
             <FilterType />
           </div>
-          <div className="mx-4">
+          <div className="mx-4 sm:w-1/2">
             <Order />
           </div>
         </div>

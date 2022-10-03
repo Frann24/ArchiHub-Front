@@ -9,7 +9,6 @@ export default function Order() {
   useEffect(() => {
     dispatch(orderPosts(filterType, order));
   }, [filterType, order]);
-
   const mts2Option = "Square meters";
   const yearOption = "Year";
 
