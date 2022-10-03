@@ -15,7 +15,7 @@ function PostDetail() {
   return (
     // <div className="place-self-center mt-40">
     // <div className="justify-content: center ">
-       <div className="container mx-auto center mt-40">  
+    <div className="container mx-auto center mt-6">
       <div>
         {postDetail.length === 0 ? (
           <div></div>
