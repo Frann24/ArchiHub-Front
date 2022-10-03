@@ -261,7 +261,7 @@ const CreatePost = () => {
                 <div>
                   <div className=" mt-8 px-6">Year</div>
                   <input
-                    className="mt-1 mx-6 pl-4 w-full md:w-auto px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+                    className="mt-1 mx-3 pl-4 w-full md:w-40 px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     type="date"
                     name="year"
                     onBlur={handleFormBlur}
@@ -273,10 +273,10 @@ const CreatePost = () => {
                 <div>
                   <div className=" mt-8 px-6">Rooms</div>
                   <input
-                    className="mt-1 w-full md:w-auto px-6 mx-6 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500  "
+                    className="mt-1 mx-3 pl-4 w-full md:w-40 px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     type="text"
                     name="rooms"
-                    placeholder="Amount of rooms..."
+                    placeholder="Amount..."
                     onBlur={handleFormBlur}
                     onChange={handleFormChange}
                     value={form.rooms}
@@ -287,10 +287,10 @@ const CreatePost = () => {
                 <div>
                   <div className=" mt-8 px-6">Bathrooms</div>
                   <input
-                    className="mt-1 mx-6 w-full md:w-auto px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
+                    className="mt-1 mx-3 pl-4 w-full md:w-40 px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
                     type="text"
                     name="bathrooms"
-                    placeholder="Amount of bathrooms..."
+                    placeholder="Amount..."
                     onBlur={handleFormBlur}
                     onChange={handleFormChange}
                     value={form.bathrooms}

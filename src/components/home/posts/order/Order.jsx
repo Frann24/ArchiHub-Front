@@ -9,7 +9,6 @@ export default function Order() {
   useEffect(() => {
     dispatch(orderPosts(filterType, order));
   }, [filterType, order]);
-
   const mts2Option = "Square meters";
   const yearOption = "Year";
 
@@ -39,6 +38,7 @@ export default function Order() {
   return (
     <div>
       <Select
+        placeholder="Order..."
         options={GroupedOption}
         onChange={handleOrder}
         value={order.value}

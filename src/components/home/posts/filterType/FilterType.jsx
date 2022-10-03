@@ -19,8 +19,9 @@ export default function FilterType() {
     return { value: e.value, label: e.name };
   });
   return (
-    <div>
+    <div className="text-base">
       <Select
+        placeholder="Project type..."
         onChange={onChangeSelect}
         options={options}
         value={filterType}
