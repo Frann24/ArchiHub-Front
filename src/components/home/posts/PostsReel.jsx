@@ -5,18 +5,18 @@ import { getAllPosts } from "../../../redux/slices/post/postActions";
 
 function PostsReel() {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post)
-
+  const posts = useSelector((state) => state.post.allPosts)
   useEffect(() => {
     dispatch(getAllPosts())
   }, [dispatch])
 
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
-  const currentCards = posts.allPosts.slice(0, indexLastCard);
-  function paginado() {
+  const currentCards = posts.slice(0, indexLastCard);
+    function paginado() {
     setPage(page + 1);
   }
+  // const shortDescription = posts.description.slice(0, 50)
 
   
 
@@ -25,13 +25,13 @@ function PostsReel() {
 
       <h4 class="ml-6 mb-6 font-semibold ">Posts</h4>
       <div className="container mx-auto">
-        <div className="grid grid-cols-3 gap-9">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
           {currentCards.map((post) => {
             return (
               <div>
                 <img
                   width="600px"
-                  src={post.image}
+                  src={post.image[0]}
                   alt="foto"
                   className="w-full aspect-[3/2]"
                 />
@@ -40,7 +40,7 @@ function PostsReel() {
                     {post.title}
                   </h4>
                 </Link>
-                    <p className="font-light truncate">{post.description}</p>
+                    <p className="font-light truncate">{post.description}...</p>
               </div>
             );
           })}
