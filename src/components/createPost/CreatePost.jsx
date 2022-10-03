@@ -41,7 +41,6 @@ const CreatePost = () => {
     });
   };
 
- 
   const options2 = infoTypePost?.map((e, index) => {
     return {
       id: index,
@@ -55,7 +54,6 @@ const CreatePost = () => {
       project_type: value,
     });
   };
-
 
   const validationsForm = () => {
     let errors = {};
@@ -220,9 +218,7 @@ const CreatePost = () => {
               <p className=" mb-6 text-red-400">{errors.description}</p>
             )}
 
-            <label className="">
-              Project Type(Apartament, House, Building, etc.)
-            </label>
+            <label className="">Project Type</label>
             <Select
               className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
               onBlur={handleFormBlur}
@@ -230,8 +226,6 @@ const CreatePost = () => {
               options={options2}
               value={form.project_type.value}
             />
-
-
 
             {!errors.project_type ? (
               <span></span>
@@ -263,8 +257,6 @@ const CreatePost = () => {
             <div className="flex flex-row "></div>
 
             <div>
-    
-
               <div className="md:grid-cols-3  sm:grid grid-cols-1">
                 <div>
                   <div className=" mt-8 px-6">Year</div>
