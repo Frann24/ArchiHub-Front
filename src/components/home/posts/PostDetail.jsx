@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { clearPostDetail } from "../../../redux/slices/post/ordenAndFilterActions";
 import { getPost } from "../../../redux/slices/post/postActions";
 import Loader from "../../loader/Loader";
 
@@ -11,40 +12,73 @@ function PostDetail() {
 
   useEffect(() => {
     dispatch(getPost(id));
+    return () => {
+        dispatch(clearPostDetail());
+      }
   }, [dispatch]);
 
+
   return (
-    <div>
-      {postDetail.length === 0 ? <Loader /> : 
+    // <div className="place-self-center mt-40">
+    // <div className="justify-content: center ">
+    <div className="container mx-auto center mt-6">
       <div>
-        <img width="200px" height="200px" src={postDetail.image[0]}></img>
-      <div>
-        {
-          postDetail.image.map((img) => {
-            return <img width="50px" height="50px" src={img}></img>;
-          })}
-      </div>
-      <div>
-        <h2>Title: {postDetail.title}</h2>
-        <h3>Created By: {postDetail.created_by_data[0].name} {postDetail.created_by_data[0].lastname}</h3>
-        Authors: 
-        {postDetail.authors.map((el) => {
-          return (
+        {postDetail.length === 0 ? (
+          <Loader />
+        ) : (
           <div>
-            <h3>{el.name} {el.lastname}</h3>
-          </div>);
-        })}
-      </div>
-        <div>
-          <h4>{postDetail.mts2} m2</h4>
-          <h4>{postDetail.rooms} rooms</h4>
-          <h4>{postDetail.bathrooms} bathrooms</h4>
-          <h4>Year: {postDetail.year}</h4>
-        </div>
-        <div>
-          <p>{postDetail.description}</p>
-        </div>
-        {/* <div>
+            <img width="630px" alt="image" src={postDetail.image[0]}></img>
+            <div>
+              {/* <div className="w-full h-60"> */}
+              {/* <div className="grid grid-col-3 ">
+              </div> */}
+              <div className="flex my-6">
+                <img src={postDetail.image[1]} width="210" />
+                <img src={postDetail.image[2]} width="210" />
+                <img src={postDetail.image[4]} width="210" />
+              </div>
+
+              {/* <div className="flex flex-wrap mb-12">
+                  {postDetail.image.map((img) => {
+                    return <img width="200px" src={img}/>;
+                  })}
+                </div> */}
+              {/* </div> */}
+            </div>
+            <div>
+              <div className="font-semibold text-transform: uppercase ">
+                Title: {postDetail.title}
+              </div>
+              <div className="font-light max-w-prose ">
+                Created By: {postDetail.created_by_data[0].name}{" "}
+                {postDetail.created_by_data[0].lastname}
+              </div>
+              <div className="mb-6">
+                {" "}
+                Authors:
+                {postDetail.authors.map((el) => {
+                  return (
+                    <div>
+                      <h3>
+                        {el.name} {el.lastname}
+                      </h3>
+                    </div>
+                  );
+                })}{" "}
+              </div>
+            </div>
+            <div className="grid grid-cols-9 gap-0 mb-4">
+              <div className="mx-2">{postDetail.mts2} m2</div>
+              <div className="mx-2">{postDetail.rooms} rooms</div>
+              <div className="mx-2">{postDetail.bathrooms} bathrooms</div>
+              <div className="mx-2"> {postDetail.year}</div>
+            </div>
+            <div>
+              <div className="font-light max-w-prose mb-20 text-justify">
+                {postDetail.description}
+              </div>
+            </div>
+            {/* <div>
                   <img/>
                   <textarea
                   placeholder='add a comment'
@@ -65,7 +99,9 @@ function PostDetail() {
                       })
                   }
               </div> */}
-      </div>}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

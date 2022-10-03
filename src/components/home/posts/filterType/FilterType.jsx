@@ -5,11 +5,12 @@ import Select from "react-select";
 import { filterTypePost } from "../../../../redux/slices/post/ordenAndFilterActions";
 export default function FilterType() {
   const [filterType, setFilterType] = useState("default");
-  const { allPosts } = useSelector((state) => state.post);
+  const { allPosts, queryPost } = useSelector((state) => state.post);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(filterTypePost(allPosts, filterType.value));
-  }, [filterType]);
+    dispatch(filterTypePost(queryPost, filterType.value));
+  }, [filterType,queryPost]);
 
   const onChangeSelect = (value) => {
     setFilterType(value)

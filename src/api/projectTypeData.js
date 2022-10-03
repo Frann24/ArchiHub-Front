@@ -1,4 +1,5 @@
 const infoTypePost = [
+  {value:"default", name:"Todos"},
   { value: "Residential Architecture", name: "Residential Architecture" },
   { value: "Interior Design", name: "Interior Design" },
   { value: "Cultural Architecture", name: "Cultural Architecture" },

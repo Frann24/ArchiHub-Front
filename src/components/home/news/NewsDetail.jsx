@@ -9,11 +9,11 @@ export default function NewsDetail(props) {
   const newNews = useSelector((state) => state.newsSlice.news);
   const params = useParams();
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getNews1());
   }, [dispatch]);
-  
+
   const detail = newNews.length > 0 && newNews.filter((e) => e.id == params.id);
 
   function handleLink() {
@@ -21,21 +21,24 @@ export default function NewsDetail(props) {
     window.open(detail[0].url, "_blank");
   }
 
-  console.log("params: ", params.id);
-  console.log("typeof params: ", typeof params.id);
-  console.log("detail: ", detail);
-  console.log("newNews:", newNews);
-
   return (
     <div>
       <div>
-        <div className="container mx-40 mt-40">
-          <img src={detail.length > 0 && detail[0].image} width="600px" alt="news" />
-          <div className="text-gray-400 mt-6">{detail.length > 0 && detail[0].date}</div>
+        <div className="container mx-40 mt-6">
+          <img
+            src={detail.length > 0 && detail[0].image}
+            width="600px"
+            alt="news"
+          />
+          <div className="text-gray-400 mt-6">
+            {detail.length > 0 && detail[0].date}
+          </div>
           <p className="font-semibold text-transform: uppercase">
             {detail.length > 0 && detail[0].title}
           </p>
-          <div className="font-light max-w-prose">{detail.length > 0 && detail[0].description}</div>
+          <div className="font-light max-w-prose">
+            {detail.length > 0 && detail[0].description}
+          </div>
 
           <div
             onClick={handleLink}
