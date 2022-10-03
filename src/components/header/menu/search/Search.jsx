@@ -7,6 +7,7 @@ function Search() {
   const [inputSearch, setInputSearch] = useState("");
   const {allPosts} = useSelector(state=>state.post)
   const dispatch = useDispatch();
+
   const handleChange = (e) => {
     setInputSearch(e.target.value)
     dispatch(getQueryPost(allPosts,e.target.value))

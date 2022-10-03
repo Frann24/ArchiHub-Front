@@ -1,9 +1,10 @@
+import { POST } from "../constants";
 import { allPosts, showPost, responsePost } from "./postSlice";
 const axios = require("axios");
 export const getAllPosts = () => {
   return (dispatch) => {
     axios
-      .get("http://localhost:3001/api/post")
+      .get(POST)
       .then((info) => dispatch(allPosts(info.data)))
       .catch((err) => console.log(err));
   };
@@ -12,7 +13,7 @@ export const getAllPosts = () => {
 export const getPost = (id) => {
   return (dispatch) => {
     axios
-      .get(`http://localhost:3001/api/post/${id}`)
+      .get(`${POST}/${id}`)
       .then((info) => dispatch(showPost(info.data)))
       .catch((err) => console.log(err));
   };
@@ -21,7 +22,7 @@ export const getPost = (id) => {
 export const createPost = (info) => {
   return (dispatch) => {
     axios
-      .post(`http://localhost:3001/api/post`, info)
+      .post(POST, info)
       .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };
@@ -30,7 +31,7 @@ export const createPost = (info) => {
 export const updatePost = (id, info) => {
   return (dispatch) => {
     axios
-      .put(`http://localhost:3001/api/post/${id}`, info)
+      .put(`${POST}/${id}`, info)
       .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };
@@ -39,7 +40,7 @@ export const updatePost = (id, info) => {
 export const deletePost = (id) => {
   return (dispatch) => {
     axios
-      .delete(`http://localhost:3001/api/post/${id}`)
+      .delete(`${POST}/${id}`)
       .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };

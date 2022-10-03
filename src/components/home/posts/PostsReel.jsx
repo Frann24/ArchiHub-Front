@@ -5,30 +5,41 @@ import { getAllPosts } from "../../../redux/slices/post/postActions";
 
 function PostsReel() {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.allPosts);
 
+  const posts = useSelector((state) => state.post.orderPosts);
+  const post = useSelector((state) => state.post.queryPost);
+  const condition = post.length ? true : false
+  
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
-  const currentCards = posts.slice(0, indexLastCard);
+  const currentCards = condition ? post.slice(0, indexLastCard) : posts.slice(0, indexLastCard);;
 
   function paginado() {
     setPage(page + 1);
   }
   // const shortDescription = posts.description.slice(0, 50)
 
-  console.log(posts);
+
+
   return (
     <div>
-      <h4 class="ml-6 mb-6 font-semibold ">Posts</h4>
+      <h4 className="ml-6 mb-6 font-semibold ">Posts</h4>
+
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
-          {currentCards.map((post) => {
+          {currentCards.length > 0 ? currentCards.map((post,i) => {
             return (
-              <div>
+              <div key={i}>
+                <img
+                  width="600px"
+                  src={post.image[0]}
+                  alt="foto"
+                  className="w-full aspect-[3/2]"
+                />
                 <Link to={`/postDetail/${post._id}`}>
                   <img
                     width="600px"
@@ -43,14 +54,15 @@ function PostsReel() {
                 </Link>
               </div>
             );
-          })}
+          })
+          :<p className="text-xl">No posts found!</p>
+        }
         </div>
       </div>
       <div
-        class="mr-8 text-xl my-9 font-semibold flex flex-row-reverse"
+        className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
         onClick={(e) => paginado(e)}
       >
-        {" "}
         See more...
       </div>
     </div>

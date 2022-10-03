@@ -8,7 +8,7 @@ export default function FilterType() {
   const { allPosts } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(filterTypePost(allPosts, filterType));
+    dispatch(filterTypePost(allPosts, filterType.value));
   }, [filterType]);
 
   const onChangeSelect = (value) => {
@@ -19,8 +19,9 @@ export default function FilterType() {
     return { value: e.value, label: e.name };
   });
   return (
-    <div>
+    <div className="text-base">
       <Select
+        placeholder="Project type..."
         onChange={onChangeSelect}
         options={options}
         value={filterType}
