@@ -21,10 +21,6 @@ export default function NewsDetail(props) {
     window.open(detail[0].url, "_blank");
   }
 
-  console.log("params: ", params.id);
-  console.log("typeof params: ", typeof params.id);
-  console.log("detail: ", detail);
-  console.log("newNews:", newNews);
 
   return (
     <div>

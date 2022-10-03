@@ -5,9 +5,11 @@ import { getAllPosts } from "../../../redux/slices/post/postActions";
 
 function PostsReel() {
   const dispatch = useDispatch();
+
   const posts = useSelector((state) => state.post.orderPosts);
   const post = useSelector((state) => state.post.queryPost);
   const condition = post.length ? true : false
+  
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
@@ -21,9 +23,12 @@ function PostsReel() {
   }
   // const shortDescription = posts.description.slice(0, 50)
 
+
+
   return (
     <div>
       <h4 className="ml-6 mb-6 font-semibold ">Posts</h4>
+
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
           {currentCards.length > 0 ? currentCards.map((post,i) => {
@@ -36,11 +41,17 @@ function PostsReel() {
                   className="w-full aspect-[3/2]"
                 />
                 <Link to={`/postDetail/${post._id}`}>
+                  <img
+                    width="600px"
+                    src={post.image[0]}
+                    alt="foto"
+                    className="w-full aspect-[3/2]"
+                  />
                   <h4 className="font-bold text-transform: uppercase mt-6">
                     {post.title}
                   </h4>
+                  <p className="font-light truncate">{post.description}...</p>
                 </Link>
-                    <p className="font-light truncate">{post.description}...</p>
               </div>
             );
           })
