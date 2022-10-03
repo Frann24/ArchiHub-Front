@@ -31,18 +31,18 @@ console.log(posts);
           {currentCards.map((post) => {
             return (
               <div>
+                <Link to={`/postDetail/${post._id}`}>
                 <img
                   width="600px"
                   src={post.image[0]}
                   alt="foto"
                   className="w-full aspect-[3/2]"
                 />
-                <Link to={`/postDetail/${post._id}`}>
                   <h4 className="font-bold text-transform: uppercase mt-6">
                     {post.title}
                   </h4>
-                </Link>
                     <p className="font-light truncate">{post.description}...</p>
+          </Link>
               </div>
             );
           })}
