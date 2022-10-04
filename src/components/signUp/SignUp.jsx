@@ -18,30 +18,17 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword]=useState("")
 
 
-  const[user,setUser]=useState({
-    name:null,
-    lastname:null,
-    nickname:null,
-    email:null,
-    password:null,
-    confirmPassword:null,
-    loggedIn:false
-  })
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    dispatch(registerUser(
+      name,
+      lastname,
+      nickname,
+      email,
+      password,
+      confirmPassword))
+  }
 
-const handleRegister=async(e)=>{
-  e.preventDefault();
-      setUser({
-        name,
-        lastname,
-        nickname,
-        email,
-        password,
-        confirmPassword,
-        loggedIn:true
-      })
-      dispatch(registerUser(user))
-      navigate("/home")
-}
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">
