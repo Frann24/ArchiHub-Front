@@ -14,11 +14,14 @@ export const loginSlice = createSlice({
         },
         register:(state, action)=>{
             state.user = action.payload
+        },
+        googleLog:(state, action)=>{
+            state.user = action.payload
         }
     }
 })
 
-export const {login,logout, register}= loginSlice.actions;
+export const {login,logout, register, googleLog}= loginSlice.actions;
 
 // export const selectUser = (state)=> state.user.user
 

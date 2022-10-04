@@ -1,13 +1,11 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
-import {Navlink, useNavigate} from "react-router-dom"
 
 
 function SignUp() {
   
   const dispatch = useDispatch()
-  const navigate = useNavigate();
 
 
   const [name, setName]=useState("")
@@ -18,30 +16,17 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword]=useState("")
 
 
-  const[user,setUser]=useState({
-    name:null,
-    lastname:null,
-    nickname:null,
-    email:null,
-    password:null,
-    confirmPassword:null,
-    loggedIn:false
-  })
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    dispatch(registerUser(
+      name,
+      lastname,
+      nickname,
+      email,
+      password,
+      confirmPassword))
+  }
 
-const handleRegister=async(e)=>{
-  e.preventDefault();
-      setUser({
-        name,
-        lastname,
-        nickname,
-        email,
-        password,
-        confirmPassword,
-        loggedIn:true
-      })
-      dispatch(registerUser(user))
-      navigate("/home")
-}
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">
@@ -163,18 +148,7 @@ const handleRegister=async(e)=>{
         >
           Create account & Login
         </button>
-        {/* <button
-          type="submit"
-          className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
-        >
-          Sign up with Google
-        </button>
-        <div class="text-sm font-medium text-gray-900">
-          Have an account?{" "}
-          <span class="cursor-pointer text-gray-600 hover:underline">
-            Sign in
-          </span>
-        </div> */}
+
       </form>
     </div>
   );

@@ -11,6 +11,8 @@ import PostDetail from "../home/posts/PostDetail";
 import CreatePost from "../createPost/CreatePost";
 import NewsDetail from "../home/news/NewsDetail";
 import DashBoardAdmin from "../dashBoardAdmin/DashBoardAdmin";
+import ProjectDetail from "../home/projects/ProjectDetail";
+
 
 function Header() {
   const { pathname } = useLocation();
@@ -41,7 +43,10 @@ function Header() {
         <Route path="newsDetail/:id" element={<NewsDetail />} />
         <Route path="postDetail/:id" element={<PostDetail />} />
         <Route path="createpost" element={<CreatePost />} />
+
         <Route path="/admin" element={<DashBoardAdmin />} />
+
+        <Route path="projectDetail/:id" element={<ProjectDetail />} />
       </Routes>
     </div>
   );
