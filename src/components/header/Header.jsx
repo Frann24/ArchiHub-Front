@@ -10,6 +10,7 @@ import Home from "../home/Home";
 import PostDetail from "../home/posts/PostDetail";
 import CreatePost from "../createPost/CreatePost";
 import NewsDetail from "../home/news/NewsDetail";
+import ProjectDetail from "../home/projects/ProjectDetail";
 
 function Header() {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ function Header() {
         <Route path="newsDetail/:id" element={<NewsDetail />} />
         <Route path="postDetail/:id" element={<PostDetail />} />
         <Route path="createpost" element={<CreatePost />} />
+        <Route path="projectDetail/:id" element={<ProjectDetail />} />
       </Routes>
     </div>
   );
