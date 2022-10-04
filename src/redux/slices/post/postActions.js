@@ -4,7 +4,6 @@ const axios = require("axios");
 
 export const getAllPosts = () => {
   return (dispatch) => {
-    console.log(POST)
     axios
       .get(POST)
       .then((info) => dispatch(allPosts(info.data)))
