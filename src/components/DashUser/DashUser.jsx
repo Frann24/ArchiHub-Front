@@ -1,4 +1,5 @@
 import React from "react";
+import Projects from "./Projects"
 
 export default function DashUser() {
   return (
@@ -40,6 +41,10 @@ export default function DashUser() {
         </div>
       </div>
       <div className="border-y-2 border-slate-200 w-full"></div>
+
+      <div>
+        <Projects/>
+      </div>
     </div>
   );
 }
