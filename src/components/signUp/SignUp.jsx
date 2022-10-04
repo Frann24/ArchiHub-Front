@@ -8,7 +8,6 @@ import { showSigIn, showSignUp } from "../../redux/slices/header/headerSlice";
 function SignUp() {
   const {modalSignIn, modalSignUp} = useSelector(state => state.header)
   const dispatch = useDispatch()
-  const navigate = useNavigate();
 
   const toggleSignIn = (e) => {
     e.preventDefault()
@@ -23,30 +22,17 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword]=useState("")
 
 
-  const[user,setUser]=useState({
-    name:null,
-    lastname:null,
-    nickname:null,
-    email:null,
-    password:null,
-    confirmPassword:null,
-    loggedIn:false
-  })
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    dispatch(registerUser(
+      name,
+      lastname,
+      nickname,
+      email,
+      password,
+      confirmPassword))
+  }
 
-const handleRegister=async(e)=>{
-  e.preventDefault();
-      setUser({
-        name,
-        lastname,
-        nickname,
-        email,
-        password,
-        confirmPassword,
-        loggedIn:true
-      })
-      dispatch(registerUser(user))
-      navigate("/home")
-}
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">
@@ -168,6 +154,7 @@ const handleRegister=async(e)=>{
         >
           Create account & Login
         </button>
+
         {/* <button
           type="submit"
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"

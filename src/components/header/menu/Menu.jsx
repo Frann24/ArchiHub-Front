@@ -13,10 +13,11 @@ function Menu({ path }) {
   const { modalSignIn, modalSignUp } = useSelector((state) => state.header);
   const { menu } = useSelector((state) => state.header);
   const dispatch = useDispatch();
+  const userLogin = JSON.parse(localStorage.getItem("token"))
 
-  const handleClick = (e, id) => {
-    e.preventDefault();
-    closeMenu(e);
+  const handleClick = (e,id) => {
+    e.preventDefault()
+    closeMenu(e)
     const anchor = document.querySelector(id);
     anchor.scrollIntoView({ behavior: "smooth", block: "center" });
   };
@@ -66,6 +67,22 @@ function Menu({ path }) {
                 News
               </Link>
             </div>
+            {
+              userLogin &&
+              userLogin.userType === "admin" &&
+            <div className="menu-div-link" onClick={(e) => handleClick(e,"#news_id")}>
+               <Link
+                 to="/admin"
+                 
+                 className="menu-link"
+               >
+                 Admin
+               </Link>
+            </div>
+            }
+           
+          </div>
+          <div className="menu">
             <div className="menu-div-link" onClick={closeMenu}>
               <Link to="/about-us" className="menu-link-mobile">
                 About us

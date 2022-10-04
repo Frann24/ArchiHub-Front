@@ -25,7 +25,8 @@ function Guest() {
   return (
     <div>
       <ul className="xl:text-base flex gap-16 items-center">
-        <div className="hidden text-base
+        <div className="hidden text-base">
+         <div className="hidden text-base
         sm:block 
         xl:text-xl xl:font-normal
         ">
@@ -38,8 +39,12 @@ function Guest() {
             <span>Sign up</span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
           </li>
+
         </div>
         
+        </div> 
+        <BtnMenu />
+
       </ul>
       <Modal active={modalSignIn} toggle={toggleSignIn}>
         <SigIn/>
