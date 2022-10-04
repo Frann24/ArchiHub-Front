@@ -9,6 +9,7 @@ import LandingPage from "./components/landingPage/LandingPage";
 // import News from "./components/home/news/News";
 import Home from "./components/home/Home";
 import CreatePost from "./components/createPost/CreatePost";
+import DashUser from "./components/DashUser/DashUser";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/newsDetail/:id" element={<NewsDetail />} />
           <Route path="/postDetail/:id" element={<PostDetail />} />
           <Route path="/createpost" element={<CreatePost />} />  */}
+          <Route path="/dashuser" element={<DashUser />} />  
+
         </Routes>
       </div>
     </BrowserRouter>
