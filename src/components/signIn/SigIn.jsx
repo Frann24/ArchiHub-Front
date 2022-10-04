@@ -21,7 +21,9 @@ function SigIn() {
       var userObject = jwt_decode(response.credential)
       console.log(userObject);
       setGoogleUser(userObject)
-      dispatch(googleLogin(userObject.email))
+      const userMail = userObject.email
+      const avatar = userObject.picture
+      dispatch(googleLogin(userMail, avatar))
       navigate("/home")
 
     }

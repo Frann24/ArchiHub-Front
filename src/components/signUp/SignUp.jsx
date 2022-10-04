@@ -1,13 +1,11 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
-import {Navlink, useNavigate} from "react-router-dom"
 
 
 function SignUp() {
   
   const dispatch = useDispatch()
-  const navigate = useNavigate();
 
 
   const [name, setName]=useState("")
@@ -150,18 +148,7 @@ function SignUp() {
         >
           Create account & Login
         </button>
-        {/* <button
-          type="submit"
-          className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
-        >
-          Sign up with Google
-        </button>
-        <div class="text-sm font-medium text-gray-900">
-          Have an account?{" "}
-          <span class="cursor-pointer text-gray-600 hover:underline">
-            Sign in
-          </span>
-        </div> */}
+
       </form>
     </div>
   );

@@ -32,10 +32,10 @@ export const registerUser=(name, lastname, nickname, email, password)=>(dispatch
 );
 }
 
-export const googleLogin=(email)=>(dispatch)=>{
-    console.log(email);
-    axios.post("http://localhost:3001/api/auth/google", email)
-    // axios.post(GOOGLE_LOGIN, email)
+export const googleLogin=(email, avatar)=>(dispatch)=>{
+    console.log(avatar);
+    // axios.post("http://localhost:3001/api/auth/google", email)
+     axios.post(GOOGLE_LOGIN, {email:email, avatar: avatar})
     .then(res=>dispatch(googleLog(res.data)))
     .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload)))
     .catch(e=>console.log(e.response.data)
