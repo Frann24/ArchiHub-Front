@@ -14,7 +14,7 @@ export default function DashUser() {
           <div>
             <div className="font-bold text-lg capitalize mt-12 ">
               name lastname{" "}
-            </div>
+            </div >
             <div className=" text-lg">nickname </div>
 
             <div className="mt-20">
