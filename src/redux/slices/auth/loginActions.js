@@ -5,7 +5,7 @@ import { login, logout, register } from "./loginSlice";
 
 export const logUser=(credentials)=>(dispatch)=>{
     axios.post(AUTH_LOGIN, credentials)
-    .then(res=>dispatch(login(res.data)))
+    .then(res=> console.log(res)/* dispatch(login(res.data)) */)
     .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload.token)))
     .catch(e=>{
         console.log(e.response.data)

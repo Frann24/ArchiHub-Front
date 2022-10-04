@@ -29,8 +29,7 @@ console.log(condition) */
 
   return (
     <div>
-      <h4 className="ml-6 mb-6 font-semibold ">Posts</h4>
-
+      <h4 id="posts_id" className="ml-6 mb-6 font-semibold ">Posts</h4>
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
           {currentCards.length > 0 ? (

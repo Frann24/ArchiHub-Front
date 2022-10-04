@@ -1,15 +1,20 @@
 import React,{useState} from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
 import {Navlink, useNavigate} from "react-router-dom"
+import { showSigIn, showSignUp } from "../../redux/slices/header/headerSlice";
 
 
 function SignUp() {
-  
+  const {modalSignIn, modalSignUp} = useSelector(state => state.header)
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
-
+  const toggleSignIn = (e) => {
+    e.preventDefault()
+    dispatch(showSignUp(!modalSignUp))
+    dispatch(showSigIn(!modalSignIn))
+  }
   const [name, setName]=useState("")
   const [lastname, setLastname]=useState("")
   const [nickname, setNickname]=useState("")
@@ -48,9 +53,9 @@ const handleRegister=async(e)=>{
         Sign Up
       </h3>
       <form className="space-y-6" onSubmit={handleRegister}>
-      <div>
+        <div>
           <label
-            for="name"
+           
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Name
@@ -67,7 +72,7 @@ const handleRegister=async(e)=>{
         </div>
         <div>
           <label
-            for="lastname"
+          
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Lastname
@@ -84,7 +89,7 @@ const handleRegister=async(e)=>{
         </div>
         <div>
           <label
-            for="nickname"
+           
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Nickname
@@ -103,7 +108,7 @@ const handleRegister=async(e)=>{
        
         <div>
           <label
-            for="email"
+       
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Your email
@@ -122,7 +127,7 @@ const handleRegister=async(e)=>{
         </div>
         <div>
           <label
-            for="password"
+            
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Password
@@ -141,7 +146,7 @@ const handleRegister=async(e)=>{
         </div>
         <div>
           <label
-            for="password"
+
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Confirm password
@@ -168,13 +173,13 @@ const handleRegister=async(e)=>{
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
         >
           Sign up with Google
-        </button>
-        <div class="text-sm font-medium text-gray-900">
-          Have an account?{" "}
-          <span class="cursor-pointer text-gray-600 hover:underline">
+        </button> */}
+        <div className="text-sm font-medium text-gray-900">
+          Have an account?
+          <span className="cursor-pointer text-gray-600 underline pl-1" onClick={toggleSignIn}>
             Sign in
           </span>
-        </div> */}
+        </div>
       </form>
     </div>
   );

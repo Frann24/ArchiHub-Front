@@ -3,12 +3,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { logUser } from "../../redux/slices/auth/loginActions"
 import { getUserByEmail } from "../../redux/slices/user/userAction";
 import { useNavigate} from "react-router-dom"
+import { showSigIn, showSignUp } from "../../redux/slices/header/headerSlice";
 
 
 function SigIn() {
-  
+  const {modalSignIn, modalSignUp} = useSelector(state => state.header)
     const dispatch = useDispatch()
     const navigate = useNavigate();
+
+    const toggleSignIn = (e) => {
+      e.preventDefault()
+      dispatch(showSigIn(!modalSignIn))
+      dispatch(showSignUp(!modalSignUp))
+    }
 
   useEffect(()=>{
 
@@ -48,7 +55,7 @@ function SigIn() {
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">Sign In</h3>
       <form className="space-y-6" onSubmit={handleLogin}>
         <div>
-          <label for="email" className="block mb-2 text-sm font-medium text-gray-900">
+          <label className="block mb-2 text-sm font-medium text-gray-900">
             Your email
           </label>
           <input type="email"
@@ -58,7 +65,7 @@ function SigIn() {
           />
         </div>
         <div>
-          <label for="password"
+          <label 
             className="block mb-2 text-sm font-medium text-gray-900">
             Your password
           </label>
@@ -81,8 +88,8 @@ function SigIn() {
                 className="w-4 h-4 bg-gray-50 border-gray-300 focus:ring-3 focus:ring-gray-600"
               />
             </div>
-            <label for="remember"
-              class="ml-2 text-sm font-medium text-gray-900">
+            <label 
+              className="ml-2 text-sm font-medium text-gray-900">
               Remember me
             </label>
           </div>
@@ -102,10 +109,11 @@ function SigIn() {
         >
           Sign in with Google
         </button>
-        <div class="text-sm font-medium text-gray-900">
+        <div className="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
         Not registered?
-        <span class="cursor-pointer text-gray-600 hover:underline">
+        <span className="cursor-pointer text-gray-600 underline pl-1" onClick={toggleSignIn}>
+          Create account
         </span> 
         </div>
       </form>
