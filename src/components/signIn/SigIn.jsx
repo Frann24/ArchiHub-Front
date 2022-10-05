@@ -9,13 +9,14 @@ import useLocalStorage from "../hooks/useLocalStorage"
 
 function SigIn() {
   const {modalSignIn, modalSignUp} = useSelector(state => state.header)
+  const token = window.localStorage.getItem("token");
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const google = window.google
     const [googleUser, setGoogleUser] = useLocalStorage("googleUser","")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+  console.log(token)
     const toggleSignIn = (e) => {
       e.preventDefault()
       dispatch(showSigIn(!modalSignIn))
@@ -41,7 +42,7 @@ function SigIn() {
       })
       google.accounts.id.renderButton(
         document.getElementById("signInDiv"),
-        {theme:"none", size:"medium"}
+        {theme:"outline", size:"large"}
       )
   
     },[])
@@ -117,20 +118,19 @@ function SigIn() {
         >
           Login
         </button>
-        {/* <button
+        {/* <button 
           type="submit"
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
         >
           Sign in with Google
-        </button>
-        <div className="text-sm font-medium text-gray-900">
         </button> */}
+   
         <div id="signInDiv"></div>
-        <div class="text-sm font-medium text-gray-900">
+        <div className="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
-        Not registered?
+        Don´t have a account?
         <span className="cursor-pointer text-gray-600 underline pl-1" onClick={toggleSignIn}>
-          Create account
+          Sign up
         </span> 
         </div>
       </form>

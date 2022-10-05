@@ -14,12 +14,13 @@ import BtnMenu from "./btnMenu/BtnMenu";
 import Footer from "../footer/Footer";
 import DashBoardAdmin from "../dashBoardAdmin/DashBoardAdmin";
 import ProjectDetail from "../home/projects/ProjectDetail";
+import Navbar from "./navbar/Navbar";
 
 function Header() {
   const { pathname } = useLocation();
   const token = window.localStorage.getItem("token");
-
-  let auth = true;
+  console.log("header token: ",token)
+  let auth = false;
 
   const { menu } = useSelector((state) => state.header);
   return (
@@ -38,9 +39,9 @@ function Header() {
             {auth ? <Logged/> : <BtnMenu />}
           </div>
           <div className="hidden lg:flex gap-16 items-center pt-1">
-          {/*   <Navbar path={pathname}/> */}
-            {/* {token === null ? <Logged /> : <Guest />} */}
-            {auth ? <Logged/> : <Guest/>}
+            <Navbar path={pathname}/>
+            {token !== null ? <Logged /> : <Guest />}
+            {/* {auth ? <Logged/> : <Guest/>} */}
           </div>
         </div>
         <div className="bg-gray-100 bg-opacity-50 lg:hidden">

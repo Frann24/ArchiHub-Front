@@ -37,7 +37,7 @@ function Menu({ path }) {
   };
   return (
     <div
-      className="mx-4 h-full
+      className="mx-4 h-screen
     md:mx-8
     lg:mx-16
     xl:mx-32
@@ -80,9 +80,6 @@ function Menu({ path }) {
                </Link>
             </div>
             }
-           
-          </div>
-          <div className="menu">
             <div className="menu-div-link" onClick={closeMenu}>
               <Link to="/about-us" className="menu-link-mobile">
                 About us
@@ -90,7 +87,7 @@ function Menu({ path }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col text-gray-50  w-full sm:items-center sm:gap-4">
+        <div className="flex flex-col text-gray-50 w-full sm:items-center sm:gap-4">
           <button
             onClick={toggleSignIn}
             className="bg-gray-600 py-2 mb-4 sm:w-1/2"

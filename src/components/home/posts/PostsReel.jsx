@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../../../redux/slices/post/postActions";
 import { orderPosts } from "../../../redux/slices/post/ordenAndFilterActions";
+import Loader from "../../loader/Loader";
 
 function PostsReel() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.post.orderPosts);
+  const [loading, setLoading] = useState(true)
 /*   const post = useSelector((state) => state.post.queryPost); */
 /*   console.log(post);
   const condition = post.length ? true : false;
 console.log(condition) */
   useEffect(() => {
+    setLoading(true)
     dispatch(getAllPosts());
+    setLoading(false)
   }, [dispatch]);
 
   const [page, setPage] = useState(1);
@@ -26,7 +30,12 @@ console.log(condition) */
     setPage(page + 1);
   }
   // const shortDescription = posts.description.slice(0, 50)
-
+  if(loading) return (
+    <div className="w-full">
+      <h4 id="posts_id" className="ml-6 mb-6 font-semibold ">Posts</h4>
+      <div className="flex justify-center items-center h-44"><Loader/></div>
+    </div>
+  )
   return (
     <div>
       <h4 id="posts_id" className="ml-6 mb-6 font-semibold ">Posts</h4>
