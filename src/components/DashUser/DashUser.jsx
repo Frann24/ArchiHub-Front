@@ -29,9 +29,10 @@ export default function DashUser() {
           />
           <div>
             <div className="font-bold text-lg capitalize mt-12 ">
-              name lastname{" "}
+              name lastname{myUser.userName}
             </div>
             <div className=" text-lg">nickname </div>
+            <div className=" text-lg">email {myUser.userMail}</div>
 
             <div className="mt-20">
               <button className="bg-slate-300 cursor-pointer w-32 h-8">
