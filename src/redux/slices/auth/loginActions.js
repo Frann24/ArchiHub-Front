@@ -19,7 +19,7 @@ export const logUser=(email,password)=>(dispatch)=>{
 export const logOutUser=()=>(dispatch)=>{
     const token = window.localStorage.getItem("token")
     if(token){
-        dispatch(logout(window.localStorage.removeItem("token")
+        dispatch(logout(window.localStorage.removeItem("token", "google")
         ))
     }
 }
@@ -32,10 +32,10 @@ export const registerUser=(name, lastname, nickname, email, password)=>(dispatch
 );
 }
 
-export const googleLogin=(email, avatar)=>(dispatch)=>{
+export const googleLogin=(email, avatar, name, lastname)=>(dispatch)=>{
     console.log(avatar);
     // axios.post("http://localhost:3001/api/auth/google", email)
-     axios.post(GOOGLE_LOGIN, {email:email, avatar: avatar})
+     axios.post(GOOGLE_LOGIN, {email:email, avatar: avatar, name: name, lastname: lastname})
     .then(res=>dispatch(googleLog(res.data)))
     .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload)))
     .catch(e=>console.log(e.response.data)
