@@ -10,12 +10,10 @@ export default function DashUser() {
   const user = JSON.parse(localStorage.getItem("token"));
 
   const userId = user.userId;
-  console.log("userId ", userId);
 
   const myUser = useSelector((state) => state.user.user);
   console.log("myUser: ", myUser);
 
-  
   useEffect(() => {
     dispatch(getUser(userId));
   }, [dispatch]);
