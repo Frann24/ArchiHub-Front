@@ -1,83 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { logUser, googleLogin } from "../../redux/slices/auth/loginActions"
-import { useNavigate} from "react-router-dom"
-import { showSigIn, showSignUp } from "../../redux/slices/header/headerSlice";
-import jwt_decode from "jwt-decode";
-import useLocalStorage from "../hooks/useLocalStorage"
+import React from "react";
+import { useSelector } from "react-redux"
 
+import { useSignIn } from "./useSignIn";
 
 function SigIn() {
-  const {modalSignIn, modalSignUp} = useSelector(state => state.header)
-  const token = window.localStorage.getItem("token");
-    const dispatch = useDispatch()
-    const navigate = useNavigate();
-    const google = window.google
-    const [googleUser, setGoogleUser] = useLocalStorage("googleUser","")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-  console.log(token)
-    const toggleSignIn = (e) => {
-      e.preventDefault()
-      dispatch(showSigIn(!modalSignIn))
-      dispatch(showSignUp(!modalSignUp))
-    }
-
-    const handleCallbackResponse=async(response)=>{
-      var userObject = jwt_decode(response.credential)
-      console.log(userObject);
-      setGoogleUser(userObject)
-      const userMail = userObject.email
-      const avatar = userObject.picture
-      dispatch(googleLogin(userMail, avatar))
-      navigate("/home")
-
-    }
-
-    useEffect(()=>{
-      //global google login
-      google.accounts.id.initialize({
-        client_id: "168699059386-nhog3hm7cgg52demaihgsskd49r5aetq.apps.googleusercontent.com",
-        callback: handleCallbackResponse
-      })
-      google.accounts.id.renderButton(
-        document.getElementById("signInDiv"),
-        {theme:"outline", size:"large"}
-      )
-  
-    },[])
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value)
+  const {input,errors ,handleInputChange, handleInputSubmit, toggleSignIn, closeModalSingIn, handleBlur} = useSignIn()
+  const {user} = useSelector(state => state.login)
+  let conditionEmail, conditionPassword
+  if(user){
+   conditionEmail = errors.email || user.errEmail
+   conditionPassword = errors.password || user.errPassword
   }
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
-
-  
-  const handleLogin = async(e) => {
-      e.preventDefault();
-      dispatch(logUser(email, password))
-      navigate("/home")
-    }
-
-
-
 
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
     
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">Sign In</h3>
-      <form className="space-y-6" onSubmit={handleLogin}>
+      <form className="space-y-6" onSubmit={handleInputSubmit}>
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-900">
             Your email
           </label>
-          <input type="email"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
+          <input type="text"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 ${conditionEmail && "border-2 focus:border-danger border-danger"}`}
             placeholder="name@example.com"
-            value={email} name='email' onChange={handleEmailChange}
+            value={input.email} name='email' onBlur={handleBlur} onChange={handleInputChange}
           />
+          {conditionEmail && <span className="text-danger text-sm">{conditionEmail}</span>}
         </div>
         <div>
           <label 
@@ -90,8 +39,9 @@ function SigIn() {
             id="password"
             placeholder="••••••••"
             className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            value={password} onChange={handlePasswordChange}
+            value={input.password} onChange={handleInputChange}
           />
+          {conditionPassword && <span className="text-danger text-sm">{conditionPassword}</span>}
         </div>
         <div className="flex justify-between">
           <div className="flex items-start">
@@ -125,7 +75,7 @@ function SigIn() {
           Sign in with Google
         </button> */}
    
-        <div id="signInDiv"></div>
+        <div onClick={closeModalSingIn} id="signInDiv"></div>
         <div className="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
         Don´t have a account?

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AUTH_SIGNUP, AUTH_LOGIN, GOOGLE_LOGIN } from "../constants";
-import { login, logout, register, googleLog } from "./loginSlice";
+import { login, logout, register, googleLog, clearLogin } from "./loginSlice";
 
 
 export const logUser=(email,password)=>(dispatch)=>{
@@ -8,9 +8,9 @@ export const logUser=(email,password)=>(dispatch)=>{
     // console.log(credentials);
     axios.post(AUTH_LOGIN, {email, password})
     .then(res=>dispatch(login(res.data)))
-    .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload)))
+    .then(data => window.localStorage.setItem("token", JSON.stringify(data.payload)))
     .catch(e=>{
-        console.log(e.response.data)
+        dispatch(login(e.response.data))
         window.localStorage.setItem("token", null)
     });
 }
@@ -18,7 +18,7 @@ export const logUser=(email,password)=>(dispatch)=>{
 export const logOutUser=()=>(dispatch)=>{
     const token = window.localStorage.getItem("token")
     if(token){
-        dispatch(logout(window.localStorage.removeItem("token")
+        dispatch(logout(window.localStorage.removeItem("token", "google")
         ))
     }
 }
@@ -31,14 +31,17 @@ export const registerUser=(name, lastname, nickname, email, password)=>(dispatch
 );
 }
 
-export const googleLogin=(email, avatar)=>(dispatch)=>{
-    console.log(avatar);
+export const googleLogin=(email, avatar, name, lastname)=>(dispatch)=>{
     // axios.post("http://localhost:3001/api/auth/google", email)
-     axios.post(GOOGLE_LOGIN, {email:email, avatar: avatar})
-    .then(res=>dispatch(googleLog(res.data)))
+     axios.post(GOOGLE_LOGIN, {email:email, avatar: avatar, name: name, lastname: lastname})
+    .then(res => dispatch(googleLog(res.data)))
     .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload)))
     .catch(e=>console.log(e.response.data)
 );
+}
+
+export const clearUser = (state) =>{
+    return clearLogin(state)
 }
                 
  

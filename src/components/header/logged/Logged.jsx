@@ -1,21 +1,34 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faArrowDown, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { faAngleDown, faAngleUp, faArrowDown, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../../redux/slices/auth/loginActions";
 
 function Logged() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
-  const img ="https://img.a.transfermarkt.technology/portrait/header/28003-1631171950.jpg?lm=1";
-  const userName = "LionelM10";
-  const mail = "liom10@gmail.com";
-  const name = "Lionel Andrés Messi";
+  const googleUser = JSON.parse(localStorage.getItem('googleUser'))
+  const token = JSON.parse(localStorage.getItem('token'))
+  let user,email,avatar,type
+
+  if(token !== null){
+    const {userId,userAvatar, userMail, userName, userType} = token
+    user = userName 
+    email = userMail
+    avatar = userAvatar
+    type = userType
+    if(googleUser !== null) {
+      const {name} = googleUser
+      user = name
+    }
+  }
+
   const projects = [
-    { name: "project 1" },
-    { name: "project 2" },
-    { name: "project 3" },
+    { name: "Name project 1" },
+    { name: "Name project 2" },
+    { name: "Name project 3" },
   ];
   const dispatch = useDispatch()
   const navigate = useNavigate();
@@ -23,19 +36,30 @@ function Logged() {
   const handleLogout =  (e) => {
     // e.preventDefault();
     dispatch(logOutUser())
+    localStorage.removeItem("googleUser")
     navigate("/")
   }
 
   return (
     <>
-      <div onClick={() => setCreateMenu(!createMenu)} className="cursor-pointer text-gray-600 border rounded ">
-          <FontAwesomeIcon className="px-1" icon={faPlus}/>
-          <FontAwesomeIcon className="px-1" icon={faAngleDown}/>
+      <div onClick={() => setCreateMenu(!createMenu)} className={`hidden p-1 text-sm cursor-pointer text-gray-600 border rounded hover:bg-gray-200
+      ${createMenu && "bg-gray-200"}
+      lg:flex
+      `}>
+        <FontAwesomeIcon className="px-1 cursor-pointer" icon={faPlus}/>
+        <FontAwesomeIcon className="px-1 cursor-pointer" icon={createMenu ? faAngleUp : faAngleDown}/>
+        {createMenu && <div className="absolute mt-10 text-gray-600 w-[16vw] flex flex-col bg-gray-100 rounded gap-2 cursor-default
+        xl:w-[15vw]
+        2xl:w-[8vw]
+        ">
+            <Link className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
+            <Link className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
+            {/* <Link>New commit project</Link> */}
+        </div>}
       </div>
-      {createMenu && <div>Sub menu</div>}
       <div
         title="Open menu"
-        onClick={() => setShowSidebar(!showSidebar)}
+        onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
         className="cursor-pointer flex items-center gap-4" 
       >
         <div className="flex order-2 items-center justify-center w-10 h-10 mx-2 overflow-hidden rounded-full
@@ -43,23 +67,23 @@ function Logged() {
         lg:w-14 lg:h-14
         xl:w-16 xl:h-16
         ">
-          <img src={img} alt="" />
+          <img src={avatar} alt="" />
         </div>
-        
         <div className="hidden sm:flex flex-col text-end">
-          <p className="text-sm lg:text-base font-medium">{userName}</p>
-          <p className="text-xs lg:text-sm text-gray-600">{mail}</p>
+          <p className="text-sm lg:text-base font-medium">{user}</p>
+          <p className="text-xs lg:text-sm text-gray-600">{email}</p>
         </div>
       </div>
-      {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen"></div>}
+      {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>}
       <div
-        className={`top-0 right-0 fixed bg-gray-100 w-full h-full text-center ${
+        className={`top-0 right-0 fixed bg-gray-100 w-11/12 h-full text-center ${
           showSidebar ? "translate-x-0" : "translate-x-full"
         } ease-in-out duration-500
       sm:w-1/2
       md:w-[45vw]
+      lg:w-[35vw]
       xl:w-[30vw]
-      2xl:w-[25vw]
+      2xl:w-[20vw]
       `}
       >
         <button
@@ -73,15 +97,26 @@ function Logged() {
             <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full m-auto mt-4
             sm:w-20 sm:h-20
             ">
-              <img src={img} alt="" />
+              <img src={avatar} alt="" />
             </div>
             <div className="my-4">
-              <h3 className="text-xl">{name}</h3>
-              <p className="text-gray-400">{mail}</p>
+              <h3 className="text-xl">{user}</h3>
+              <p className="text-gray-400">{email}</p>
             </div>
             <div className="text-start pl-4 mt-8 flex flex-col gap-4 lg:text-lg xl:text-xl">
+              <div className="flex flex-col items-start lg:hidden">
+                <div onClick={() => setCreateMenu(!createMenu)}>
+                  <span className="pr-2">Create</span>
+                  <FontAwesomeIcon className="text-gray-600" icon={faAngleDown} />
+               </div>
+                {createMenu && <div className="pl-4 w-auto text-gray-600 text-sm flex flex-col gap-2">
+                  <Link>New post</Link>
+                  <Link>New project</Link>
+                  {/* <Link>New commit project</Link> */}
+                </div>}
+              </div>
               <div>
-                <Link to="">My profile</Link>
+                <Link to={`/user/${user}`}>My profile</Link>
               </div>
               <div>
                 <Link to="">My posts</Link>
@@ -89,12 +124,16 @@ function Logged() {
               <div>
                 <Link to="">My projects</Link>
               </div>
-              <div className="pl-4 text-gray-600">
-                {projects.map((e, i) => (
-                  <div key={i} className="py-1">
-                    <Link to="">{e.name}</Link>
-                  </div>
-                ))}
+              <div>
+                <div onClick={() => setProjectMenu(!projectMenu)}>
+                  <span className="pr-2">Recent projects</span>
+                  <FontAwesomeIcon  className="text-gray-600" icon={faAngleDown} />
+                </div>
+                {projectMenu && <div className="pl-4 mt-1 w-auto text-gray-600 text-sm flex flex-col gap-2">
+                  {projects.map((e, i) => (
+                      <Link key={i} to="">{e.name}</Link>
+                  ))}
+                </div>}
               </div>
               <div>
                 <Link to="">My favourites</Link>
