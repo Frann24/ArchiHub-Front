@@ -15,3 +15,5 @@ export const FAVOURITE = `${BASE_URL}/favourite`
 export const AUTH_SIGNUP = `${BASE_URL}/auth/signup`
 
 export const AUTH_LOGIN = `${BASE_URL}/auth/login`
+
+export const PAYMENT = `${BASE_URL}api/payment`
