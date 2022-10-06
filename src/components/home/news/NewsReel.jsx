@@ -48,7 +48,7 @@ export default function NewsReel() {
             <ButtonBack
               role="button"
               aria-label="slide backward"
-              className="absolute z-30 left-0 ml-8  focus:outline-indigo-200 focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+              className="bottom-16 absolute z-30 left-0 ml-8  focus:outline-indigo-200 focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
               id="prev"
             >
               <svg
@@ -58,23 +58,25 @@ export default function NewsReel() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M7 1L1 7L7 13" stroke="white" strokeWidth={2} />
+                <path d="M7 1L1 7L7 13" stroke="black" strokeWidth={2} />
               </svg>
             </ButtonBack>
-            <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
+            <div className=" w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
               <Slider>
                 <div>
-                  {carouselNews.map((e) => {
+                  {carouselNews.map((e, index) => {
                     return (
                       <Slide key={e._id}>
                         <div>
+                          <Link key={index} to={`/newsDetail/${e.id}`}>
                           <img
                             className="w-full aspect-[3/2] px-6 "
                             src={e.image}
                             alt="img not found"
                           />
+
                           <div>
-                            <h2 className="text-gray-400 mt-6 px-6">
+                            <h2 className="text-gray-400 mt-5 px-6">
                               {e.date}
                             </h2>
                             <div style={{ marginTop: 40 }}>
@@ -86,6 +88,7 @@ export default function NewsReel() {
                               </div>
                             </div>
                           </div>
+                          </Link>
                         </div>
                       </Slide>
                     );
@@ -96,19 +99,19 @@ export default function NewsReel() {
             <ButtonNext
               role="button"
               aria-label="slide forward"
-              className="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+              className="bottom-16 absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
               id="next"
             >
               <svg
                 width={8}
                 height={14}
-                viewBox="0 0 8 14"
+                viewBox="0 0 8 8"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   d="M1 1L7 7L1 13"
-                  stroke="white"
+                  stroke="black"
                   strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -132,7 +135,7 @@ export default function NewsReel() {
             <ButtonBack
               role="button"
               aria-label="slide backward"
-              className="absolute z-30 left-0 ml-8  focus:outline-indigo-200 focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+              className="bottom-20 absolute z-30 left-0 ml-8  focus:outline-indigo-200 focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
               id="prev"
             >
               <svg
@@ -148,7 +151,7 @@ export default function NewsReel() {
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
               <Slider>
                 <div>
-                  {carouselNews.map((e) => {
+                  {carouselNews.map((e, index) => {
                     return (
                       <Slide key={e._id}>
                         <div>
@@ -157,6 +160,9 @@ export default function NewsReel() {
                             src={e.image}
                             alt="img not found"
                           />
+                              <Link key={index} to={`/newsDetail/${e.id}`}>
+
+                            
                           <div>
                             <h2 className="text-gray-400 mt-6 px-6">
                               {e.date}
@@ -170,6 +176,7 @@ export default function NewsReel() {
                               </div>
                             </div>
                           </div>
+                          </Link>
                         </div>
                       </Slide>
                     );
@@ -180,7 +187,7 @@ export default function NewsReel() {
             <ButtonNext
               role="button"
               aria-label="slide forward"
-              className="absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+              className="bottom-20 absolute z-30 right-0 mr-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
               id="next"
             >
               <svg
@@ -232,7 +239,7 @@ export default function NewsReel() {
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
               <Slider>
                 <div>
-                  {carouselNews.map((e) => {
+                  {carouselNews.map((e, index) => {
                     return (
                       <Slide key={e._id}>
                         <div>
@@ -241,6 +248,8 @@ export default function NewsReel() {
                             src={e.image}
                             alt="img not found"
                           />
+                          <Link key={index} to={`/newsDetail/${e.id}`}>
+
                           <div>
                             <h2 className="text-gray-400 mt-6 px-6">
                               {e.date}
@@ -254,6 +263,7 @@ export default function NewsReel() {
                               </div>
                             </div>
                           </div>
+                          </Link>
                         </div>
                       </Slide>
                     );
