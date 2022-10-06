@@ -22,3 +22,7 @@ export const UPDATE = `${BASE_URL}api/update`
 
 export const STORAGE = `${BASE_URL}api/storage`
 
+export const AUTH_LOGIN = `${BASE_URL}/auth/login`
+
+export const PAYMENT = `${BASE_URL}api/payment`
+
