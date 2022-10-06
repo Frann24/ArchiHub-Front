@@ -1,7 +1,23 @@
 import React from "react";
-// import Projects from "./Projects"
+import { getUser } from "../../redux/slices/user/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function DashUser() {
+  // import Projects from "./Projects"
+  //crear una variable que traiga el local storage
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("token"));
+
+  const userId = user.userId;
+
+  const myUser = useSelector((state) => state.user.user);
+  console.log("myUser: ", myUser);
+
+  useEffect(() => {
+    dispatch(getUser(userId));
+  }, [dispatch]);
+
   return (
     <div className="w-1/2 mx-auto mt-6">
       <div className="flex flex-wrap mb-12 w-full">
@@ -13,9 +29,10 @@ export default function DashUser() {
           />
           <div>
             <div className="font-bold text-lg capitalize mt-12 ">
-              name lastname{" "}
-            </div >
+              name lastname{myUser.userName}
+            </div>
             <div className=" text-lg">nickname </div>
+            <div className=" text-lg">email {myUser.userMail}</div>
 
             <div className="mt-20">
               <button className="bg-slate-300 cursor-pointer w-32 h-8">
@@ -42,9 +59,7 @@ export default function DashUser() {
       </div>
       <div className="border-y-2 border-slate-200 w-full"></div>
 
-      <div>
-        {/* <Projects/> */}
-      </div>
+      <div>{/* <Projects/> */}</div>
     </div>
   );
 }
