@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js'; 
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-const axios = require("axios");
 import "bootswatch/dist/lux/bootstrap.min.css";
-import infoCarousel from '../../api/carouselData';
 import { PAYMENT } from '../../redux/slices/constants';
+const axios = require("axios");
 
 
 const stripePromise = loadStripe("pk_test_51LoIVcAfxOW2aSoAIaQduZj78BZ0WSIkqQ6HtJ7eLxdgVvUgP1VQzKUvKp4Cxvqb1IGxfwGdDckLpNODYg6BJ51k00iHLR6VrB" )
