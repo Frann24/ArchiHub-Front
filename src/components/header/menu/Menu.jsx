@@ -81,7 +81,18 @@ function Menu({ path }) {
             </div>
             }
             <div className="menu-div-link" onClick={closeMenu}>
-              <Link to="/about-us" className="menu-link-mobile">
+              <Link to="/about-us" className="menu-link-mobile"/>
+              <Link  to="/createpost" className="menu-link">
+                Create post
+              </Link>
+            </div>
+            <div className="menu-div-link" onClick={closeMenu}>
+              <Link  to="/dashuser" className="menu-link">
+                User Dashboard
+              </Link>
+            </div>
+             <div className="menu-div-link" onClick={closeMenu}>
+              <Link to="/about-us" className="menu-link">
                 About us
               </Link>
             </div>

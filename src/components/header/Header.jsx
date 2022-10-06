@@ -17,6 +17,9 @@ import ProjectDetail from "../home/projects/ProjectDetail";
 import Navbar from "./navbar/Navbar";
 import { useEffect } from "react";
 import { useRef } from "react";
+import CreateProject from "../home/projects/forms/CreateProject";
+import DashUser from "../DashUser/DashUser";
+
 
 function Header() {
   const { pathname } = useLocation();
@@ -59,8 +62,10 @@ function Header() {
         <Route path="newsDetail/:id" element={<NewsDetail />} />
         <Route path="postDetail/:id" element={<PostDetail />} />
         <Route path="createpost" element={<CreatePost />} />
+        <Route path="createproject" element={<CreateProject />} />
         <Route path="/admin" element={<DashBoardAdmin />} />
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
+        <Route path="/dashuser" element={<DashUser />} />
       </Routes>
       <div className="bottom-0">
         <Footer/>
