@@ -15,8 +15,8 @@ Our mentor:
 Tobias Piraino
 
 
-To run the frontend type npm run
-To run the backend type npm run dev
+To run the backend and frontend type npm run
+
 
 Here´s our original proposal: 
 Both in architecture and programming, in large projects, we work as a group. There is not yet a way to share files between architects and comment on changes in a centralized way.
