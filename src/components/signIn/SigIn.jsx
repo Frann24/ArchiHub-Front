@@ -7,6 +7,7 @@ import useLocalStorage from "../hooks/useLocalStorage"
 
 
 function SigIn() {
+
   
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -23,7 +24,9 @@ function SigIn() {
       setGoogleUser(userObject)
       const userMail = userObject.email
       const avatar = userObject.picture
-      dispatch(googleLogin(userMail, avatar))
+      const name = userObject.given_name
+      const lastname = userObject.family_name
+      dispatch(googleLogin(userMail, avatar, name, lastname))
       navigate("/home")
 
     }
