@@ -13,7 +13,6 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
 
 export default function NewsReel() {
   const dispatch = useDispatch();
@@ -69,11 +68,12 @@ export default function NewsReel() {
                       <Slide key={e._id}>
                         <div>
                           <Link key={index} to={`/newsDetail/${e.id}`}>
-                          <img
-                            className="w-full aspect-[3/2] px-6 "
-                            src={e.image}
-                            alt="img not found"
-                          />
+                            <img
+                              className="w-full aspect-[3/2] px-6 "
+                              src={e.image}
+                              alt="img not found"
+                            />
+                          </Link>
 
                           <div>
                             <h2 className="text-gray-400 mt-5 px-6">
@@ -88,7 +88,6 @@ export default function NewsReel() {
                               </div>
                             </div>
                           </div>
-                          </Link>
                         </div>
                       </Slide>
                     );
@@ -105,7 +104,7 @@ export default function NewsReel() {
               <svg
                 width={8}
                 height={14}
-                viewBox="0 0 8 8"
+                viewBox="0 0 8 14"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -155,14 +154,14 @@ export default function NewsReel() {
                     return (
                       <Slide key={e._id}>
                         <div>
-                          <img
-                            className="w-full aspect-[3/2] px-6 "
-                            src={e.image}
-                            alt="img not found"
-                          />
-                              <Link key={index} to={`/newsDetail/${e.id}`}>
+                          <Link key={index} to={`/newsDetail/${e.id}`}>
+                            <img
+                              className="w-full aspect-[3/2] px-6 "
+                              src={e.image}
+                              alt="img not found"
+                            />
+                          </Link>
 
-                            
                           <div>
                             <h2 className="text-gray-400 mt-6 px-6">
                               {e.date}
@@ -176,7 +175,6 @@ export default function NewsReel() {
                               </div>
                             </div>
                           </div>
-                          </Link>
                         </div>
                       </Slide>
                     );
@@ -243,12 +241,13 @@ export default function NewsReel() {
                     return (
                       <Slide key={e._id}>
                         <div>
-                          <img
-                            className="w-full aspect-[3/2] px-6 "
-                            src={e.image}
-                            alt="img not found"
-                          />
                           <Link key={index} to={`/newsDetail/${e.id}`}>
+                            <img
+                              className="w-full aspect-[3/2] px-6 "
+                              src={e.image}
+                              alt="img not found"
+                            />
+                          </Link>
 
                           <div>
                             <h2 className="text-gray-400 mt-6 px-6">
@@ -263,7 +262,6 @@ export default function NewsReel() {
                               </div>
                             </div>
                           </div>
-                          </Link>
                         </div>
                       </Slide>
                     );
