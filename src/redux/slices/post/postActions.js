@@ -1,6 +1,7 @@
 import { POST } from "../constants";
 import { allPosts, showPost, responsePost } from "./postSlice";
 const axios = require("axios");
+
 export const getAllPosts = () => {
   return (dispatch) => {
     axios
@@ -22,7 +23,7 @@ export const getPost = (id) => {
 export const createPost = (info) => {
   return (dispatch) => {
     axios
-      .post(POST, info)
+      .post(POST,info)
       .then((res) => dispatch(responsePost(res.data)))
       .catch((err) => console.log(err));
   };

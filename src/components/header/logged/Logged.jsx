@@ -15,6 +15,7 @@ function Logged() {
   const handleLogout =  (e) => {
     // e.preventDefault();
     dispatch(logOutUser())
+    localStorage.removeItem("googleUser")
     navigate("/")
   }
 

@@ -78,9 +78,6 @@ const CreatePost = () => {
     if (Object.keys(form.year).length === 0) {
       errors.year = "Select a date";
     }
-    if (Object.keys(form.image).length === 0) {
-      errors.image = "Upload one image at least";
-    }
     if (Object.keys(form.bathrooms).length === 0) {
       errors.bathrooms = "'bathrooms' is required";
     }

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { changeShowMenu } from "../../../redux/slices/header/headerActions";
@@ -8,14 +8,16 @@ import { changeShowMenu } from "../../../redux/slices/header/headerActions";
 function Menu({ path }) {
   const {menu} = useSelector(state => state.header)
   const dispatch = useDispatch()
-  
+  const userLogin = JSON.parse(localStorage.getItem("token"))
   const handleClick = (e,id) => {
+    e.preventDefault()
     closeMenu(e)
     const anchor = document.querySelector(id);
     anchor.scrollIntoView({ behavior: "smooth", block: "center" });
+  
   };
 
-  const closeMenu = (e) => {
+  const closeMenu = (e,id) => {
     e.preventDefault()
     dispatch(changeShowMenu(!menu))
   }
@@ -39,24 +41,37 @@ function Menu({ path }) {
                 </Link>
               </div>
             )}
-            <div className="menu-div-link">
+            <div className="menu-div-link " onClick={(e) => handleClick(e,"#posts_id")}>
               <Link
                 to="/home"
-                onClick={(e) => handleClick(e,"#posts_id")}
                 className="menu-link"
               >
                 Posts
               </Link>
             </div>
-            <div className="menu-div-link">
+            <div className="menu-div-link" onClick={(e) => handleClick(e,"#news_id")}>
               <Link
                 to="/home"
-                onClick={(e) => handleClick(e,"#news_id")}
+                
                 className="menu-link"
               >
                 News
               </Link>
             </div>
+            {
+              userLogin &&
+              userLogin.userType === "admin" &&
+            <div className="menu-div-link" onClick={(e) => handleClick(e,"#news_id")}>
+               <Link
+                 to="/admin"
+                 
+                 className="menu-link"
+               >
+                 Admin
+               </Link>
+            </div>
+            }
+           
           </div>
           <div className="menu">
             <div className="menu-div-link" onClick={closeMenu}>
@@ -65,10 +80,15 @@ function Menu({ path }) {
               </Link>
             </div>
             <div className="menu-div-link" onClick={closeMenu}>
+              <Link  to="/dashuser" className="menu-link">
+                User Dashboard
+              </Link>
+            </div>
+            {/* <div className="menu-div-link" onClick={closeMenu}>
               <Link to="/about-us" className="menu-link">
                 About us
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="div-icon">

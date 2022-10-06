@@ -19,7 +19,7 @@ function App() {
         {/* <Header /> */}
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/*" element={<Header/>}/>
+          <Route path="/*" element={<Header />} />
           {/* lAS RUTAS ESTAN EN EL COMPONENTE Header. */}
           {/* <Route path="/home" element={<Home />} />
           <Route path="/newsDetail/:id" element={<NewsDetail />} />

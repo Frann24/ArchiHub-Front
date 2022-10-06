@@ -1,35 +1,64 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { clearPostDetail } from "../../../redux/slices/post/ordenAndFilterActions";
 import { getPost } from "../../../redux/slices/post/postActions";
+import Loader from "../../loader/Loader";
 
 function PostDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const postDetail = useSelector((state) => state.post.post);
 
+  console.log("postDetail: ", postDetail);
+
   useEffect(() => {
     dispatch(getPost(id));
+    return () => {
+        dispatch(clearPostDetail());
+      }
   }, [dispatch]);
+
 
   return (
     // <div className="place-self-center mt-40">
     // <div className="justify-content: center ">
-       <div className="container mx-auto center mt-40">  
+    <div className="container mx-auto center mt-6">
       <div>
         {postDetail.length === 0 ? (
-          <div></div>
+          <Loader />
         ) : (
           <div>
-            <img width="630px" alt="image" src={postDetail.image[0]}></img>
+            {postDetail.image[0] ? (
+              <img src={postDetail.image[0]} width="630" />
+            ) : (
+              <img
+                src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png "
+                width="210"
+              />
+            )}
             <div>
               {/* <div className="w-full h-60"> */}
               {/* <div className="grid grid-col-3 ">
               </div> */}
               <div className="flex my-6">
-                <img src={postDetail.image[1]} width="210" />
-                <img src={postDetail.image[2]} width="210" />
-                <img src={postDetail.image[4]} width="210" />
+                {postDetail.image[1] ? (
+                  <img src={postDetail.image[1]} width="210" />
+                ) : (
+                  <div></div>
+                )}
+                {postDetail.image[2] ? (
+                  <img src={postDetail.image[2]} width="210" />
+                ) : (
+                  <div></div>
+                )}
+                {postDetail.image[3] ? (
+                  <img src={postDetail.image[3]} width="210" />
+                ) : (
+                  <div></div>
+                )}
+                {/* <img src={postDetail.image[2]} width="210" />
+                <img src={postDetail.image[4]} width="210" /> */}
               </div>
 
               {/* <div className="flex flex-wrap mb-12">
@@ -43,10 +72,14 @@ function PostDetail() {
               <div className="font-semibold text-transform: uppercase ">
                 Title: {postDetail.title}
               </div>
-              <div className="font-light max-w-prose ">
-                Created By: {postDetail.created_by_data[0].name}{" "}
-                {postDetail.created_by_data[0].lastname}
-              </div>
+              {postDetail.created_by_data.length > 0 ? (
+                <div className="font-light max-w-prose ">
+                  Created By: {postDetail.created_by_data[0].name}{" "}
+                  {postDetail.created_by_data[0].lastname}
+                </div>
+              ) : (
+                <div></div>
+              )}
               <div className="mb-6">
                 {" "}
                 Authors:
