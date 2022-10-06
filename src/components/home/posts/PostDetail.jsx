@@ -3,19 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { clearPostDetail } from "../../../redux/slices/post/ordenAndFilterActions";
 import { getPost } from "../../../redux/slices/post/postActions";
+import FavouritePost from "./favouritePost/FavouritePost";
+import CreateReview from "./reviewPost/createReview/CreateReview";
+import ReviewsReel from "./reviewPost/ReviewsReel";
 
 function PostDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const postDetail = useSelector((state) => state.post.post);
-
+  const token = JSON.parse(localStorage.getItem("token"))
+  console.log(token) 
   useEffect(() => {
     dispatch(getPost(id));
     return () => {
         dispatch(clearPostDetail());
       }
   }, [dispatch]);
-
 
   return (
     // <div className="place-self-center mt-40">
@@ -26,6 +29,7 @@ function PostDetail() {
           <div></div>
         ) : (
           <div>
+            <FavouritePost/>
             <img width="630px" alt="image" src={postDetail.image[0]}></img>
             <div>
               {/* <div className="w-full h-60"> */}
@@ -55,9 +59,9 @@ function PostDetail() {
               <div className="mb-6">
                 {" "}
                 Authors:
-                {postDetail.authors.map((el) => {
+                {postDetail.authors.map((el, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <h3>
                         {el.name} {el.lastname}
                       </h3>
@@ -101,8 +105,11 @@ function PostDetail() {
           </div>
         )}
       </div>
+    <CreateReview />
+    <ReviewsReel/>      
     </div>
   );
+  
 }
 
 export default PostDetail;
