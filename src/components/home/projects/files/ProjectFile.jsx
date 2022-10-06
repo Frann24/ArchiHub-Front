@@ -7,7 +7,7 @@ const ProjectFile = ({file}) => {
       <a href={file.url} target="blank">
         <img src={img} alt="dwg_file" />
       </a>
-      <p>{file.filename}</p>
+      <p>{file.originalname}</p>
       <p>{file.createdAt.substring(0, 10)}</p>
       <p>{file.createdAt.substring(11, 16)}</p>
     </div>
