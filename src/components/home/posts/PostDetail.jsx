@@ -41,6 +41,8 @@ function PostDetail() {
               {/* <div className="w-full h-60"> */}
               {/* <div className="grid grid-col-3 ">
               </div> */}
+
+              
               <div className="flex my-6">
                 {postDetail.image[1] ? (
                   <img src={postDetail.image[1]} width="210" />
@@ -57,6 +59,8 @@ function PostDetail() {
                 ) : (
                   <div></div>
                 )}
+
+
                 {/* <img src={postDetail.image[2]} width="210" />
                 <img src={postDetail.image[4]} width="210" /> */}
               </div>

@@ -24,13 +24,19 @@ export default function NewsReel() {
 
   const carouselNews = [];
 
+  let quantity = newNews.length;
+
   for (let i = 0; i < newNews.length; i++) {
-    if (carouselNews.length < 66) {
+    if (carouselNews.length < quantity) {
       carouselNews.push(newNews[i]);
     }
   }
 
   return (
+    <div>
+
+   
+      <h4 className="ml-6 mb-6 font-semibold ">News</h4>
     <div className="container mx-auto mb-20 gap-6">
       <div className="container mx-auto margin-top: 16px gap-6">
         {/* Carousel for desktop and large size devices */}
@@ -38,7 +44,7 @@ export default function NewsReel() {
           className="lg:block hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={66}
+          totalSlides={quantity}
           visibleSlides={3}
           step={1}
           infinite={true}
@@ -125,7 +131,7 @@ export default function NewsReel() {
           className="lg:hidden md:block hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={66}
+          totalSlides={quantity}
           visibleSlides={3}
           step={1}
           infinite={true}
@@ -212,7 +218,7 @@ export default function NewsReel() {
           className="block md:hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={66}
+          totalSlides={quantity}
           visibleSlides={1}
           step={1}
           infinite={true}
@@ -294,6 +300,7 @@ export default function NewsReel() {
           </div>
         </CarouselProvider>
       </div>
+    </div>
     </div>
   );
 }
