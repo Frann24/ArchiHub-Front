@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { logUser, googleLogin } from "../../redux/slices/auth/loginActions"
-import { useNavigate} from "react-router-dom"
+import { useNavigate, NavLink} from "react-router-dom"
 import jwt_decode from "jwt-decode";
 import useLocalStorage from "../hooks/useLocalStorage"
 
@@ -110,6 +110,12 @@ function SigIn() {
             Lost Password?
           </span> */}
         </div>
+        <NavLink to={"/forgotPassword"}>
+           <span className="cursor-pointer text-sm text-gray-900 hover:underline">
+            Lost Password?
+          </span> 
+          </NavLink>
+
         <button
           type="submit"
           className="w-full text-white bg-gray-700 hover:bg-gray-800 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"

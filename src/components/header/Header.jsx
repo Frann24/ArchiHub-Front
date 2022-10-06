@@ -14,13 +14,14 @@ import DashBoardAdmin from "../dashBoardAdmin/DashBoardAdmin";
 import ProjectDetail from "../home/projects/ProjectDetail";
 import CreateProject from "../home/projects/forms/CreateProject";
 import DashUser from "../DashUser/DashUser";
+import ForgotPassword from "../resetPassword/ForgotPassword";
+import ResetPassword from "../resetPassword/ResetPassword";
 
 
 function Header() {
   const { pathname } = useLocation();
 
-  let token = window.localStorage.getItem("token");
-  let auth = false;
+  let token = JSON.parse(window.localStorage.getItem("token"));
 
   const { menu } = useSelector((state) => state.header);
   return (
@@ -51,6 +52,10 @@ function Header() {
 
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
         <Route path="/dashuser" element={<DashUser />} />
+
+
+        <Route path="forgotPassword" element={<ForgotPassword />} />
+        <Route path="resetPassword/:id/:token" element={<ResetPassword/>} />
       </Routes>
     </div>
   );
