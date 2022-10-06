@@ -33,6 +33,10 @@ export default function NewsReel() {
   }
 
   return (
+    <div>
+
+   
+      <h4 className="ml-6 mb-6 font-semibold ">News</h4>
     <div className="container mx-auto mb-20 gap-6">
       <div className="container mx-auto margin-top: 16px gap-6">
         {/* Carousel for desktop and large size devices */}
@@ -296,6 +300,7 @@ export default function NewsReel() {
           </div>
         </CarouselProvider>
       </div>
+    </div>
     </div>
   );
 }
