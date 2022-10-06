@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faAngleUp, faArrowDown, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { faAngleDown, faAngleUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
 import { logOutUser } from "../../../redux/slices/auth/loginActions";
 
 function Logged() {
@@ -11,14 +11,14 @@ function Logged() {
   const [createMenu, setCreateMenu] = useState(false)
   const googleUser = JSON.parse(localStorage.getItem('googleUser'))
   const token = JSON.parse(localStorage.getItem('token'))
-  let user,email,avatar,type
+  let user,email,avatar
 
   if(token !== null){
-    const {userId,userAvatar, userMail, userName, userType} = token
+    const {userAvatar, userMail, userName,} = token
     user = userName 
     email = userMail
     avatar = userAvatar
-    type = userType
+
     if(googleUser !== null) {
       const {name} = googleUser
       user = name
