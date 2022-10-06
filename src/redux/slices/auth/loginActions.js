@@ -27,8 +27,9 @@ export const registerUser=(name, lastname, nickname, email, password)=>(dispatch
     axios.post(AUTH_SIGNUP, {name, lastname, nickname, email, password})
     .then(res=>dispatch(register(res.data)))
     .then(data=> window.localStorage.setItem("token", JSON.stringify(data.payload)))
-    .catch(e=>console.log(e.response.data)
-);
+    .catch(e => {
+        dispatch(register(e.response.data))
+        window.localStorage.setItem("token", null)})
 }
 
 export const googleLogin=(email, avatar, name, lastname)=>(dispatch)=>{

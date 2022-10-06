@@ -3,10 +3,25 @@ import { useDispatch, useSelector } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
 import {Navlink, useNavigate} from "react-router-dom"
 import { showSigIn, showSignUp } from "../../redux/slices/header/headerSlice";
+import { useSignUp } from "./useSignUp";
+import { useEffect } from "react";
 
 
 function SignUp() {
-  const {modalSignIn, modalSignUp} = useSelector(state => state.header)
+  const err = window.localStorage.getItem('error')
+  const {input, errors, handleInputChange, hanldeBlur,toggleSignIn ,handleInputSubmit} = useSignUp(err)
+  const {user} = useSelector(state => state.login)
+  let matchEmail = errors.email
+  if(err){
+   matchEmail = errors.email || user
+  }
+  useEffect(()=>{
+    console.log(err)
+    return () => {
+      window.localStorage.removeItem("error")
+    }
+  },[err])
+  /* const {modalSignIn, modalSignUp} = useSelector(state => state.header)
   const dispatch = useDispatch()
 
   const toggleSignIn = (e) => {
@@ -31,17 +46,16 @@ function SignUp() {
       email,
       password,
       confirmPassword))
-  }
+  } */
 
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">
         Sign Up
       </h3>
-      <form className="space-y-6" onSubmit={handleRegister}>
+      <form className="space-y-6" onSubmit={handleInputSubmit}>
         <div>
-          <label
-           
+          <label  
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Name
@@ -50,51 +64,57 @@ function SignUp() {
             type="text"
             name="name"
             id="name"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.name && "border-2 focus:border-danger border-danger"}`}
             placeholder="first name"
-            onChange={(e)=>setName(e.target.value)}
-            value={name}
+            onChange={handleInputChange}
+            value={input.name}
+            onBlur={hanldeBlur}
           />
+          {errors.name && <span className="error-text">{errors.name}</span>}
         </div>
         <div>
           <label
-          
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Lastname
+            Last name
           </label>
           <input
             type="text"
-            name="lastname"
-            id="lastname"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
-            placeholder="lastname"
-            onChange={(e)=>setLastname(e.target.value)}
-            value={lastname}
+            name="lastName"
+            id="lastName"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.lastName && "border-2 focus:border-danger border-danger"}`}
+            placeholder="Last name"
+            onChange={handleInputChange}
+            value={input.lastName}
+            onBlur={hanldeBlur}
           />
+          {errors.lastName && <span className="error-text">{errors.lastName}</span>}
         </div>
         <div>
           <label
            
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Nickname
+            User name
           </label>
           <input
             type="text"
-            name="nickname"
-            id="nickname"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
-            placeholder="nickname"
-            onChange={(e)=>setNickname(e.target.value)}
-            value={nickname}
-
+            name="userName"
+            id="userName"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.userName && "border-2 focus:border-danger border-danger"}`}
+            placeholder="user name"
+            onChange={handleInputChange}
+            value={input.userName}
+            onBlur={hanldeBlur}
           />
+          {errors.userName && <span className="error-text">{errors.userName}</span>}
         </div>
        
         <div>
           <label
-       
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Your email
@@ -103,17 +123,17 @@ function SignUp() {
             type="email"
             name="email"
             id="email"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${matchEmail && "border-2 focus:border-danger border-danger"}`}
             placeholder="name@example.com"
-            onChange={(e)=>setEmail(e.target.value)}
-            value={email}
-
-
+            onChange={handleInputChange}
+            value={input.email}
+            onBlur={hanldeBlur}
           />
+          {matchEmail && <span className="error-text">{matchEmail}</span>}
         </div>
         <div>
           <label
-            
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Password
@@ -123,12 +143,13 @@ function SignUp() {
             name="password"
             id="password"
             placeholder="••••••••"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            onChange={(e)=>setPassword(e.target.value)}
-            value={password}
-
-
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.password && "border-2 focus:border-danger border-danger"}`}
+            onChange={handleInputChange}
+            value={input.password}
+            onBlur={hanldeBlur}
           />
+          {errors.password && <span className="error-text">{errors.password}</span>}
         </div>
         <div>
           <label
@@ -142,10 +163,13 @@ function SignUp() {
             name="confirmPassword"
             id="confirmPassword"
             placeholder="••••••••"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            onChange={(e)=>setConfirmPassword(e.target.value)}
-            value={confirmPassword}
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.confirmPassword && "border-2 focus:border-danger border-danger"}`}
+            onChange={handleInputChange}
+            value={input.confirmPassword}
+            onBlur={hanldeBlur}
          />
+         {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
         </div>
         <div className="flex justify-between"></div>
         <button

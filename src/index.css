@@ -26,4 +26,10 @@
   .icon{
     @apply text-3xl mr-4 float-right cursor-pointer
   }
+  .error-input{
+    @apply border-2 focus:border-red-500 border-red-500
+  }
+  .error-text{
+    @apply text-danger text-sm 
+  }
 }

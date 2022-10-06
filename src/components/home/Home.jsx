@@ -38,7 +38,6 @@ function Home() {
       <div>
         <NewsReel />
       </div>
-      
     </div>
   );
 }
