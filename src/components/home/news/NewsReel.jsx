@@ -24,8 +24,10 @@ export default function NewsReel() {
 
   const carouselNews = [];
 
+  let quantity = newNews.length;
+
   for (let i = 0; i < newNews.length; i++) {
-    if (carouselNews.length < 66) {
+    if (carouselNews.length < quantity) {
       carouselNews.push(newNews[i]);
     }
   }
@@ -38,7 +40,7 @@ export default function NewsReel() {
           className="lg:block hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={66}
+          totalSlides={quantity}
           visibleSlides={3}
           step={1}
           infinite={true}
@@ -125,7 +127,7 @@ export default function NewsReel() {
           className="lg:hidden md:block hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={66}
+          totalSlides={quantity}
           visibleSlides={3}
           step={1}
           infinite={true}
@@ -212,7 +214,7 @@ export default function NewsReel() {
           className="block md:hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={66}
+          totalSlides={quantity}
           visibleSlides={1}
           step={1}
           infinite={true}
