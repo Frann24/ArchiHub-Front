@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { clearPostDetail } from "../../../redux/slices/post/ordenAndFilterActions";
 import { getPost } from "../../../redux/slices/post/postActions";
+import Loader from "../../loader/Loader";
 
 function PostDetail() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function PostDetail() {
     <div className="container mx-auto center mt-6">
       <div>
         {postDetail.length === 0 ? (
-          <div></div>
+          <Loader />
         ) : (
           <div>
             {postDetail.image[0] ? (
@@ -40,6 +41,8 @@ function PostDetail() {
               {/* <div className="w-full h-60"> */}
               {/* <div className="grid grid-col-3 ">
               </div> */}
+
+              
               <div className="flex my-6">
                 {postDetail.image[1] ? (
                   <img src={postDetail.image[1]} width="210" />
@@ -56,6 +59,8 @@ function PostDetail() {
                 ) : (
                   <div></div>
                 )}
+
+
                 {/* <img src={postDetail.image[2]} width="210" />
                 <img src={postDetail.image[4]} width="210" /> */}
               </div>

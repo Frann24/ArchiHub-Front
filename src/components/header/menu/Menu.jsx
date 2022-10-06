@@ -8,7 +8,7 @@ import { changeShowMenu } from "../../../redux/slices/header/headerActions";
 function Menu({ path }) {
   const {menu} = useSelector(state => state.header)
   const dispatch = useDispatch()
-  
+  const userLogin = JSON.parse(localStorage.getItem("token"))
   const handleClick = (e,id) => {
     e.preventDefault()
     closeMenu(e)
@@ -58,11 +58,30 @@ function Menu({ path }) {
                 News
               </Link>
             </div>
+            {
+              userLogin &&
+              userLogin.userType === "admin" &&
+            <div className="menu-div-link" onClick={(e) => handleClick(e,"#news_id")}>
+               <Link
+                 to="/admin"
+                 
+                 className="menu-link"
+               >
+                 Admin
+               </Link>
+            </div>
+            }
+           
           </div>
           <div className="menu">
             <div className="menu-div-link" onClick={closeMenu}>
               <Link  to="/createpost" className="menu-link">
                 Create post
+              </Link>
+            </div>
+            <div className="menu-div-link" onClick={closeMenu}>
+              <Link  to="/dashuser" className="menu-link">
+                User Dashboard
               </Link>
             </div>
             {/* <div className="menu-div-link" onClick={closeMenu}>

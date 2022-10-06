@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../../../redux/slices/post/postActions";
 import { orderPosts } from "../../../redux/slices/post/ordenAndFilterActions";
 
-function PostsReel() {
+export default function PostsReel() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.post.orderPosts);
@@ -66,5 +66,3 @@ console.log(condition) */
     </div>
   );
 }
-
-export default PostsReel;
