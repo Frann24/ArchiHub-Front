@@ -118,13 +118,13 @@ export default function NewsReel() {
           </div>
         </CarouselProvider>
 
-        {/* Carousel for tablet and medium size devices */}
+        {/* Carousel for desktop and MEDIUM size devices */}
         <CarouselProvider
           className="lg:hidden md:block hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={6}
-          visibleSlides={2}
+          totalSlides={66}
+          visibleSlides={3}
           step={1}
           infinite={true}
         >
@@ -132,7 +132,7 @@ export default function NewsReel() {
             <ButtonBack
               role="button"
               aria-label="slide backward"
-              className="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+              className="absolute z-30 left-0 ml-8  focus:outline-indigo-200 focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
               id="prev"
             >
               <svg
@@ -142,13 +142,7 @@ export default function NewsReel() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M7 1L1 7L7 13"
-                  stroke="white"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M7 1L1 7L7 13" stroke="white" strokeWidth={2} />
               </svg>
             </ButtonBack>
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
@@ -157,78 +151,24 @@ export default function NewsReel() {
                   {carouselNews.map((e) => {
                     return (
                       <Slide key={e._id}>
-                        <div
-                          style={{
-                            maxWidth: 450,
-                            height: 580,
-                            backgroundColor: "rgb(17, 52, 82)",
-                            marginTop: 5,
-                            marginLeft: 20,
-                            borderRadius: 10,
-                          }}
-                        >
+                        <div>
                           <img
-                            style={{
-                              minHeight: 180,
-                              maxHeight: 180,
-                              width: "100%",
-                              objectFit: "cover",
-                              borderTopLeftRadius: 10,
-                              borderTopRightRadius: 10,
-                            }}
+                            className="w-full aspect-[3/2] px-6 "
                             src={e.image}
                             alt="img not found"
                           />
                           <div>
-                            <h2
-                              style={{
-                                fontSize: 20,
-                                display: "flex",
-                                color: "rgb(201, 196, 184)",
-                                justifyContent: "center",
-                                backgroundColor: "rgb(55, 109, 109)",
-                                paddingTop: 10,
-                                paddingBottom: 10,
-                              }}
-                            >
-                              {e.name}
+                            <h2 className="text-gray-400 mt-6 px-6">
+                              {e.date}
                             </h2>
                             <div style={{ marginTop: 40 }}>
-                              <h3
-                                style={{
-                                  fontSize: 15,
-                                  display: "flex",
-                                  color: "rgb(201, 196, 184)",
-                                  justifyContent: "center",
-                                  minHeight: 230,
-                                  paddingLeft: 35,
-                                  paddingRight: 35,
-                                  textAlign: "center",
-                                }}
-                              >
-                                {e.description}
-                              </h3>
-                            </div>
-                            <NavLink to={`/course/${e._id}`}>
-                              <div
-                                className="z-30 "
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignContent: "center",
-                                }}
-                              >
-                                <button
-                                  style={{
-                                    backgroundColor: "rgb(17, 52, 82)",
-                                    color: "rgb(201, 196, 184)",
-                                  }}
-                                  className="py-2.5 px-5 mr-2 mb-2 text-sm font-semi-bold focus:outline-none bg-blue-700 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
-                                >
-                                  Read more
-                                </button>
+                              <div className="font-semibold truncate text-transform: uppercase px-6">
+                                {e.title}
                               </div>
-                            </NavLink>
+                              <div className="font-light truncate  px-6">
+                                {e.description}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </Slide>
@@ -262,12 +202,12 @@ export default function NewsReel() {
           </div>
         </CarouselProvider>
 
-        {/* Carousel for mobile and Small size Devices */}
+        {/* Carousel for desktop and SMALL size devices */}
         <CarouselProvider
-          className="block md:hidden "
+          className="block md:hidden"
           naturalSlideWidth={100}
           isIntrinsicHeight={true}
-          totalSlides={6}
+          totalSlides={66}
           visibleSlides={1}
           step={1}
           infinite={true}
@@ -276,7 +216,7 @@ export default function NewsReel() {
             <ButtonBack
               role="button"
               aria-label="slide backward"
-              className="absolute z-30 left-0 ml-8 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
+              className="absolute z-30 left-0 ml-8  focus:outline-indigo-200 focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer"
               id="prev"
             >
               <svg
@@ -286,13 +226,7 @@ export default function NewsReel() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  d="M7 1L1 7L7 13"
-                  stroke="white"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d="M7 1L1 7L7 13" stroke="white" strokeWidth={2} />
               </svg>
             </ButtonBack>
             <div className="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
@@ -301,77 +235,24 @@ export default function NewsReel() {
                   {carouselNews.map((e) => {
                     return (
                       <Slide key={e._id}>
-                        <div
-                          style={{
-                            minWidth: 300,
-                            maxWidth: 450,
-                            height: 580,
-                            backgroundColor: "rgb(17, 52, 82)",
-                            borderRadius: 10,
-                          }}
-                        >
+                        <div>
                           <img
-                            style={{
-                              minHeight: 180,
-                              maxHeight: 180,
-                              width: "100%",
-                              objectFit: "cover",
-                              borderTopLeftRadius: 10,
-                              borderTopRightRadius: 10,
-                            }}
+                            className="w-full aspect-[3/2] px-6 "
                             src={e.image}
                             alt="img not found"
                           />
                           <div>
-                            <h2
-                              style={{
-                                fontSize: 20,
-                                display: "flex",
-                                color: "rgb(201, 196, 184)",
-                                justifyContent: "center",
-                                backgroundColor: "rgb(55, 109, 109)",
-                                paddingTop: 10,
-                                paddingBottom: 10,
-                              }}
-                            >
-                              {e.name}
+                            <h2 className="text-gray-400 mt-6 px-6">
+                              {e.date}
                             </h2>
                             <div style={{ marginTop: 40 }}>
-                              <h3
-                                style={{
-                                  fontSize: 15,
-                                  display: "flex",
-                                  color: "rgb(201, 196, 184)",
-                                  justifyContent: "center",
-                                  minHeight: 230,
-                                  paddingLeft: 35,
-                                  paddingRight: 35,
-                                  textAlign: "center",
-                                }}
-                              >
-                                {e.description}
-                              </h3>
-                            </div>
-                            <NavLink to={`/course/${e._id}`}>
-                              <div
-                                className="z-30"
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignContent: "center",
-                                }}
-                              >
-                                <button
-                                  style={{
-                                    backgroundColor: "rgb(17, 52, 82)",
-                                    color: "rgb(201, 196, 184)",
-                                  }}
-                                  className=" py-2.5 px-5 mr-2 mb-2 text-sm font-semi-bold focus:outline-none bg-blue-700 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
-                                >
-                                  Read more
-                                </button>
+                              <div className="font-semibold truncate text-transform: uppercase px-6">
+                                {e.title}
                               </div>
-                            </NavLink>
+                              <div className="font-light truncate  px-6">
+                                {e.description}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </Slide>
