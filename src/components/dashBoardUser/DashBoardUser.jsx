@@ -13,12 +13,10 @@ export default function DashBoardUser() {
   const [state, setState] = useState('projects')
   const [profile, setProfile] = useState(false)
 
-  
   useEffect(() => {
-    dispatch(getUser("633a026b092c0858a7bb580b"))  //aca iria userLogeado.userId
-  },[dispatch])
- 
-
+    dispatch(getUser(userLogeado.userId))
+  }, [dispatch])
+  
   function handleChange(e) {
     setState(e.target.value)
   }
@@ -26,14 +24,12 @@ export default function DashBoardUser() {
     profile ? setProfile(false) : setProfile(true)
   }
   
- 
-
   return (
     <div className="w-1/2 mx-auto mt-6">
       <div className="flex flex-wrap mb-12 w-full">
         <div className=" mt-6 ml-12 grid grid-cols-1 sm:grid-cols-2 sm:gap-12 md:gap-12 ">
           <img
-            src={userLogeado.userAvatar}
+            src={user.avatar}
             width="200px"
             className="rounded-full"
           />
@@ -42,6 +38,10 @@ export default function DashBoardUser() {
               {user.name} {user.lastname}
             </div >
             <div className=" text-lg">{user.nickname} </div>
+            <div>{user.description}</div>
+            <div>{user.location}</div>
+            <div>{user.job}</div>
+            <div>{user.page}</div>
 
             <div className="mt-20">
               <button onClick={(e) => handleEditProfile(e)} className="bg-slate-300 cursor-pointer w-32 h-8">
@@ -51,7 +51,7 @@ export default function DashBoardUser() {
             {
               profile &&
               <div>
-                <FormEditProfile/>
+                <FormEditProfile id={userLogeado.userId}/>
               </div>
             }
           </div>

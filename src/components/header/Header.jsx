@@ -18,8 +18,8 @@ import Navbar from "./navbar/Navbar";
 import { useEffect } from "react";
 import { useRef } from "react";
 import CreateProject from "../home/projects/forms/CreateProject";
-import DashUser from "../DashUser/DashUser";
 import Payment from "../payment/payment";
+import DashBoardUser from "../dashBoardUser/DashBoardUser";
 
 
 function Header() {
@@ -66,7 +66,7 @@ function Header() {
         <Route path="createproject" element={<CreateProject />} />
         <Route path="/admin" element={<DashBoardAdmin />} />
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
-        <Route path="/dashuser" element={<DashUser />} />
+        <Route path="/user" element={<DashBoardUser />} />
         <Route path="/payment" element={<Payment/>} />
       </Routes>
       <div className="bottom-0">

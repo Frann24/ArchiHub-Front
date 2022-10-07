@@ -34,13 +34,17 @@ import { getAllProjects } from "../../redux/slices/project/projectActions";
 
    return (
         <div>
-            <div>
-                <label>Search </label>
-                <input
-                type='text'
-                onChange={(e) => handleSearch(e)}
-                />
-            </div>
+            {
+                projectsUser.length ?
+                <div>
+                    <label>Search </label>
+                    <input
+                    type='text'
+                    onChange={(e) => handleSearch(e)}
+                    />
+                </div> :
+                <div></div>
+            }
             {
                 search === 'not found' ?
                 <div>

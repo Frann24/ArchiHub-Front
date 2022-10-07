@@ -5,7 +5,7 @@ import { getAllPosts } from '../../redux/slices/post/postActions'
 export default function Post(id) {
   const dispatch = useDispatch()
   const posts = useSelector(state => state.post.allPosts)
-  const postsUser = posts.filter(posts => posts.created_by === "633a026b092c0858a7bb580b")
+  const postsUser = posts.filter(posts => posts.created_by === id)
   const [search, setSearch] = useState('')
 
 
@@ -23,19 +23,22 @@ export default function Post(id) {
   }
 
   return (
-    <div>
       <div>
-        <label>Search </label>
-        <input
-        type='text'
-        onChange={(e) => handleSearch(e)}
-        />
-        
+      {
+        postsUser.length ?
+        <div>
+            <label>Search </label>
+            <input
+            type='text'
+            onChange={(e) => handleSearch(e)}
+            />
         <button>Type</button>
         <button onClick={(e) => handleOrderDate(e)}>Date</button>
         <button>New</button>
-      
-      </div>
+        </div>
+         :
+        <div></div>
+      }
       {
         search === 'not found' ? 
         <div>
