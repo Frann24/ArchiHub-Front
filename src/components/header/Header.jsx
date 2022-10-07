@@ -20,6 +20,8 @@ import { useRef } from "react";
 import CreateProject from "../home/projects/forms/CreateProject";
 import DashUser from "../DashUser/DashUser";
 import Payment from "../payment/payment";
+import ForgotPassword from "../resetPassword/ForgotPassword";
+import ResetPassword from "../resetPassword/ResetPassword";
 
 
 function Header() {
@@ -68,6 +70,8 @@ function Header() {
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
         <Route path="/dashuser" element={<DashUser />} />
         <Route path="/payment" element={<Payment/>} />
+        <Route path="forgotPassword" element={<ForgotPassword/>}/>
+        <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
       </Routes>
       <div className="bottom-0">
         <Footer/>

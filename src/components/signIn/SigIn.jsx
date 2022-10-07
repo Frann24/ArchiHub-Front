@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux"
+import { NavLink } from "react-router-dom";
 
 import { useSignIn } from "./useSignIn";
 
@@ -58,9 +59,11 @@ function SigIn() {
               Remember me
             </label>
           </div>
-           {/* <span className="cursor-pointer text-sm text-gray-900 hover:underline">
-            Lost Password?
-          </span> */}
+          <NavLink to="/forgotPassword">
+           <span className="cursor-pointer text-sm text-gray-900 hover:underline">
+            Forgot Password?
+          </span> 
+          </NavLink>
         </div>
         <button
           type="submit"

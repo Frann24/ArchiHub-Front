@@ -20,12 +20,15 @@ export const loginSlice = createSlice({
         },
         clearLogin:(state,{payload})=>{
             state.user = payload
-        }
-    }
+        },
+        forgotPassword:(state,action)=>{
+            state.user = action.payload
+        },
+        resetPassword:(state,action)=>{
+            state.user = action.payload
+    }}
 })
 
-export const {login,logout, register, googleLog, clearLogin}= loginSlice.actions;
-
-// export const selectUser = (state)=> state.user.user
+export const {login,logout, register, googleLog, clearLogin, forgotPassword, resetPassword}= loginSlice.actions;
 
 export default loginSlice.reducer
