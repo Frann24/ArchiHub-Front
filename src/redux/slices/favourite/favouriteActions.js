@@ -15,7 +15,7 @@ export const updateFavourite = (post_id, user_id) => {
 export const deleteFavourite = (post_id,user_id) => {
   return (dispatch) => {
     axios
-      .delete(`${FAVOURITE}/${post_id}`,user_id)
+      .delete(`${FAVOURITE}/${post_id}`,{data:user_id})
       .then((res) => dispatch(responseFavourite(res.data)))
       .catch((err) => console.log(err));
   };
