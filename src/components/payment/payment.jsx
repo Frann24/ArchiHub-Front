@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js'; 
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+//import "bootswatch/dist/lux/bootstrap.min.css";
 import { PAYMENT } from '../../redux/slices/constants';
 const axios = require("axios");
 
@@ -12,6 +13,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loading, setLoading] = useState(false)
   const [email, setMail ] = useState('')
+  const token = JSON.parse(localStorage.getItem("token"))
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -43,7 +45,7 @@ const CheckoutForm = () => {
     if(!stripe || !elements){
       return;
     }
-
+    console.log(token)
     const result = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
