@@ -31,3 +31,7 @@ To implement the payment gateway we propose to offer a paid membership for profe
 Posts could allow adding comments and a rating system, which will reach post authors as notifications. We may give the admin the ability to review comments before posting or we may filter comments (if they have words we don't want posted), posting only comments that pass the filter.
 If necessary, we would add a marketplace section, where architects can sell completed works or plans.
 In principle, ARCHIHUB would serve as a work tool, organizing your files and as a page where you can publish your work and thus connect with potential clients and network.
+
+
+
+03-10-2022 EL DIA QUE LUCIANO DOMINÓ REACT Y TOMAS SE MURIO DE ENVIDIA.
