@@ -11,10 +11,10 @@ export const getAllReviews = () => {
   };
 };
 
-export const getReview = (id) => {
+export const getReview = (id,mood) => {
   return (dispatch) => {
     axios
-      .get(`${REVIEW}/${id}`)
+      .get(`${REVIEW}/${id}/${mood}`)
       .then((info) => dispatch(showReview(info.data)))
       .catch((err) => console.log(err));
   };

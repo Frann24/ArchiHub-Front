@@ -4,19 +4,21 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { deleteFavourite, updateFavourite } from '../../../../redux/slices/favourite/favouriteActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import  {faBookmark as solid} from '@fortawesome/free-solid-svg-icons';
+import  {faBookmark as regular} from '@fortawesome/free-regular-svg-icons';
 import { getUser } from '../../../../redux/slices/user/userActions';
-
+import { changeShowSingIn} from '../../../../redux/slices/header/headerActions';
 export default function FavouritePost() {
   const [favourite, setFavourite] = useState("") 
   const [habilited, setHabilited] = useState(false) 
+  const {user} = useSelector(state=>state.user)
   const { id } = useParams();
   const dispatch = useDispatch();
-  const {user} = useSelector(state=>state.user)
-  const userId = "633a0309c70ce774c970a0c1" 
-
+  const token = JSON.parse(localStorage.getItem("token"))
+  const {modalSignIn} = useSelector(state => state.header)
   useEffect(() => {
-/*      dispatch(getUser(userId));    */
-
+    if(token)dispatch(getUser(token.userId));    
   }, [dispatch])
 
 
@@ -24,31 +26,38 @@ export default function FavouritePost() {
       e.preventDefault();
       setFavourite(!favourite);
       const change = !favourite
-      if(change) dispatch(updateFavourite(id,{user_id:userId}))
-      else dispatch(deleteFavourite(id,{user_id:userId}))} 
+      if(change) dispatch(updateFavourite(id,{user_id:token.userId}))
+      else dispatch(deleteFavourite(id,{user_id:token.userId}))} 
 
+      const toggleSignIn = (e) => {
+        e.preventDefault()
+        dispatch(changeShowSingIn(!modalSignIn))
+      }
+      
     
     if(user.length===0){
       return(
         <div>
-          <button>Add from Favourite</button>
+          <button onClick={toggleSignIn}><FontAwesomeIcon className='text-2xl' icon={regular} /> </button>
         </div>
       )
     }
     else if(habilited){
       return (
         <div>
-        {favourite?<button onClick={handleClick}>Remove from Favourite</button>:<button onClick={handleClick}>Add from Favourite</button>}
+        {<button onClick={handleClick}><FontAwesomeIcon  className='text-2xl' icon={favourite?solid:regular} /></button>}
            </div> 
       )
     }
       else{
-        if (user.favourites.find(e=>e===id)){
+        if (user.favourites.find(e=>e._id===id)){
           setFavourite(true);
           setHabilited(true);
+          console.log("activado")
         }else{
           setFavourite(false);
           setHabilited(true);
+          console.log("desactivado")
         } 
          }
       };

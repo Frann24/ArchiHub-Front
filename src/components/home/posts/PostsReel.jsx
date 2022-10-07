@@ -64,5 +64,5 @@ console.log(condition) */
         See more...
       </div>
     </div>
-  );
+);
 }
