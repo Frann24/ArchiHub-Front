@@ -11,8 +11,7 @@ function PostDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const postDetail = useSelector((state) => state.post.post);
-  const token = JSON.parse(localStorage.getItem("token"))
-  console.log(token) 
+
   useEffect(() => {
     dispatch(getPost(id));
     return () => {
@@ -105,7 +104,7 @@ function PostDetail() {
           </div>
         )}
       </div>
-    <CreateReview />
+     <CreateReview/>
     <ReviewsReel/>      
     </div>
   );

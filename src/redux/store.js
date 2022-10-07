@@ -8,6 +8,9 @@ import favouriteReducer from "./slices/favourite/favouriteSlice";
 import userReducer from "./slices/user/userSlice";
 import loginReducer from "./slices/auth/loginSlice"
 import reviewReducer from "./slices/review/reviewSlice";
+import updateReducer from "./slices/update/updateSlice"
+import storageReducer from "./slices/storage/storageSlice"
+
 export const store = configureStore({
   reducer:{
     post: postReducer,
@@ -18,6 +21,8 @@ export const store = configureStore({
     favourite:favouriteReducer,
     user:userReducer,
     login:loginReducer,
-    review:reviewReducer
+    review:reviewReducer,
+    update: updateReducer,
+    storage: storageReducer
   },
 });

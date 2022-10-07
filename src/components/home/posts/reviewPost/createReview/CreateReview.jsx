@@ -50,6 +50,7 @@ const handleSign =(e)=>{
       <Modal active={signIn} toggle={handleSign}>
       <SigIn/>
       </Modal>
+      
       {user.length===0?<button onClick={handleSign} >comment sin user</button>:<button onClick={handleClick}>comment</button>}
        {/*  <button onClick={()=>user.length===0?handleClick():hola}>Comment</button> */}
       </div>
