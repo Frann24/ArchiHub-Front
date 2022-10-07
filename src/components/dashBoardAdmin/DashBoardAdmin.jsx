@@ -45,7 +45,7 @@ function DashBoardAdmin() {
       <div className="lg:block hidden">
         <div className=" grid grid-cols-3 sm:grid-cols-6 mt-6 gap-6  font-bold">
           <h2>Members</h2>
-          <h2>Mail</h2>
+          <h2>eMail</h2>
           <h2>Posts</h2>
           <h2>Proyects</h2>
           <h2>Type</h2>
@@ -67,15 +67,15 @@ function DashBoardAdmin() {
                   {el.name ? (
                     <h2 className="font-bold">{el.name} </h2>
                   ) : (
-                    <p className="text-slate-300">Name</p>
+                    <p className="text-slate-300">Member</p>
                   )}
-                  <h2>{el.email}</h2>
-                  <h2>{el.posts.length}</h2>
-                  <h2>{el.projects.length === 0 ? 0 : el.projects.length}</h2>
-                  <h2>{el.type}</h2>
+                  <div className="truncate">{el.email}</div>
+                  <div>{el.posts.length}</div>
+                  <div>{el.projects.length === 0 ? 0 : el.projects.length}</div>
+                  <div>{el.type}</div>
 
                   <select
-                    className="bg-slate-200 "
+                    className="bg-slate-200 text-center"
                     onChange={(e) => handleChangeStatus(el._id, e)}
                   >
                     <option disabled selected defaultValue>
@@ -117,9 +117,9 @@ function DashBoardAdmin() {
                   {el.name ? (
                     <h2 className="font-bold">{el.name} </h2>
                   ) : (
-                    <p className="text-slate-300">Name</p>
+                    <p className="text-slate-300">Member</p>
                   )}
-                  <h2>{el.email}</h2>
+                  <h2 className="truncate">{el.email}</h2>
                   <h2>{el.posts.length}</h2>
                   <h2>{el.projects.length === 0 ? 0 : el.projects.length}</h2>
                   <h2>{el.type}</h2>
@@ -146,7 +146,6 @@ function DashBoardAdmin() {
         <div className=" grid grid-cols-2  font-bold">
           <h2>Members</h2>
           <h2>Mail</h2>
-    
         </div>
         {allUsers.length &&
           allUsers.map((el) => {

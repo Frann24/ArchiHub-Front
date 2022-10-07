@@ -55,14 +55,14 @@ export default function UserItem({ el, handleChangeStatus }) {
           <div className="mt-6">{el.posts.length}</div>
           <div className="font-bold">Proyects</div>
           <div className=" ">{el.projects.length === 0 ? 0 : el.projects.length}</div>
-          <div className="font-bold">Type</div>
+          <div className="font-bold mb-6">Type</div>
           <div>{el.type}</div>
 
           </div>
           <div>
           {/* <div className="font-bold">Status</div> */}
           <select 
-            className="bg-slate-200 w-full py-5 "
+            className="bg-slate-200 w-full py-5 text-center"
             onChange={(e) => handleChangeStatus(el._id, e)}
           >
             <option disabled selected defaultValue>
