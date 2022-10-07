@@ -3,7 +3,7 @@ import "./loader.css"
 
 const Loader = () => {
   return (
-    <div class="chaotic-orbit"></div>
+    <div className="chaotic-orbit"></div>
   )
 }
 
