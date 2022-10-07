@@ -15,6 +15,14 @@ export default function UploadPhotos() {
       );
     },
   });
+  const images =files.map((file)=>{
+    <div key={file.name}>
+        <div>
+            <img src={file.preview} style={{width:"200px"}} alt="preview"/>
+        </div>
+
+    </div>
+  })
   return (
     <div>
       <div {...getRootProps()}>
