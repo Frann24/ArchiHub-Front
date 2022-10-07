@@ -7,7 +7,7 @@ import Loader from "../../loader/Loader";
 import FavouritePost from "./favouritePost/FavouritePost";
 import CreateReview from "./reviewPost/createReview/CreateReview";
 import ReviewsReel from "./reviewPost/ReviewsReel";
-
+/* import CarrouselDetail  from "./CarrouselDetail"; */
 function PostDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -45,7 +45,8 @@ function PostDetail() {
                 width="210"
                 alt=""
               />
-            )}
+            )} 
+        {/*     <CarrouselDetail/> */}
             <div>
               <div className="w-full flex justify-start pt-2 overflow-hidden">
                 {postDetail.image.map((img) => {
