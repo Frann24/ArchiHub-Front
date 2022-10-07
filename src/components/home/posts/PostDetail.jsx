@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { clearPostDetail } from "../../../redux/slices/post/ordenAndFilterActions";
 import { getPost } from "../../../redux/slices/post/postActions";
 import Loader from "../../loader/Loader";
+import CarrouselDetail from "./CarrouselDetail";
 
 function PostDetail() {
   const dispatch = useDispatch();
@@ -15,35 +16,34 @@ function PostDetail() {
   useEffect(() => {
     dispatch(getPost(id));
     return () => {
-        dispatch(clearPostDetail());
-      }
+      dispatch(clearPostDetail());
+    };
   }, [dispatch]);
-
 
   return (
     // <div className="place-self-center mt-40">
     // <div className="justify-content: center ">
-    <div className="container mx-auto center mt-6">
+    <div className="container w-1/2 mx-auto center mt-6">
       <div>
         {postDetail.length === 0 ? (
           <Loader />
         ) : (
           <div>
-            {postDetail.image[0] ? (
+            {/* {postDetail.image[0] ? (
               <img src={postDetail.image[0]} width="630" />
             ) : (
               <img
                 src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png "
                 width="210"
               />
-            )}
+            )} */}
+            <CarrouselDetail/>
             <div>
               {/* <div className="w-full h-60"> */}
               {/* <div className="grid grid-col-3 ">
               </div> */}
 
-              
-              <div className="flex my-6">
+              {/* <div className="flex my-6">
                 {postDetail.image[1] ? (
                   <img src={postDetail.image[1]} width="210" />
                 ) : (
@@ -59,18 +59,17 @@ function PostDetail() {
                 ) : (
                   <div></div>
                 )}
+              </div> */}
 
-
-                {/* <img src={postDetail.image[2]} width="210" />
+              {/* <img src={postDetail.image[2]} width="210" />
                 <img src={postDetail.image[4]} width="210" /> */}
-              </div>
-
-              {/* <div className="flex flex-wrap mb-12">
+              <div className="container w-1/2">
+                {/* <div className="flex   w-1/4 mb-12">
                   {postDetail.image.map((img) => {
-                    return <img width="200px" src={img}/>;
+                    return <img src={img} />;
                   })}
                 </div> */}
-              {/* </div> */}
+              </div>
             </div>
             <div>
               <div className="font-semibold text-transform: uppercase ">
@@ -98,11 +97,11 @@ function PostDetail() {
                 })}{" "}
               </div>
             </div>
-            <div className="grid grid-cols-9 gap-0 mb-4">
-              <div className="mx-2">{postDetail.mts2} m2</div>
-              <div className="mx-2">{postDetail.rooms} rooms</div>
-              <div className="mx-2">{postDetail.bathrooms} bathrooms</div>
-              <div className="mx-2"> {postDetail.year}</div>
+            <div className="grid grid-cols-9 gap-9 mb-4">
+              <div className="pl-9">{postDetail.mts2} m2</div>
+              <div className="pl-9">{postDetail.rooms} rooms</div>
+              <div className="pl-9">{postDetail.bathrooms} baths</div>
+              <div className="pl-9"> {postDetail.year}</div>
             </div>
             <div>
               <div className="font-light max-w-prose mb-20 text-justify">
