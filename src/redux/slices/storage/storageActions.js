@@ -18,11 +18,20 @@ export const getStorage = (id) => {
     }
 }
 
-export const createStorage = (info) => {
+export const createStorage = (data) => {
   return function (dispatch) {
     axios
-      .post(STORAGE, info)
+      .post(STORAGE, data)
       .then((res) => dispatch(responseStorage(res.data)))
       .catch((err) => console.log(err));
   };
 };
+
+export const deleteStorage = (id) => {
+  return function (dispatch) {
+    axios
+      .delete(`${STORAGE}/${id}`)
+      .then((res) => dispatch(responseStorage(res.data)))
+      .catch((err) => console.log(err));
+  };
+}

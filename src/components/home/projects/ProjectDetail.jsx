@@ -19,12 +19,13 @@ const ProjectDetail = () => {
     dispatch(getUser(project.created_by));
   }, [dispatch]);
 
-
   return (
     <div>
-      <div>
+      <div >
         {project.length === 0 ? (
-          <Loader />
+          <div className="flex flex-col justify-center items-center h-screen">
+            <Loader />
+          </div>
         ) : (
           <div>
             <div>
@@ -40,17 +41,15 @@ const ProjectDetail = () => {
               })}
               <div>
                 {project.initial_file?.map((file) => {
-                  return (
-                    <ProjectFile file={file}/>
-                  );
+                  return <ProjectFile file={file} />;
                 })}
               </div>
               <div>
-                {project.updates?.map((update) => {
+                {project.updates?.map((update, index) => {
                   return (
                     <div>
                       {update.user[0]._id === update.project[0].created_by ? (
-                        <UpdateDetail update={update} />
+                        <UpdateDetail update={update}/>
                       ) : (
                         <UpdateDetailCollab update={update} />
                       )}
@@ -59,7 +58,7 @@ const ProjectDetail = () => {
                 })}
               </div>
             </div>
-            <CreateUpdate />
+            <CreateUpdate project_id={project._id}/>
           </div>
         )}
       </div>
