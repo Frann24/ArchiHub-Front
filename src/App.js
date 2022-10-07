@@ -14,7 +14,6 @@ import DashUser from "./components/DashUser/DashUser";
 //import Home from "./components/home/Home";
 //import CreatePost from "./components/createPost/CreatePost";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +27,7 @@ function App() {
           <Route path="/newsDetail/:id" element={<NewsDetail />} />
           <Route path="/postDetail/:id" element={<PostDetail />} />
           <Route path="/createpost" element={<CreatePost />} />  */}
+
           {/* <Route path="/payment" element={<Payment/>} /> */}
         </Routes>
         

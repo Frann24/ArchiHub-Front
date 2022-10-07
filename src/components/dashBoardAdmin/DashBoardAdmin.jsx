@@ -11,7 +11,6 @@ useEffect(() => {
     dispatch(getAllUsers())
 }, [dispatch])   
 
-console.log(allUsers)
 function handleChangeStatus (id, e) {
     dispatch(updateUser(id, {status: e.target.value}))
 }
