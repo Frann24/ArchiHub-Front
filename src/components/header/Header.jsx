@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import CreateProject from "../home/projects/forms/CreateProject";
 import DashUser from "../DashUser/DashUser";
+import Payment from "../payment/payment";
 
 
 function Header() {
@@ -66,6 +67,7 @@ function Header() {
         <Route path="/admin" element={<DashBoardAdmin />} />
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
         <Route path="/dashuser" element={<DashUser />} />
+        <Route path="/payment" element={<Payment/>} />
       </Routes>
       <div className="bottom-0">
         <Footer/>

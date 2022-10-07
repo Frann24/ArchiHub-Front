@@ -40,6 +40,7 @@ export const useSignIn = () => {
       dispatch(logUser(input.email, input.password))
     }
   }
+  
   if(user){
     token = user.token
   } 

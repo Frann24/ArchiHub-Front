@@ -11,19 +11,14 @@ function Logged() {
   const [createMenu, setCreateMenu] = useState(false)
   const googleUser = JSON.parse(localStorage.getItem('googleUser'))
   const token = JSON.parse(localStorage.getItem('token'))
-  let user,email,avatar
-
-  if(token !== null){
-    const {userAvatar, userMail, userName,} = token
-    user = userName 
-    email = userMail
-    avatar = userAvatar
-
-    if(googleUser !== null) {
-      const {name} = googleUser
-      user = name
-    }
-  }
+  let lastname ,name ,userAvatar, userMail, userType
+  if(token){
+    lastname = token.lastname
+    name = token.name
+    userAvatar = token.userAvatar
+    userMail = token.userMail
+    userType = token.userType
+}
 
   const projects = [
     { name: "Name project 1" },
@@ -42,6 +37,7 @@ function Logged() {
 
   return (
     <>
+    
       <div onClick={() => setCreateMenu(!createMenu)} className={`hidden p-1 text-sm cursor-pointer text-gray-600 border rounded hover:bg-gray-200
       ${createMenu && "bg-gray-200"}
       lg:flex
@@ -57,23 +53,28 @@ function Logged() {
             {/* <Link>New commit project</Link> */}
         </div>}
       </div>
-      <div
-        title="Open menu"
-        onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
-        className="cursor-pointer flex items-center gap-4" 
-      >
-        <div className="flex order-2 items-center justify-center w-10 h-10 mx-2 overflow-hidden rounded-full
-        sm:w-12 sm:h-12
-        lg:w-14 lg:h-14
-        xl:w-16 xl:h-16
-        ">
-          <img src={avatar} alt="" />
-        </div>
-        <div className="hidden sm:flex flex-col text-end">
-          <p className="text-sm lg:text-base font-medium">{user}</p>
-          <p className="text-xs lg:text-sm text-gray-600">{email}</p>
-        </div>
+      {token 
+      ?<div
+      title="Open menu"
+      onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
+      className="cursor-pointer flex items-center gap-4" 
+    >
+      <div className="flex order-2 items-center justify-center w-10 h-10 mx-2 overflow-hidden rounded-full
+      sm:w-12 sm:h-12
+      lg:w-14 lg:h-14
+      xl:w-16 xl:h-16
+      ">
+        <img src={userAvatar} alt="" />
       </div>
+      <div className="hidden sm:flex flex-col text-end">
+        <p className="text-sm lg:text-base font-medium">{name}</p>
+        <p className="text-xs lg:text-sm text-gray-600">{userMail}</p>
+      </div>
+      {console.log("cargó")}
+    </div> 
+      : console.log("cargando...")
+      }
+      
       {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>}
       <div
         className={`top-0 right-0 fixed bg-gray-100 w-11/12 h-full text-center ${
@@ -97,11 +98,11 @@ function Logged() {
             <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full m-auto mt-4
             sm:w-20 sm:h-20
             ">
-              <img src={avatar} alt="" />
+              <img src={userAvatar} alt="" />
             </div>
             <div className="my-4">
-              <h3 className="text-xl">{user}</h3>
-              <p className="text-gray-400">{email}</p>
+              <h3 className="text-xl">{name}</h3>
+              <p className="text-gray-400">{userMail}</p>
             </div>
             <div className="text-start pl-4 mt-8 flex flex-col gap-4 lg:text-lg xl:text-xl">
               <div className="flex flex-col items-start lg:hidden">
@@ -116,7 +117,7 @@ function Logged() {
                 </div>}
               </div>
               <div>
-                <Link to={`/user/${user}`}>My profile</Link>
+                <Link to={`/user/${name}`}>My profile</Link>
               </div>
               <div>
                 <Link to="">My posts</Link>
@@ -125,7 +126,7 @@ function Logged() {
                 <Link to="">My projects</Link>
               </div>
               <div>
-                <div onClick={() => setProjectMenu(!projectMenu)}>
+                <div className="cursor-pointer" onClick={() => setProjectMenu(!projectMenu)}>
                   <span className="pr-2">Recent projects</span>
                   <FontAwesomeIcon  className="text-gray-600" icon={faAngleDown} />
                 </div>
@@ -142,7 +143,7 @@ function Logged() {
           </div>
           <div>
             <div className="m-4 px-4 py-2 bg-blue-600 text-gray-50 cursor-pointer">
-              <button className="font-semibold">Upgrade to Premium</button>
+              <button className="font-semibold"><Link to="/payment">Upgrade to Premium </Link></button>
             </div>
             <div className="m-4 px-4 py-2 bg-gray-600 text-gray-50 cursor-pointer">
               <button onClick={handleLogout} className="font-semibold">Log out</button>

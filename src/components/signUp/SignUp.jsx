@@ -8,19 +8,18 @@ import { useEffect } from "react";
 
 
 function SignUp() {
-  const err = window.localStorage.getItem('error')
-  const {input, errors, handleInputChange, hanldeBlur,toggleSignIn ,handleInputSubmit} = useSignUp(err)
+  const {input, errors, handleInputChange, hanldeBlur,toggleSignIn ,handleInputSubmit} = useSignUp()
   const {user} = useSelector(state => state.login)
   let matchEmail = errors.email
-  if(err){
-   matchEmail = errors.email || user
+  if(user){
+   matchEmail = errors.email || user.error
   }
-  useEffect(()=>{
-    console.log(err)
+  /* useEffect(()=>{
+
     return () => {
       window.localStorage.removeItem("error")
     }
-  },[err])
+  },[user]) */
   /* const {modalSignIn, modalSignUp} = useSelector(state => state.header)
   const dispatch = useDispatch()
 

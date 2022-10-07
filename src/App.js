@@ -28,7 +28,7 @@ function App() {
           <Route path="/newsDetail/:id" element={<NewsDetail />} />
           <Route path="/postDetail/:id" element={<PostDetail />} />
           <Route path="/createpost" element={<CreatePost />} />  */}
-          <Route path="/payment" element={<Payment/>} />
+          {/* <Route path="/payment" element={<Payment/>} /> */}
         </Routes>
         
       </div>
