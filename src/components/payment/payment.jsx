@@ -16,7 +16,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loading, setLoading] = useState(false)
   const [email, setMail ] = useState('')
-  const token = JSON.parse(localstorage.getItem("token"))
+  const token = JSON.parse(localStorage.getItem("token"))
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
