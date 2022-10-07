@@ -12,6 +12,7 @@ import CreatePost from "../createPost/CreatePost";
 import NewsDetail from "../home/news/NewsDetail";
 import DashBoardAdmin from "../dashBoardAdmin/DashBoardAdmin";
 import ProjectDetail from "../home/projects/ProjectDetail";
+import DashBoardUser from "../dashBoardUser/DashBoardUser";
 
 
 function Header() {
@@ -45,6 +46,7 @@ function Header() {
         <Route path="createpost" element={<CreatePost />} />
 
         <Route path="/admin" element={<DashBoardAdmin />} />
+        <Route path="/user" element={<DashBoardUser />} />
 
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
       </Routes>
