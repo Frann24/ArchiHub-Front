@@ -37,7 +37,6 @@ function Logged() {
 
   return (
     <>
-    
       <div onClick={() => setCreateMenu(!createMenu)} className={`hidden p-1 text-sm cursor-pointer text-gray-600 border rounded hover:bg-gray-200
       ${createMenu && "bg-gray-200"}
       lg:flex
@@ -53,8 +52,7 @@ function Logged() {
             {/* <Link>New commit project</Link> */}
         </div>}
       </div>
-      {token 
-      ?<div
+      <div
       title="Open menu"
       onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
       className="cursor-pointer flex items-center gap-4" 
@@ -70,11 +68,7 @@ function Logged() {
         <p className="text-sm lg:text-base font-medium">{name}</p>
         <p className="text-xs lg:text-sm text-gray-600">{userMail}</p>
       </div>
-      {console.log("cargó")}
     </div> 
-      : console.log("cargando...")
-      }
-      
       {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>}
       <div
         className={`top-0 right-0 fixed bg-gray-100 w-11/12 h-full text-center ${
@@ -143,7 +137,7 @@ function Logged() {
           </div>
           <div>
             <div className="m-4 px-4 py-2 bg-blue-600 text-gray-50 cursor-pointer">
-              <button className="font-semibold"><Link to="/payment">Upgrade to Premium </Link></button>
+              <button onClick={()=> setShowSidebar(false)} className="font-semibold"><Link to="/payment">Upgrade to Premium </Link></button>
             </div>
             <div className="m-4 px-4 py-2 bg-gray-600 text-gray-50 cursor-pointer">
               <button onClick={handleLogout} className="font-semibold">Log out</button>
