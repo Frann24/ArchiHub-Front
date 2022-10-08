@@ -8,6 +8,7 @@ import UpdateDetail from "./update/UpdateDetail";
 import UpdateDetailCollab from "./update/UpdateDetailCollab";
 import ProjectFile from "./files/ProjectFile";
 import CreateUpdate from "./forms/CreateUpdate";
+import VisualizePDF from "./VisualizePDF";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -21,7 +22,7 @@ const ProjectDetail = () => {
 
   return (
     <div>
-      <div >
+      <div className="flex justify-center items-center m-2 border-4">
         {project.length === 0 ? (
           <div className="flex flex-col justify-center items-center h-screen">
             <Loader />
@@ -29,6 +30,9 @@ const ProjectDetail = () => {
         ) : (
           <div>
             <div>
+              <div>
+                <VisualizePDF url={project && project.pdf_initial_file[0].url}/>
+              </div>
               <h1>{project.title}</h1>
               <h2>{project.description}</h2>
               {project.users?.map((user) => {
