@@ -37,7 +37,7 @@ function Header() {
 
   const { menu } = useSelector((state) => state.header);
   return (
-    <div className="select-none ">
+    <div className="select-none">
       <div className="sticky bg-white w-full top-0 shadow-md z-10">
         <div className="flex justify-between m-4 items-center h-16
         md:mx-8
@@ -68,7 +68,7 @@ function Header() {
         <Route path="createproject" element={<CreateProject />} />
         <Route path="/admin" element={<DashBoardAdmin />} />
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
-        <Route path="/dashuser" element={<DashUser />} />
+        {/* <Route path="/dashuser" element={<DashUser />} /> */}
         <Route path="/payment" element={<Payment/>} />
         <Route path="forgotPassword" element={<ForgotPassword/>}/>
         <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>

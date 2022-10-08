@@ -38,14 +38,14 @@ export default function FavouritePost() {
     if(user.length===0){
       return(
         <div>
-          <button onClick={toggleSignIn}><FontAwesomeIcon className='text-2xl' icon={regular} /> </button>
+          <button onClick={toggleSignIn}><FontAwesomeIcon icon={regular} /> </button>
         </div>
       )
     }
     else if(habilited){
       return (
         <div>
-        {<button onClick={handleClick}><FontAwesomeIcon  className='text-2xl' icon={favourite?solid:regular} /></button>}
+        {<button onClick={handleClick}><FontAwesomeIcon icon={favourite?solid:regular} /></button>}
            </div> 
       )
     }

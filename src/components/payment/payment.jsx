@@ -94,8 +94,8 @@ const CheckoutForm = () => {
           </div>
           <button className='btn btn-success' disabled={!stripe}>
             {loading ? 
-              (<div class="spinner-border text-light" role="status">
-                <span class="sr-only">Loading...</span>
+              (<div className="spinner-border text-light" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             ) : (
               "Suscription"
@@ -109,7 +109,7 @@ function Payment() {
   return(
     <div>      
     <Elements stripe={stripePromise}>
-      <div class="container p-4">
+      <div className="container p-4">
         <div className='row'>
           <div className='col-md-4 offset-md-4'>
             <CheckoutForm/>
