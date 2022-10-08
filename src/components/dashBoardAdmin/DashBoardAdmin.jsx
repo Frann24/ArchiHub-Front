@@ -39,7 +39,7 @@ function DashBoardAdmin() {
   //   }
 
   return (
-    <div className=" ml-6">
+    <div className=" mx-1">
       {/* ----------------pantallas LARGE------------------- */}
 
       <div className="lg:block hidden">
