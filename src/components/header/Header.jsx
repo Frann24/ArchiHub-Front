@@ -19,7 +19,8 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import CreateProject from "../home/projects/forms/CreateProject";
 import Payment from "../payment/payment";
-import DashBoardUser from "../dashBoardUser/DashBoardUser";
+import ForgotPassword from "../resetPassword/ForgotPassword";
+import ResetPassword from "../resetPassword/ResetPassword";
 
 
 function Header() {
@@ -68,6 +69,8 @@ function Header() {
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
         <Route path="/user" element={<DashBoardUser />} />
         <Route path="/payment" element={<Payment/>} />
+        <Route path="forgotPassword" element={<ForgotPassword/>}/>
+        <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
       </Routes>
       <div className="bottom-0">
         <Footer/>

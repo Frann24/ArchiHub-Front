@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import { clearPostDetail } from "../../../redux/slices/post/ordenAndFilterActions";
 import { getPost } from "../../../redux/slices/post/postActions";
 import Loader from "../../loader/Loader";
-import CarrouselDetail from "./CarrouselDetail";
-
+import FavouritePost from "./favouritePost/FavouritePost";
+import CreateReview from "./reviewPost/createReview/CreateReview";
+import ReviewsReel from "./reviewPost/ReviewsReel";
+/* import CarrouselDetail  from "./CarrouselDetail"; */
 function PostDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -23,87 +25,81 @@ function PostDetail() {
   return (
     // <div className="place-self-center mt-40">
     // <div className="justify-content: center ">
-    <div className="container w-1/2 mx-auto center mt-6">
-      <div>
+    <div className="mx-64">
+      <div className="w-full mx-auto ">
         {postDetail.length === 0 ? (
           <Loader />
         ) : (
-          <div>
-            {/* {postDetail.image[0] ? (
-              <img src={postDetail.image[0]} width="630" />
+          <div className="w-full  mx-auto">
+            {postDetail.image[0] ? (
+              <div className="bg-gray-50">
+                <img
+                  className="w-full max-h-[30vw] object-scale-down"
+                  src={postDetail.image[0]}
+                  alt=""
+                />
+              </div>
             ) : (
               <img
                 src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png "
                 width="210"
+                alt=""
               />
-            )} */}
-            <CarrouselDetail/>
+            )} 
+        {/*     <CarrouselDetail/> */}
             <div>
-              {/* <div className="w-full h-60"> */}
-              {/* <div className="grid grid-col-3 ">
-              </div> */}
-
-              {/* <div className="flex my-6">
-                {postDetail.image[1] ? (
-                  <img src={postDetail.image[1]} width="210" />
-                ) : (
-                  <div></div>
-                )}
-                {postDetail.image[2] ? (
-                  <img src={postDetail.image[2]} width="210" />
-                ) : (
-                  <div></div>
-                )}
-                {postDetail.image[3] ? (
-                  <img src={postDetail.image[3]} width="210" />
-                ) : (
-                  <div></div>
-                )}
-              </div> */}
-
-              {/* <img src={postDetail.image[2]} width="210" />
-                <img src={postDetail.image[4]} width="210" /> */}
-              <div className="container w-1/2">
-                {/* <div className="flex   w-1/4 mb-12">
-                  {postDetail.image.map((img) => {
-                    return <img src={img} />;
-                  })}
-                </div> */}
+              <div className="w-full flex justify-start pt-2 overflow-hidden">
+                {postDetail.image.map((img) => {
+                  return (
+                    <img
+                      className="w-1/4 max-h-[7vw] object-cover"
+                      src={img}
+                      alt=""
+                    />
+                  );
+                })}
               </div>
             </div>
             <div>
-              <div className="font-semibold text-transform: uppercase ">
-                Title: {postDetail.title}
+              <div className="flex flex-wrap justify-between py-4">
+                <div className="font-semibold text-transform: uppercase text-2xl ">
+                  {postDetail.title}
+                </div>
+                <div>
+
+                  <FavouritePost />
+                </div>
               </div>
+
               {postDetail.created_by_data.length > 0 ? (
-                <div className="font-light max-w-prose ">
+                <div className="font-light max-w-prose py-2">
                   Created By: {postDetail.created_by_data[0].name}{" "}
                   {postDetail.created_by_data[0].lastname}
                 </div>
               ) : (
                 <div></div>
               )}
-              <div className="mb-6">
-                {" "}
-                Authors:
-                {postDetail.authors.map((el) => {
-                  return (
-                    <div>
-                      <h3>
+              <div className="mb-6 flex gap-4">
+                <span>Collaborators: </span>
+                <div className="flex gap-4">
+                  {postDetail.authors.map((el, i) => {
+                    return (
+                      <p key={i} className="">
                         {el.name} {el.lastname}
-                      </h3>
-                    </div>
-                  );
-                })}{" "}
+                      </p>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-9 gap-9 mb-4">
-              <div className="pl-9">{postDetail.mts2} m2</div>
-              <div className="pl-9">{postDetail.rooms} rooms</div>
-              <div className="pl-9">{postDetail.bathrooms} baths</div>
-              <div className="pl-9"> {postDetail.year}</div>
+
+            <div className="grid grid-cols-9 gap-0 mb-4">
+              <div className="mx-2">{postDetail.mts2} m2</div>
+              <div className="mx-2">{postDetail.rooms} rooms</div>
+              <div className="mx-2">{postDetail.bathrooms} bathrooms</div>
+              <div className="mx-2"> {postDetail.year}</div>
             </div>
-            <div>
+            <div className="w-full mx-auto">
               <div className="font-light max-w-prose mb-20 text-justify">
                 {postDetail.description}
               </div>
@@ -129,6 +125,8 @@ function PostDetail() {
                       })
                   }
               </div> */}
+            <CreateReview />
+            <ReviewsReel />
           </div>
         )}
       </div>

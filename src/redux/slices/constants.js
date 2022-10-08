@@ -8,6 +8,8 @@ export const NEWS = `${BASE_URL}api/news`
 
 export const PROJECT = `${BASE_URL}api/project`
 
+export const REVIEW = `${BASE_URL}api/review`
+
 export const USER_PROJECT = `${BASE_URL}api/userproject`
 
 export const FAVOURITE = `${BASE_URL}api/favourite`
@@ -24,3 +26,6 @@ export const STORAGE = `${BASE_URL}api/storage`
 
 export const PAYMENT = `${BASE_URL}api/payment`
 
+export const FORGOT_PASSWORD = `${BASE_URL}api/auth/forgotPassword`
+
+export const RESET_PASSWORD = `${BASE_URL}api/auth/resetPassword/:id/:token`
