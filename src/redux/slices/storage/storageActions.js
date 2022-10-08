@@ -11,7 +11,8 @@ export const getStorages = () => {
   };
 };
 
-export const getStorage = (id) => {
+export const getStorageById = (id) => {
+  console.log(id);
     return function (dispatch) {
         axios.get(`${STORAGE}/${id}`)
         .then((res) => dispatch(showStorage(res.data)))
