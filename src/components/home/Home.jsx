@@ -12,22 +12,21 @@ function Home() {
 
   return (
     <div>
-      
+      <div id="home_id"></div>
       <div className={`${queryPost.length ? 'block' : 'block'}`}>
         <img
           src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664395439/news/Screen_Shot_2022-09-28_at_16.59.36_cfhqzs.png"
           alt="imagen"
-          className="object-cover my-8 mt-16 shadow-lg"
+          className="object-cover my-8 shadow-lg"
         />
       </div>
-      <Search />
-      <div>
-        <div id="posts_id"></div>
+        <Search />
+      <div >
         <div className="flex flex-col gap-2 pb-4 w-full
         sm:flex-row
         xl:w-2/5 xl:mx-auto
         ">
-          <div className="mx-4 sm:w-1/2">
+          <div id="posts_id" className="mx-4 sm:w-1/2">
             <FilterType />
           </div>
           <div className="mx-4 sm:w-1/2">
@@ -37,7 +36,6 @@ function Home() {
         <PostsReel />
       </div>
       <div>
-        <div id="news_id"></div>
         <NewsReel />
       </div>
     </div>

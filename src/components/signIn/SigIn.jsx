@@ -1,64 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { logUser } from "../../redux/slices/auth/loginActions"
-import { getUserByEmail } from "../../redux/slices/user/userAction";
-import { useNavigate} from "react-router-dom"
+import React from "react";
+import { useSelector } from "react-redux"
 
+import { useSignIn } from "./useSignIn";
 
 function SigIn() {
-  
-    const dispatch = useDispatch()
-    const navigate = useNavigate();
-
-  useEffect(()=>{
-
-  },[dispatch])
-
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value)
+  const {input,errors ,handleInputChange, handleInputSubmit, toggleSignIn, closeModalSingIn, handleBlur} = useSignIn()
+  const {user} = useSelector(state => state.login)
+  let conditionEmail, conditionPassword
+  if(user){
+   conditionEmail = errors.email || user.errEmail
+   conditionPassword = errors.password || user.errPassword
   }
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
-
-  const [user, setUser] = useState({
-    email: null,
-    password: null,
-    loggedIn: false
-  })
-
-  
-  const handleLogin = async(e) => {
-      e.preventDefault();
-      setUser({ email: email, password: password, loggedIn:true })
-      dispatch(logUser(user))
-      navigate("/home")
-
-    }
-  
-  
-
 
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
     
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">Sign In</h3>
-      <form className="space-y-6" onSubmit={handleLogin}>
+      <form className="space-y-6" onSubmit={handleInputSubmit}>
         <div>
-          <label for="email" className="block mb-2 text-sm font-medium text-gray-900">
+          <label className="block mb-2 text-sm font-medium text-gray-900">
             Your email
           </label>
-          <input type="email"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
+          <input type="text"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 ${conditionEmail && "border-2 focus:border-danger border-danger"}`}
             placeholder="name@example.com"
-            value={email} name='email' onChange={handleEmailChange}
+            value={input.email} name='email' onBlur={handleBlur} onChange={handleInputChange}
           />
+          {conditionEmail && <span className="text-danger text-sm">{conditionEmail}</span>}
         </div>
         <div>
-          <label for="password"
+          <label 
             className="block mb-2 text-sm font-medium text-gray-900">
             Your password
           </label>
@@ -67,9 +38,10 @@ function SigIn() {
             name="password"
             id="password"
             placeholder="••••••••"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            value={password} onChange={handlePasswordChange}
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500  ${conditionPassword && "border-2 focus:border-danger border-danger"}`}
+            value={input.password} onChange={handleInputChange}
           />
+          {conditionPassword && <span className="text-danger text-sm">{conditionPassword}</span>}
         </div>
         <div className="flex justify-between">
           <div className="flex items-start">
@@ -81,8 +53,8 @@ function SigIn() {
                 className="w-4 h-4 bg-gray-50 border-gray-300 focus:ring-3 focus:ring-gray-600"
               />
             </div>
-            <label for="remember"
-              class="ml-2 text-sm font-medium text-gray-900">
+            <label 
+              className="ml-2 text-sm font-medium text-gray-900">
               Remember me
             </label>
           </div>
@@ -96,16 +68,19 @@ function SigIn() {
         >
           Login
         </button>
-        <button
+        {/* <button 
           type="submit"
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
         >
           Sign in with Google
-        </button>
-        <div class="text-sm font-medium text-gray-900">
+        </button> */}
+   
+        <div onClick={closeModalSingIn} id="signInDiv"></div>
+        <div className="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
-        Not registered?
-        <span class="cursor-pointer text-gray-600 hover:underline">
+        Don´t have a account?
+        <span className="cursor-pointer text-gray-600 underline pl-1" onClick={toggleSignIn}>
+          Sign up
         </span> 
         </div>
       </form>
