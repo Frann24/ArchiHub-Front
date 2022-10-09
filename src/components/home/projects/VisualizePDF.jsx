@@ -20,28 +20,28 @@ const VisualizePDF = ({ url }) => {
     changePage(+1);
   }
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col items-center">
       {/* <iframe src={url} frameborder="0"></iframe> */}
       <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
         <Page width={300} pageNumber={pageNumber}></Page>
-        <div className="flex flex-col items-center">
+        <div>
           <p className="text-light">
             Page {pageNumber} of {numPage}
           </p>
-          <div className="flex flex-row">
+          <div>
             <button
               disabled={pageNumber === 1}
               onClick={changePageBack}
-              className="cursor-pointer my-2 border text-black w-full p-2 bg-gray-100 sm:hover:bg-gray-800 sm:hover:text-white transition-all duration-500"
+              className="absolute left-0 float-left cursor-pointer my-2 border text-black w-full p-2 bg-gray-100"
             >
-              Prev
+              {`<`}
             </button>
             <button
               disabled={pageNumber === numPage}
               onClick={changePageNext}
-              className="cursor-pointer my-2 border text-black w-full p-2 bg-gray-100 sm:hover:bg-gray-800 sm:hover:text-white transition-all duration-500"
+              className=" absolute right-0 float-right cursor-pointer my-2 border text-black w-full p-2 bg-gray-100"
             >
-              Next
+              {`>`}
             </button>
           </div>
         </div>
