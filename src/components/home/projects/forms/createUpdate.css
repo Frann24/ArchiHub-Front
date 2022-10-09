@@ -69,7 +69,6 @@ button.learn-more .button-text {
   font-weight: 300;
   line-height: 1.6;
   text-align: center;
-  text-transform: uppercase;
 }
 
 button:hover .circle {

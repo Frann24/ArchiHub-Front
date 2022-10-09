@@ -34,18 +34,21 @@ const ProjectDetail = () => {
                   url={project && project.pdf_initial_file[0].url}
                 />
               </div>
-              <div className="flex w-auto h-auto justify-center item-start flex-col m-2 sm:w-auto">
+              <div className="flex w-auto h-auto justify-center item-start flex-col m-4 sm:w-auto">
                 <h1 className="text-xl font-bold">{project.title}</h1>
                 <h2 className="font-medium">{project.description}</h2>
                 <p className="my-2">Collaborators</p>
                 {project.users?.map((user) => {
                   return (
                     <div>
-                      <Link to={`/user/${user.id}`} className="flex flex-wrap items-center my-2 border shadow-md">
+                      <Link
+                        to={`/user/${user.id}`}
+                        className="flex flex-wrap items-center my-2 border shadow-md"
+                      >
                         <img
                           src={user.avatar}
                           // alt={user.nickname}
-                          className="w-8 m-2"
+                          className="rounded-full w-8 m-2"
                         />
                         <p className="">{user.nickname}</p>
                       </Link>
@@ -72,7 +75,9 @@ const ProjectDetail = () => {
                 })}
               </div>
             </div>
-            <CreateUpdate project_id={project._id} />
+            <div>
+              <CreateUpdate project_id={project._id} />
+            </div>
           </div>
         )}
       </div>
