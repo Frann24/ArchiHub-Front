@@ -1,14 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "../header/menu/search/Search";
 import NewsReel from "./news/NewsReel";
 import FilterType from "./posts/filterType/FilterType";
 import Order from "./posts/order/Order";
 import PostsReel from "./posts/PostsReel";
+import { getAllUsers } from "../../redux/slices/user/userActions";
+
+
 
 function Home() {
   const { queryPost } = useSelector((state) => state.post);
   const condition = queryPost ? true : false;
+
 
   return (
     <div>

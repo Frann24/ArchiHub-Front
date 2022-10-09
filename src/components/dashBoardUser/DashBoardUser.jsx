@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getUser, getAllUsers} from '../../redux/slices/user/userActions'
+import {getUser} from '../../redux/slices/user/userActions'
 import FormEditProfile from "./FormEditProfile";
 import Post from "./Post";
 import Projects from "./Projects";
-
+import { getAllPosts } from "../../redux/slices/post/postActions";
+import Favourites from "./Favourites";
+import Reviews from "./Reviews";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch()
@@ -13,12 +15,11 @@ export default function DashBoardUser() {
   const [state, setState] = useState('projects')
   const [profile, setProfile] = useState(false)
 
-  
   useEffect(() => {
-    dispatch(getUser("633a026b092c0858a7bb580b"))  //aca iria userLogeado.userId
-  },[dispatch])
+    dispatch(getUser(userLogeado.userId))
+    dispatch(getAllPosts())
+  }, [dispatch])
  
-
   function handleChange(e) {
     setState(e.target.value)
   }
@@ -33,7 +34,7 @@ export default function DashBoardUser() {
       <div className="flex flex-wrap mb-12 w-full">
         <div className=" mt-6 ml-12 grid grid-cols-1 sm:grid-cols-2 sm:gap-12 md:gap-12 ">
           <img
-            src={userLogeado.userAvatar}
+            src={user.avatar}
             width="200px"
             className="rounded-full"
           />
@@ -42,6 +43,10 @@ export default function DashBoardUser() {
               {user.name} {user.lastname}
             </div >
             <div className=" text-lg">{user.nickname} </div>
+            <div>{user.description}</div>
+            <div>{user.location}</div>
+            <div>{user.job}</div>
+            <div>{user.page}</div>
 
             <div className="mt-20">
               <button onClick={(e) => handleEditProfile(e)} className="bg-slate-300 cursor-pointer w-32 h-8">
@@ -51,7 +56,7 @@ export default function DashBoardUser() {
             {
               profile &&
               <div>
-                <FormEditProfile/>
+                <FormEditProfile id={userLogeado.userId}/>
               </div>
             }
           </div>
@@ -90,17 +95,27 @@ export default function DashBoardUser() {
       </div>
       <div>
         {
-          state === 'posts' && 
+          state === 'projects' && 
           <div>
-            <h2>Your posts...</h2>
-            <Post id={userLogeado.userId}/>
+            <Projects id={userLogeado.userId}/>
           </div>
         }
         {
-          state === 'projects' && 
+          state === 'posts' && 
           <div>
-            <h2>Your projects...</h2>
-            <Projects id={userLogeado.userId}/>
+            <Post id={userLogeado.userId} key={userLogeado.userId}/>
+          </div>
+        }
+        {
+          state === 'reviews' && 
+          <div>
+            <Reviews />
+          </div>
+        }
+        {
+          state === 'favourites' && 
+          <div>
+            <Favourites />
           </div>
         }
       </div>

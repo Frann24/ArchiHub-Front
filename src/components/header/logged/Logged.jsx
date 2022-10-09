@@ -111,7 +111,7 @@ function Logged() {
                 </div>}
               </div>
               <div>
-                <Link to={`/user/${name}`}>My profile</Link>
+                <Link to={`/user`}>My profile</Link>
               </div>
               <div>
                 <Link to="">My posts</Link>
