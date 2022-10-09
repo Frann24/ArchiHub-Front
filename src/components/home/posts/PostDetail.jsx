@@ -57,7 +57,6 @@ function PostDetail() {
         totalSlides={image.length - 1}
         visibleSlides={2}
         infinite={true}
-        hasMasterSpinner={image[image.length] ? true : false}
         className="flex flex-col"
         >
         <Slider className="max-h-[40vw] w-full md:max-h-[35vw] lg:max-h-[30vw] xl:max-h-[25vw] 2xl:max-h-[20vw] cursor-grab active:cursor-grabbing">
