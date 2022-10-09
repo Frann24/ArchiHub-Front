@@ -107,7 +107,7 @@ export default function DashBoardUser() {
         {
           state === 'posts' && 
           <div>
-            <Post id={userLogeado.userId} key={userLogeado.userId}/>
+            <Post id={userLogeado.userId} key={userLogeado.userId} user={user}/>
           </div>
         }
         {
