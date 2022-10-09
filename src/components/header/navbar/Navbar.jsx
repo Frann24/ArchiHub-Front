@@ -10,11 +10,11 @@ function Navbar() {
     anchor.scrollIntoView({ behavior: "smooth", block: "center" });
   };
   return (
-    <div className='flex gap-8 text-'>
-        <div className='menu-link' onClick={(e)=> handleClick(e,"#home_id")}><Link to="/home">Home</Link></div>
-        <div className='menu-link' onClick={(e)=> handleClick(e,"#posts_id")}><Link to="/home">Posts</Link></div>
-        <div className='menu-link' onClick={(e)=> handleClick(e,"#news_id")}><Link to="/home">News</Link></div>
-        <div className='menu-link' ><Link to="/about-us">About us</Link></div>
+    <div className='flex gap-8'>
+        <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#home_id")}><Link to="/home">Home</Link></div>
+        <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#posts_id")}><Link to="/home">Posts</Link></div>
+        <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#news_id")}><Link to="/home">News</Link></div>
+        <div className='menu-link text-base 2xl:text-lg' ><Link to="/about-us">About us</Link></div>
     </div>
   )
 }
