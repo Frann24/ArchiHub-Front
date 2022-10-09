@@ -18,10 +18,10 @@ import Navbar from "./navbar/Navbar";
 import { useEffect } from "react";
 import { useRef } from "react";
 import CreateProject from "../home/projects/forms/CreateProject";
-import DashUser from "../DashUser/DashUser";
 import Payment from "../payment/payment";
 import ForgotPassword from "../resetPassword/ForgotPassword";
 import ResetPassword from "../resetPassword/ResetPassword";
+import DashBoardUser from "../dashBoardUser/DashBoardUser"
 
 
 function Header() {
@@ -69,6 +69,7 @@ function Header() {
         <Route path="/admin" element={<DashBoardAdmin />} />
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
         {/* <Route path="/dashuser" element={<DashUser />} /> */}
+        <Route path="/user" element={<DashBoardUser />} />
         <Route path="/payment" element={<Payment/>} />
         <Route path="forgotPassword" element={<ForgotPassword/>}/>
         <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>

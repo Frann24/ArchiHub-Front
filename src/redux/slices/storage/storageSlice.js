@@ -12,7 +12,7 @@ export const storageSlice = createSlice({
       state.allProjects = payload;
     },
     showStorage: (state, { payload }) => {
-      state.project = payload;
+      state.storage = payload;
     },
     responseStorage: (state, { payload }) => {
       state.response = payload;

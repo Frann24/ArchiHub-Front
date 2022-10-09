@@ -1,65 +1,61 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch} from "react-redux";
+import { updateUser } from "../../redux/slices/user/userActions";
 
 
 
-
-export default function FormEditProfile(id){
+export default function FormEditProfile({id}){
+    const dispatch = useDispatch()
     const [state, setState] = useState({})
 
-
-
-    function handleChangeStatus (id, e) {
-        // dispatch(updateUser(id, {status: e.target.value}))
+    
+    
+    function handleEditPerfil () {
+        dispatch(updateUser(id, state))
+    };
+    function handleChange(e) {
+        console.log(state)
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+        })
     }
 
-    function handleDescription (e){
-        setState({
-            ...state,
-            description: e.target.value
-        })
-    };
-    function handleNickName (e){
-        setState({
-            ...state,
-            nickName: e.target.value
-        })
-    };
-    function handleLocation (e){
-        setState({
-            ...state,
-            location: e.target.value
-        })
-    };
-    function handleJob (e){
-        setState({
-            ...state,
-            job: e.target.value
-        })
-    };
-
-
     return (
-    <form>
-        <input placeholder='image'></input>
+    <div>
         <input 
-            placeholder='description'
-            onChange={(e) => handleDescription(e)}
+            placeholder='Image'
+            name="avatar"
+            onChange={(e) => handleChange(e)}
             ></input>
         <input 
-            placeholder='nickName'
-            onChange={(e) => handleNickName(e)}
-        ></input>
-        <input 
-            placeholder='location'
-            onChange={(e) => handleLocation(e)}
+            placeholder='Nick Name'
+            name='nickname'
+            onChange={(e) => handleChange(e)}
             ></input>
         <input 
-            placeholder='job'
-            onChange={(e) => handleJob(e)}
+            placeholder='Description'
+            name='description'
+            onChange={(e) => handleChange(e)}
             ></input>
-        <input placeholder='sitio web'></input>
-        <button >Save</button>
-    </form>
+        <input 
+            placeholder='Location'
+            name='location'
+            onChange={(e) => handleChange(e)}
+            ></input>
+        <input 
+            placeholder='Job'
+            name='job'
+            onChange={(e) => handleChange(e)}
+            ></input>
+        <input 
+            placeholder='Page'
+            name='page'
+            onChange={(e) => handleChange(e)}
+            ></input>
+        <button
+            onClick={() => handleEditPerfil()}
+        >Save</button>
+    </div>
     )
 }

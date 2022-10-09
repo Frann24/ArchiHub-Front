@@ -5,45 +5,53 @@ import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../../redux/slices/user/userActions";
 import { useEffect } from "react";
+import { getStorageById } from "../../../../redux/slices/storage/storageActions";
+import VisualizePDF from "../VisualizePDF";
+import { createProject } from "../../../../redux/slices/project/projectActions";
 
 const CreateProject = () => {
-
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
   const fileData = useSelector((state) => state.storage.response);
+  const userToken = JSON.parse(window.localStorage.getItem("token"));
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  
-  
   const [form, setForm] = useState({
     title: "",
     description: "",
     visibility: "",
-    created_by: "",
+    created_by: userToken ? userToken.userId : "",
     users: "",
     pdf_file: "",
     project_file: "",
   });
-  console.log(fileData.newStorage ? fileData.newStorage.filename.split(".").pop() : "noexiste" );
 
   useEffect(() => {
-    if (fileData.newStorage && fileData.newStorage.filename.split(".").pop() === "pdf") {
-      fileData.newStorage && setForm({...form, pdf_file: fileData.newStorage._id}) 
+    if (
+      fileData.newStorage &&
+      fileData.newStorage.filename.split(".").pop() === "pdf"
+    ) {
+      fileData.newStorage &&
+        setForm({ ...form, pdf_file: fileData.newStorage._id });
     } else {
-      fileData.newStorage && setForm({...form, project_file: fileData.newStorage._id}) 
+      fileData.newStorage &&
+        setForm({ ...form, project_file: fileData.newStorage._id });
     }
-  }, [fileData])
+    if (fileData.newStorage) dispatch(getStorageById(fileData.newStorage._id));
+  }, [fileData, dispatch]);
+
+  const pdf_get = useSelector((state) => state.storage.storage);
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setForm({
       ...form,
-      [name] : value
-    })
-  }
+      [name]: value,
+    });
+  };
   const options2 = [
     {
       label: "Public",
@@ -72,14 +80,32 @@ const CreateProject = () => {
       users: value,
     });
   };
+  const handleSubmit = (e) => {
+    e.prevetDefault()
+    dispatch(createProject(form));
+    setForm({
+      title: "",
+      description: "",
+      visibility: "",
+      created_by: "",
+      users: "",
+      pdf_file: "",
+      project_file: "",
+    });
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <label>Title</label>
-        <input type="text" placeholder="Title..." onChange={handleChange}/>
+        <input type="text" placeholder="Title..." name="title"onChange={(e) => handleChange(e)} />
         <label>Description</label>
-        <textarea name="description" cols="30" rows="10" placeholder="Type the project description..." onChange={handleChange}>
-        </textarea>
+        <textarea
+          name="description"
+          cols="30"
+          rows="10"
+          placeholder="Type the project description..."
+          onChange={(e) => handleChange(e)}
+        ></textarea>
         <Select
           className=""
           // onBlur={handleFormBlur}
@@ -88,9 +114,9 @@ const CreateProject = () => {
           value={form.visibility}
         />
         <label>Select the PDF file</label>
-        <CreateFile ext={".pdf"}/>
+        <CreateFile ext={".pdf"} />
         <label>Select the DWG file</label>
-        <CreateFile ext={".dwg"}/>
+        <CreateFile ext={".dwg"} />
         <label>Collaborators</label>
         <Select
           className=""
@@ -100,7 +126,13 @@ const CreateProject = () => {
           options={options}
           value={form.users}
         />
+        <button type="submit">SEND</button>
       </form>
+      <div>
+        <div>
+          <VisualizePDF url={pdf_get && pdf_get.url} />
+        </div>
+      </div>
     </div>
   );
 };

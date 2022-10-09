@@ -18,7 +18,6 @@ const CreateFile = ({ext}) => {
     data.append("file", file);
     dispatch(createStorage(data));
   };
-  console.log(fileData);
   const handleDelete = (e) => {
     e.preventDefault();
     dispatch(deleteStorage(fileData._id));

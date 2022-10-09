@@ -15,37 +15,38 @@ const CheckoutForm = () => {
   const [email, setMail ] = useState('')
   const token = JSON.parse(localStorage.getItem("token"))
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault();
+  // const handleSubmit = async (e) =>{
+  //   e.preventDefault();
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement)
-    });
-    setLoading(true)
+  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
+  //     type: "card",
+  //     card: elements.getElement(CardElement)
+  //   });
+  //   setLoading(true)
 
-    if(!error) {
-      const { id } = paymentMethod;
-     try {
-       const {data} = await axios.post(PAYMENT, {
-        id,
-        amount: 1000
-       })
-       console.log(data)   
-       elements.getElement(CardElement).clear()      
-     } catch (error) {
-        console.log(error)
-     }
-     setLoading(false)
-    }
-  }
+  //   if(!error) {
+  //     const { id } = paymentMethod;
+  //    try {
+  //      const {data} = await axios.post(PAYMENT, {
+  //       id,
+  //       amount: 1000
+  //      })
+  //      console.log(data)   
+  //      elements.getElement(CardElement).clear()      
+  //    } catch (error) {
+  //       console.log(error)
+  //    }
+  //    setLoading(false)
+  //   }
+  // }
 
   const handleSubmitSubscription = async (e) =>{
     e.preventDefault();
+    console.log(token.userName)
     if(!stripe || !elements){
       return;
     }
-    console.log(token)
+    const email = token.userMail
     const result = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
@@ -82,13 +83,16 @@ const CheckoutForm = () => {
   return (
         <form onSubmit={handleSubmitSubscription} className="card">
           <h5>Membership For Month u$s10</h5>
-          <input          
+          {/* <input          
           type="text"
           name="email"
           placeholder="email"
           value= {email}
           onChange={(e) => setMail(e.target.value)}          
-        />
+        /> */}
+        <div>
+          {token.userMail}
+        </div>
           <div className='form-group'>
             <CardElement className='form-control'/>
           </div>
