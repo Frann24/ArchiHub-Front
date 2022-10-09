@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom";
 import { createReview } from "../../../../../redux/slices/review/reviewActions";
 import { changeShowSingIn} from '../../../../../redux/slices/header/headerActions';
 import { getPost } from "../../../../../redux/slices/post/postActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faStar as solid} from "@fortawesome/free-solid-svg-icons";
+import  {faStar as regular} from '@fortawesome/free-regular-svg-icons';
+
 export default function CreateReview() {
 const token = JSON.parse(localStorage.getItem("token"))
   const dispatch = useDispatch();
@@ -12,8 +16,8 @@ const token = JSON.parse(localStorage.getItem("token"))
     post_id: id,
     value: 0,
     comment: "",
-
   });
+  const [hover, setHover] = useState(null)
   const {modalSignIn} = useSelector(state => state.header)
 /* useEffect(() => {
   dispatch(getPost(id));
@@ -34,30 +38,63 @@ const token = JSON.parse(localStorage.getItem("token"))
   }
   
   return (
-    <div>
+    <div className="bg-white mx-1 p-2 rounded-md shadow-lg lg:p-4">
       <div>
-      {token?<div><img src={token.userAvatar} alt="" />
-        <p>{token.userName}</p>
-      </div>:<div><img src={"https://cdn-icons-png.flaticon.com/512/1946/1946429.png"} alt="" /></div>}
+      {token
+        ? <div className="flex items-center gap-2">
+            <img className="w-8 rounded-full lg:w-9" src={token.userAvatar} alt="" />
+            <p className="text-base text-gray-900 font-medium">{token.userName}Franco Ferreyra</p>
+          </div>
+        : <div className="">
+            <img className="w-10 rounded-full" src={"https://cdn-icons-png.flaticon.com/512/1946/1946429.png"} alt="" />
+          </div>
+      }
       </div>
+      <div className="flex flex-col gap-2">
       <div>
-      <input
-          type="number"
-          onChange={(e) => handleChange(e)}
-          name="value"
-          value={formReviews.value}
-        />
+        {[...Array(5)].map((star, i) => {
+          const ratingValue = i + 1;
+          return (
+            <label>
+              <input
+              className="hidden"
+                type="radio"
+                value={formReviews.value}
+                onClick={() => handleChange({target:{value:ratingValue, name:"value"}})}
+              />
+              <FontAwesomeIcon
+                className="star"
+                icon={ratingValue<=(formReviews.value|| hover)?solid:regular}
+                color="#ffc107"
+                onMouseOver={() => setHover(ratingValue)} 
+                onMouseOut={() => setHover(null)} 
+              />
+            </label>
+          );
+        })}
       </div>
-      <div>
-        <input
-          type="text"
-          onChange={(e) => handleChange(e)}
-          name="comment"
-          value={formReviews.comment}
-        />
-      </div>
-      <div>
-      {token?<button onClick={handleClick}>comment</button>:<button onClick={toggleSignIn} >comment</button>}
+        <div className="w-full flex flex-col gap-3 pb-4 md:flex-row">
+          <input
+            className={` bg-white border-b-2 border-gray-600 w-full py-1.5 px-2 focus:outline-none
+            md:${formReviews.comment && "w-3/4"}
+            `}
+            type="text"
+            onChange={(e) => handleChange(e)}
+            name="comment"
+            value={formReviews.comment}
+            placeholder="Add your review..."
+          />
+          {formReviews.comment &&
+            <button 
+            className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
+            md:w-1/4
+            `}
+            onClick={token ? handleClick : toggleSignIn}>
+              <p>Send</p>
+              <FontAwesomeIcon icon={faPaperPlane}/>
+            </button>
+          }
+        </div>
        {/*  <button onClick={()=>user.length===0?handleClick():hola}>Comment</button> */}
       </div>
     </div>

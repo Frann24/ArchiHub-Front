@@ -43,15 +43,15 @@ function Header() {
         md:mx-8
         lg:mx-16 lg:h-16
         xl:mx-32 xl:h-20
-        2xl:h-24
+        2xl:mx-64 2xl:h-24
         ">
           <div className="text-2xl lg:text-3xl">
             <Logo />
           </div>
-          <div className="lg:hidden">           
+          <div className=" xl:hidden">           
             {token ? <Logged/> : <BtnMenu />}
           </div>
-          <div className="hidden lg:flex gap-8 items-center pt-1">
+          <div className="hidden xl:flex gap-8 items-center pt-1">
             <Navbar path={pathname}/>
             {condition.current ? <Logged /> : <Guest />}
           </div>
