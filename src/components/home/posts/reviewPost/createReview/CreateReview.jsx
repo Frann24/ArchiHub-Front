@@ -43,7 +43,7 @@ const token = JSON.parse(localStorage.getItem("token"))
       {token
         ? <div className="flex items-center gap-2">
             <img className="w-8 rounded-full lg:w-9" src={token.userAvatar} alt="" />
-            <p className="text-base text-gray-900 font-medium">{token.userName}Franco Ferreyra</p>
+            <p className="text-base text-gray-900 font-medium">{token.userName}</p>
           </div>
         : <div className="">
             <img className="w-10 rounded-full" src={"https://cdn-icons-png.flaticon.com/512/1946/1946429.png"} alt="" />
