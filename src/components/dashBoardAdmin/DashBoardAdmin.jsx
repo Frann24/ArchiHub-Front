@@ -40,7 +40,7 @@ function DashBoardAdmin() {
 
   return (
     <div className=" mx-1">
-       {/* ----------------pantallas LARGE------------------- */}
+      {/* ----------------pantallas LARGE------------------- */}
 
       <div className="lg:block hidden">
         <div className=" grid grid-cols-3 sm:grid-cols-6 mt-6 gap-6  font-bold">
@@ -62,8 +62,6 @@ function DashBoardAdmin() {
             return (
               <div>
                 <div className="grid grid-cols-3 sm:grid-cols-6  mt-6 gap-4">
-                
-
                   {el.name ? (
                     <h2 className="font-bold">{el.name} </h2>
                   ) : (
@@ -88,7 +86,7 @@ function DashBoardAdmin() {
               </div>
             );
           })}
-      </div> 
+      </div>
 
       {/* ----------------pantallas MEDIUM------------------- */}
 

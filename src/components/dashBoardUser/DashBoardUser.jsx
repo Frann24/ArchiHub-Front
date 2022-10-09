@@ -16,6 +16,9 @@ export default function DashBoardUser() {
   const [profile, setProfile] = useState(false)
   console.log("user: ", user)
 
+  const user1 = useSelector(state => state.user.user)
+
+
   useEffect(() => {
     dispatch(getUser(userLogeado.userId))
     dispatch(getAllPosts())

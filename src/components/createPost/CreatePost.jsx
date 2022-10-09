@@ -7,6 +7,7 @@ import { createPost } from "../../redux/slices/post/postActions";
 import infoTypePost from "../../api/projectTypeData";
 import UploadPhotos from "./UploadPhotos";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const pushCloud = [];
@@ -27,7 +28,7 @@ const CreatePost = () => {
     additional_data: "",
   });
   const [errors, setErrors] = useState({});
-
+  const navigate = useNavigate();
   const [response, setResponse] = useState(null);
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
@@ -206,6 +207,7 @@ const CreatePost = () => {
           authors: [],
           additional_data: "",
         });
+        navigate("/home");
         setTimeout(() => {
           setResponse(null);
         }, 2000);
