@@ -69,7 +69,7 @@ export default function NewsReel() {
         className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
         /* onClick={(e) => paginado(e)} */
       >
-      <h4 className="ml-6 mb-6 font-semibold ">News</h4>
+      {/* <div className="ml-6 mb-6 font-semibold bg-orange-400">News</div> */}
     <div className="container mx-auto mb-20 gap-6">
       <div className="container mx-auto margin-top: 16px gap-6">
         {/* Carousel for desktop and large size devices */}

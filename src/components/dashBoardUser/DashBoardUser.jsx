@@ -52,7 +52,7 @@ export default function DashBoardUser() {
             <div>{user.job}</div>
             <div>{user.page}</div>
 
-            <div className="mt-20">
+            {/* <div className="mt-20">
               <button onClick={(e) => handleEditProfile(e)} className="bg-slate-300 cursor-pointer w-32 h-8">
                 Edit Profile
               </button>
@@ -62,7 +62,7 @@ export default function DashBoardUser() {
               <div>
                 <FormEditProfile id={userLogeado.userId}/>
               </div>
-            }
+            } */}
           </div>
         </div>
 
