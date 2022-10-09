@@ -8,8 +8,8 @@ export default function PostsReel() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.post.orderPosts);
-/*   const post = useSelector((state) => state.post.queryPost); */
-/*   console.log(post);
+  /*   const post = useSelector((state) => state.post.queryPost); */
+  /*   console.log(post);
   const condition = post.length ? true : false;
 console.log(condition) */
   useEffect(() => {
@@ -18,7 +18,7 @@ console.log(condition) */
 
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
-  const currentCards =posts.slice(0, indexLastCard) /* condition
+  const currentCards = posts.slice(0, indexLastCard); /* condition
     ? post.slice(0, indexLastCard)
     : posts.slice(0, indexLastCard);
  */
@@ -26,6 +26,7 @@ console.log(condition) */
     setPage(page + 1);
   }
   // const shortDescription = posts.description.slice(0, 50)
+
 
   return (
     <div>
@@ -38,17 +39,28 @@ console.log(condition) */
               return (
                 <div key={i}>
                   <Link to={`/postDetail/${post._id}`}>
-                    <img
-                      width="600px"
-                      src={post.image[0]}
-                      alt="foto"
-                      className="w-full aspect-[3/2]"
-                    />
+                    {post.image[0] ? (
+                      <img
+                        src={post.image[0]}
+                        width="600px"
+                        alt="foto"
+                        className="w-full aspect-[3/2]"
+                      />
+                    ) : (
+                      <img
+                        src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png"
+                        width="600px"
+                        alt="foto"
+                        className="w-full aspect-[3/2]"
+                      />
+                    )}
                     <h4 className="font-bold text-transform: uppercase mt-6">
                       {post.title}
                     </h4>
-                    <p className=" font-light truncate">{post.description}...</p>
-                  </Link >
+                    <p className=" font-light truncate">
+                      {post.description}...
+                    </p>
+                  </Link>
                 </div>
               );
             })
@@ -64,5 +76,5 @@ console.log(condition) */
         See more...
       </div>
     </div>
-);
+  );
 }
