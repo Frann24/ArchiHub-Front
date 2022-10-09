@@ -23,7 +23,7 @@ function PostDetail() {
   return (
     // <div className="place-self-center mt-40">
     // <div className="justify-content: center ">
-    <div className="container w-1/2 mx-auto center mt-6">
+    <div className=" w-1/2 mx-auto     mt-6">
       <div>
         {postDetail.length === 0 ? (
           <Loader />
@@ -63,7 +63,7 @@ function PostDetail() {
 
               {/* <img src={postDetail.image[2]} width="210" />
                 <img src={postDetail.image[4]} width="210" /> */}
-              <div className="container w-1/2">
+              <div className="justify-center w-1/2">
                 {/* <div className="flex   w-1/4 mb-12">
                   {postDetail.image.map((img) => {
                     return <img src={img} />;
@@ -71,7 +71,7 @@ function PostDetail() {
                 </div> */}
               </div>
             </div>
-            <div>
+            <div className=" ">
               <div className="font-semibold text-transform: uppercase ">
                 Title: {postDetail.title}
               </div>

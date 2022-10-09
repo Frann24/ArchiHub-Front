@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const CarrouselImg = styled.img`
-  max-width: 500px;
-  width: 100%;
+width: 500px
+
   height: auto;
   opacity: 0;
   transition: 1s;
@@ -49,8 +49,8 @@ const CarrouselDetail = () => {
   };
 
   return (
-    <div className="container  flex mx-30  mt-6 mb-20">
-      <div className="">
+    <div className=" ">
+      <div className="flex flex-row  justify-center mt-6 mb-20">
         <button className="px-6  top-96 left-72 " onClick={previous}>
           {"<"}
         </button>
@@ -60,7 +60,7 @@ const CarrouselDetail = () => {
           className={loaded ? "loaded" : ""}
           onLoad={() => setLoaded(true)}
         />
-        <button onClick={next} className="px-6  top-96 right-72">
+        <button onClick={next} className="px-6  ">
           {">"}
         </button>
       </div>
