@@ -39,7 +39,7 @@ function Logged() {
     <>
       <div onClick={() => setCreateMenu(!createMenu)} className={`hidden p-1 text-sm cursor-pointer text-gray-600 border rounded hover:bg-gray-200
       ${createMenu && "bg-gray-200"}
-      lg:flex
+      xl:flex
       `}>
         <FontAwesomeIcon className="px-1 cursor-pointer" icon={faPlus}/>
         <FontAwesomeIcon className="px-1 cursor-pointer" icon={createMenu ? faAngleUp : faAngleDown}/>
@@ -57,10 +57,10 @@ function Logged() {
       onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
       className="cursor-pointer flex items-center gap-4" 
     >
-      <div className="flex order-2 items-center justify-center w-10 h-10 mx-2 overflow-hidden rounded-full
-      sm:w-12 sm:h-12
-      lg:w-14 lg:h-14
-      xl:w-16 xl:h-16
+      <div className="flex order-2 items-center justify-center w-8  overflow-hidden rounded-full
+      sm:w-9
+      lg:w-11
+      xl:w-12
       ">
         <img src={userAvatar} alt="" />
       </div>
@@ -71,7 +71,7 @@ function Logged() {
     </div> 
       {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>}
       <div
-        className={`top-0 right-0 fixed bg-gray-100 w-11/12 h-full text-center ${
+        className={`top-0 right-0 fixed bg-gray-100 w-11/12 h-full text-center  ${
           showSidebar ? "translate-x-0" : "translate-x-full"
         } ease-in-out duration-500
       sm:w-1/2
@@ -90,7 +90,7 @@ function Logged() {
         <div className={`flex flex-col justify-between h-full`}>
           <div>
             <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full m-auto mt-4
-            sm:w-20 sm:h-20
+            sm:w-20 sm:h-20 
             ">
               <img src={userAvatar} alt="" />
             </div>
@@ -111,7 +111,7 @@ function Logged() {
                 </div>}
               </div>
               <div>
-                <Link to={`/user/${name}`}>My profile</Link>
+                <Link to={`/user`}>My profile</Link>
               </div>
               <div>
                 <Link to="">My posts</Link>
