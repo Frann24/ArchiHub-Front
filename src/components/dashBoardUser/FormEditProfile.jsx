@@ -6,17 +6,15 @@ export default function FormEditProfile({ id }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
 
-//   const [form, setForm] = useState({
-//     name: "",
-//     nickname: "",
-//     description: "",
-//     location: "",
-//     job: "",
-//     page: "",
-//   });
-
   function handleEditPerfil() {
+    console.log(state);
+    // const newState = state;
+    // newState.name = "Paula";
+    // newState.lastname = "Celman";
+
     dispatch(updateUser(id, state));
+    console.log("hecho");
+    window.location.reload();
   }
 
   function handleChange(e) {
@@ -26,7 +24,6 @@ export default function FormEditProfile({ id }) {
       [e.target.name]: e.target.value,
     });
   }
-  function handleSubmit(e) {}
 
   return (
     <div>
@@ -36,7 +33,7 @@ export default function FormEditProfile({ id }) {
         onChange={(e) => handleChange(e)}
       ></input>
       <input
-        placeholder="Nick Name"
+        placeholder="Nickname"
         name="nickname"
         onChange={(e) => handleChange(e)}
       ></input>
@@ -51,12 +48,12 @@ export default function FormEditProfile({ id }) {
         onChange={(e) => handleChange(e)}
       ></input>
       <input
-        placeholder="Job"
+        placeholder="Job Title"
         name="job"
         onChange={(e) => handleChange(e)}
       ></input>
       <input
-        placeholder="Page"
+        placeholder="Webpage"
         name="page"
         onChange={(e) => handleChange(e)}
       ></input>
