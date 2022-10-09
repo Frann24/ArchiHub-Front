@@ -14,6 +14,10 @@ export default function DashBoardUser() {
   const user = useSelector(state => state.user.user)
   const [state, setState] = useState('projects')
   const [profile, setProfile] = useState(false)
+  console.log("user: ", user)
+
+  const user1 = useSelector(state => state.user.user)
+
 
   useEffect(() => {
     dispatch(getUser(userLogeado.userId))
@@ -27,7 +31,7 @@ export default function DashBoardUser() {
     profile ? setProfile(false) : setProfile(true)
   }
   
- 
+ console.log("userAvatar:", user.avatar)
 
   return (
     <div className="w-1/2 mx-auto mt-6">
@@ -103,7 +107,7 @@ export default function DashBoardUser() {
         {
           state === 'posts' && 
           <div>
-            <Post id={userLogeado.userId} key={userLogeado.userId}/>
+            <Post id={userLogeado.userId} key={userLogeado.userId} user={user}/>
           </div>
         }
         {

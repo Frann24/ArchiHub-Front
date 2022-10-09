@@ -62,8 +62,6 @@ function DashBoardAdmin() {
             return (
               <div>
                 <div className="grid grid-cols-3 sm:grid-cols-6  mt-6 gap-4">
-                  {/* <h1>{el._id}</h1> */}
-
                   {el.name ? (
                     <h2 className="font-bold">{el.name} </h2>
                   ) : (
@@ -142,7 +140,7 @@ function DashBoardAdmin() {
 
       {/* ---------esta es la parte SMALL---------- */}
 
-      <div className="block sm:hidden">
+      <div className="block md:hidden ">
         <div className=" grid grid-cols-2  font-bold">
           <h2>Members</h2>
           <h2>Mail</h2>
