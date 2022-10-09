@@ -69,7 +69,7 @@ function Menu({ path }) {
             </div>
             {
               userLogin &&
-              userLogin.userType === "admin" &&
+              userLogin.userType === "superadmin" &&
             <div className="menu-div-link" onClick={(e) => handleClick(e,"#news_id")}>
                <Link
                  to="/admin"
