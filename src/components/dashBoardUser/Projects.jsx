@@ -45,6 +45,9 @@ import { getAllProjects } from "../../redux/slices/project/projectActions";
                 </div> :
                 <div></div>
             }
+            <Link to={'createproject'}>
+             <button>New</button>
+            </Link>
             {
                 search === 'not found' ?
                 <div>

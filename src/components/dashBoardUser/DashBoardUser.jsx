@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getUser, getAllUsers} from '../../redux/slices/user/userActions'
+import {getUser} from '../../redux/slices/user/userActions'
 import FormEditProfile from "./FormEditProfile";
 import Post from "./Post";
 import Projects from "./Projects";
-
+import { getAllPosts } from "../../redux/slices/post/postActions";
+import Favourites from "./Favourites";
+import Reviews from "./Reviews";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch()
@@ -15,8 +17,9 @@ export default function DashBoardUser() {
 
   useEffect(() => {
     dispatch(getUser(userLogeado.userId))
+    dispatch(getAllPosts())
   }, [dispatch])
-  
+ 
   function handleChange(e) {
     setState(e.target.value)
   }
@@ -24,6 +27,8 @@ export default function DashBoardUser() {
     profile ? setProfile(false) : setProfile(true)
   }
   
+ 
+
   return (
     <div className="w-1/2 mx-auto mt-6">
       <div className="flex flex-wrap mb-12 w-full">
@@ -90,17 +95,27 @@ export default function DashBoardUser() {
       </div>
       <div>
         {
-          state === 'posts' && 
+          state === 'projects' && 
           <div>
-            <h2>Your posts...</h2>
-            <Post id={userLogeado.userId}/>
+            <Projects id={userLogeado.userId}/>
           </div>
         }
         {
-          state === 'projects' && 
+          state === 'posts' && 
           <div>
-            <h2>Your projects...</h2>
-            <Projects id={userLogeado.userId}/>
+            <Post id={userLogeado.userId} key={userLogeado.userId}/>
+          </div>
+        }
+        {
+          state === 'reviews' && 
+          <div>
+            <Reviews />
+          </div>
+        }
+        {
+          state === 'favourites' && 
+          <div>
+            <Favourites />
           </div>
         }
       </div>

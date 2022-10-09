@@ -1,111 +1,112 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllPosts } from '../../redux/slices/post/postActions' 
 
 export default function Post(id) {
-  const dispatch = useDispatch()
-  const posts = useSelector(state => state.post.allPosts)
-  const postsUser = posts.filter(posts => posts.created_by === id)
-  const [search, setSearch] = useState('')
+  let allPosts = useSelector(state => state.post.allPosts)
+  let postsUser = allPosts.filter(posts => posts.created_by === id) //'63398bc729c58ed2a2d0ce83'
+  
+  postsUser = postsUser.map((post) => {
+    return (
+      {
+        title: post.title.toUpperCase(),
+        description: post.description,
+        createdAt: post.createdAt, 
+        image: post.image[0],
+      }
+      )
+    })
+  const [state, setState] = useState(postsUser)
 
+  const [cambio, setCambio] = useState(false)
 
-  useEffect(() => {
-    dispatch(getAllPosts())                                                                                                               //este useEffect cuando este echa la ruta no seria necesario porque el state ya estaria cargado cuando se monta home
-  }, [dispatch])
-
+  useEffect(() => { 
+    console.log(cambio)
+  }, [cambio])
+    
   function handleSearch(e) {
     e.preventDefault();
     const postsSearch = postsUser.filter(posts => posts.title.toLowerCase().includes(e.target.value.toLowerCase()))
-    postsSearch.length ? setSearch(postsSearch) : setSearch('not found')
+    postsSearch.length ? setState(postsSearch) : setState('not found')
   }
+ 
+
   function handleOrderDate(e) {
-    
+    if (cambio == true) {
+      const order = state.sort((a, b) => {
+        if (a.createdAt > b.createdAt) {
+            return 1;
+        }
+        if (a.createdAt < b.createdAt) {
+            return -1;
+        } 
+          return 0;
+      })
+      setCambio(false)
+      setState(order)
+      console.log(1, state)
+      return
+    }
+    if (cambio == false) {
+      const order = state.sort((a, b) => { 
+        if (a.createdAt > b.createdAt) {
+            return -1;
+        }
+        if (a.createdAt < b.createdAt) {
+            return 1;
+        } 
+          return 0;
+      })
+      setCambio(true)
+      setState(order)
+      console.log(2, state)
+      return
+    }
   }
 
   return (
-      <div>
-      {
-        postsUser.length ?
-        <div>
-            <label>Search </label>
-            <input
-            type='text'
-            onChange={(e) => handleSearch(e)}
-            />
-        <button>Type</button>
-        <button onClick={(e) => handleOrderDate(e)}>Date</button>
-        <button>New</button>
-        </div>
-         :
-        <div></div>
-      }
-      {
-        search === 'not found' ? 
+    <div>
+        {
+          postsUser.length ? 
+          <div>
+              <label>Search post... </label>
+              <input
+              type='text'
+              onChange={(e) => handleSearch(e)}
+              />
+          <button onClick={(e) => handleOrderDate(e)}>Date</button>
+          </div> :
+          <div></div>
+        }
+          <Link to={'createpost'}>
+            <button>New</button>
+          </Link>
+        {
+        state === 'not found' ? 
         <div>
           <p>there are no matches with your search</p>
-        </div> 
-        :
-        search.length ? search.map((post) => {
-          return (
-            <div>
-              <img src={post.image[0]}/>
-              <p>{post.createdAt.slice(0, 10)}</p>
-              <h3>{post.title}</h3>
-              <p>{post.description.slice(0, 70)}...</p>
-            </div>
-            )
-        }) :
-       postsUser.length ? postsUser.map((post) => {
-          return (
+        </div> :
+        state.length ?
           <div>
-            <img src={post.image[0]}/>
-            <p>{post.createdAt.slice(0, 10)}</p>
-            <h3>{post.title}</h3>
-            <p>{post.description.slice(0, 70)}...</p>
+            {
+             postsUser.length && state.length && state.map((post) => {
+              return (
+                <div>
+                  <img src={post.image}/>
+                  <p>{post.createdAt.slice(0, 10)}</p>
+                  <h3>{post.title}</h3>
+                  <p>{post.description.slice(0, 70)}...</p>
+                </div>
+                )
+            })
+            }
           </div>
-          )
-        }) :
-        <div>
-          <p>you have no posts created</p>
-        </div>
-      }
-      
-      
-      {/* <div className="container mx-auto margin-top: 16px">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
-          {newsPaginado.map((e, index) => (
-            <Link key={index} to={`/newsDetail/${e.id}`}>
-              <div>
-                {e.id === 2 ? (
-                  <img
-                    src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664405309/news/Screen_Shot_2022-09-28_at_19.44.45_zocf1r.png"
-                    className="w-full aspect-[3/2]"
-                    alt=""
-                  />
-                ) : (
-                  <img
-                    src={e.image}
-                    width="600px"
-                    alt="news"
-                    className="w-full aspect-[3/2]"
-                  />
-                )}
-                <div className="text-gray-400 mt-6">{e.date}</div>
-                <p className="font-semibold truncate text-transform: uppercase ">
-                  {e.title}
-                </p>
-                <div className="font-light truncate">{e.description}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div
-        className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
-        onClick={(e) => paginado(e)}
-      >
-        See more...
-      </div> */}
+         :
+          <div>
+            <p>you have no posts created</p>
+          </div>
+        }
     </div>
   );
 }
