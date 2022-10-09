@@ -135,7 +135,7 @@ const CreatePost = () => {
       }
     );
     const file = await res.json();
-    console.log(file.secure_url);
+    console.log(file);
     if (file.secure_url !== undefined) {
       setForm({ ...form, image: [...form.image, file.secure_url] });
     }

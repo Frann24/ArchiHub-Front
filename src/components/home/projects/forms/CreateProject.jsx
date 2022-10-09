@@ -62,7 +62,7 @@ const CreateProject = () => {
       value: "private",
     },
   ];
-  const handleSelectVisibility = ({ value }) => {
+  const handleSelectVisibility = (value) => {
     setForm({
       ...form,
       visibility: value,
