@@ -5,14 +5,15 @@ import { updateUser } from "../../redux/slices/user/userActions";
 export default function FormEditProfile({ id }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
-  const [form, setForm] = useState({
-    name: "",
-    nickname: "",
-    description: "",
-    location: "",
-    job: "",
-    page: "",
-  });
+
+//   const [form, setForm] = useState({
+//     name: "",
+//     nickname: "",
+//     description: "",
+//     location: "",
+//     job: "",
+//     page: "",
+//   });
 
   function handleEditPerfil() {
     dispatch(updateUser(id, state));
