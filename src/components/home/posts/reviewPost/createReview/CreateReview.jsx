@@ -40,7 +40,7 @@ export default function CreateReview() {
   return (
     <div className="bg-white mx-1 p-2 rounded-md shadow-lg lg:p-4">
       <div>
-      {user
+      {user._id
         ? <div className="flex items-center gap-2">
             <img className="w-8 rounded-full lg:w-9" src={user.avatar} alt="" />
             <p className="text-base text-gray-900 font-medium">{user.nickname}</p>
@@ -88,7 +88,7 @@ export default function CreateReview() {
             className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
             md:w-1/4
             `}
-            onClick={user ? handleClick : toggleSignIn}>
+            onClick={user._id ? handleClick : toggleSignIn}>
               <p>Send</p>
               <FontAwesomeIcon icon={faPaperPlane}/>
             </button>

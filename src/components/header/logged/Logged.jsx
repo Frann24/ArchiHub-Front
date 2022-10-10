@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { logOutUser } from "../../../redux/slices/auth/loginActions";
+import { clearUser, logOutUser } from "../../../redux/slices/auth/loginActions";
 import { getUser } from "../../../redux/slices/user/userActions";
 import Loader from "../../loader/Loader";
 
@@ -12,7 +12,7 @@ function Logged() {
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
   const token = JSON.parse(localStorage.getItem('token'))
-  console.log(token)
+
   const {user} = useSelector(state => state.user)
   const projects = [
     { name: "Name project 1" },
@@ -27,6 +27,7 @@ function Logged() {
     dispatch(logOutUser())
     localStorage.removeItem("googleUser")
     navigate("/")
+    dispatch(clearUser({}))
   }
   
   useEffect(()=>{
