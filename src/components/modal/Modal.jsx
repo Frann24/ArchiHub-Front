@@ -11,8 +11,8 @@ function Modal({ children, toggle, active }) {
             onClick={toggle}
             className="fixed w-full h-full top-0 left-0 bg-black opacity-40"
           ></div>
-          <div className={`fixed p-4 ${condition ? " max-w-3xl" :"w-full max-w-md h-full md:h-auto"} `}>
-            <div className="relative bg-gray-50 shadow">
+          <div className={`fixed p-4  ${condition ? " max-w-3xl " :"w-full max-w-md h-full md:h-auto"} `}>
+            <div className="relative bg-gray-50 shadow ">
               <button
                 onClick={toggle}
                 type="button"
