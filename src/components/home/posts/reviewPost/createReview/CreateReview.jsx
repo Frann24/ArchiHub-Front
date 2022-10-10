@@ -10,6 +10,7 @@ import  {faStar as regular} from '@fortawesome/free-regular-svg-icons';
 
 export default function CreateReview() {
 const token = JSON.parse(localStorage.getItem("token"))
+const googleUser = JSON.parse(localStorage.getItem("googleUser"))
   const dispatch = useDispatch();
   const { id } = useParams();
   const [formReviews, setformReviews] = useState({
@@ -43,7 +44,7 @@ const token = JSON.parse(localStorage.getItem("token"))
       {token
         ? <div className="flex items-center gap-2">
             <img className="w-8 rounded-full lg:w-9" src={token.userAvatar} alt="" />
-            <p className="text-base text-gray-900 font-medium">{token.userName}</p>
+            <p className="text-base text-gray-900 font-medium">{token.userName || googleUser.name}</p>
           </div>
         : <div className="">
             <img className="w-10 rounded-full" src={"https://cdn-icons-png.flaticon.com/512/1946/1946429.png"} alt="" />
@@ -51,21 +52,20 @@ const token = JSON.parse(localStorage.getItem("token"))
       }
       </div>
       <div className="flex flex-col gap-2">
-      <div>
+      <div className="pt-2">
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
           return (
-            <label>
+            <label key={i}>
               <input
-              className="hidden"
+                className="hidden"
                 type="radio"
                 value={formReviews.value}
                 onClick={() => handleChange({target:{value:ratingValue, name:"value"}})}
               />
               <FontAwesomeIcon
-                className="star"
+                className="text-gray-800 text-base"
                 icon={ratingValue<=(formReviews.value|| hover)?solid:regular}
-                color="#ffc107"
                 onMouseOver={() => setHover(ratingValue)} 
                 onMouseOut={() => setHover(null)} 
               />

@@ -14,7 +14,7 @@ function Logged() {
   let lastname ,name ,userAvatar, userMail, userType
   if(token){
     lastname = token.lastname
-    name = token.name
+    name = token.userName || googleUser.name
     userAvatar = token.userAvatar
     userMail = token.userMail
     userType = token.userType
@@ -110,6 +110,11 @@ function Logged() {
                   {/* <Link>New commit project</Link> */}
                 </div>}
               </div>
+              {userType === "admin" &&
+                <div>
+                  <Link to={`/admin`}>Dashboard admin</Link>
+                </div>
+              }
               <div>
                 <Link to={`/user`}>My profile</Link>
               </div>
