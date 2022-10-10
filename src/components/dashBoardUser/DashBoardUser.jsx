@@ -36,8 +36,12 @@ export default function DashBoardUser() {
   return (
     <div className="w-1/2 mx-auto mt-6">
       <div className="flex flex-wrap mb-12 w-full">
-        <div className="mt-6 ml-12 grid grid-cols-1 sm:grid-cols-2 sm:gap-12 md:gap-12 ">
-          <img src={`${user.avatar}`} width="200px" className="rounded-full" />
+        <div className="mt-6 ml-12 grid grid-cols-1 sm:grid-cols-2 sm:gap-12 md:gap-20 ">
+          <img
+            src={`${user.avatar}`}
+            width="200px"
+            className="rounded-full mt-16"
+          />
 
           <div>
             <div className="font-bold text-lg capitalize mt-12 ">
@@ -45,9 +49,27 @@ export default function DashBoardUser() {
             </div>
             <div className="text-lg">{user.nickname} </div>
             <div>{user.description}</div>
-            {user.location ? <div>{user.location}</div> : <div>Location</div>}
-            {user.job ? <div>{user.job}</div> : <div>Job Title</div>}
-            {user.page ? <div>{user.page}</div> : <div>Webpage</div>}
+            {user.description ? (
+              <div>{user.description}</div>
+            ) : (
+              <div className="text-slate-200">Description</div>
+            )}
+
+            {user.location ? (
+              <div>{user.location}</div>
+            ) : (
+              <div className="text-slate-200">Location</div>
+            )}
+            {user.job ? (
+              <div>{user.job}</div>
+            ) : (
+              <div className="text-slate-200">Job Title</div>
+            )}
+            {user.page ? (
+              <div>{user.page}</div>
+            ) : (
+              <div className="text-slate-200">Webpage</div>
+            )}
 
             <div className="mt-20">
               <button
