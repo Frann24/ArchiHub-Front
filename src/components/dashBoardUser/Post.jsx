@@ -21,21 +21,22 @@ export default function Post({id}) {
   const [state, setState] = useState(postsUser)
   const [cambio, setCambio] = useState(false)
 
-  useEffect(() => { 
-    console.log(cambio)
-  }, [cambio])
-    
+  useEffect(() => {
+    console.log(cambio);
+  }, [cambio]);
   function handleSearch(e) {
     e.preventDefault();
-    const postsSearch = postsUser.filter(posts => posts.title.toLowerCase().includes(e.target.value.toLowerCase()))
-    postsSearch.length ? setState(postsSearch) : setState('not found')
+    const postsSearch = postsUser.filter((posts) =>
+      posts.title.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    postsSearch.length ? setState(postsSearch) : setState("not found");
   }
- 
+
   function handleOrderDate(e) {
     if (cambio == true) {
       const order = state.sort((a, b) => {
         if (a.createdAt > b.createdAt) {
-            return 1;
+          return 1;
         }
         if (a.createdAt < b.createdAt) {
             return -1;
@@ -47,9 +48,9 @@ export default function Post({id}) {
       return
     }
     if (cambio == false) {
-      const order = state.sort((a, b) => { 
+      const order = state.sort((a, b) => {
         if (a.createdAt > b.createdAt) {
-            return -1;
+          return -1;
         }
         if (a.createdAt < b.createdAt) {
             return 1;
@@ -64,34 +65,30 @@ export default function Post({id}) {
 
   return (
     <div>
-        {
-          postsUser.length ? 
-          <div>
-              <label>Search post... </label>
-              <input
-              type='text'
-              onChange={(e) => handleSearch(e)}
-              />
+      {postsUser.length ? (
+        <div>
+          <label>Search post... </label>
+          <input type="text" onChange={(e) => handleSearch(e)} />
           <button onClick={(e) => handleOrderDate(e)}>Date</button>
-          </div> :
-          <div></div>
-        }
-          <Link to={'createpost'}>
-            <button>New</button>
-          </Link>
-        {
-        state === 'not found' ? 
+        </div>
+      ) : (
+        <div></div>
+      )}
+      <Link to={"createpost"}>
+        <button>New</button>
+      </Link>
+      {state === "not found" ? (
         <div>
           <p>there are no matches with your search</p>
-        </div> :
-        state.length ?
-          <div>
-            {
-             postsUser.length && state.length && state.map((post) => {
+        </div>
+      ) : state.length ? (
+        <div>
+          {postsUser.length &&
+            state.map((post) => {
               return (
                 <Link to={`/postDetail/${post.id}`}>
                 <div>
-                  <img src={post.image}/>
+                  <img src={post.image} className="w-20"/>
                   <p>{post.createdAt.slice(0, 10)}</p>
                   <h3>{post.title}</h3>
                   <p>{post.description.slice(0, 70)}...</p>
@@ -106,6 +103,7 @@ export default function Post({id}) {
             <p>you have no posts created</p>
           </div>
         }
+
     </div>
   );
 }

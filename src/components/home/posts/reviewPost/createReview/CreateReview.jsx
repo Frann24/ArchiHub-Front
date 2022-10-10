@@ -9,7 +9,7 @@ import { faPaperPlane, faStar as solid} from "@fortawesome/free-solid-svg-icons"
 import  {faStar as regular} from '@fortawesome/free-regular-svg-icons';
 
 export default function CreateReview() {
-const token = JSON.parse(localStorage.getItem("token"))
+  const {user} = useSelector(state => state.user)
   const dispatch = useDispatch();
   const { id } = useParams();
   const [formReviews, setformReviews] = useState({
@@ -29,7 +29,7 @@ const token = JSON.parse(localStorage.getItem("token"))
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(createReview({...formReviews,user_id:token.userId}))
+    dispatch(createReview({...formReviews,user_id:user._id}))
   };
 
   const toggleSignIn = (e) => {
@@ -40,10 +40,10 @@ const token = JSON.parse(localStorage.getItem("token"))
   return (
     <div className="bg-white mx-1 p-2 rounded-md shadow-lg lg:p-4">
       <div>
-      {token
+      {user._id
         ? <div className="flex items-center gap-2">
-            <img className="w-8 rounded-full lg:w-9" src={token.userAvatar} alt="" />
-            <p className="text-base text-gray-900 font-medium">{token.userName}</p>
+            <img className="w-8 rounded-full lg:w-9" src={user.avatar} alt="" />
+            <p className="text-base text-gray-900 font-medium">{user.nickname}</p>
           </div>
         : <div className="">
             <img className="w-10 rounded-full" src={"https://cdn-icons-png.flaticon.com/512/1946/1946429.png"} alt="" />
@@ -51,21 +51,20 @@ const token = JSON.parse(localStorage.getItem("token"))
       }
       </div>
       <div className="flex flex-col gap-2">
-      <div>
+      <div className="pt-2">
         {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
           return (
-            <label>
+            <label key={i}>
               <input
-              className="hidden"
+                className="hidden"
                 type="radio"
                 value={formReviews.value}
                 onClick={() => handleChange({target:{value:ratingValue, name:"value"}})}
               />
               <FontAwesomeIcon
-                className="star"
+                className="text-gray-800 text-base"
                 icon={ratingValue<=(formReviews.value|| hover)?solid:regular}
-                color="#ffc107"
                 onMouseOver={() => setHover(ratingValue)} 
                 onMouseOut={() => setHover(null)} 
               />
@@ -89,7 +88,7 @@ const token = JSON.parse(localStorage.getItem("token"))
             className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
             md:w-1/4
             `}
-            onClick={token ? handleClick : toggleSignIn}>
+            onClick={user._id ? handleClick : toggleSignIn}>
               <p>Send</p>
               <FontAwesomeIcon icon={faPaperPlane}/>
             </button>

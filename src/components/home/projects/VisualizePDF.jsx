@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 
-const VisualizePDF = ({url}) => {
+const VisualizePDF = ({ url }) => {
   const [numPage, setNumPage] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -20,21 +20,31 @@ const VisualizePDF = ({url}) => {
     changePage(+1);
   }
   return (
-    <div>
-      <Document
-        file={url}
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        <Page height="600" pageNumber={pageNumber}></Page>
-        <p>
-          Page {pageNumber} of {numPage}
-        </p>
-        {pageNumber > 1 && (
-          <button onClick={changePageBack}>Previous Page</button>
-        )}
-        {pageNumber < numPage && (
-          <button onClick={changePageNext}>Next Page</button>
-        )}
+    <div className="flex flex-col items-center">
+      {/* <iframe src={url} frameborder="0"></iframe> */}
+      <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
+        <Page width={300} pageNumber={pageNumber}></Page>
+        <div>
+          <p className="text-light">
+            Page {pageNumber} of {numPage}
+          </p>
+          <div>
+            <button
+              disabled={pageNumber === 1}
+              onClick={changePageBack}
+              className="absolute left-0 float-left cursor-pointer my-2 border text-black w-full p-2 bg-gray-100"
+            >
+              {`<`}
+            </button>
+            <button
+              disabled={pageNumber === numPage}
+              onClick={changePageNext}
+              className=" absolute right-0 float-right cursor-pointer my-2 border text-black w-full p-2 bg-gray-100"
+            >
+              {`>`}
+            </button>
+          </div>
+        </div>
       </Document>
     </div>
   );

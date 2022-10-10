@@ -40,7 +40,7 @@ export default function ReviewsReel() {
               <div className="w-full flex items-center justify-between">
                 <div className="w-7 flex items-center gap-3">
                   <img className="rounded-full" src={e.user_id.avatar} alt="" />
-                  <p>{e.user_id.name}</p>
+                  <p>{e.user_id.nickname}</p>
                 </div>
                 
                 <div onClick={()=> openReport(index)} className="text-gray-500 pl-4 cursor-pointer"><FontAwesomeIcon icon={faEllipsisVertical}/></div>
@@ -59,20 +59,19 @@ export default function ReviewsReel() {
                     </div>
                   }
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-center">
                 <div>
-                {[...Array(5)].map((star, i) => {
-                const ratingValue = i + 1;
-                return (
-                  <label>
-                    <FontAwesomeIcon
-                      className="star"
-                      icon={ratingValue <= e.value ? solid : regular}
-                      color="#ffc107"
-                    />
-                  </label>
-                );
-              })}
+                  {[...Array(5)].map((star, i) => {
+                    const ratingValue = i + 1;
+                    return (
+                      <label key={i}>
+                        <FontAwesomeIcon
+                          className="text-gray-800 text-xs"
+                          icon={ratingValue <= e.value ? solid : regular}
+                        />
+                      </label>
+                    );
+                  })}
                 </div>
                 <p className="text-sm text-gray-500">{getDate(e)}</p>
               </div>
