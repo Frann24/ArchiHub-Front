@@ -47,7 +47,7 @@ function Logged() {
         xl:w-[15vw]
         2xl:w-[8vw]
         ">
-            <Link className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
+            <Link to="/createpost" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
             <Link className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
             {/* <Link>New commit project</Link> */}
         </div>}
@@ -105,38 +105,38 @@ function Logged() {
                   <FontAwesomeIcon className="text-gray-600" icon={faAngleDown} />
                </div>
                 {createMenu && <div className="pl-4 w-auto text-gray-600 text-sm flex flex-col gap-2">
-                  <Link>New post</Link>
-                  <Link>New project</Link>
+                  <Link onClick={() => setShowSidebar(!showSidebar)} to="/createpost">New post</Link>
+                  <Link onClick={() => setShowSidebar(!showSidebar)} >New project</Link>
                   {/* <Link>New commit project</Link> */}
                 </div>}
               </div>
               {userType === "admin" &&
                 <div>
-                  <Link to={`/admin`}>Dashboard admin</Link>
+                  <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/admin`}>Dashboard admin</Link>
                 </div>
               }
               <div>
-                <Link to={`/user`}>My profile</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user`}>My profile</Link>
               </div>
               <div>
-                <Link to="">My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="">My posts</Link>
               </div>
               <div>
-                <Link to="">My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="">My projects</Link>
               </div>
               <div>
-                <div className="cursor-pointer" onClick={() => setProjectMenu(!projectMenu)}>
+                <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
                   <span className="pr-2">Recent projects</span>
                   <FontAwesomeIcon  className="text-gray-600" icon={faAngleDown} />
                 </div>
                 {projectMenu && <div className="pl-4 mt-1 w-auto text-gray-600 text-sm flex flex-col gap-2">
                   {projects.map((e, i) => (
-                      <Link key={i} to="">{e.name}</Link>
+                      <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to="">{e.name}</Link>
                   ))}
                 </div>}
               </div>
               <div>
-                <Link to="">My favourites</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="">My favourites</Link>
               </div>
             </div>
           </div>
