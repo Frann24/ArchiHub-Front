@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "./logo/Logo";
 import Guest from "./guest/Guest";
 import Menu from "./menu/Menu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Logged from "./logged/Logged";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../home/Home";
@@ -22,6 +22,7 @@ import Payment from "../payment/payment";
 import ForgotPassword from "../resetPassword/ForgotPassword";
 import ResetPassword from "../resetPassword/ResetPassword";
 import DashBoardUser from "../dashBoardUser/DashBoardUser"
+import { getUser } from "../../redux/slices/user/userActions";
 
 
 function Header() {
@@ -30,7 +31,7 @@ function Header() {
   const googleUser = window.localStorage.getItem("googleUser");
   const isLoggin = token !== null && token !== "null" ? true : false || googleUser ? true : false
   const condition = useRef(isLoggin)
-
+  
   useEffect(()=>{
     condition.current = isLoggin
   },[isLoggin])
