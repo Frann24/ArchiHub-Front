@@ -81,7 +81,7 @@ const CreateProject = () => {
     });
   };
   const handleSubmit = (e) => {
-    e.prevetDefault()
+    e.preventDefault();
     dispatch(createProject(form));
     setForm({
       title: "",
@@ -97,7 +97,12 @@ const CreateProject = () => {
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <label>Title</label>
-        <input type="text" placeholder="Title..." name="title"onChange={(e) => handleChange(e)} />
+        <input
+          type="text"
+          placeholder="Title..."
+          name="title"
+          onChange={(e) => handleChange(e)}
+        />
         <label>Description</label>
         <textarea
           name="description"
@@ -126,7 +131,20 @@ const CreateProject = () => {
           options={options}
           value={form.users}
         />
-        <button type="submit">SEND</button>
+        <button
+          type="submit"
+          disabled={
+            !form.title ||
+            !form.description ||
+            !form.pdf_file ||
+            !form.visibility ||
+            !form.project_file ||
+            !form.users ||
+            !form.created_by
+          }
+        >
+          SEND
+        </button>
       </form>
       <div>
         <div>

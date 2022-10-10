@@ -7,6 +7,7 @@ import { createPost } from "../../redux/slices/post/postActions";
 import infoTypePost from "../../api/projectTypeData";
 import UploadPhotos from "./UploadPhotos";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const pushCloud = [];
@@ -14,6 +15,8 @@ const CreatePost = () => {
   const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(false);
   const userLogeado = JSON.parse(localStorage.getItem("token"))
+
+  const userToken = JSON.parse(window.localStorage.getItem("token"));
 
   const [form, setForm] = useState({
     title: "",
@@ -26,10 +29,10 @@ const CreatePost = () => {
     image: [],
     authors: [],
     additional_data: "",
-    created_by: userLogeado.userId,
+    created_by: userToken ? userToken.userId : "",
   });
   const [errors, setErrors] = useState({});
-
+  const navigate = useNavigate();
   const [response, setResponse] = useState(null);
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
@@ -208,6 +211,7 @@ const CreatePost = () => {
           authors: [],
           additional_data: "",
         });
+        navigate("/home");
         setTimeout(() => {
           setResponse(null);
         }, 2000);
@@ -363,7 +367,7 @@ const CreatePost = () => {
                 )}
               </div>
             </div>
-            <div className="mt-6">Authors</div>
+            <div className="mt-6">Collaborators:</div>
             <Select
               className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               onBlur={handleFormBlur}

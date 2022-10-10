@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-export default function UploadPhotos({ setCloudinary, pushCloud, form, setForm, files, setFiles }) {
+export default function UploadPhotos({ files, setFiles }) {
 
   const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(false);
