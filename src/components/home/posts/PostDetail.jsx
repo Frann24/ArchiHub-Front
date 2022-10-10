@@ -8,29 +8,38 @@ import FavouritePost from "./favouritePost/FavouritePost";
 import Features from "./Features";
 import CreateReview from "./reviewPost/createReview/CreateReview";
 import ReviewsReel from "./reviewPost/ReviewsReel";
-import CarrouselDetail  from "./CarrouselDetail";
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faStarHalfStroke as half, faStar as solid } from "@fortawesome/free-solid-svg-icons";
 import  {faStar as regular} from '@fortawesome/free-regular-svg-icons';
+import Modal from "../../modal/Modal";
+
 function PostDetail() {
   const dispatch = useDispatch();
   const [desc, setDesc] = useState(false)
+  const [overlay, setOverlay] = useState(0)
+  const [overlayImg, setOverlayImg] = useState(null)
+  const [startClick, setStartClick] = useState(0)
   const { id } = useParams();
   const postDetail = useSelector((state) => state.post.post);
   const date = new Date()
   const current_year = date.getFullYear()
   const current_month = date.getMonth()
+
   useEffect(() => {
+    window.scrollTo(0, 0)
     dispatch(getPost(id));
     return () => {
       dispatch(clearPostDetail());
     };
   }, [dispatch]);
 
+  const toggleOverlay = (e) => {
+    e.preventDefault()
+    setOverlay(!overlay)
+  }
   
-
-  if(postDetail.length === 0) return <div className="w-full flex justify-center"><Loader/></div>
+  if(postDetail.length === 0) return <div className="w-full h-screen flex justify-center items-center"><Loader/></div>
   const {image, title, created_by_data, description, bathrooms, mts2, rooms, year, authors, rating} = postDetail
   let currentYear = Math.abs(year.split("-")[2] - current_year)
   if(currentYear === 1) currentYear+= " Year ago"
@@ -48,63 +57,97 @@ function PostDetail() {
     xl:mx-32
     2xl:mx-64
     ">
+      <div className=''>
+        
+      </div>
       <div className="flex flex-col gap-2 ">
         <div className=""><img className="w-full min-h-[90vw] object-cover md:min-h-[75vw] lg:max-h-[70vw] lg:min-h-[70vw]  xl:max-h-[60] 2xl:min-h-[50vw] 2xl:max-h-[50vw]" src={image[0]} alt="" /></div>
         {/* <div className="flex flex-row w-1/2"> */}
-        <CarouselProvider
-        naturalSlideWidth={100}
-        naturalSlideHeight={125}
-        totalSlides={image.length - 1}
-        visibleSlides={2}
-        infinite={true}
-        className="flex flex-col"
-        >
-        <Slider className="max-h-[40vw] w-full md:max-h-[35vw] lg:max-h-[30vw] xl:max-h-[25vw] 2xl:max-h-[20vw] cursor-grab active:cursor-grabbing">
-          {image.map((e,i) => i!== 0 && <Slide key={i} index={i}><img className="min-h-[40vw] object-cover md:min-h-[35vw] lg:min-h-[30vw] xl:min-h-[25vw]" src={e} alt="" /></Slide>)}
-        </Slider>
-        <ButtonBack className="absolute left-0 text-xl min-h-[40vw]  float-left text-gray-400  bg-black mx-4 bg-opacity-50 
-        md:mx-8 md:min-h-[35vw] md:px-1
-        lg:mx-16 lg:min-h-[30vw]
-        xl:mx-32 xl:min-h-[25vw]
-        2xl:mx-64 2xl:min-h-[20vw]
-        ">
-          <FontAwesomeIcon icon={faChevronLeft}/>
-        </ButtonBack>
-        <ButtonNext className="absolute right-0 text-xl min-h-[40vw] float-right text-gray-400  bg-black mx-4 bg-opacity-50 
-        md:mx-8 md:min-h-[35vw] md:px-1
-        lg:mx-16 lg:min-h-[30vw]
-        xl:mx-32 xl:min-h-[25vw]
-        2xl:mx-64 2xl:min-h-[20vw]
-        ">
-          <FontAwesomeIcon icon={faChevronRight}/>
-        </ButtonNext>
-      </CarouselProvider>
-        {/* </div> */}
+        {image.length > 1 &&
+          <CarouselProvider
+          naturalSlideWidth={100}
+          naturalSlideHeight={125}
+          totalSlides={image.length - 1}
+          visibleSlides={2}
+          infinite={true}
+          className="flex flex-col"
+          >
+          <div 
+          onMouseDown={()=> setStartClick(new Date())} 
+          onMouseUp={() => setStartClick(new Date() - startClick)} 
+          onClick={() => startClick < 100 && startClick > 0 ? [setStartClick(0), setOverlay(!overlay),] : setStartClick(0)}
+          >
+          <Slider className=" max-h-[40vw] w-full md:max-h-[35vw] lg:max-h-[30vw] xl:max-h-[25vw] 2xl:max-h-[20vw] cursor-grab active:cursor-grabbing">
+            {image.map((e,i) => i!== 0 && <Slide key={i} index={i}>
+              <img onClick={()=> setOverlayImg(i)} className="min-h-[40vw] object-cover md:min-h-[35vw] lg:min-h-[30vw] xl:min-h-[25vw] " src={e} alt="" />
+              <Modal active={overlay} toggle={toggleOverlay}>
+                  <img className="w-full min-h-[25vw] object-cover" src={image[overlayImg]} alt="" />
+                </Modal>
+              </Slide>)}
+          </Slider>
+          </div>
+          <ButtonBack className="absolute left-0 text-xl min-h-[40vw]  float-left text-gray-400  bg-black mx-4 bg-opacity-50 
+          md:mx-8 md:min-h-[35vw] md:px-1
+          lg:mx-16 lg:min-h-[30vw]
+          xl:mx-32 xl:min-h-[25vw]
+          2xl:mx-64 2xl:min-h-[20vw]
+          ">
+            <FontAwesomeIcon icon={faChevronLeft}/>
+          </ButtonBack>
+          <ButtonNext className="absolute right-0 text-xl min-h-[40vw] float-right text-gray-400  bg-black mx-4 bg-opacity-50 
+          md:mx-8 md:min-h-[35vw] md:px-1
+          lg:mx-16 lg:min-h-[30vw]
+          xl:mx-32 xl:min-h-[25vw]
+          2xl:mx-64 2xl:min-h-[20vw]
+          ">
+            <FontAwesomeIcon icon={faChevronRight}/>
+          </ButtonNext>
+        </CarouselProvider>
+      }
       </div>
       {/* <CarrouselDetail/> */}
-      <div>
-        <p className="text-xl font-semibold">{title}</p>
-        <p className="text-base">{`${created_by_data[0].name} ${created_by_data[0].lastname}`}</p>
-        <div className="text-gray-500">
-        <p className="text-sm text-">Collaborators: </p>
-        <div className="text-sm pl-4">{authors.map((e,i) => <p className="py-0.5" key={i}>{`${e.name} ${e.lastname}`}</p>)}</div>
+      <div className="text-gray-900">
+        <div className="flex justify-between items-center">
+          <p className="text-xl font-bold lg:text-2xl">{title}</p>
+          <div className="hidden sm:flex justify-between items-center gap-8">
+            <div>
+              {[...Array(5)].map((star, i) => {
+                const ratingValue = i + 1;
+                return (
+                  <label key={i}>
+                    <FontAwesomeIcon
+                      className="text-gray-800 text-base lg:text-lg xl:text-xl"
+                      icon={ratingValue<=Math.ceil(rating)?ratingValue===rating || ratingValue<=rating?solid:ratingValue-0.5<=rating?half:regular:regular}
+                    />
+                  </label>
+                );
+              })}
+            </div>
+            <div className="text-xl text-black xl:text-2xl"><FavouritePost/></div>
+          </div>
+        </div>
+        <p className="text-base font-semibold lg:text-lg">{`${created_by_data[0].name} ${created_by_data[0].lastname}`}</p>
+        <div className="text-gray-800">
+        {/* <p className="text-base font-light">Collaborators: </p> */}
+        <div className="text-sm font-light lg:text-base text-black">{authors.map((e,i) => <p className="py-0.5" key={i}>{`${e.nickname}`}</p>)}</div>
         </div>
       </div>
-      <div>{[...Array(5)].map((star, i) => {
-  const ratingValue = i + 1;
-  return (
-
-    <label>
-      {console.log(Math.ceil(rating))}
-      <FontAwesomeIcon
-        className="star"
-        icon={ratingValue<=Math.ceil(rating)?ratingValue===rating || ratingValue<=rating?solid:ratingValue-0.5<=rating?half:regular:regular}
-        color="#ffc107"
-      />
-    </label>
-  );
-})}</div>
-      <div className="text-end text-xl"><FavouritePost/></div>
+      <div className="flex justify-between items-center sm:hidden">
+        <div>
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <label key={i}>
+                <FontAwesomeIcon
+                  className="text-gray-800 text-base"
+                  icon={ratingValue<=Math.ceil(rating)?ratingValue===rating || ratingValue<=rating?solid:ratingValue-0.5<=rating?half:regular:regular}
+                />
+              </label>
+            );
+          })}
+        </div>
+        <div className="text-lg"><FavouritePost/></div>
+      </div>
       <div>
         <div className="flex gap-4 py-2 xl:hidden ">
         <p onClick={() => setDesc(false)} className={`text-xl font-medium border-b-2 border-white ${!desc && "border-gray-700"}`}>Features</p>
@@ -116,13 +159,13 @@ function PostDetail() {
           : <p  className="text-base leading-7 lg:text-lg">{description}</p>}
         </div>
         <div className="hidden xl:block">
-          <p className="text-xl font-medium">Features</p>
+          <p className="text-xl font-medium xl:text-2xl">Features</p>
           <div className="p-4">
             <Features bathrooms={bathrooms} mts2={mts2} rooms={rooms} date={currentYear === 0 ? currentMonth : currentYear}/>
           </div>
         </div>
         <div className="hidden xl:block mt-8">
-          <p className="text-xl font-medium">Description</p>
+          <p className="text-xl font-medium xl:text-2xl">Description</p>
           <div className="p-4">
             <p className="text-lg">{description}</p>
           </div>

@@ -53,11 +53,9 @@ export default function FavouritePost() {
         if (user.favourites.find(e=>e._id===id)){
           setFavourite(true);
           setHabilited(true);
-          console.log("activado")
         }else{
           setFavourite(false);
           setHabilited(true);
-          console.log("desactivado")
         } 
          }
       };

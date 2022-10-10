@@ -15,6 +15,8 @@ const CreatePost = () => {
   const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const userToken = JSON.parse(window.localStorage.getItem("token"));
+
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -26,6 +28,7 @@ const CreatePost = () => {
     image: [],
     authors: [],
     additional_data: "",
+    created_by: userToken ? userToken.userId : "",
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -363,7 +366,7 @@ const CreatePost = () => {
                 )}
               </div>
             </div>
-            <div className="mt-6">Authors</div>
+            <div className="mt-6">Collaborators:</div>
             <Select
               className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               onBlur={handleFormBlur}

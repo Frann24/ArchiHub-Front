@@ -1,25 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { logOutUser } from "../../../redux/slices/auth/loginActions";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUser, logOutUser } from "../../../redux/slices/auth/loginActions";
+import { getUser } from "../../../redux/slices/user/userActions";
+import Loader from "../../loader/Loader";
+import Modal from "../../modal/Modal";
 
 function Logged() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
-  const googleUser = JSON.parse(localStorage.getItem('googleUser'))
   const token = JSON.parse(localStorage.getItem('token'))
-  let lastname ,name ,userAvatar, userMail, userType
-  if(token){
-    lastname = token.lastname
-    name = token.name
-    userAvatar = token.userAvatar
-    userMail = token.userMail
-    userType = token.userType
-}
 
+  const {user} = useSelector(state => state.user)
   const projects = [
     { name: "Name project 1" },
     { name: "Name project 2" },
@@ -27,13 +22,34 @@ function Logged() {
   ];
   const dispatch = useDispatch()
   const navigate = useNavigate();
-
+  const [overlayAvatar, setOverlayAvatar] = useState(false)
   const handleLogout =  (e) => {
     // e.preventDefault();
     dispatch(logOutUser())
     localStorage.removeItem("googleUser")
     navigate("/")
+    dispatch(clearUser({}))
   }
+  const toggleOverlay = (e) => {
+    e.preventDefault()
+    setOverlayAvatar(!overlayAvatar)
+  }
+  
+  useEffect(()=>{
+    const google = async () =>{
+      try {
+        const googleUser = await JSON.parse(localStorage.getItem('googleUser'))
+        const token = await JSON.parse(localStorage.getItem('token'))
+        dispatch(getUser(token.userId))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    google()
+    ;
+  },[dispatch])
+
+  if(!user._id) return <div><Loader/></div>
 
   return (
     <>
@@ -47,8 +63,8 @@ function Logged() {
         xl:w-[15vw]
         2xl:w-[8vw]
         ">
-            <Link className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
-            <Link className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
+            <Link to="/createpost" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
+            <Link to="/createproject" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
             {/* <Link>New commit project</Link> */}
         </div>}
       </div>
@@ -62,11 +78,11 @@ function Logged() {
       lg:w-11
       xl:w-12
       ">
-        <img src={userAvatar} alt="" />
+        <img src={user.avatar} alt="" />
       </div>
       <div className="hidden sm:flex flex-col text-end">
-        <p className="text-sm lg:text-base font-medium">{name}</p>
-        <p className="text-xs lg:text-sm text-gray-600">{userMail}</p>
+        <p className="text-sm lg:text-base font-medium">{user.nickname}</p>
+        <p className="text-xs lg:text-sm text-gray-600">{user.email}</p>
       </div>
     </div> 
       {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>}
@@ -92,11 +108,11 @@ function Logged() {
             <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full m-auto mt-4
             sm:w-20 sm:h-20 
             ">
-              <img src={userAvatar} alt="" />
+              <img className="cursor-pointer" onClick={() => setOverlayAvatar(true)} src={user.avatar} alt="" />
             </div>
             <div className="my-4">
-              <h3 className="text-xl">{name}</h3>
-              <p className="text-gray-400">{userMail}</p>
+              <h3 className="text-xl">{user.nickname}</h3>
+              <p className="text-gray-400">{user.email}</p>
             </div>
             <div className="text-start pl-4 mt-8 flex flex-col gap-4 lg:text-lg xl:text-xl">
               <div className="flex flex-col items-start lg:hidden">
@@ -105,33 +121,38 @@ function Logged() {
                   <FontAwesomeIcon className="text-gray-600" icon={faAngleDown} />
                </div>
                 {createMenu && <div className="pl-4 w-auto text-gray-600 text-sm flex flex-col gap-2">
-                  <Link>New post</Link>
-                  <Link>New project</Link>
+                  <Link onClick={() => setShowSidebar(!showSidebar)} to="/createpost">New post</Link>
+                  <Link onClick={() => setShowSidebar(!showSidebar)} to="/createproject">New project</Link>
                   {/* <Link>New commit project</Link> */}
                 </div>}
               </div>
+              {user.type === "admin" &&
+                <div>
+                  <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/admin`}>Dashboard admin</Link>
+                </div>
+              }
               <div>
-                <Link to={`/user`}>My profile</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user`}>My profile</Link>
               </div>
               <div>
-                <Link to="">My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="">My posts</Link>
               </div>
               <div>
-                <Link to="">My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="">My projects</Link>
               </div>
               <div>
-                <div className="cursor-pointer" onClick={() => setProjectMenu(!projectMenu)}>
+                <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
                   <span className="pr-2">Recent projects</span>
                   <FontAwesomeIcon  className="text-gray-600" icon={faAngleDown} />
                 </div>
                 {projectMenu && <div className="pl-4 mt-1 w-auto text-gray-600 text-sm flex flex-col gap-2">
                   {projects.map((e, i) => (
-                      <Link key={i} to="">{e.name}</Link>
+                      <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to="">{e.name}</Link>
                   ))}
                 </div>}
               </div>
               <div>
-                <Link to="">My favourites</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="">My favourites</Link>
               </div>
             </div>
           </div>
@@ -145,6 +166,9 @@ function Logged() {
           </div>
         </div>
       </div>
+      <Modal active={overlayAvatar} toggle={toggleOverlay}>
+        <img className="w-full min-h-[25vw] object-cover" src={user.avatar} alt="" />
+      </Modal>
     </>
   );
 }
