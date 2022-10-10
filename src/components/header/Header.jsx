@@ -70,7 +70,7 @@ function Header() {
         <Route path="/admin" element={<DashBoardAdmin />} />
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
         {/* <Route path="/dashuser" element={<DashUser />} /> */}
-        <Route path="/user" element={<DashBoardUser />} />
+        <Route path="/user/:value" element={<DashBoardUser />} />
         <Route path="/payment" element={<Payment/>} />
         <Route path="forgotPassword" element={<ForgotPassword/>}/>
         <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>

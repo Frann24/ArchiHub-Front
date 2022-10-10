@@ -14,6 +14,7 @@ const CreatePost = () => {
   const [files, setFiles] = useState([]);
   const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(false);
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
 
   const userToken = JSON.parse(window.localStorage.getItem("token"));
 

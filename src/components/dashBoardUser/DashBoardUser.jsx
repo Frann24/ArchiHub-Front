@@ -7,22 +7,22 @@ import Projects from "./Projects";
 import { getAllPosts } from "../../redux/slices/post/postActions";
 import Favourites from "./Favourites";
 import Reviews from "./Reviews";
+import { getAllReviews } from "../../redux/slices/review/reviewActions";
+import { useParams } from "react-router-dom";
 
 export default function DashBoardUser() {
-  const dispatch = useDispatch();
-  const userLogeado = JSON.parse(localStorage.getItem("token"));
-  const user = useSelector((state) => state.user.user);
-  const [state, setState] = useState("projects");
-  const [profile, setProfile] = useState(false);
-  console.log("user: ", user);
-
-  const user1 = useSelector((state) => state.user.user);
+  const dispatch = useDispatch()
+  const { value } = useParams()
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
+  const user = useSelector(state => state.user.user)
+  const [state, setState] = useState(value)
+  const [profile, setProfile] = useState(false)
 
   useEffect(() => {
-    dispatch(getUser(userLogeado.userId));
-    dispatch(getAllPosts());
-  }, [dispatch]);
-
+    dispatch(getUser(userLogeado.userId))
+    dispatch(getAllReviews())
+  }, [dispatch])
+ 
   function handleChange(e) {
     setState(e.target.value);
   }
@@ -130,7 +130,7 @@ export default function DashBoardUser() {
         )}
         {state === "reviews" && (
           <div>
-            <Reviews />
+            <Reviews id={userLogeado.userId} />
           </div>
         )}
         {state === "favourites" && (

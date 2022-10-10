@@ -1,29 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import { getUser } from '../../redux/slices/user/userActions'
 
 export default function Favourites() {
+  const dispatch = useDispatch()
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
+  
+  useEffect(() => {
+    dispatch(getUser(userLogeado.userId))
+  }, [dispatch])
   const user = useSelector(state => state.user.user)
   let postsFav = user.favourites
-  const [state, setState] = useState(postsFav)
-  let order = []
-  const [cambio, setCambio] = useState(false)
-
-  useEffect(() => { 
-    console.log(postsFav)
-  }, [cambio])
+  console.log(userLogeado)
 
   postsFav = postsFav.map((post) => {
     return (
       {
+        id: post._id,
         title: post.title.toUpperCase(),
         createdAt: post.createdAt, 
         image: post.image,
       }
       )
     })
-
+    const [state, setState] = useState(postsFav)
+    const [cambio, setCambio] = useState(false)
+    
+    useEffect(() => { 
+      console.log(postsFav)
+    }, [cambio])
 
   function handleSearch(e) {
     e.preventDefault();
@@ -32,7 +38,7 @@ export default function Favourites() {
   }
   function handleOrderDate(e) {
     if (cambio == true) {
-       order = state.sort((a, b) => {
+       const order = state.sort((a, b) => {
         if (a.createdAt > b.createdAt) {
             return 1;
         }
@@ -43,11 +49,10 @@ export default function Favourites() {
       })
       setCambio(false)
       setState(order)
-      console.log(1, state)
       return
     }
     if (cambio == false) {
-      order = state.sort((a, b) => { 
+     const order = state.sort((a, b) => { 
         if (a.createdAt > b.createdAt) {
             return -1;
         }
@@ -58,7 +63,6 @@ export default function Favourites() {
       })
       setCambio(true)
       setState(order)
-      console.log(2, state)
       return
     }
   }
@@ -81,9 +85,9 @@ export default function Favourites() {
       <div>
         <p>there are no matches with your search</p>
       </div> :
-      state.length ? state.map((post) => {
+      postsFav.length ? state.length && state.map((post) => {
         return (
-          <Link>
+          <Link to={`/postDetail/${post.id}`}>
           <div>
             <img src={post.image[0]}></img>
             <h3>{post.title}</h3>

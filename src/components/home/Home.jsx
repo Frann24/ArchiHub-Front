@@ -6,14 +6,18 @@ import FilterType from "./posts/filterType/FilterType";
 import Order from "./posts/order/Order";
 import PostsReel from "./posts/PostsReel";
 import { getAllUsers } from "../../redux/slices/user/userActions";
-
-
+import { getUser } from "../../redux/slices/user/userActions";
 
 function Home() {
+  const dispatch = useDispatch()
   const { queryPost } = useSelector((state) => state.post);
   const condition = queryPost ? true : false;
-
-
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
+  
+  useEffect(() => {
+    dispatch(getUser(userLogeado.userId))
+  }, [dispatch])
+  
   return (
     <div>
       <div id="home_id"></div>
