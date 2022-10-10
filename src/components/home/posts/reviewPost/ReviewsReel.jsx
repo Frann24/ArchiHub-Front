@@ -59,20 +59,19 @@ export default function ReviewsReel() {
                     </div>
                   }
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-4 items-center">
                 <div>
-                {[...Array(5)].map((star, i) => {
-                const ratingValue = i + 1;
-                return (
-                  <label>
-                    <FontAwesomeIcon
-                      className="star"
-                      icon={ratingValue <= e.value ? solid : regular}
-                      color="#ffc107"
-                    />
-                  </label>
-                );
-              })}
+                  {[...Array(5)].map((star, i) => {
+                    const ratingValue = i + 1;
+                    return (
+                      <label key={i}>
+                        <FontAwesomeIcon
+                          className="text-gray-800 text-xs"
+                          icon={ratingValue <= e.value ? solid : regular}
+                        />
+                      </label>
+                    );
+                  })}
                 </div>
                 <p className="text-sm text-gray-500">{getDate(e)}</p>
               </div>
