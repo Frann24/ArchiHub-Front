@@ -38,7 +38,6 @@ function PostDetail() {
     e.preventDefault()
     setOverlay(!overlay)
   }
-  console.log(postDetail)
   
   if(postDetail.length === 0) return <div className="w-full h-screen flex justify-center items-center"><Loader/></div>
   const {image, title, created_by_data, description, bathrooms, mts2, rooms, year, authors, rating} = postDetail
