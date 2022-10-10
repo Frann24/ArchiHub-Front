@@ -6,24 +6,20 @@ import FilterType from "./posts/filterType/FilterType";
 import Order from "./posts/order/Order";
 import PostsReel from "./posts/PostsReel";
 import { getAllUsers } from "../../redux/slices/user/userActions";
+import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
+import Loader from "../loader/Loader";
+import Carousel from "./carousel/Carousel";
 
 
 
 function Home() {
   const { queryPost } = useSelector((state) => state.post);
   const condition = queryPost ? true : false;
-
-
+  
   return (
     <div>
       <div id="home_id"></div>
-      <div className={`${queryPost.length ? 'block' : 'block'}`}>
-        <img
-          src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664395439/news/Screen_Shot_2022-09-28_at_16.59.36_cfhqzs.png"
-          alt="imagen"
-          className="object-cover my-8 shadow-lg"
-        />
-      </div>
+        <Carousel/>
         <Search />
       <div >
         <div className="flex flex-col gap-2 pb-4 w-full

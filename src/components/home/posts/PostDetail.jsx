@@ -61,7 +61,7 @@ function PostDetail() {
         
       </div>
       <div className="flex flex-col gap-2 ">
-        <div className=""><img className="w-full min-h-[90vw] object-cover md:min-h-[75vw] lg:max-h-[70vw] lg:min-h-[70vw]  xl:max-h-[60] 2xl:min-h-[50vw] 2xl:max-h-[50vw]" src={image[0]} alt="" /></div>
+        <div className=""><img className="w-full h-[100vw] object-cover object-bottom sm:h-[95vw] md:h-[80vw] lg:h-[58vw] xl:h-[45vw] 2xl:h-[42vw]" src={image[0]} alt="" /></div>
         {/* <div className="flex flex-row w-1/2"> */}
         {image.length > 1 &&
           <CarouselProvider
@@ -77,11 +77,11 @@ function PostDetail() {
           onMouseUp={() => setStartClick(new Date() - startClick)} 
           onClick={() => startClick < 100 && startClick > 0 ? [setStartClick(0), setOverlay(!overlay),] : setStartClick(0)}
           >
-          <Slider className=" max-h-[40vw] w-full md:max-h-[35vw] lg:max-h-[30vw] xl:max-h-[25vw] 2xl:max-h-[20vw] cursor-grab active:cursor-grabbing">
+          <Slider className="h-[40vw] md:h-[35vw] lg:h-[30vw] xl:h-[25vw] 2xl:h-[20vw] cursor-grab active:cursor-grabbing">
             {image.map((e,i) => i!== 0 && <Slide key={i} index={i}>
-              <img onClick={()=> setOverlayImg(i)} className="min-h-[40vw] object-cover md:min-h-[35vw] lg:min-h-[30vw] xl:min-h-[25vw] " src={e} alt="" />
+              <img onClick={()=> setOverlayImg(i)} className="h-[40vw] w-full md:h-[35vw] lg:h-[30vw] xl:h-[25vw] object-cover object-bottom" src={e} alt="" />
               <Modal active={overlay} toggle={toggleOverlay}>
-                  <img className="w-full min-h-[25vw] object-cover" src={image[overlayImg]} alt="" />
+                  <img className="w-full h-[90vw] sm:h-[60vw] md:h-[50vw] xl:h-[30vw] 2xl:h-[25vw] object-cover object-center" src={image[overlayImg]} alt="" />
                 </Modal>
               </Slide>)}
           </Slider>

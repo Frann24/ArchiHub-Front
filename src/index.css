@@ -32,4 +32,7 @@
   .error-text{
     @apply text-danger text-sm 
   }
+  .size-img{
+    @apply h-[100vw] sm:h-[95vw] md:h-[80vw] lg:h-[60vw] xl:h-[45vw] 2xl:h-[43vw]  w-full object-cover object-bottom
+  }
 }
