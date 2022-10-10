@@ -48,7 +48,7 @@ function Logged() {
         2xl:w-[8vw]
         ">
             <Link to="/createpost" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
-            <Link className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
+            <Link to="/createproject" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
             {/* <Link>New commit project</Link> */}
         </div>}
       </div>
@@ -106,7 +106,7 @@ function Logged() {
                </div>
                 {createMenu && <div className="pl-4 w-auto text-gray-600 text-sm flex flex-col gap-2">
                   <Link onClick={() => setShowSidebar(!showSidebar)} to="/createpost">New post</Link>
-                  <Link onClick={() => setShowSidebar(!showSidebar)} >New project</Link>
+                  <Link onClick={() => setShowSidebar(!showSidebar)} to="/createproject">New project</Link>
                   {/* <Link>New commit project</Link> */}
                 </div>}
               </div>
