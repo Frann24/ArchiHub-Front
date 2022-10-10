@@ -13,6 +13,7 @@ const CreatePost = () => {
   const [files, setFiles] = useState([]);
   const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(false);
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
 
   const [form, setForm] = useState({
     title: "",
@@ -25,6 +26,7 @@ const CreatePost = () => {
     image: [],
     authors: [],
     additional_data: "",
+    created_by: userLogeado.userId,
   });
   const [errors, setErrors] = useState({});
 

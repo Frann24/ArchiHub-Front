@@ -7,6 +7,7 @@ import Projects from "./Projects";
 import { getAllPosts } from "../../redux/slices/post/postActions";
 import Favourites from "./Favourites";
 import Reviews from "./Reviews";
+import { getAllReviews } from "../../redux/slices/review/reviewActions";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ export default function DashBoardUser() {
   useEffect(() => {
     dispatch(getUser(userLogeado.userId))
     dispatch(getAllPosts())
+    dispatch(getAllReviews())
   }, [dispatch])
  
   function handleChange(e) {
@@ -109,7 +111,7 @@ export default function DashBoardUser() {
         {
           state === 'reviews' && 
           <div>
-            <Reviews />
+            <Reviews id={userLogeado.userId} />
           </div>
         }
         {
