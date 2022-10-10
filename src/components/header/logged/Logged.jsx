@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser, logOutUser } from "../../../redux/slices/auth/loginActions";
 import { getUser } from "../../../redux/slices/user/userActions";
 import Loader from "../../loader/Loader";
+import Modal from "../../modal/Modal";
 
 function Logged() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -21,13 +22,17 @@ function Logged() {
   ];
   const dispatch = useDispatch()
   const navigate = useNavigate();
-
+  const [overlayAvatar, setOverlayAvatar] = useState(false)
   const handleLogout =  (e) => {
     // e.preventDefault();
     dispatch(logOutUser())
     localStorage.removeItem("googleUser")
     navigate("/")
     dispatch(clearUser({}))
+  }
+  const toggleOverlay = (e) => {
+    e.preventDefault()
+    setOverlayAvatar(!overlayAvatar)
   }
   
   useEffect(()=>{
@@ -103,7 +108,7 @@ function Logged() {
             <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full m-auto mt-4
             sm:w-20 sm:h-20 
             ">
-              <img src={user.avatar} alt="" />
+              <img className="cursor-pointer" onClick={() => setOverlayAvatar(true)} src={user.avatar} alt="" />
             </div>
             <div className="my-4">
               <h3 className="text-xl">{user.nickname}</h3>
@@ -161,6 +166,9 @@ function Logged() {
           </div>
         </div>
       </div>
+      <Modal active={overlayAvatar} toggle={toggleOverlay}>
+        <img className="w-full min-h-[25vw] object-cover" src={user.avatar} alt="" />
+      </Modal>
     </>
   );
 }

@@ -29,7 +29,7 @@ export const useSignIn = () => {
 
   const handleBlur = (e) => {
     handleInputChange(e)
-    setErrors(validate(input))
+    setErrors(validate(input, e.target.name, errors));
   }
   
   const handleInputSubmit = (e) => {
