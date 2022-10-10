@@ -111,13 +111,13 @@ function Logged() {
                 </div>}
               </div>
               <div>
-                <Link to={`/user`}>My profile</Link>
+                <Link to={`/user/user`}>My profile</Link>
               </div>
               <div>
-                <Link to="">My posts</Link>
+                <Link to="/user/posts">My posts</Link>
               </div>
               <div>
-                <Link to="">My projects</Link>
+                <Link to="/user/projects">My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer" onClick={() => setProjectMenu(!projectMenu)}>
@@ -131,7 +131,7 @@ function Logged() {
                 </div>}
               </div>
               <div>
-                <Link to="">My favourites</Link>
+                <Link to="/user/favourites">My favourites</Link>
               </div>
             </div>
           </div>

@@ -45,7 +45,7 @@ import { getAllProjects } from "../../redux/slices/project/projectActions";
                 </div> :
                 <div></div>
             }
-            <Link to={'createproject'}>
+            <Link to={'/createproject'}>
              <button>New</button>
             </Link>
             {

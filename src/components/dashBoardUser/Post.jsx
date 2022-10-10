@@ -76,7 +76,7 @@ export default function Post({id}) {
           </div> :
           <div></div>
         }
-          <Link to={'createpost'}>
+          <Link to={'/createpost'}>
             <button>New</button>
           </Link>
         {

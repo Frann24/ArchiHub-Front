@@ -8,17 +8,18 @@ import { getAllPosts } from "../../redux/slices/post/postActions";
 import Favourites from "./Favourites";
 import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
+import { useParams } from "react-router-dom";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch()
+  const { value } = useParams()
   const userLogeado = JSON.parse(localStorage.getItem("token"))
   const user = useSelector(state => state.user.user)
-  const [state, setState] = useState('projects')
+  const [state, setState] = useState(value)
   const [profile, setProfile] = useState(false)
 
   useEffect(() => {
     dispatch(getUser(userLogeado.userId))
-    dispatch(getAllPosts())
     dispatch(getAllReviews())
   }, [dispatch])
  
@@ -97,13 +98,13 @@ export default function DashBoardUser() {
       </div>
       <div>
         {
-          state === 'projects' && 
+          state === 'projects' &&
           <div>
             <Projects id={userLogeado.userId}/>
           </div>
         }
         {
-          state === 'posts' && 
+          state === 'posts' &&
           <div>
             <Post id={userLogeado.userId} key={userLogeado.userId}/>
           </div>

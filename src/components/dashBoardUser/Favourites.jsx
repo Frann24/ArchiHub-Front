@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import { getUser } from '../../redux/slices/user/userActions'
 
 export default function Favourites() {
+  const dispatch = useDispatch()
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
+  
+  useEffect(() => {
+    dispatch(getUser(userLogeado.userId))
+  }, [dispatch])
   const user = useSelector(state => state.user.user)
   let postsFav = user.favourites
-  
-  
+  console.log(userLogeado)
+
   postsFav = postsFav.map((post) => {
     return (
       {

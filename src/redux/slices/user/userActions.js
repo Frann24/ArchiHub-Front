@@ -14,6 +14,7 @@ export const getAllUsers = () => {
 };
 
 export const getUser = (id) => {
+  console.log('ivo')
   return (dispatch) => {
     axios
       .get(`${USERS}/${id}`)
