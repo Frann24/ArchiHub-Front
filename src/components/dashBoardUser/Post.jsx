@@ -92,7 +92,7 @@ export default function Post({ id, user }) {
             state.map((post) => {
               return (
                 <div>
-                  <img src={post.image} />
+                  <img src={post.image} className="w-20"/>
                   <p>{post.createdAt.slice(0, 10)}</p>
                   <h3>{post.title}</h3>
                   <p>{post.description.slice(0, 70)}...</p>

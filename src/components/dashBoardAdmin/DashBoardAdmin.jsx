@@ -39,11 +39,11 @@ function DashBoardAdmin() {
   //   }
 
   return (
-    <div className=" mx-1">
+    <div className="">
       {/* ----------------pantallas LARGE------------------- */}
 
-      <div className="lg:block hidden">
-        <div className=" grid grid-cols-3 sm:grid-cols-6 mt-6 gap-6  font-bold">
+      <div className="lg:block hidden mx-16 xl:mx-32 2xl:mx-32">
+        <div className=" grid grid-cols-6 mt-6 gap-6  font-bold">
           <h2>Members</h2>
           <h2>eMail</h2>
           <h2>Posts</h2>
@@ -61,7 +61,7 @@ function DashBoardAdmin() {
 
             return (
               <div>
-                <div className="grid grid-cols-3 sm:grid-cols-6  mt-6 gap-4">
+                <div className="grid grid-cols-6  mt-6 gap-4">
                   {el.name ? (
                     <h2 className="font-bold">{el.name} </h2>
                   ) : (
@@ -90,7 +90,7 @@ function DashBoardAdmin() {
 
       {/* ----------------pantallas MEDIUM------------------- */}
 
-      <div className="lg:hidden md:block hidden">
+      <div className="lg:hidden md:block hidden mx-8">
         <div className=" grid grid-cols-3 sm:grid-cols-6 mt-6 gap-6  font-bold">
           <h2>Members</h2>
           <h2>Mail</h2>
@@ -140,8 +140,8 @@ function DashBoardAdmin() {
 
       {/* ---------esta es la parte SMALL---------- */}
 
-      <div className="block md:hidden ">
-        <div className=" grid grid-cols-2  font-bold">
+      <div className="block md:hidden mx-4">
+        <div className="grid grid-cols-2  font-bold ">
           <h2>Members</h2>
           <h2>Mail</h2>
         </div>
