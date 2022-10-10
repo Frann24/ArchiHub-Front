@@ -38,7 +38,7 @@ function PostDetail() {
     e.preventDefault()
     setOverlay(!overlay)
   }
-
+  console.log(postDetail)
   
   if(postDetail.length === 0) return <div className="w-full h-screen flex justify-center items-center"><Loader/></div>
   const {image, title, created_by_data, description, bathrooms, mts2, rooms, year, authors, rating} = postDetail
@@ -64,45 +64,47 @@ function PostDetail() {
       <div className="flex flex-col gap-2 ">
         <div className=""><img className="w-full min-h-[90vw] object-cover md:min-h-[75vw] lg:max-h-[70vw] lg:min-h-[70vw]  xl:max-h-[60] 2xl:min-h-[50vw] 2xl:max-h-[50vw]" src={image[0]} alt="" /></div>
         {/* <div className="flex flex-row w-1/2"> */}
-        <CarouselProvider
-        naturalSlideWidth={100}
-        naturalSlideHeight={125}
-        totalSlides={image.length - 1}
-        visibleSlides={2}
-        infinite={true}
-        className="flex flex-col"
-        >
-        <div 
-        onMouseDown={()=> setStartClick(new Date())} 
-        onMouseUp={() => setStartClick(new Date() - startClick)} 
-        onClick={() => startClick < 100 && startClick > 0 ? [setStartClick(0), setOverlay(!overlay),] : setStartClick(0)}
-        >
-        <Slider className=" max-h-[40vw] w-full md:max-h-[35vw] lg:max-h-[30vw] xl:max-h-[25vw] 2xl:max-h-[20vw] cursor-grab active:cursor-grabbing">
-          {image.map((e,i) => i!== 0 && <Slide key={i} index={i}>
-            <img onClick={()=> setOverlayImg(i)} className="min-h-[40vw] object-cover md:min-h-[35vw] lg:min-h-[30vw] xl:min-h-[25vw] " src={e} alt="" />
-            <Modal active={overlay} toggle={toggleOverlay}>
-                <img className="w-full min-h-[25vw] object-cover" src={image[overlayImg]} alt="" />
-              </Modal>
-            </Slide>)}
-        </Slider>
-        </div>
-        <ButtonBack className="absolute left-0 text-xl min-h-[40vw]  float-left text-gray-400  bg-black mx-4 bg-opacity-50 
-        md:mx-8 md:min-h-[35vw] md:px-1
-        lg:mx-16 lg:min-h-[30vw]
-        xl:mx-32 xl:min-h-[25vw]
-        2xl:mx-64 2xl:min-h-[20vw]
-        ">
-          <FontAwesomeIcon icon={faChevronLeft}/>
-        </ButtonBack>
-        <ButtonNext className="absolute right-0 text-xl min-h-[40vw] float-right text-gray-400  bg-black mx-4 bg-opacity-50 
-        md:mx-8 md:min-h-[35vw] md:px-1
-        lg:mx-16 lg:min-h-[30vw]
-        xl:mx-32 xl:min-h-[25vw]
-        2xl:mx-64 2xl:min-h-[20vw]
-        ">
-          <FontAwesomeIcon icon={faChevronRight}/>
-        </ButtonNext>
-      </CarouselProvider>
+        {image.length > 1 &&
+          <CarouselProvider
+          naturalSlideWidth={100}
+          naturalSlideHeight={125}
+          totalSlides={image.length - 1}
+          visibleSlides={2}
+          infinite={true}
+          className="flex flex-col"
+          >
+          <div 
+          onMouseDown={()=> setStartClick(new Date())} 
+          onMouseUp={() => setStartClick(new Date() - startClick)} 
+          onClick={() => startClick < 100 && startClick > 0 ? [setStartClick(0), setOverlay(!overlay),] : setStartClick(0)}
+          >
+          <Slider className=" max-h-[40vw] w-full md:max-h-[35vw] lg:max-h-[30vw] xl:max-h-[25vw] 2xl:max-h-[20vw] cursor-grab active:cursor-grabbing">
+            {image.map((e,i) => i!== 0 && <Slide key={i} index={i}>
+              <img onClick={()=> setOverlayImg(i)} className="min-h-[40vw] object-cover md:min-h-[35vw] lg:min-h-[30vw] xl:min-h-[25vw] " src={e} alt="" />
+              <Modal active={overlay} toggle={toggleOverlay}>
+                  <img className="w-full min-h-[25vw] object-cover" src={image[overlayImg]} alt="" />
+                </Modal>
+              </Slide>)}
+          </Slider>
+          </div>
+          <ButtonBack className="absolute left-0 text-xl min-h-[40vw]  float-left text-gray-400  bg-black mx-4 bg-opacity-50 
+          md:mx-8 md:min-h-[35vw] md:px-1
+          lg:mx-16 lg:min-h-[30vw]
+          xl:mx-32 xl:min-h-[25vw]
+          2xl:mx-64 2xl:min-h-[20vw]
+          ">
+            <FontAwesomeIcon icon={faChevronLeft}/>
+          </ButtonBack>
+          <ButtonNext className="absolute right-0 text-xl min-h-[40vw] float-right text-gray-400  bg-black mx-4 bg-opacity-50 
+          md:mx-8 md:min-h-[35vw] md:px-1
+          lg:mx-16 lg:min-h-[30vw]
+          xl:mx-32 xl:min-h-[25vw]
+          2xl:mx-64 2xl:min-h-[20vw]
+          ">
+            <FontAwesomeIcon icon={faChevronRight}/>
+          </ButtonNext>
+        </CarouselProvider>
+      }
       </div>
       {/* <CarrouselDetail/> */}
       <div className="text-gray-900">
@@ -128,7 +130,7 @@ function PostDetail() {
         <p className="text-base font-semibold lg:text-lg">{`${created_by_data[0].name} ${created_by_data[0].lastname}`}</p>
         <div className="text-gray-800">
         {/* <p className="text-base font-light">Collaborators: </p> */}
-        <div className="text-sm font-light lg:text-base text-black">{authors.map((e,i) => <p className="py-0.5" key={i}>{`${e.name} ${e.lastname}`}</p>)}</div>
+        <div className="text-sm font-light lg:text-base text-black">{authors.map((e,i) => <p className="py-0.5" key={i}>{`${e.nickname}`}</p>)}</div>
         </div>
       </div>
       <div className="flex justify-between items-center sm:hidden">
