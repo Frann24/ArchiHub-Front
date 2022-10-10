@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../../redux/slices/auth/loginActions";
+import { getUser } from "../../../redux/slices/user/userActions";
+import Loader from "../../loader/Loader";
 
 function Logged() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
-  const googleUser = JSON.parse(localStorage.getItem('googleUser'))
   const token = JSON.parse(localStorage.getItem('token'))
-  let lastname ,name ,userAvatar, userMail, userType
-  if(token){
-    lastname = token.lastname
-    name = token.userName || googleUser.name
-    userAvatar = token.userAvatar
-    userMail = token.userMail
-    userType = token.userType
-}
-
+  console.log(token)
+  const {user} = useSelector(state => state.user)
   const projects = [
     { name: "Name project 1" },
     { name: "Name project 2" },
@@ -34,6 +28,22 @@ function Logged() {
     localStorage.removeItem("googleUser")
     navigate("/")
   }
+  
+  useEffect(()=>{
+    const google = async () =>{
+      try {
+        const googleUser = await JSON.parse(localStorage.getItem('googleUser'))
+        const token = await JSON.parse(localStorage.getItem('token'))
+        dispatch(getUser(token.userId))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    google()
+    ;
+  },[dispatch])
+
+  if(!user._id) return <div><Loader/></div>
 
   return (
     <>
@@ -62,11 +72,11 @@ function Logged() {
       lg:w-11
       xl:w-12
       ">
-        <img src={userAvatar} alt="" />
+        <img src={user.avatar} alt="" />
       </div>
       <div className="hidden sm:flex flex-col text-end">
-        <p className="text-sm lg:text-base font-medium">{name}</p>
-        <p className="text-xs lg:text-sm text-gray-600">{userMail}</p>
+        <p className="text-sm lg:text-base font-medium">{user.nickname}</p>
+        <p className="text-xs lg:text-sm text-gray-600">{user.email}</p>
       </div>
     </div> 
       {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>}
@@ -92,11 +102,11 @@ function Logged() {
             <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full m-auto mt-4
             sm:w-20 sm:h-20 
             ">
-              <img src={userAvatar} alt="" />
+              <img src={user.avatar} alt="" />
             </div>
             <div className="my-4">
-              <h3 className="text-xl">{name}</h3>
-              <p className="text-gray-400">{userMail}</p>
+              <h3 className="text-xl">{user.nickname}</h3>
+              <p className="text-gray-400">{user.email}</p>
             </div>
             <div className="text-start pl-4 mt-8 flex flex-col gap-4 lg:text-lg xl:text-xl">
               <div className="flex flex-col items-start lg:hidden">
@@ -110,7 +120,7 @@ function Logged() {
                   {/* <Link>New commit project</Link> */}
                 </div>}
               </div>
-              {userType === "admin" &&
+              {user.type === "admin" &&
                 <div>
                   <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/admin`}>Dashboard admin</Link>
                 </div>

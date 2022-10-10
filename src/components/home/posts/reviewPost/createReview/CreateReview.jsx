@@ -9,8 +9,7 @@ import { faPaperPlane, faStar as solid} from "@fortawesome/free-solid-svg-icons"
 import  {faStar as regular} from '@fortawesome/free-regular-svg-icons';
 
 export default function CreateReview() {
-const token = JSON.parse(localStorage.getItem("token"))
-const googleUser = JSON.parse(localStorage.getItem("googleUser"))
+  const {user} = useSelector(state => state.user)
   const dispatch = useDispatch();
   const { id } = useParams();
   const [formReviews, setformReviews] = useState({
@@ -30,7 +29,7 @@ const googleUser = JSON.parse(localStorage.getItem("googleUser"))
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(createReview({...formReviews,user_id:token.userId}))
+    dispatch(createReview({...formReviews,user_id:user._id}))
   };
 
   const toggleSignIn = (e) => {
@@ -41,10 +40,10 @@ const googleUser = JSON.parse(localStorage.getItem("googleUser"))
   return (
     <div className="bg-white mx-1 p-2 rounded-md shadow-lg lg:p-4">
       <div>
-      {token
+      {user
         ? <div className="flex items-center gap-2">
-            <img className="w-8 rounded-full lg:w-9" src={token.userAvatar} alt="" />
-            <p className="text-base text-gray-900 font-medium">{token.userName || googleUser.name}</p>
+            <img className="w-8 rounded-full lg:w-9" src={user.avatar} alt="" />
+            <p className="text-base text-gray-900 font-medium">{user.nickname}</p>
           </div>
         : <div className="">
             <img className="w-10 rounded-full" src={"https://cdn-icons-png.flaticon.com/512/1946/1946429.png"} alt="" />
@@ -89,7 +88,7 @@ const googleUser = JSON.parse(localStorage.getItem("googleUser"))
             className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
             md:w-1/4
             `}
-            onClick={token ? handleClick : toggleSignIn}>
+            onClick={user ? handleClick : toggleSignIn}>
               <p>Send</p>
               <FontAwesomeIcon icon={faPaperPlane}/>
             </button>

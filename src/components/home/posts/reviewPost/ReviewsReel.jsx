@@ -40,7 +40,7 @@ export default function ReviewsReel() {
               <div className="w-full flex items-center justify-between">
                 <div className="w-7 flex items-center gap-3">
                   <img className="rounded-full" src={e.user_id.avatar} alt="" />
-                  <p>{e.user_id.name}</p>
+                  <p>{e.user_id.nickname}</p>
                 </div>
                 
                 <div onClick={()=> openReport(index)} className="text-gray-500 pl-4 cursor-pointer"><FontAwesomeIcon icon={faEllipsisVertical}/></div>
