@@ -132,13 +132,13 @@ function Logged() {
                 </div>
               }
               <div>
-                <Link to={`/user/user`}>My profile</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} to={`/user/user`}>My profile</Link>
               </div>
               <div>
-                <Link to="/user/posts">My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} to="/user/posts">My posts</Link>
               </div>
               <div>
-                <Link to="/user/projects">My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} to="/user/projects">My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
@@ -152,7 +152,7 @@ function Logged() {
                 </div>}
               </div>
               <div>
-                <Link to="/user/favourites">My favourites</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} to="/user/favourites">My favourites</Link>
               </div>
             </div>
           </div>

@@ -1,33 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import Search from "../header/menu/search/Search";
 import NewsReel from "./news/NewsReel";
 import FilterType from "./posts/filterType/FilterType";
 import Order from "./posts/order/Order";
 import PostsReel from "./posts/PostsReel";
-import { getAllUsers } from "../../redux/slices/user/userActions";
-import { getUser } from "../../redux/slices/user/userActions";
+import Carousel from "./carousel/Carousel";
+
+
 
 function Home() {
-  const dispatch = useDispatch()
-  const { queryPost } = useSelector((state) => state.post);
-  const condition = queryPost ? true : false;
-  const userLogeado = JSON.parse(localStorage.getItem("token"))
-  
-  useEffect(() => {
-    dispatch(getUser(userLogeado.userId))
-  }, [dispatch])
-  
   return (
     <div>
       <div id="home_id"></div>
-      <div className={`${queryPost.length ? 'block' : 'block'}`}>
-        <img
-          src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664395439/news/Screen_Shot_2022-09-28_at_16.59.36_cfhqzs.png"
-          alt="imagen"
-          className="object-cover my-8 shadow-lg"
-        />
-      </div>
+        <Carousel/>
         <Search />
       <div >
         <div className="flex flex-col gap-2 pb-4 w-full

@@ -2,8 +2,6 @@ import { USERS } from "../constants";
 import { allUsers, showUser, responseUser } from "./userSlice";
 const axios = require("axios");
 
-
-
 export const getAllUsers = () => {
   return (dispatch) => {
     axios
@@ -14,7 +12,6 @@ export const getAllUsers = () => {
 };
 
 export const getUser = (id) => {
-  console.log('ivo')
   return (dispatch) => {
     axios
       .get(`${USERS}/${id}`)

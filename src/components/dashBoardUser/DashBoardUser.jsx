@@ -30,9 +30,6 @@ export default function DashBoardUser() {
     profile ? setProfile(false) : setProfile(true);
   }
 
-  console.log("userAvatar:", user.avatar);
-  console.log("user:", user);
-
   return (
     <div className="w-1/2 mx-auto mt-6">
       <div className="flex flex-wrap mb-12 w-full">
@@ -41,6 +38,7 @@ export default function DashBoardUser() {
             src={`${user.avatar}`}
             width="200px"
             className="rounded-full mt-16"
+            alt=""
           />
 
           <div>
