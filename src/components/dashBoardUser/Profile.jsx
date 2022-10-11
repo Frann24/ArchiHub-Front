@@ -43,6 +43,7 @@ export default function Profile({
           {user.job ? (
             <div>{user.job}</div>
           ) : (
+            
             <div className="text-slate-200">Job Title</div>
           )}
           {user.page ? (
