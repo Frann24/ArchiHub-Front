@@ -1,9 +1,11 @@
-import { CarouselProvider, Slide, Slider } from 'pure-react-carousel'
+import { ButtonBack, CarouselProvider, Slide, Slider } from 'pure-react-carousel'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { allPosts, order } from '../../../redux/slices/post/postSlice';
 import Loader from '../../loader/Loader';
+import ContentCarousel from './content/ContentCarousel';
 let orderPostsRating = []
+
 function Carousel() {
   const { allPosts } = useSelector((state) => state.post);
   useEffect(() => {
@@ -22,13 +24,20 @@ function Carousel() {
       totalSlides={3}
       visibleSlides={1}
       infinite={true}
+      isPlaying={true}
       className=""
       >
-        <Slider className='h-[100vw] sm:h-[95vw] md:h-[80vw] lg:h-[60vw] 2xl:h-[43vw]'>
-            <Slide index={0}><img className='size-img' src={orderPostsRating[0].image[0]} alt=""/></Slide>
+        <div className='relative'>
+        <Slider className='h-[100vw] sm:h-[95vw] md:h-[80vw] lg:h-[60vw] xl:h-[45vw] 2xl:h-[43vw]'>
+          <Slide index={0}><ContentCarousel data={orderPostsRating[0]}/></Slide>
+          <Slide index={1}><ContentCarousel data={orderPostsRating[1]}/></Slide>
+          <Slide index={2}><ContentCarousel data={orderPostsRating[2]}/></Slide>
+            {/* <Slide index={0}><img className='size-img' src={orderPostsRating[0].image[0]} alt=""/></Slide>
             <Slide index={1}><img className='size-img' src={orderPostsRating[1].image[0]} alt=""/></Slide>
-            <Slide index={2}><img className='size-img' src={orderPostsRating[2].image[0]} alt=""/></Slide>
+            <Slide index={2}><img className='size-img' src={orderPostsRating[2].image[0]} alt=""/></Slide> */}
         </Slider>
+        <ButtonBack className='absolute top-1/2 text-gray-50'></ButtonBack>
+        </div>
       </CarouselProvider>
     </div>
   )
