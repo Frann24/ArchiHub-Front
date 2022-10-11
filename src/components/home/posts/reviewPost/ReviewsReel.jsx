@@ -6,19 +6,22 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getReview } from "../../../../redux/slices/review/reviewActions";
+import { getPost } from "../../../../redux/slices/post/postActions";
+import Reviews from "../../../dashBoardUser/Reviews";
 
 export default function ReviewsReel() {
   const { review } = useSelector((state) => state.review);
   const { response } = useSelector((state) => state.review);
   const { id } = useParams();
   const [report, setReport] = useState("")
+  const copyReview = [...review]
+  const reviewR = copyReview.reverse()
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page; 
-  const newsPaginado = review.slice(0, indexLastCard); 
+  const newsPaginado = reviewR.slice(0, indexLastCard); 
    function paginado() {
     setPage(page + 1);
   } 
-
   const getDate = (date) => {
     const format = date.createdAt.split('T',1)[0].split('-').reverse().join('/')
     return format
@@ -29,6 +32,7 @@ export default function ReviewsReel() {
 
   const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(getPost(id))
     dispatch(getReview(id,"post"))
   }, [dispatch,response]);
   if (review.length) {

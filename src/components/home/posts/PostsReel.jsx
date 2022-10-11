@@ -8,24 +8,17 @@ export default function PostsReel() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.post.orderPosts);
-/*   const post = useSelector((state) => state.post.queryPost); */
-/*   console.log(post);
-  const condition = post.length ? true : false;
-console.log(condition) */
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
-  const currentCards =posts.slice(0, indexLastCard) /* condition
-    ? post.slice(0, indexLastCard)
-    : posts.slice(0, indexLastCard);
- */
+  const currentCards =posts.slice(0, indexLastCard) 
+
   function paginado() {
     setPage(page + 1);
   }
-  // const shortDescription = posts.description.slice(0, 50)
 
   return (
     <div>
@@ -65,7 +58,6 @@ console.log(condition) */
           See more...
         </div>}
       </div>
-          
     </div>
 );
 }

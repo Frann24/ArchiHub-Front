@@ -23,9 +23,27 @@ const CreateUpdate = ({ project_id }) => {
   }, [fileData]);
 
   const dispatch = useDispatch();
+
   const handleSumbit = (e) => {
+    e.preventDefault()
     dispatch(createUpdate(form));
+    setForm({
+      storage_id: "",
+      title: "",
+      comments: "",
+    });
   };
+  function onKeyDown(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      dispatch(createUpdate(form));
+      setForm({
+        storage_id: "",
+        title: "",
+        comments: "",
+      });
+    }
+  }
 
   const handleOnChange = (e) => {
     const { value, name } = e.target;
@@ -35,41 +53,66 @@ const CreateUpdate = ({ project_id }) => {
     });
   };
   return (
-    <div className="m-2">
-      <form onSubmit={(e) => handleSumbit(e)}>
-        <input
-          type="text"
-          placeholder="Title..."
-          name="title"
-          onChange={handleOnChange}
-          className="my-2 border p-2 w-full"
-        />
-        <textarea
-          name="comments"
-          id=""
-          className="my-2 p-2 border w-full"
-          cols="30"
-          rows="10"
-          placeholder="Comments..."
-          onChange={handleOnChange}
-        ></textarea>
-        <div className="flex items-center flex-col">
-          <CreateFile ext={".dwg"} />
-          <button
-            className="learn-more"
-            type="submit"
-            disabled={
-              !form.comments ||
-              !form.project_id ||
-              !form.storage_id ||
-              !form.user_id
-            }
-          >
-            <span className="circle" aria-hidden="true">
-              <span className="icon arrow"></span>
-            </span>
-            <span className="button-text">Send</span>
-          </button>
+    <div className="w-full md:flex md:justify-end">
+      <form
+        onSubmit={(e) => handleSumbit(e)}
+        onKeyDown={(e) => onKeyDown(e)}
+        className="grid my-4 p-4 grid-cols-4 gap-4 w-full items-center border shadow-lg 
+          md:w-3/4"
+      >
+        <div
+          className="hidden m-2 place-items-center
+            md:flex md:w-16 md:justify-self-center
+            "
+        >
+          <img src={userToken && userToken.userAvatar} alt="" />
+        </div>
+        <div className="col-span-4 md:col-span-2 md:col-start-2">
+          <input
+            type="text"
+            placeholder="Title..."
+            name="title"
+            value={form.title}
+            onChange={handleOnChange}
+            className="border p-2 w-full shadow
+              md:border-none
+            "
+          />
+          <textarea
+            name="comments"
+            id=""
+            className="mb-2 mt-4 p-2 border w-full shadow
+            md:border-none md:border-b
+            "
+            value={form.comments}
+            cols="30"
+            rows="3"
+            placeholder="Comments..."
+            onChange={handleOnChange}
+          ></textarea>
+        </div>
+        <div
+          className="flex items-center flex-col col-span-4
+            md:col-span-1 md:col-start-4
+            "
+        >
+          <CreateFile ext={".dwg"} setForm={setForm} storage_id={form.storage_id}/>
+          { form.title && form.comments && form.storage_id &&
+            <button
+              type="submit"
+              className="bg-gray-100 text-black w-full p-2 shadow-lg border 
+              hover:bg-gray-900 hover:text-white  
+                "
+              disabled={
+                !form.comments ||
+                !form.project_id ||
+                !form.storage_id ||
+                !form.user_id
+              }
+            >
+              <span>Send</span>
+            </button>
+          }
         </div>
       </form>
     </div>

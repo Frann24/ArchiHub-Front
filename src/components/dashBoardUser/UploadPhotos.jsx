@@ -3,8 +3,8 @@ import { useDropzone } from "react-dropzone";
 
 export default function UploadPhotos({ files, setFiles }) {
 
-  // const [image, setImage] = useState([]);
-  // const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState([]);
+  const [loading, setLoading] = useState(false);
 //   const [files, setFiles] = useState([]);
 
 //   const uploadImage = async (files, e) => {
@@ -82,7 +82,7 @@ export default function UploadPhotos({ files, setFiles }) {
         <input {...getInputProps()} />
         <div className="w-62 h-40 bg-white mt-6  ">
 
-        <div className=" text-center pt-6">Drop one file at a time here </div>
+        <div className=" text-center pt-6 bg-slate-100 border-slate-500">Drop one file at a time here </div>
         {/* <div className=" text-center pt-6"> or click to choose from your folders</div> */}
        <div className="grid grid-cols-3">
          <div className="   text-center py-1 w-50% "> </div>

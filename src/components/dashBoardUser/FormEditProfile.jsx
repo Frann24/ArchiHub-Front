@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/slices/user/userActions";
-import UploadPhotos from "../createPost/UploadPhotos";
+import UploadPhotos from "./UploadPhotos";
 import Swal from "sweetalert2";
+// import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 
-export default function FormEditProfile({ id }) {
+export default function FormEditProfile({ id, user }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
   const [files, setFiles] = useState([]);
@@ -112,35 +113,56 @@ export default function FormEditProfile({ id }) {
   }
 
   return (
-    <div >
-      <UploadPhotos files={files} setFiles={setFiles} />
-      <input
-        className="text-color-slate 300"
-        placeholder="Nickname"
-        name="nickname"
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <input
-        placeholder="Description"
-        name="description"
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <input
-        placeholder="Location"
-        name="location"
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <input
-        placeholder="Job Title"
-        name="job"
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <input
-        placeholder="Webpage"
-        name="page"
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <button onClick={() => handleEditPerfil()}>Save</button>
+    <div className="w-1/2 mx-auto mt-6">
+      <div className="flex flex-col-2 mb-12 w-full">
+        <div className="mt-6 mr-12">
+          <img
+            // src={`${user.avatar}`}
+            src={user.avatar}
+            width="400px"
+            className="rounded-full mt-16"
+          />
+        </div>
+        <div className="  ">
+          <div className="font-bold text-lg capitalize mt-12">
+            {user.name} {user.lastname}
+          </div>
+          <input
+            className=""
+            placeholder="Nickname"
+            name="nickname"
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <input
+            placeholder="Description"
+            name="description"
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <input
+            placeholder="Location"
+            name="location"
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <input
+            placeholder="Job Title"
+            name="job"
+            onChange={(e) => handleChange(e)}
+          ></input>
+          {/* <FontAwesomeIcon icon="fa-solid fa-link" /> */}
+          <input
+            placeholder="Webpage"
+            name="page"
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <UploadPhotos files={files} setFiles={setFiles} />
+          <button
+            className="bg-slate-400 py-2 container"
+            onClick={() => handleEditPerfil()}
+          >
+            Save
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
