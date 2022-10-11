@@ -28,7 +28,7 @@ export default function Profile({
             {user.name} {user.lastname}
           </div>
           <div className="text-lg">{user.nickname} </div>
-          <div>{user.description}</div>
+         
           {user.description ? (
             <div>{user.description}</div>
           ) : (
