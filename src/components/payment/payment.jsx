@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { loadStripe } from '@stripe/stripe-js'; 
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 //import "bootswatch/dist/lux/bootstrap.min.css";
@@ -12,8 +13,10 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false)
-  const [email, setMail ] = useState('')
   const token = JSON.parse(localStorage.getItem("token"))
+  const [userId, setUserId ] = useState("")
+
+  console.log(token.userId)
 
   // const handleSubmit = async (e) =>{
   //   e.preventDefault();
@@ -46,12 +49,12 @@ const CheckoutForm = () => {
     if(!stripe || !elements){
       return;
     }
-    const email = token.userMail
+    
     const result = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
       billing_details: {
-        email: email,
+        email: token.userMail,
       }
       
     })
@@ -59,7 +62,7 @@ const CheckoutForm = () => {
     if(result.error){
       console.log(result.error.message);
     } else {
-      const res = await axios.post(PAYMENT, {'payment_method': result.paymentMethod.id, 'email': email})
+      const res = await axios.post(PAYMENT, {'payment_method': result.paymentMethod.id, 'email': token.userMail, 'userId': token.userId})
       console.log(res.data)
       const { client_secret, status } = res.data;
   
@@ -83,23 +86,16 @@ const CheckoutForm = () => {
   return (
         <form onSubmit={handleSubmitSubscription} className="card">
           <h5>Membership For Month u$s10</h5>
-          {/* <input          
-          type="text"
-          name="email"
-          placeholder="email"
-          value= {email}
-          onChange={(e) => setMail(e.target.value)}          
-        /> */}
-        <div>
+          <div>
           {token.userMail}
-        </div>
+          </div>          
           <div className='form-group'>
             <CardElement className='form-control'/>
           </div>
           <button className='btn btn-success' disabled={!stripe}>
             {loading ? 
-              (<div className="spinner-border text-light" role="status">
-                <span className="sr-only">Loading...</span>
+              (<div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
               </div>
             ) : (
               "Suscription"
@@ -113,7 +109,7 @@ function Payment() {
   return(
     <div>      
     <Elements stripe={stripePromise}>
-      <div className="container p-4">
+      <div class="container p-4">
         <div className='row'>
           <div className='col-md-4 offset-md-4'>
             <CheckoutForm/>
