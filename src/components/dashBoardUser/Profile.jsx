@@ -28,7 +28,7 @@ export default function Profile({
             {user.name} {user.lastname}
           </div>
           <div className="text-lg">{user.nickname} </div>
-          <div>{user.description}</div>
+         
           {user.description ? (
             <div>{user.description}</div>
           ) : (
@@ -43,6 +43,7 @@ export default function Profile({
           {user.job ? (
             <div>{user.job}</div>
           ) : (
+            
             <div className="text-slate-200">Job Title</div>
           )}
           {user.page ? (
