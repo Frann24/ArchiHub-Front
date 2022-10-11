@@ -13,13 +13,8 @@ function Logged() {
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
   const token = JSON.parse(localStorage.getItem('token'))
-
   const {user} = useSelector(state => state.user)
-  const projects = [
-    { name: "Name project 1" },
-    { name: "Name project 2" },
-    { name: "Name project 3" },
-  ];
+ 
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const [overlayAvatar, setOverlayAvatar] = useState(false)
@@ -27,8 +22,9 @@ function Logged() {
     // e.preventDefault();
     dispatch(logOutUser())
     localStorage.removeItem("googleUser")
-    navigate("/")
     dispatch(clearUser({}))
+    /* navigate("/home") */
+    window.location.reload()
   }
   const toggleOverlay = (e) => {
     e.preventDefault()
@@ -41,18 +37,38 @@ function Logged() {
         const googleUser = await JSON.parse(localStorage.getItem('googleUser'))
         const token = await JSON.parse(localStorage.getItem('token'))
         dispatch(getUser(token.userId))
+        
       } catch (error) {
         console.log(error)
       }
     }
     google()
+    
     ;
   },[dispatch])
 
-  if(!user._id) return <div><Loader/></div>
+  if(!user._id) {
+    return (
+      <div className="flex items-center gap-4 animate-pulse">
+        <div className="flex order-2 items-center justify-center w-8 h-8 overflow-hidden rounded-full 
+        sm:w-9 sm:h-9
+        lg:w-11 lg:h-11
+        xl:w-12 xl:h-12
+        ">
+          <div className="w-full h-full bg-slate-200 "></div>
+        </div>
+        <div className="hidden sm:flex flex-col items-end gap-1">
+          <div className="w-24 right-0 h-4 bg-slate-300"></div>
+          <div className="w-32 h-4 bg-slate-200"></div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <>
+    
+    {createMenu && <div onClick={() => setCreateMenu(!createMenu)} className="absolute w-full h-screen top-0 left-0"></div>}
       <div onClick={() => setCreateMenu(!createMenu)} className={`hidden p-1 text-sm cursor-pointer text-gray-600 border rounded hover:bg-gray-200
       ${createMenu && "bg-gray-200"}
       xl:flex
@@ -63,6 +79,7 @@ function Logged() {
         xl:w-[15vw]
         2xl:w-[8vw]
         ">
+          
             <Link to="/createpost" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
             <Link to="/createproject" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
             {/* <Link>New commit project</Link> */}
@@ -132,13 +149,13 @@ function Logged() {
                 </div>
               }
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} to={`/user/user`}>My profile</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/user`}>My profile</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} to="/user/posts">My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/posts">My posts</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} to="/user/projects">My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/projects">My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
@@ -146,13 +163,18 @@ function Logged() {
                   <FontAwesomeIcon  className="text-gray-600" icon={faAngleDown} />
                 </div>
                 {projectMenu && <div className="pl-4 mt-1 w-auto text-gray-600 text-sm flex flex-col gap-2">
-                  {projects.map((e, i) => (
+                  {user.projects.length === 0 
+                  ? <div>
+                    <p>You don't have projects!</p>
+                    <p className="hover:underline"><Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/createproject">Create now</Link></p>
+                    </div>
+                  : user.projects.map((e, i) => (
                       <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to="">{e.name}</Link>
                   ))}
                 </div>}
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} to="/user/favourites">My favourites</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/favourites">My favourites</Link>
               </div>
             </div>
           </div>

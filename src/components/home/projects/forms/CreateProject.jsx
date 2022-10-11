@@ -163,8 +163,8 @@ const CreateProject = () => {
             form.created_by && (
               <button
                 type="submit"
-                className="bg-gray-100 text-black w-full p-2 shadow-lg border 
-                hover:bg-gray-900 hover:text-white"
+                className="bg-gray-900 text-white w-full p-2 my-4 shadow-lg border 
+                hover:bg-gray-800"
                 disabled={
                   !form.title ||
                   !form.description ||

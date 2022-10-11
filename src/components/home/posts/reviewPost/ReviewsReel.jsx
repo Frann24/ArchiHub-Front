@@ -82,7 +82,7 @@ export default function ReviewsReel() {
             </div>
           );}
         )}
-        {newsPaginado.length !== review.length ? 
+        {newsPaginado.length !== review.length ?
         <div
           className=" text-base my-9 font-semibold flex flex-row-reverse cursor-pointer"
           onClick={(e) => paginado(e)}
