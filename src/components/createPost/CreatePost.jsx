@@ -157,13 +157,13 @@ const CreatePost = () => {
         );
         const file = await res.json();
 
-        setImage(file.secure_url);
+        // setImage(file.secure_url);
 
         setLoading(false);
         const cloudinary = { public_id: file.public_id, url: file.secure_url };
         pushCloud.push(cloudinary.url);
         console.log("pushCloud", pushCloud);
-        setCloudinary(cloudinary);
+        // setCloudinary(cloudinary);
         setForm({
           ...form,
           ["image"]: pushCloud,
@@ -183,41 +183,42 @@ const CreatePost = () => {
     await uploadImage(files, e);
     const displayForm = form;
     displayForm.image = pushCloud;
-
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, create it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (Object.keys(errors).length === 0) {
-          dispatch(createPost(displayForm));
-          setResponse(true);
+    setTimeout(() => {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, create it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (Object.keys(errors).length === 0) {
+            dispatch(createPost(displayForm));
+            setResponse(true);
+          }
+          setForm({
+            title: "",
+            description: "",
+            project_type: [],
+            mts2: "",
+            rooms: "",
+            year: "",
+            image: [],
+            bathrooms: "",
+            authors: [],
+            additional_data: "",
+          });
+          navigate("/home");
+          // setTimeout(() => {
+          //   setResponse(null);
+          // }, 2000);
+  
+          Swal.fire("Created!", "Your file has been created.", "success");
         }
-        setForm({
-          title: "",
-          description: "",
-          project_type: [],
-          mts2: "",
-          rooms: "",
-          year: "",
-          image: [],
-          bathrooms: "",
-          authors: [],
-          additional_data: "",
-        });
-        navigate("/home");
-        setTimeout(() => {
-          setResponse(null);
-        }, 2000);
-
-        Swal.fire("Created!", "Your file has been created.", "success");
-      }
-    });
+      });
+    }, 1000);
   };
 
   return (
