@@ -64,7 +64,7 @@ export default function Reviews({id}) {
   return (
     <div>
       {
-      userReviews.length && 
+      userReviews.length ? 
       <div>
         <label>Search post... </label>
         <input
@@ -72,14 +72,15 @@ export default function Reviews({id}) {
         onChange={(e) => handleSearch(e)}
         />
         <button onClick={(e) => handleOrderDate(e)}>Date</button>
-      </div> 
+      </div> :
+      <div></div>
       }
       {
         state === 'not found' ?
         <div>
           <p>there are no matches with your search</p>
         </div> :
-        userReviews.length && state.length && state.map((rev) => {
+        userReviews.length ? state.length && state.map((rev) => {
           return (
             <Link to={`/postDetail/${rev.postId}`}>
             <div>
@@ -90,7 +91,10 @@ export default function Reviews({id}) {
             </div>
             </Link>
           )
-        })
+        }) :
+        <div>
+        <p>you don't have any reviews</p>
+      </div>
       }
     </div>
   )
