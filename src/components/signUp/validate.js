@@ -7,7 +7,7 @@ export function validate (input, value = undefined, err = false){
 /* ----- Name validate ----- */
 if(value === "name" || err.name || value === undefined ){
   if(!name.trim()) errors.name = "*Name is required"
-  else if(!/^[A-Z]+$/i.test(lastName)) errors.name = "* Name only can have letters"
+  else if(!/^[A-Z]+$/i.test(name)) errors.name = "* Name only can have letters"
   else if(name.length>15) errors.name = "* Name can´t have 20 more characters"
 }
 
