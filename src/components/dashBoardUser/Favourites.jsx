@@ -25,9 +25,10 @@ export default function Favourites() {
       )
     })
     const [state, setState] = useState(postsFav)
-    const [cambio, setCambio] = useState(false)
+    const [cambio, setCambio] = useState(true)
     
-    useEffect(() => { 
+    useEffect(() => {
+
       console.log(postsFav)
     }, [cambio])
 
@@ -70,7 +71,7 @@ export default function Favourites() {
   return (
     <div>
     {
-     postsFav.length && 
+     postsFav.length ? 
      <div>
       <label>Search post... </label>
       <input
@@ -78,7 +79,8 @@ export default function Favourites() {
       onChange={(e) => handleSearch(e)}
       />
       <button onClick={(e) => handleOrderDate(e)}>Date</button>
-    </div> 
+    </div> :
+    <div></div>
     }
     {
       state === 'not found' ? 

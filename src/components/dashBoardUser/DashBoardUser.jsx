@@ -48,7 +48,6 @@ export default function DashBoardUser() {
               {user.name} {user.lastname}
             </div>
             <div className="text-lg">{user.nickname} </div>
-            <div>{user.description}</div>
             {user.description ? (
               <div>{user.description}</div>
             ) : (
@@ -115,6 +114,11 @@ export default function DashBoardUser() {
       </div>
       <div>
         {state === "projects" && (
+          <div>
+            <Projects id={userLogeado.userId} />
+          </div>
+        )}
+        {state === "user" && (
           <div>
             <Projects id={userLogeado.userId} />
           </div>
