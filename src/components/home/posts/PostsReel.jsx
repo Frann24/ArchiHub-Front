@@ -57,12 +57,13 @@ console.log(condition) */
           )}
         </div>
       </div>
+      {currentCards.length !== posts.length &&
       <div
         className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
         onClick={(e) => paginado(e)}
       >
         See more...
-      </div>
+      </div>}
     </div>
 );
 }
