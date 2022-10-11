@@ -14,12 +14,21 @@ export const loginSlice = createSlice({
         },
         register:(state, action)=>{
             state.user = action.payload
-        }
-    }
+        },
+        googleLog:(state, action)=>{
+            state.user = action.payload
+        },
+        clearLogin:(state,{payload})=>{
+            state.user = payload
+        },
+        forgotPassword:(state,action)=>{
+            state.user = action.payload
+        },
+        resetPassword:(state,action)=>{
+            state.user = action.payload
+    }}
 })
 
-export const {login,logout, register}= loginSlice.actions;
-
-// export const selectUser = (state)=> state.user.user
+export const {login,logout, register, googleLog, clearLogin, forgotPassword, resetPassword}= loginSlice.actions;
 
 export default loginSlice.reducer

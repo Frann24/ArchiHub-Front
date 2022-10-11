@@ -1,15 +1,35 @@
 import React,{useState} from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { registerUser } from "../../redux/slices/auth/loginActions"
 import {Navlink, useNavigate} from "react-router-dom"
+import { showSigIn, showSignUp } from "../../redux/slices/header/headerSlice";
+import { useSignUp } from "./useSignUp";
+import { useEffect } from "react";
 
 
 function SignUp() {
-  
+  const {input, errors, handleInputChange, hanldeBlur,toggleSignIn ,handleInputSubmit} = useSignUp()
+  const {user} = useSelector(state => state.login)
+  let matchEmail = errors.email
+  let matchNick = errors.userName
+  if(user){
+    matchNick = errors.userName || user.errorNick
+   matchEmail = errors.email || user.errorMail  
+  }
+  /* useEffect(()=>{
+
+    return () => {
+      window.localStorage.removeItem("error")
+    }
+  },[user]) */
+  /* const {modalSignIn, modalSignUp} = useSelector(state => state.header)
   const dispatch = useDispatch()
-  const navigate = useNavigate();
 
-
+  const toggleSignIn = (e) => {
+    e.preventDefault()
+    dispatch(showSignUp(!modalSignUp))
+    dispatch(showSigIn(!modalSignIn))
+  }
   const [name, setName]=useState("")
   const [lastname, setLastname]=useState("")
   const [nickname, setNickname]=useState("")
@@ -18,39 +38,25 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword]=useState("")
 
 
-  const[user,setUser]=useState({
-    name:null,
-    lastname:null,
-    nickname:null,
-    email:null,
-    password:null,
-    confirmPassword:null,
-    loggedIn:false
-  })
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    dispatch(registerUser(
+      name,
+      lastname,
+      nickname,
+      email,
+      password,
+      confirmPassword))
+  } */
 
-const handleRegister=async(e)=>{
-  e.preventDefault();
-      setUser({
-        name,
-        lastname,
-        nickname,
-        email,
-        password,
-        confirmPassword,
-        loggedIn:true
-      })
-      dispatch(registerUser(user))
-      navigate("/home")
-}
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">
         Sign Up
       </h3>
-      <form className="space-y-6" onSubmit={handleRegister}>
-      <div>
-          <label
-            for="name"
+      <form className="space-y-6" onSubmit={handleInputSubmit}>
+        <div>
+          <label  
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Name
@@ -59,51 +65,57 @@ const handleRegister=async(e)=>{
             type="text"
             name="name"
             id="name"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.name && "border-2 focus:border-danger border-danger"}`}
             placeholder="first name"
-            onChange={(e)=>setName(e.target.value)}
-            value={name}
+            onChange={handleInputChange}
+            value={input.name}
+            onBlur={hanldeBlur}
           />
+          {errors.name && <span className="error-text">{errors.name}</span>}
         </div>
         <div>
           <label
-            for="lastname"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Lastname
+            Last name
           </label>
           <input
             type="text"
-            name="lastname"
-            id="lastname"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
-            placeholder="lastname"
-            onChange={(e)=>setLastname(e.target.value)}
-            value={lastname}
+            name="lastName"
+            id="lastName"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.lastName && "border-2 focus:border-danger border-danger"}`}
+            placeholder="Last name"
+            onChange={handleInputChange}
+            value={input.lastName}
+            onBlur={hanldeBlur}
           />
+          {errors.lastName && <span className="error-text">{errors.lastName}</span>}
         </div>
         <div>
           <label
-            for="nickname"
+           
             className="block mb-2 text-sm font-medium text-gray-900"
           >
-            Nickname
+            User name
           </label>
           <input
             type="text"
-            name="nickname"
-            id="nickname"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
-            placeholder="nickname"
-            onChange={(e)=>setNickname(e.target.value)}
-            value={nickname}
-
+            name="userName"
+            id="userName"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${matchNick && "border-2 focus:border-danger border-danger"}`}
+            placeholder="user name"
+            onChange={handleInputChange}
+            value={input.userName}
+            onBlur={hanldeBlur}
           />
+          {matchNick && <span className="error-text">{matchNick}</span>}
         </div>
        
         <div>
           <label
-            for="email"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Your email
@@ -112,17 +124,17 @@ const handleRegister=async(e)=>{
             type="email"
             name="email"
             id="email"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500"
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${matchEmail && "border-2 focus:border-danger border-danger"}`}
             placeholder="name@example.com"
-            onChange={(e)=>setEmail(e.target.value)}
-            value={email}
-
-
+            onChange={handleInputChange}
+            value={input.email}
+            onBlur={hanldeBlur}
           />
+          {matchEmail && <span className="error-text">{matchEmail}</span>}
         </div>
         <div>
           <label
-            for="password"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Password
@@ -132,16 +144,17 @@ const handleRegister=async(e)=>{
             name="password"
             id="password"
             placeholder="••••••••"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            onChange={(e)=>setPassword(e.target.value)}
-            value={password}
-
-
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.password && "border-2 focus:border-danger border-danger"}`}
+            onChange={handleInputChange}
+            value={input.password}
+            onBlur={hanldeBlur}
           />
+          {errors.password && <span className="error-text">{errors.password}</span>}
         </div>
         <div>
           <label
-            for="password"
+
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Confirm password
@@ -151,10 +164,13 @@ const handleRegister=async(e)=>{
             name="confirmPassword"
             id="confirmPassword"
             placeholder="••••••••"
-            className="bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500 "
-            onChange={(e)=>setConfirmPassword(e.target.value)}
-            value={confirmPassword}
+            className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
+            ${errors.confirmPassword && "border-2 focus:border-danger border-danger"}`}
+            onChange={handleInputChange}
+            value={input.confirmPassword}
+            onBlur={hanldeBlur}
          />
+         {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
         </div>
         <div className="flex justify-between"></div>
         <button
@@ -163,18 +179,19 @@ const handleRegister=async(e)=>{
         >
           Create account & Login
         </button>
+
         {/* <button
           type="submit"
           className="w-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none  font-medium text-sm px-5 py-2.5 text-center"
         >
           Sign up with Google
-        </button>
-        <div class="text-sm font-medium text-gray-900">
-          Have an account?{" "}
-          <span class="cursor-pointer text-gray-600 hover:underline">
+        </button> */}
+        <div className="text-sm font-medium text-gray-900">
+          Have an account?
+          <span className="cursor-pointer text-gray-600 underline pl-1" onClick={toggleSignIn}>
             Sign in
           </span>
-        </div> */}
+        </div>
       </form>
     </div>
   );

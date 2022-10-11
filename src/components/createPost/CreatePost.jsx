@@ -5,8 +5,19 @@ import Select from "react-select";
 import { getAllUsers } from "../../redux/slices/user/userActions";
 import { createPost } from "../../redux/slices/post/postActions";
 import infoTypePost from "../../api/projectTypeData";
+import UploadPhotos from "./UploadPhotos";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
+  const pushCloud = [];
+  const [files, setFiles] = useState([]);
+  const [image, setImage] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
+
+  const userToken = JSON.parse(window.localStorage.getItem("token"));
+
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -18,15 +29,18 @@ const CreatePost = () => {
     image: [],
     authors: [],
     additional_data: "",
+    created_by: userToken ? userToken.userId : "",
   });
   const [errors, setErrors] = useState({});
-  const [loading] = useState(false);
+  const navigate = useNavigate();
   const [response, setResponse] = useState(null);
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
+  const [cloudinary, setCloudinary] = useState({});
+
   useEffect(() => {
     dispatch(getAllUsers());
-  }, [dispatch]);
+  }, []);
 
   const options = allUsers.map((e) => {
     return {
@@ -78,9 +92,6 @@ const CreatePost = () => {
     if (Object.keys(form.year).length === 0) {
       errors.year = "Select a date";
     }
-    // if (Object.keys(form.image).length === 0) {
-    //   errors.image = "Upload one image at least";
-    // }
     if (Object.keys(form.bathrooms).length === 0) {
       errors.bathrooms = "'bathrooms' is required";
     }
@@ -124,52 +135,91 @@ const CreatePost = () => {
       });
     }
   };
-  const uploadImage = async (e) => {
-    console.log(e.target.file);
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "Arquihub");
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dfcd64nhm/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const file = await res.json();
-    console.log(file.secure_url);
-    if (file.secure_url !== undefined) {
-      setForm({ ...form, image: [...form.image, file.secure_url] });
-    }
+
+  const uploadImage = async (files, e) => {
+    e.preventDefault();
+    console.log("files", files);
+
+    const arrayCloud = (data) => {
+      data.forEach(async (element) => {
+        const filesCloud = element;
+        console.log(filesCloud[0]);
+        const data = new FormData();
+        console.log(data);
+        data.append("file", filesCloud[0]);
+        data.append("upload_preset", "Arquihub");
+        setLoading(true);
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/dfcd64nhm/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+        const file = await res.json();
+
+        // setImage(file.secure_url);
+
+        setLoading(false);
+        const cloudinary = { public_id: file.public_id, url: file.secure_url };
+        pushCloud.push(cloudinary.url);
+        console.log("pushCloud", pushCloud);
+        // setCloudinary(cloudinary);
+        setForm({
+          ...form,
+          ["image"]: pushCloud,
+        });
+      });
+    };
+
+    arrayCloud(files);
   };
 
   const handleFormBlur = (e) => {
     handleFormChange(e);
     setErrors(validationsForm(form));
   };
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (files, e) => {
     e.preventDefault();
-    setErrors(validationsForm(form));
-    if (Object.keys(errors).length === 0) {
-      dispatch(createPost(form));
-      setResponse(true);
-    }
-    setForm({
-      title: "",
-      description: "",
-      project_type: [],
-      mts2: "",
-      rooms: "",
-      year: "",
-      image: [],
-      bathrooms: "",
-      authors: [],
-      additional_data: "",
-    });
+    await uploadImage(files, e);
+    const displayForm = form;
+    displayForm.image = pushCloud;
     setTimeout(() => {
-      setResponse(null);
-    }, 2000);
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, create it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (Object.keys(errors).length === 0) {
+            dispatch(createPost(displayForm));
+            setResponse(true);
+          }
+          setForm({
+            title: "",
+            description: "",
+            project_type: [],
+            mts2: "",
+            rooms: "",
+            year: "",
+            image: [],
+            bathrooms: "",
+            authors: [],
+            additional_data: "",
+          });
+          navigate("/home");
+          // setTimeout(() => {
+          //   setResponse(null);
+          // }, 2000);
+  
+          Swal.fire("Created!", "Your file has been created.", "success");
+        }
+      });
+    }, 1000);
   };
 
   return (
@@ -177,7 +227,7 @@ const CreatePost = () => {
       <div>
         <div className="md:container px-10 py-4 bg-slate-100">
           <h2 className=" mb-8">Create Post</h2>
-          <form onSubmit={(e) => handleFormSubmit(e)}>
+          <form onSubmit={(e) => handleFormSubmit(files, e)}>
             <label>Title</label>
             <span className="block font-bold text-slate-700 text-2x1 ">
               <input
@@ -191,7 +241,6 @@ const CreatePost = () => {
                 required
               />
             </span>
-
             {!errors.title ? (
               <span></span>
             ) : (
@@ -249,12 +298,12 @@ const CreatePost = () => {
             <label className="">{form.mts2}</label>
 
             {!errors.mts2 ? (
-              <span></span>
+              <p className=" mb-6 text-slate-100">{errors.mts2}</p>
             ) : (
               <p className=" mb-6 text-red-400">{errors.mts2}</p>
             )}
 
-            <div className="flex flex-row "></div>
+            {/* <div className="flex flex-row "></div> */}
 
             <div>
               <div className="md:grid-cols-3  sm:grid grid-cols-1">
@@ -298,19 +347,20 @@ const CreatePost = () => {
                   />
                 </div>
               </div>
-              {!errors.year ? (
-                <span></span>
-              ) : (
-                <p className=" mb-6 text-red-400">{errors.year}</p>
-              )}
-
-              {!errors.rooms ? (
-                <span></span>
-              ) : (
-                <p className=" mb-6 text-red-400">{errors.rooms}</p>
-              )}
 
               <div className="flex flex-col ">
+                {!errors.year ? (
+                  <span></span>
+                ) : (
+                  <p className=" mb-6 text-red-400">{errors.year}</p>
+                )}
+
+                {!errors.rooms ? (
+                  <span></span>
+                ) : (
+                  <p className=" mb-6 text-red-400">{errors.rooms}</p>
+                )}
+
                 {!errors.bathrooms ? (
                   <span></span>
                 ) : (
@@ -318,7 +368,7 @@ const CreatePost = () => {
                 )}
               </div>
             </div>
-            <div className="mt-6">Authors</div>
+            <div className="mt-6">Collaborators:</div>
             <Select
               className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               onBlur={handleFormBlur}
@@ -328,14 +378,23 @@ const CreatePost = () => {
               value={form.authors}
             />
 
-            <div className="mt-6">Image</div>
+            {/* <div className="mt-6">Image</div> */}
 
-            <input
+            {/* <input
               className="mt-1 w-full px-3 py-2  bg-white border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 "
               id="exampleFile"
               name="file"
               type="file"
               onChange={uploadImage}
+            /> */}
+            <div className="mt-6">Images</div>
+            <UploadPhotos
+              pushCloud={pushCloud}
+              setCloudinary={setCloudinary}
+              form={form}
+              setForm={setForm}
+              files={files}
+              setFiles={setFiles}
             />
 
             <div className=" mt-6">Additional Data</div>
@@ -353,7 +412,7 @@ const CreatePost = () => {
             ></textarea>
 
             {!errors.additional_data ? (
-              <span></span>
+              <p className=" mb-6 text-slate-100">{errors.additional_data}</p>
             ) : (
               <p className=" mb-6 text-red-400">{errors.additional_data}</p>
             )}
@@ -392,11 +451,12 @@ const CreatePost = () => {
             </div>
           }
         </div>
-        <div>
+
+        {/* <div>
           {form.image?.map((e) => {
             return <img src={e} alt={e} width="300px" />;
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );

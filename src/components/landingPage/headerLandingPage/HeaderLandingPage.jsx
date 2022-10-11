@@ -11,7 +11,9 @@ function HeaderLandingPage() {
         lg:mx-16 lg:h-16
         xl:mx-32
         ">
-          <Logo />
+          <div className="text-3xl">
+            <Logo/>
+          </div>
         <div className="inline">
           <Link to="/home">
           <button className="text-xl border-r-4 py-1 px-4 border-gray-800 hover:bg-gray-800 hover:text-white transition-all duration-500 ">
