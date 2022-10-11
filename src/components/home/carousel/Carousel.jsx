@@ -1,9 +1,11 @@
-import { ButtonBack, CarouselProvider, Slide, Slider } from 'pure-react-carousel'
+import { ButtonBack, ButtonNext, ButtonPlay, CarouselProvider, Slide, Slider } from 'pure-react-carousel'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { allPosts, order } from '../../../redux/slices/post/postSlice';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from '../../loader/Loader';
 import ContentCarousel from './content/ContentCarousel';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 let orderPostsRating = []
 
 function Carousel() {
@@ -32,11 +34,10 @@ function Carousel() {
           <Slide index={0}><ContentCarousel data={orderPostsRating[0]}/></Slide>
           <Slide index={1}><ContentCarousel data={orderPostsRating[1]}/></Slide>
           <Slide index={2}><ContentCarousel data={orderPostsRating[2]}/></Slide>
-            {/* <Slide index={0}><img className='size-img' src={orderPostsRating[0].image[0]} alt=""/></Slide>
-            <Slide index={1}><img className='size-img' src={orderPostsRating[1].image[0]} alt=""/></Slide>
-            <Slide index={2}><img className='size-img' src={orderPostsRating[2].image[0]} alt=""/></Slide> */}
         </Slider>
-        <ButtonBack className='absolute top-1/2 text-gray-50'></ButtonBack>
+        {/* <div className='absolute top-0 w-full bg-black bg-opacity-60 p-4'><p className='text-gray-50'>Top rated</p></div> */}
+        <ButtonBack className='absolute top-1/2 left-0 text-gray-50 mx-4'><FontAwesomeIcon className='text-3xl' height={300} icon={faAngleLeft}/></ButtonBack>
+        <ButtonNext className='absolute top-1/2 right-0 text-gray-50 mx-4'><FontAwesomeIcon className='text-3xl' height={300} icon={faAngleRight}/></ButtonNext>
         </div>
       </CarouselProvider>
     </div>
