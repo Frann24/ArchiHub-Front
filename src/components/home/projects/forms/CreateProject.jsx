@@ -18,7 +18,6 @@ const CreateProject = () => {
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
-
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -82,7 +81,16 @@ const CreateProject = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProject(form));
+    let submitForm = {
+      title: form.title,
+      description: form.description,
+      visibility: form.visibility.value,
+      created_by: form.created_by,
+      users: form.users,
+      pdf_file: form.pdf_file,
+      project_file: form.project_file
+    }
+    dispatch(createProject(submitForm));
     setForm({
       title: "",
       description: "",
@@ -96,61 +104,82 @@ const CreateProject = () => {
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <label>Title</label>
-        <input
-          type="text"
-          placeholder="Title..."
-          name="title"
-          onChange={(e) => handleChange(e)}
-        />
-        <label>Description</label>
-        <textarea
-          name="description"
-          cols="30"
-          rows="10"
-          placeholder="Type the project description..."
-          onChange={(e) => handleChange(e)}
-        ></textarea>
-        <Select
-          className=""
-          // onBlur={handleFormBlur}
-          onChange={handleSelectVisibility}
-          options={options2}
-          value={form.visibility}
-        />
-        <label>Select the PDF file</label>
-        <CreateFile ext={".pdf"} />
-        <label>Select the DWG file</label>
-        <CreateFile ext={".dwg"} />
-        <label>Collaborators</label>
-        <Select
-          className=""
-          // onBlur={handleFormBlur}
-          onChange={handleSelectUsers}
-          isMulti
-          options={options}
-          value={form.users}
-        />
-        <button
-          type="submit"
-          disabled={
-            !form.title ||
-            !form.description ||
-            !form.pdf_file ||
-            !form.visibility ||
-            !form.project_file ||
-            !form.users ||
-            !form.created_by
-          }
+        <div
+          className="mx-4
+        md:mx-8
+        lg:mx-16
+        xl:mx-32
+        2xl:mx-64
+        "
         >
-          SEND
-        </button>
-      </form>
-      <div>
-        <div>
-          <VisualizePDF url={pdf_get && pdf_get.url} />
+          <div className="flex flex-col">
+            <label className="my-2">Title</label>
+            <input
+              type="text"
+              placeholder="Title..."
+              name="title"
+              className="w-full border-b-2 my-2 p-2
+              md:w-3/4"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label>Description</label>
+            <textarea
+              name="description"
+              cols="30"
+              rows="10"
+              placeholder="Type the project description..."
+              className="w-full border-b-2 my-2 p-2"
+              onChange={(e) => handleChange(e)}
+            ></textarea>
+          </div>
+          <label className="my-2">Collaborators</label>
+          <Select
+            className="my-4"
+            // onBlur={handleFormBlur}
+            onChange={handleSelectUsers}
+            isMulti
+            options={options}
+            value={form.users}
+          />
+          <Select
+            className="my-4"
+            // onBlur={handleFormBlur}
+            onChange={(e) => handleSelectVisibility(e)}
+            options={options2}
+            value={form.visibility}
+          />
+          <label>Select the PDF file</label>
+          <CreateFile ext={".pdf"} />
+          <label>Select the DWG file</label>
+          <CreateFile ext={".dwg"} />
+          {form.title &&
+            form.description &&
+            form.pdf_file &&
+            form.visibility &&
+            form.project_file &&
+            form.users &&
+            form.created_by && (
+              <button
+                type="submit"
+                className="bg-gray-100 text-black w-full p-2 shadow-lg border 
+                hover:bg-gray-900 hover:text-white"
+                disabled={
+                  !form.title ||
+                  !form.description ||
+                  !form.pdf_file ||
+                  !form.visibility ||
+                  !form.project_file ||
+                  !form.users ||
+                  !form.created_by
+                }
+              >
+                Send
+              </button>
+            )}
         </div>
-      </div>
+      </form>
     </div>
   );
 };
