@@ -3,8 +3,8 @@ import { useDropzone } from "react-dropzone";
 
 export default function UploadPhotos({ files, setFiles }) {
 
-  const [image, setImage] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [image, setImage] = useState([]);
+  // const [loading, setLoading] = useState(false);
 //   const [files, setFiles] = useState([]);
 
 //   const uploadImage = async (files, e) => {

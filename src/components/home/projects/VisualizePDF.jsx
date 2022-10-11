@@ -20,32 +20,42 @@ const VisualizePDF = ({ url }) => {
     changePage(+1);
   }
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-row justify-center items-center my-4">
       {/* <iframe src={url} frameborder="0"></iframe> */}
-      <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page width={300} pageNumber={pageNumber}></Page>
+      <Document
+        file={url}
+        onLoadSuccess={onDocumentLoadSuccess}
+        className="z-0"
+      >
+        <Page width={300} pageNumber={pageNumber} className="z-0"></Page>
         <div>
-          <p className="text-light">
+          <p className="flex text-light justify-center">
             Page {pageNumber} of {numPage}
           </p>
-          <div>
-            <button
-              disabled={pageNumber === 1}
-              onClick={changePageBack}
-              className="absolute left-0 float-left cursor-pointer my-2 border text-black w-full p-2 bg-gray-100"
-            >
-              {`<`}
-            </button>
-            <button
-              disabled={pageNumber === numPage}
-              onClick={changePageNext}
-              className=" absolute right-0 float-right cursor-pointer my-2 border text-black w-full p-2 bg-gray-100"
-            >
-              {`>`}
-            </button>
-          </div>
         </div>
       </Document>
+      <button
+        disabled={pageNumber === 1}
+        onClick={changePageBack}
+        className="absolute mx-6 w-auto h-4/8 left-0 float-left cursor-pointer my-2 border text-white p-2 bg-gray-800 opacity-20
+        md:mx-16
+        lg:mx-32
+        xl:mx-64
+        2xl:mx-96"
+      >
+        {`<`}
+      </button>
+      <button
+        disabled={pageNumber === numPage}
+        onClick={changePageNext}
+        className="absolute w-auto mx-6 h-4/8 right-0 float-right cursor-pointer my-2 border text-white p-2 bg-gray-800 opacity-20
+        md:mx-16
+        lg:mx-32
+        xl:mx-64
+        2xl:mx-96"
+      >
+        {`>`}
+      </button>
     </div>
   );
 };
