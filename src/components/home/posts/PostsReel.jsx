@@ -30,7 +30,6 @@ console.log(condition) */
   return (
     <div>
       <h4 className="ml-6 mb-6 font-semibold ">Posts</h4>
-
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
           {currentCards.length > 0 ? (
@@ -52,17 +51,21 @@ console.log(condition) */
                 </div>
               );
             })
-          ) : (
-            <p className="text-xl">No posts found!</p>
+          ) : ( 
+            <></>
           )}
         </div>
+        {currentCards.length === 0 
+          ? <div className="w-full flex justify-center items-center h-32"><p className="text-xl font-medium text-gray-500">No posts found!</p></div> 
+          : <></>}
+        {posts.length !== currentCards.length && <div
+          className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
+          onClick={(e) => paginado(e)}
+        >
+          See more...
+        </div>}
       </div>
-      <div
-        className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
-        onClick={(e) => paginado(e)}
-      >
-        See more...
-      </div>
+          
     </div>
 );
 }

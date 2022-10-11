@@ -6,8 +6,6 @@ import Order from "./posts/order/Order";
 import PostsReel from "./posts/PostsReel";
 import Carousel from "./carousel/Carousel";
 
-
-
 function Home() {
   return (
     <div>
