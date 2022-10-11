@@ -48,7 +48,7 @@ export default function ReviewsReel() {
                 </div>
                 
                 <div onClick={()=> openReport(index)} className="text-gray-500 w-8 h-8 flex justify-center items-center cursor-pointer rounded-full lg:hover:bg-gray-200 lg:text-xl"><FontAwesomeIcon icon={faEllipsisVertical}/></div>
-                  {report === index && 
+                  {report === index ? 
                     <div className="absolute z-40 w-3/5 right-0 mt-20 mx-6 rounded-lg
                     sm:w-2/5
                     md:mx-10 md:w-2/6
@@ -60,7 +60,7 @@ export default function ReviewsReel() {
                         <p className="p-1 pl-2 cursor-pointer hover:text-gray-400">Flag as inappropriate</p> 
                       </div>                    
                     </div>
-                  }
+                  :<></>}
               </div>
               <div className="flex gap-4 items-center">
                 <div>
@@ -82,13 +82,13 @@ export default function ReviewsReel() {
             </div>
           );}
         )}
-        {newsPaginado.length !== review.length && 
+        {newsPaginado.length !== review.length ? 
         <div
           className=" text-base my-9 font-semibold flex flex-row-reverse cursor-pointer"
           onClick={(e) => paginado(e)}
         >
           See more...
-        </div>}
+        </div>:<></>}
         {report !== ""  && <div onClick={() => setReport("")} className="overflow-y-hidden fixed z-20 top-0 left-0 w-screen h-screen"></div>}
       </div>)}
  else {
