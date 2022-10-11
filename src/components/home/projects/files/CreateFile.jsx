@@ -29,9 +29,9 @@ const CreateFile = ({ ext, setForm, storage_id }) => {
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="flex text-white justify-center items-center p-2 w-60 mb-4 bg-gray-900 shadow-lg
-      sm:w-96
+    <div className="flex flex-row w-full">
+      <div className="flex text-white justify-center items-center p-2 w-full mb-4 bg-gray-900 shadow-lg
+      sm:w-full
       hover:bg-gray-800
       md:w-20 md:bg-white
       ">

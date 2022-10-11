@@ -21,7 +21,6 @@ export const getProject = (id) => {
 };
 
 export const createProject = (info) => {
-  console.log(info);
   return (dispatch) => {
     axios
       .post(PROJECT, info)

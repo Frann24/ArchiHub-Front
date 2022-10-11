@@ -74,15 +74,13 @@ const CreateUpdate = ({ project_id }) => {
             name="title"
             value={form.title}
             onChange={handleOnChange}
-            className="border p-2 w-full shadow
-              md:border-none
+            className="border-b-2  p-2 w-full
             "
           />
           <textarea
             name="comments"
             id=""
-            className="mb-2 mt-4 p-2 border w-full shadow
-            md:border-none md:border-b
+            className="mb-2 mt-4 p-2 border-b-2 w-full
             "
             value={form.comments}
             cols="30"
@@ -100,7 +98,7 @@ const CreateUpdate = ({ project_id }) => {
           { form.title && form.comments && form.storage_id &&
             <button
               type="submit"
-              className="bg-gray-100 text-black w-full p-2 shadow-lg border 
+              className="bg-gray-100 text-black w-full my-2 p-2 shadow-lg border 
               hover:bg-gray-900 hover:text-white  
                 "
               disabled={
