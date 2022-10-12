@@ -151,14 +151,15 @@ export default function FormEditProfile({ id, user }) {
             // src={`${user.avatar}`}
             src={files[0] ? files[0][0].preview : user.avatar}
             // width="400px"
- 
+
             className="w-100% block rounded-full hover:bg-opacity-50 hover:bg-black "
           />
-          <div >
-            {/* opacity-0 hover:opacity-100"> */}
-            <div className="  font-bold ">DROP</div>
-            <p className=" mt-2 ">your image here</p>
-          </div>
+           <div className="">
+
+            <div className="  font-bold ">drop  image</div>
+            <div className="  mt-2 ">inside de circle</div>
+           </div>
+           
         </div>
         <div className="  ">
           <div className="font-bold text-lg capitalize mt-12">
