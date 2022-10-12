@@ -32,8 +32,8 @@ export default function DashBoardUser() {
   }
 
   return (
-    <div className="">
-    {/* <div className="w-1/2 mx-auto mt-6"> */}
+    <div className="ml-32">
+      {/* <div className="w-1/2 mx-auto mt-6"> */}
       {profile ? (
         <div>
           <div>
@@ -56,7 +56,7 @@ export default function DashBoardUser() {
       )}
       <div>
         <div>
-          <div className="flex flex-row gap-10 mt-16 ml-12 w-1/2">
+          <div className="flex flex-row gap-16 mt-16 ml-12 w-1/2">
             <div className="tracking-wider text-lg hover:border-b-2 border-slate-300">
               <button value="projects" onClick={(e) => handleChange(e)}>
                 Projects

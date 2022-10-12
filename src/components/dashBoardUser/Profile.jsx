@@ -1,6 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { faBuilding } from "@fortawesome/free-regular-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 export default function Profile({
   user,
   userLogeado,
@@ -36,23 +38,26 @@ export default function Profile({
           )}
 
           {user.location ? (
-            <div className="flex flex-row">
-              <FontAwesomeIcon icon="fa-solid fa-location-dot" />
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faLocationDot} />
               <div>{user.location}</div>
             </div>
           ) : (
-            <div className="flex flex-row">
-              <FontAwesomeIcon icon="fa-solid fa-location-dot" />
-            <div className="text-slate-200">Location</div>
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faLocationDot} />
+              <div className="text-slate-200">Location</div>
             </div>
           )}
           {user.job ? (
-            <div>
-              <FontAwesomeIcon icon="fa-regular fa-building" />
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faBuilding} />
               <div>{user.job}</div>
             </div>
           ) : (
-            <div className="text-slate-200">Job Title</div>
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faBuilding} />
+              <div className="text-slate-200">Job Title</div>
+            </div>
           )}
           {user.page ? (
             <div>
@@ -63,7 +68,7 @@ export default function Profile({
             </div>
           ) : (
             <div className="flex flex-row">
-              <FontAwesomeIcon icon="fa-solid fa-link" />
+              <FontAwesomeIcon icon={faLink} />
 
               <div className="text-slate-200">Webpage</div>
             </div>

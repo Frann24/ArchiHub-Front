@@ -4,8 +4,10 @@ import { updateUser } from "../../redux/slices/user/userActions";
 import UploadPhotos from "./UploadPhotos";
 import Swal from "sweetalert2";
 import { useDropzone } from "react-dropzone";
-// import FontAwesomeIcon from "@fortawesome/react-fontawesome"
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBuilding } from "@fortawesome/free-regular-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 export default function FormEditProfile({ id, user }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
@@ -172,23 +174,32 @@ export default function FormEditProfile({ id, user }) {
             name="description"
             onChange={(e) => handleChange(e)}
           ></input>
-          <input
-            placeholder="Location"
-            name="location"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <input
-            placeholder="Job Title"
-            name="job"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          {/* <FontAwesomeIcon icon="fa-solid fa-link" /> */}
-          <input
-            placeholder="Webpage"
-            name="page"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          {/* <UploadPhotos files={files} setFiles={setFiles} /> */}
+          <div className="flex flex-row my-3">
+            <FontAwesomeIcon icon={faLocationDot} />
+            <input
+              placeholder="Location"
+              name="location"
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </div>
+          <div className="flex flex-row my-3">
+            <FontAwesomeIcon icon={faBuilding} />
+            <input
+              placeholder="Job Title"
+              name="job"
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </div>
+
+          <div className="flex flex-row">
+            <FontAwesomeIcon icon={faLink} />
+            <input
+              placeholder="Webpage"
+              name="page"
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </div>
+
           <button
             className="bg-slate-300 cursor-pointer w-32 h-8 mt-6"
             onClick={() => handleEditPerfil()}
