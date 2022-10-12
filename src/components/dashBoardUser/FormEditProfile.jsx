@@ -3,16 +3,31 @@ import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/slices/user/userActions";
 import UploadPhotos from "./UploadPhotos";
 import Swal from "sweetalert2";
+import { useDropzone } from "react-dropzone";
 // import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 
 export default function FormEditProfile({ id, user }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
   const [files, setFiles] = useState([]);
+  console.log(files);
+
   let image = "";
   //   const [image, setImage] = useState();
   //   console.log("files: ", files);
+  const [isHovering, setIsHoverig] = useState(false);
 
+  function handleMouseEnter() {
+    setIsHoverig(true);
+  }
+  function handleMouseLeave() {
+    setIsHoverig(false);
+  }
+  function textClass() {
+    return `absolute top-10 left-5 w-100% h-100% text-white flex flex-col content-center text-center justify-self-center ${
+      isHovering ? "" : "hidden"
+    }`;
+  }
   const flatFile = files.flat();
   console.log(flatFile);
 
@@ -77,6 +92,20 @@ export default function FormEditProfile({ id, user }) {
   //     arrayCloud(files);
   //   };
 
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setFiles([
+        ...files,
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        ),
+      ]);
+    },
+  });
+
   async function handleEditPerfil() {
     await uploadImage(flatFile);
     const newState = state;
@@ -115,13 +144,21 @@ export default function FormEditProfile({ id, user }) {
   return (
     <div className="w-1/2 mx-auto mt-6">
       <div className="flex flex-col-2 mb-12 w-full">
-        <div className="mt-6 mr-12">
+        <div {...getRootProps()} className="relative w-400px">
+          <input {...getInputProps()} />
+
           <img
             // src={`${user.avatar}`}
-            src={user.avatar}
-            width="400px"
-            className="rounded-full mt-16"
+            src={files[0] ? files[0][0].preview : user.avatar}
+            // width="400px"
+ 
+            className="w-100% block rounded-full hover:bg-opacity-50 hover:bg-black "
           />
+          <div >
+            {/* opacity-0 hover:opacity-100"> */}
+            <div className="  font-bold ">DROP</div>
+            <p className=" mt-2 ">your image here</p>
+          </div>
         </div>
         <div className="  ">
           <div className="font-bold text-lg capitalize mt-12">
@@ -154,7 +191,7 @@ export default function FormEditProfile({ id, user }) {
             name="page"
             onChange={(e) => handleChange(e)}
           ></input>
-          <UploadPhotos files={files} setFiles={setFiles} />
+          {/* <UploadPhotos files={files} setFiles={setFiles} /> */}
           <button
             className="bg-slate-400 py-2 container"
             onClick={() => handleEditPerfil()}
