@@ -73,12 +73,8 @@ function Logged() {
       onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
       className="cursor-pointer flex items-center gap-4" 
     >
-      <div className="flex order-2 items-center justify-center w-10  overflow-hidden rounded-full
-      sm:w-9
-      lg:w-11
-      xl:w-12
-      ">
-        <AvatarUser img={user.avatar} size={10} sm={9} lg={11} xl={12}/>
+      <div className="flex order-2 items-center justify-center ">
+        <AvatarUser img={user.avatar} className="w-10 h-10 sm:w-12 sm:h-12 xl:w-14 xl:h-14"/>
       </div>
       <div className="hidden sm:flex flex-col text-end">
         <p className="text-sm lg:text-base font-medium">{user.nickname}</p>
@@ -105,8 +101,8 @@ function Logged() {
         </button>
         <div className={`flex flex-col justify-between h-full`}>
           <div>
-            <div className="flex cursor-pointer items-center justify-center rounded-full m-auto mt-4">
-              <AvatarUser img={user.avatar} size={18} sm={20} action={true}/>
+            <div className="flex items-center justify-center rounded-full m-auto mt-4">
+              <AvatarUser img={user.avatar} action={true} className="w-20 h-20 xl:w-24 xl:h-24 2xl:w-28 2xl:h-28 cursor-pointer"/>
             </div>
             <div className="my-4">
               <h3 className="text-xl">{user.nickname}</h3>
