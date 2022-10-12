@@ -1,50 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser, logOutUser } from "../../../redux/slices/auth/loginActions";
 import { getUser } from "../../../redux/slices/user/userActions";
-import Loader from "../../loader/Loader";
-import Modal from "../../modal/Modal";
+import AvatarUser from "../../avatarUser/AvatarUser";
 
 function Logged() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
-  const token = JSON.parse(localStorage.getItem('token'))
   const {user} = useSelector(state => state.user)
  
   const dispatch = useDispatch()
-  const navigate = useNavigate();
-  const [overlayAvatar, setOverlayAvatar] = useState(false)
+
   const handleLogout =  (e) => {
-    // e.preventDefault();
     dispatch(logOutUser())
     localStorage.removeItem("googleUser")
     dispatch(clearUser({}))
-    /* navigate("/home") */
     window.location.reload()
   }
-  const toggleOverlay = (e) => {
-    e.preventDefault()
-    setOverlayAvatar(!overlayAvatar)
-  }
-  
+
   useEffect(()=>{
     const google = async () =>{
       try {
         const googleUser = await JSON.parse(localStorage.getItem('googleUser'))
         const token = await JSON.parse(localStorage.getItem('token'))
         dispatch(getUser(token.userId))
-        
       } catch (error) {
         console.log(error)
       }
     }
     google()
-    
-    ;
   },[dispatch])
 
   if(!user._id) {
@@ -67,7 +55,6 @@ function Logged() {
 
   return (
     <>
-    
     {createMenu && <div onClick={() => setCreateMenu(!createMenu)} className="absolute w-full h-screen top-0 left-0"></div>}
       <div onClick={() => setCreateMenu(!createMenu)} className={`hidden p-1 text-sm cursor-pointer text-gray-600 border rounded hover:bg-gray-200
       ${createMenu && "bg-gray-200"}
@@ -76,13 +63,9 @@ function Logged() {
         <FontAwesomeIcon className="px-1 cursor-pointer" icon={faPlus}/>
         <FontAwesomeIcon className="px-1 cursor-pointer" icon={createMenu ? faAngleUp : faAngleDown}/>
         {createMenu && <div className="absolute mt-10 text-gray-600 w-[16vw] flex flex-col bg-gray-100 rounded gap-2 cursor-default
-        xl:w-[15vw]
-        2xl:w-[8vw]
-        ">
-          
-            <Link to="/createpost" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
-            <Link to="/createproject" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
-            {/* <Link>New commit project</Link> */}
+        xl:w-[15vw] 2xl:w-[8vw]">
+          <Link to="/createpost" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
+          <Link to="/createproject" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
         </div>}
       </div>
       <div
@@ -90,12 +73,8 @@ function Logged() {
       onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
       className="cursor-pointer flex items-center gap-4" 
     >
-      <div className="flex order-2 items-center justify-center w-8  overflow-hidden rounded-full
-      sm:w-9
-      lg:w-11
-      xl:w-12
-      ">
-        <img src={user.avatar} alt="" />
+      <div className="flex order-2 items-center justify-center ">
+        <AvatarUser img={user.avatar} className="w-10 h-10 sm:w-12 sm:h-12 xl:w-14 xl:h-14"/>
       </div>
       <div className="hidden sm:flex flex-col text-end">
         <p className="text-sm lg:text-base font-medium">{user.nickname}</p>
@@ -122,10 +101,8 @@ function Logged() {
         </button>
         <div className={`flex flex-col justify-between h-full`}>
           <div>
-            <div className="flex items-center justify-center w-16 h-16 overflow-hidden rounded-full m-auto mt-4
-            sm:w-20 sm:h-20 
-            ">
-              <img className="cursor-pointer" onClick={() => setOverlayAvatar(true)} src={user.avatar} alt="" />
+            <div className="flex items-center justify-center rounded-full m-auto mt-4">
+              <AvatarUser img={user.avatar} action={true} className="w-20 h-20 xl:w-24 xl:h-24 2xl:w-28 2xl:h-28 cursor-pointer"/>
             </div>
             <div className="my-4">
               <h3 className="text-xl">{user.nickname}</h3>
@@ -140,7 +117,6 @@ function Logged() {
                 {createMenu && <div className="pl-4 w-auto text-gray-600 text-sm flex flex-col gap-2">
                   <Link onClick={() => setShowSidebar(!showSidebar)} to="/createpost">New post</Link>
                   <Link onClick={() => setShowSidebar(!showSidebar)} to="/createproject">New project</Link>
-                  {/* <Link>New commit project</Link> */}
                 </div>}
               </div>
               {user.type === "admin" &&
@@ -188,9 +164,6 @@ function Logged() {
           </div>
         </div>
       </div>
-      <Modal active={overlayAvatar} toggle={toggleOverlay}>
-        <img className="w-full min-h-[25vw] object-cover" src={user.avatar} alt="" />
-      </Modal>
     </>
   );
 }
