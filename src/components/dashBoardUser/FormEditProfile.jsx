@@ -142,26 +142,22 @@ export default function FormEditProfile({ id, user }) {
   }
 
   return (
-    <div className="w-1/2 mx-auto mt-6">
-      <div className="flex flex-col-2 mb-12 w-full">
-        <div {...getRootProps()} className="relative w-400px">
+    <div className="ml-32">
+      <div className="flex flex-col-2 mb-12 w-full gap-20">
+        <div {...getRootProps()} className="relative w-40 h-40">
           <input {...getInputProps()} />
 
           <img
             // src={`${user.avatar}`}
             src={files[0] ? files[0][0].preview : user.avatar}
-            // width="400px"
-
-            className="w-100% block rounded-full hover:bg-opacity-50 hover:bg-black "
+            className="rounded-full mt-16"
           />
-           <div className="">
-
-            <div className="  font-bold ">drop  image</div>
+          {/* <div className="">
+            <div className="  font-bold ">drop image</div>
             <div className="  mt-2 ">inside de circle</div>
-           </div>
-           
+          </div> */}
         </div>
-        <div className="  ">
+        <div className=" flex flex-col ">
           <div className="font-bold text-lg capitalize mt-12">
             {user.name} {user.lastname}
           </div>
@@ -194,7 +190,7 @@ export default function FormEditProfile({ id, user }) {
           ></input>
           {/* <UploadPhotos files={files} setFiles={setFiles} /> */}
           <button
-            className="bg-slate-400 py-2 container"
+            className="bg-slate-300 cursor-pointer w-32 h-8 mt-6"
             onClick={() => handleEditPerfil()}
           >
             Save
