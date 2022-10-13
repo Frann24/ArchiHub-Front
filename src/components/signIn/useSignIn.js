@@ -19,7 +19,6 @@ export const useSignIn = () => {
   const [googleUser, setGoogleUser] = useLocalStorage("googleUser","")
   const {user} = useSelector(state => state.login)
   let token = false
-  console.log(location)
   const handleInputChange = (e) => {
     setInput({
       ...input,
@@ -70,8 +69,6 @@ export const useSignIn = () => {
   }
 
   useEffect(()=>{
-    /* setErrors({...errors,errEmail: user.err}) */
-    //global google login
     google.accounts.id.initialize({
       client_id: "168699059386-nhog3hm7cgg52demaihgsskd49r5aetq.apps.googleusercontent.com",
       callback: handleCallbackResponse
