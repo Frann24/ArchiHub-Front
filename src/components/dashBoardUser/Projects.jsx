@@ -9,9 +9,10 @@ import VisualizePDF from "../home/projects/VisualizePDF";
  export default function Projects({id}) {
     const dispatch = useDispatch();
     const projects = useSelector(state => state.project.allProjects)
-    const projectsUser = projects.filter(project => project.created_by === id)
+    const projectsUser = projects.filter(project => project.created_by == id)
     const [search, setSearch] = useState('')
 
+    console.log(projects)
     console.log(projectsUser)
     useEffect(() => {
       dispatch(getAllProjects());

@@ -88,6 +88,11 @@ export default function DashBoardUser() {
               <Projects id={userLogeado.userId} />
             </div>
           )}
+          {state === "user" && (
+            <div>
+              <Projects id={userLogeado.userId} />
+            </div>
+          )}
           {state === "posts" && (
             <div>
               <Post
@@ -99,7 +104,7 @@ export default function DashBoardUser() {
           )}
           {state === "reviews" && (
             <div>
-              <Reviews />
+              <Reviews id={userLogeado.userId}/>
             </div>
           )}
           {state === "favourites" && (
