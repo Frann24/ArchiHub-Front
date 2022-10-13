@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getQueryPost } from "../../../../redux/slices/post/ordenAndFilterActions";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 
 function Search() {
   const [inputSearch, setInputSearch] = useState("");
   const {allPosts} = useSelector(state=>state.post)
+  const [params, setParams] = useSearchParams()
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const handleChange = (e) => {
@@ -19,8 +20,11 @@ function Search() {
     setInputSearch("");
     navigate({
       pathname: "/search",
-      search: inputSearch,
+      search: `?${createSearchParams({s:inputSearch})}`
     })
+    /* setParams({
+      s: inputSearch
+    }) */
     dispatch(getQueryPost(allPosts,inputSearch))
   };
 
