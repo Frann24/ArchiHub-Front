@@ -77,7 +77,11 @@ function SigIn() {
         >
           Sign in with Google
         </button> */}
-   
+        <div className="w-full flex items-center gap-4">
+          <div className="border w-1/2 border-gray-600"></div>
+          <p className="text-gray-800">Or</p>
+          <div className="border w-1/2 border-gray-600"></div>
+        </div>
         <div onClick={closeModalSingIn} id="signInDiv"></div>
         <div className="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}
