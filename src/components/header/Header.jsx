@@ -23,6 +23,7 @@ import ForgotPassword from "../resetPassword/ForgotPassword";
 import ResetPassword from "../resetPassword/ResetPassword";
 import DashBoardUser from "../dashBoardUser/DashBoardUser"
 import { getUser } from "../../redux/slices/user/userActions";
+import SearchContent from "../searchContent/SearchContent";
 
 
 function Header() {
@@ -74,6 +75,7 @@ function Header() {
         <Route path="/payment" element={<Payment/>} />
         <Route path="forgotPassword" element={<ForgotPassword/>}/>
         <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
+        <Route path="search" element={<SearchContent/>}/>
       </Routes>
       <div className="bottom-0">
         <Footer/>

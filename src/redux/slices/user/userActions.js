@@ -1,5 +1,5 @@
 import { USERS } from "../constants";
-import { allUsers, showUser, responseUser } from "./userSlice";
+import { allUsers, showUser, responseUser, queryUser } from "./userSlice";
 const axios = require("axios");
 
 export const getAllUsers = () => {
@@ -45,4 +45,8 @@ export const deleteUser = (id) => {
       .then((res) => dispatch(responseUser(res.data)))
       .catch((err) => console.log(err));
   };
+};
+export function getQueryUser(allUsers, name) {
+  const allUsers2 = [...allUsers]
+  return name?queryUser(allUsers2.filter((e) => e.nickname && e.nickname.toLowerCase().includes(name.toLowerCase()))):queryUser(allUsers)
 };
