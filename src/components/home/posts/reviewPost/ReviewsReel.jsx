@@ -109,11 +109,11 @@ export default function ReviewsReel() {
                   <p>{e.user_id.nickname}</p>
                 </div>
 
-                { <div
+                {modify!==e._id? <div
                   onClick={(e)=>user._id ? openReport(index): toggleSignIn(e)}
                   className="text-gray-500 w-8 h-8 flex justify-center items-center cursor-pointer rounded-full lg:hover:bg-gray-200 lg:text-xl"
                 ><FontAwesomeIcon icon={faEllipsisVertical} />
-                </div>}
+                </div>:<></>}
                   
                 {report === index ? 
                   (
@@ -191,7 +191,7 @@ export default function ReviewsReel() {
                 </div>
                 <p className="text-sm text-gray-500">{getDate(e)}</p>
               </div>
-              { modify=== e._id?<input
+              { modify=== e._id?<><input
               className={` bg-white border-b-2 border-gray-600 w-full py-1.5 px-2 focus:outline-none
             md:${formReviews.comment && "w-3/4"}
             ${error.comment && "border-2 focus:border-danger border-danger"} `}
@@ -200,16 +200,26 @@ export default function ReviewsReel() {
               name="comment"
               value={formReviews.comment}
               placeholder="Add your review..."
-            />:<p>{e.comment} </p>}
-            {modify=== e._id?<button
-                className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
-            md:w-1/4 
-            `}
-                onClick={handleSubmit}
-              >
-                <p>Send</p>
-                {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
-              </button>: <></>}
+            /><button
+            className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
+        md:w-1/4 
+        `}
+            onClick={handleSubmit}
+          >
+            <p>Send</p>
+            {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
+          </button>
+          <button
+            className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
+        md:w-1/4 
+        `}
+            onClick={()=>setModify("")}
+          >
+            <p>Cancel</p>
+            {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
+          </button>
+        </>
+            :<p>{e.comment} </p>}
             </div>
           );
         })}
