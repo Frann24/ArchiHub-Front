@@ -113,7 +113,7 @@ export default function CreateReview() {
             md:${formReviews.comment && "w-3/4"}
             ${error.comment && "border-2 focus:border-danger border-danger"} `}
               type="text"
-              onChange={(e) => handleChange(e)}
+              onChange={(e) => user._id ? handleChange(e):toggleSignIn(e)}
               name="comment"
               value={formReviews.comment}
               placeholder="Add your review..."
@@ -124,7 +124,7 @@ export default function CreateReview() {
                 className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
             md:w-1/4 
             `}
-                onClick={user._id ? handleClick : toggleSignIn}
+                onClick={handleClick}
               >
                 <p>Send</p>
                 <FontAwesomeIcon icon={faPaperPlane} />
