@@ -22,7 +22,10 @@ import DashUser from "../DashUser/DashUser";
 import Payment from "../payment/payment";
 import ForgotPassword from "../resetPassword/ForgotPassword";
 import ResetPassword from "../resetPassword/ResetPassword";
-
+import Chatbot from "react-chatbot-kit"
+import MessageParser from "../chatbot/MessageParser";
+import config from "../chatbot/config";
+import ActionProvider from "../chatbot/ActionProvider";
 
 function Header() {
   const { pathname } = useLocation();
@@ -72,6 +75,8 @@ function Header() {
         <Route path="/payment" element={<Payment/>} />
         <Route path="forgotPassword" element={<ForgotPassword/>}/>
         <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
+        <Route path= "chatbot" element={<Chatbot className="App-header" config={config} actionProvider={ActionProvider} messageParser={MessageParser} />}/>
+     
       </Routes>
       <div className="bottom-0">
         <Footer/>
