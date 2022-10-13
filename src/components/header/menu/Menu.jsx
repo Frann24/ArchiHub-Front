@@ -69,7 +69,7 @@ function Menu({ path }) {
             </div>
             {
               userLogin &&
-              userLogin.userType === "admin" &&
+              userLogin.userType === "superadmin" &&
             <div className="menu-div-link" onClick={(e) => handleClick(e,"#news_id")}>
                <Link
                  to="/admin"
@@ -91,11 +91,11 @@ function Menu({ path }) {
                 User Dashboard
               </Link>
             </div>
-             <div className="menu-div-link" onClick={closeMenu}>
+             {/* <div className="menu-div-link" onClick={closeMenu}>
               <Link to="/about-us" className="menu-link">
                 About us
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="flex flex-col text-gray-50 w-full sm:items-center sm:gap-4">

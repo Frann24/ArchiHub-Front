@@ -1,46 +1,107 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { getUser } from '../../redux/slices/user/userActions'
 
 export default function Favourites() {
+  const dispatch = useDispatch()
+  const userLogeado = JSON.parse(localStorage.getItem("token"))
+  
+  useEffect(() => {
+    dispatch(getUser(userLogeado.userId))
+  }, [dispatch])
+  const user = useSelector(state => state.user.user)
+  let postsFav = user.favourites
+  console.log(userLogeado)
+
+  postsFav = postsFav.map((post) => {
+    return (
+      {
+        id: post._id,
+        title: post.title.toUpperCase(),
+        createdAt: post.createdAt, 
+        image: post.image,
+      }
+      )
+    })
+    const [state, setState] = useState(postsFav)
+    const [cambio, setCambio] = useState(true)
+    
+    useEffect(() => {
+
+      console.log(postsFav)
+    }, [cambio])
+
+  function handleSearch(e) {
+    e.preventDefault();
+    const postsSearch = postsFav.filter(posts => posts.title.toLowerCase().includes(e.target.value.toLowerCase()))
+    postsSearch.length ? setState(postsSearch) : setState('not found')
+  }
+  function handleOrderDate(e) {
+    if (cambio == true) {
+       const order = state.sort((a, b) => {
+        if (a.createdAt > b.createdAt) {
+            return 1;
+        }
+        if (a.createdAt < b.createdAt) {
+            return -1;
+        } 
+          return 0;
+      })
+      setCambio(false)
+      setState(order)
+      return
+    }
+    if (cambio == false) {
+     const order = state.sort((a, b) => { 
+        if (a.createdAt > b.createdAt) {
+            return -1;
+        }
+        if (a.createdAt < b.createdAt) {
+            return 1;
+        } 
+          return 0;
+      })
+      setCambio(true)
+      setState(order)
+      return
+    }
+  }
+
   return (
-    <div >
-        <div className="font-bold text-lg capitalize mt-12">Favourites</div>
-    <h4 className="ml-6 mb-6 font-semibold font-size:26px">News</h4>
-    <div className="container mx-auto margin-top: 16px">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
-        {newsPaginado.map((e,index) => (
-          <Link key={index} to={`/newsDetail/${e.id}`}>
-            <div>
-              {e.id === 2 ? (
-                <img
-                  src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664405309/news/Screen_Shot_2022-09-28_at_19.44.45_zocf1r.png"
-                  className="w-full aspect-[3/2]"
-                  alt=""
-                />
-              ) : (
-                <img
-                  src={e.image}
-                  width="600px"
-                  alt="news"
-                  className="w-full aspect-[3/2]"
-                />
-              )}
-              <div className="text-gray-400 mt-6">{e.date}</div>
-              <p className="font-semibold truncate text-transform: uppercase ">
-                {e.title}
-              </p>
-              <div className="font-light truncate" >{e.description}</div>
-            </div>
+    <div>
+    {
+     postsFav.length ? 
+     <div>
+      <label>Search post... </label>
+      <input
+      type='text'
+      onChange={(e) => handleSearch(e)}
+      />
+      <button onClick={(e) => handleOrderDate(e)}>Date</button>
+    </div> :
+    <div></div>
+    }
+    {
+      state === 'not found' ? 
+      <div>
+        <p>there are no matches with your search</p>
+      </div> :
+      postsFav.length ? state.length && state.map((post) => {
+        return (
+          <Link to={`/postDetail/${post.id}`}>
+          <div>
+            <img src={post.image[0]}></img>
+            <h3>{post.title}</h3>
+            <p>{post.createdAt.slice(0, 10)}</p>
+          </div>
           </Link>
-        ))}
+        )
+      }) :
+      <div>
+        <p>you don't have any saved post</p>
       </div>
+    }
     </div>
-    <div
-      className="mr-8 text-xl my-9 font-semibold flex flex-row-reverse cursor-pointer"
-      onClick={(e) => paginado(e)}
-    >
-      See more...
-    </div>
-  </div>
   )
 }

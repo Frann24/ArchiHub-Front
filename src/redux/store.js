@@ -10,7 +10,7 @@ import loginReducer from "./slices/auth/loginSlice"
 import reviewReducer from "./slices/review/reviewSlice";
 import updateReducer from "./slices/update/updateSlice"
 import storageReducer from "./slices/storage/storageSlice"
-
+import reviewReportReducer from "./slices/reviewReport/reviewReportSlice";
 export const store = configureStore({
   reducer:{
     post: postReducer,
@@ -23,6 +23,7 @@ export const store = configureStore({
     login:loginReducer,
     review:reviewReducer,
     update: updateReducer,
-    storage: storageReducer
+    storage: storageReducer,
+    reviewReport:reviewReportReducer,
   },
 });

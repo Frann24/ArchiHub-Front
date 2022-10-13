@@ -11,6 +11,7 @@ import Home from "./components/home/Home";
 import CreatePost from "./components/createPost/CreatePost";
 import Footer from "./components/footer/Footer";
 import DashUser from "./components/DashUser/DashUser";
+import BtnTop from "./components/btnTop/BtnTop";
 //import Home from "./components/home/Home";
 //import CreatePost from "./components/createPost/CreatePost";
 
@@ -20,6 +21,7 @@ function App() {
     <BrowserRouter>
       <div className="App font-raleway">
         {/* <Header /> */}
+          <BtnTop/>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/*" element={<Header />} />
@@ -30,7 +32,6 @@ function App() {
           <Route path="/createpost" element={<CreatePost />} />  */}
           {/* <Route path="/payment" element={<Payment/>} /> */}
         </Routes>
-        
       </div>
     </BrowserRouter>    
   );

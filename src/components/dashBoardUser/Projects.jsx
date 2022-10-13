@@ -4,14 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllProjects } from "../../redux/slices/project/projectActions";
+import VisualizePDF from "../home/projects/VisualizePDF";
 
- export default function Projects(id) {
+ export default function Projects({id}) {
     const dispatch = useDispatch();
     const projects = useSelector(state => state.project.allProjects)
-    const projectsUser = projects.filter(project => project.created_by === id)
+    const projectsUser = projects.filter(project => project.created_by == id)
     const [search, setSearch] = useState('')
 
-
+    console.log(projects)
+    console.log(projectsUser)
     useEffect(() => {
       dispatch(getAllProjects());
     }, [dispatch]);
@@ -34,13 +36,20 @@ import { getAllProjects } from "../../redux/slices/project/projectActions";
 
    return (
         <div>
-            <div>
-                <label>Search </label>
-                <input
-                type='text'
-                onChange={(e) => handleSearch(e)}
-                />
-            </div>
+            {
+                projectsUser.length ?
+                <div>
+                    <label>Search </label>
+                    <input
+                    type='text'
+                    onChange={(e) => handleSearch(e)}
+                    />
+                </div> :
+                <div></div>
+            }
+            <Link to={'/createproject'}>
+             <button>New</button>
+            </Link>
             {
                 search === 'not found' ?
                 <div>
@@ -59,7 +68,7 @@ import { getAllProjects } from "../../redux/slices/project/projectActions";
                 projectsUser.length ? projectsUser.map((project) => {
                     return (
                         <div>
-                            <img src={project.pdf_file}/>
+                            <VisualizePDF url={project.pdf_initial_file[0].url}/>
                             <h3>{project.title}</h3>
                             <p>{project.description.slice(0, 50)}</p>
                         </div>

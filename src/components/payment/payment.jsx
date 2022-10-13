@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import { loadStripe } from '@stripe/stripe-js'; 
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 //import "bootswatch/dist/lux/bootstrap.min.css";
@@ -12,45 +13,48 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false)
-  const [email, setMail ] = useState('')
   const token = JSON.parse(localStorage.getItem("token"))
+  const [userId, setUserId ] = useState("")
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault();
+  console.log(token.userId)
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement)
-    });
-    setLoading(true)
+  // const handleSubmit = async (e) =>{
+  //   e.preventDefault();
 
-    if(!error) {
-      const { id } = paymentMethod;
-     try {
-       const {data} = await axios.post(PAYMENT, {
-        id,
-        amount: 1000
-       })
-       console.log(data)   
-       elements.getElement(CardElement).clear()      
-     } catch (error) {
-        console.log(error)
-     }
-     setLoading(false)
-    }
-  }
+  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
+  //     type: "card",
+  //     card: elements.getElement(CardElement)
+  //   });
+  //   setLoading(true)
+
+  //   if(!error) {
+  //     const { id } = paymentMethod;
+  //    try {
+  //      const {data} = await axios.post(PAYMENT, {
+  //       id,
+  //       amount: 1000
+  //      })
+  //      console.log(data)   
+  //      elements.getElement(CardElement).clear()      
+  //    } catch (error) {
+  //       console.log(error)
+  //    }
+  //    setLoading(false)
+  //   }
+  // }
 
   const handleSubmitSubscription = async (e) =>{
     e.preventDefault();
+    console.log(token.userName)
     if(!stripe || !elements){
       return;
     }
-    console.log(token)
+    
     const result = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
       billing_details: {
-        email: email,
+        email: token.userMail,
       }
       
     })
@@ -58,7 +62,7 @@ const CheckoutForm = () => {
     if(result.error){
       console.log(result.error.message);
     } else {
-      const res = await axios.post(PAYMENT, {'payment_method': result.paymentMethod.id, 'email': email})
+      const res = await axios.post(PAYMENT, {'payment_method': result.paymentMethod.id, 'email': token.userMail, 'userId': token.userId})
       console.log(res.data)
       const { client_secret, status } = res.data;
   
@@ -82,13 +86,9 @@ const CheckoutForm = () => {
   return (
         <form onSubmit={handleSubmitSubscription} className="card">
           <h5>Membership For Month u$s10</h5>
-          <input          
-          type="text"
-          name="email"
-          placeholder="email"
-          value= {email}
-          onChange={(e) => setMail(e.target.value)}          
-        />
+          <div>
+          {token.userMail}
+          </div>          
           <div className='form-group'>
             <CardElement className='form-control'/>
           </div>

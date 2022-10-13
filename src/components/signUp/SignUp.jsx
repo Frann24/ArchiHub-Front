@@ -11,8 +11,10 @@ function SignUp() {
   const {input, errors, handleInputChange, hanldeBlur,toggleSignIn ,handleInputSubmit} = useSignUp()
   const {user} = useSelector(state => state.login)
   let matchEmail = errors.email
+  let matchNick = errors.userName
   if(user){
-   matchEmail = errors.email || user.error
+    matchNick = errors.userName || user.errorNick
+   matchEmail = errors.email || user.errorMail  
   }
   /* useEffect(()=>{
 
@@ -103,13 +105,13 @@ function SignUp() {
             name="userName"
             id="userName"
             className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500
-            ${errors.userName && "border-2 focus:border-danger border-danger"}`}
+            ${matchNick && "border-2 focus:border-danger border-danger"}`}
             placeholder="user name"
             onChange={handleInputChange}
             value={input.userName}
             onBlur={hanldeBlur}
           />
-          {errors.userName && <span className="error-text">{errors.userName}</span>}
+          {matchNick && <span className="error-text">{matchNick}</span>}
         </div>
        
         <div>
