@@ -12,24 +12,24 @@ export default function FormEditProfile({ id, user }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
   const [files, setFiles] = useState([]);
-  console.log(files);
+  console.log("state: ", state);
 
   let image = "";
   //   const [image, setImage] = useState();
   //   console.log("files: ", files);
-  const [isHovering, setIsHoverig] = useState(false);
+  // const [isHovering, setIsHoverig] = useState(false);
 
-  function handleMouseEnter() {
-    setIsHoverig(true);
-  }
-  function handleMouseLeave() {
-    setIsHoverig(false);
-  }
-  function textClass() {
-    return `absolute top-10 left-5 w-100% h-100% text-white flex flex-col content-center text-center justify-self-center ${
-      isHovering ? "" : "hidden"
-    }`;
-  }
+  // function handleMouseEnter() {
+  //   setIsHoverig(true);
+  // }
+  // function handleMouseLeave() {
+  //   setIsHoverig(false);
+  // }
+  // function textClass() {
+  //   return `absolute top-10 left-5 w-100% h-100% text-white flex flex-col content-center text-center justify-self-center ${
+  //     isHovering ? "" : "hidden"
+  //   }`;
+  // }
   const flatFile = files.flat();
   console.log(flatFile);
 
@@ -40,7 +40,7 @@ export default function FormEditProfile({ id, user }) {
       [e.target.name]: e.target.value,
     });
   }
-
+console.log("user.job", user.job)
   const uploadImage = async (flatFile, e) => {
     // e.preventDefault();
     const data = new FormData();
@@ -175,7 +175,10 @@ export default function FormEditProfile({ id, user }) {
             onChange={(e) => handleChange(e)}
           ></input>
           <div className="flex flex-row my-3">
+            <div className="pr-3">
+
             <FontAwesomeIcon icon={faLocationDot} />
+            </div>
             <input
               placeholder="Location"
               name="location"
@@ -183,16 +186,20 @@ export default function FormEditProfile({ id, user }) {
             ></input>
           </div>
           <div className="flex flex-row my-3">
+          <div className="pr-3">
             <FontAwesomeIcon icon={faBuilding} />
+            </div>
             <input
-              placeholder="Job Title"
+              placeholder= "Job Title"
               name="job"
               onChange={(e) => handleChange(e)}
             ></input>
           </div>
 
           <div className="flex flex-row">
+          <div className="pr-3">
             <FontAwesomeIcon icon={faLink} />
+            </div>
             <input
               placeholder="Webpage"
               name="page"

@@ -32,7 +32,7 @@ export default function DashBoardUser() {
   }
 
   return (
-    <div className="ml-32">
+    <div className="mx-32">
       {/* <div className="w-1/2 mx-auto mt-6"> */}
       {profile ? (
         <div>
@@ -55,8 +55,8 @@ export default function DashBoardUser() {
         </div>
       )}
       <div>
-        <div>
-          <div className="flex flex-row gap-16 mt-16 ml-12 w-1/2">
+        <div className="divide-x">
+          <div className="flex flex-row gap-16 mt-16  w-1/2">
             <div className="tracking-wider text-lg hover:border-b-2 border-slate-300">
               <button value="projects" onClick={(e) => handleChange(e)}>
                 Projects
@@ -81,6 +81,7 @@ export default function DashBoardUser() {
               </button>
             </div>
           </div>
+          <hr className="mt-2"/>
         </div>
         <div>
           {state === "projects" && (
@@ -108,6 +109,7 @@ export default function DashBoardUser() {
             </div>
           )}
         </div>
+       
       </div>
     </div>
   );
