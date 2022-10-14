@@ -11,6 +11,7 @@ export const projectSlice = createSlice({
   reducers: {
     allProjects: (state, { payload }) => {
       state.allProjects = payload;
+      state.queryProjects=payload;
     },
     showProject: (state, { payload }) => {
       state.project = payload;

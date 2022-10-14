@@ -47,7 +47,7 @@ export const deleteProject = (id) => {
   };
 };
 
-export function getQueryUser(allProjects, name) {
+export function getQueryProjects(allProjects, name) {
   const allProjects2 = [...allProjects]
-  return name?queryProject(allProjects2.filter((e) => {e.title && e.title.toLowerCase().includes(name.toLowerCase())})):queryProject(allProjects)
+  return name?queryProject(allProjects2.filter((e) => e.title && e.title.toLowerCase().includes(name.toLowerCase()))):queryProject(allProjects)
 };
