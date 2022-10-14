@@ -1,6 +1,6 @@
 import axios from "axios";
 import { PROJECT } from "../constants";
-import { allProjects, showProject, responseProject } from "./projectSlice"
+import { allProjects, showProject, responseProject, queryProject } from "./projectSlice"
 
 export const getAllProjects = () => {
   return (dispatch) => {
@@ -46,4 +46,9 @@ export const deleteProject = (id) => {
       .then((res) => dispatch(responseProject(res.data)))
       .catch((err) => console.log(err));
   };
+};
+
+export function getQueryProjects(allProjects, name) {
+  const allProjects2 = [...allProjects]
+  return name?queryProject(allProjects2.filter((e) => e.title && e.title.toLowerCase().includes(name.toLowerCase()))):queryProject(allProjects)
 };
