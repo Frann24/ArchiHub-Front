@@ -31,6 +31,7 @@ export const createProject = (info) => {
 };
 
 export const updateProject = (id, info) => {
+  console.log(info, id);
   return (dispatch) => {
     axios
       .put(`${PROJECT}/${id}`, info)

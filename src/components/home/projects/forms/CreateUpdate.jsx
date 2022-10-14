@@ -8,6 +8,7 @@ import CreateFile from "../files/CreateFile";
 
 const CreateUpdate = ({ project_id }) => {
   const fileData = useSelector((state) => state.storage.response);
+  const {project} = useSelector((state)=>state.project)
   const userToken = JSON.parse(window.localStorage.getItem("token"));
   const [form, setForm] = useState({
     storage_id: "",
@@ -15,6 +16,7 @@ const CreateUpdate = ({ project_id }) => {
     comments: "",
     project_id: project_id,
     user_id: userToken ? userToken.userId : "",
+    users: project.users
   });
   useEffect(() => {
     fileData.newStorage &&
