@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regular } from "@fortawesome/free-regular-svg-icons";
 import { CreateReviewValidation } from "./CreateReviewValidation";
+import AvatarUser from "../../../../avatarUser/AvatarUser";
 export default function CreateReview() {
   const [error, setError] = useState({ initial: "" });
   const { user } = useSelector((state) => state.user);
@@ -60,7 +61,8 @@ export default function CreateReview() {
       <div>
         {user._id ? (
           <div className="flex items-center gap-2">
-            <img className="w-8 rounded-full lg:w-9" src={user.avatar} alt="" />
+            {/* <img className="w-8 rounded-full lg:w-9" src={user.avatar} alt="" /> */}
+            <AvatarUser className="w-10 h-10 lg:w-14 lg:h-14" img={user.avatar}/>
             <p className="text-base text-gray-900 font-medium">
               {user.nickname}
             </p>
@@ -113,7 +115,7 @@ export default function CreateReview() {
             md:${formReviews.comment && "w-3/4"}
             ${error.comment && "border-2 focus:border-danger border-danger"} `}
               type="text"
-              onChange={(e) => user._id ? handleChange(e):toggleSignIn(e)}
+              onChange={(e) => handleChange(e)}
               name="comment"
               value={formReviews.comment}
               placeholder="Add your review..."
@@ -124,7 +126,7 @@ export default function CreateReview() {
                 className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
             md:w-1/4 
             `}
-                onClick={handleClick}
+                onClick={(e) => user._id ? handleClick(e):toggleSignIn(e)}
               >
                 <p>Send</p>
                 <FontAwesomeIcon icon={faPaperPlane} />

@@ -5,15 +5,15 @@ import {
 import { faStar as regular } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
-import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getReview, deleteReview,updateReview} from "../../../../redux/slices/review/reviewActions";
 import { getPost } from "../../../../redux/slices/post/postActions";
-import Reviews from "../../../dashBoardUser/Reviews";
 import { createReviewReport, deleteReviewReport } from "../../../../redux/slices/reviewReport/reviewReportActions";
 import { changeShowSingIn } from "../../../../redux/slices/header/headerActions";
 import {CreateReviewValidation} from "./createReview/CreateReviewValidation";
+import  AvatarUser  from "../../../avatarUser/AvatarUser"
+
 export default function ReviewsReel() {
   const { review } = useSelector((state) => state.review);
   const { response } = useSelector((state) => state.review);
@@ -33,10 +33,12 @@ export default function ReviewsReel() {
     value: 0,
     comment: "",
   });
+
   const [hover, setHover] = useState(null);
   function paginado() {
     setPage(page + 1);
   }
+
   const getDate = (date) => {
     const format = date.createdAt
       .split("T", 1)[0]
@@ -49,6 +51,7 @@ export default function ReviewsReel() {
   const openReport = (i) => {
     setReport(i);
   };
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getReview(id, "post"));
@@ -77,8 +80,9 @@ export default function ReviewsReel() {
   const handleChange = (e) => {
     setformReviews({ ...formReviews, [e.target.name]: e.target.value });
   };
-  const handleModify = (i) => {
-    setModify(i);
+  const handleModify = (e) => {
+    setformReviews({value : e.value, comment: e.comment})
+    setModify(e._id);
     setReport("");
   };
   const handleSubmit = (e)=>{
@@ -101,11 +105,11 @@ export default function ReviewsReel() {
           return (
             <div
               key={index}
-              className=" rounded-md bg-gray-50 shadow-md p-2 my-4 pt-4 flex flex-col gap-1 overflow-y-hidden xl:p-4"
+              className={`rounded-md  ${modify === e._id ? "bg-white mx-1 p-2 rounded-md shadow-lg lg:p-4" : "bg-gray-50"} shadow-md p-2 my-4 pt-4 flex flex-col gap-1 overflow-y-hidden xl:p-4`}
             >
               <div className="w-full flex items-center justify-between">
-                <div className="w-7 flex items-center gap-3">
-                  <img className="rounded-full" src={e.user_id.avatar} alt="" />
+                <div className=" flex items-center gap-3">
+                  <AvatarUser className="w-8 h-8 lg:w-10 lg:h-10" img={e.user_id.avatar}/>
                   <p>{e.user_id.nickname}</p>
                 </div>
 
@@ -134,15 +138,15 @@ export default function ReviewsReel() {
                           {!e.reports.find((r) => r.user_id == user._id && r.review_id == e._id)? "Flag as inappropriate": "Cancel report"}
                         </p>:<div> 
                         <p
-                          onClick={()=>handleModify(e._id)}
+                          onClick={()=>handleModify(e)}
                           className="p-1 pl-2 cursor-pointer hover:text-gray-400"
                         >
-                          modify comment
+                          Modify comment
                         </p><p
                           onClick={()=>handleDelete(e._id)}
                           className="p-1 pl-2 cursor-pointer hover:text-gray-400"
                         >
-                          delete comment
+                          Delete comment
                         </p></div>
                        }
                       </div>
@@ -191,35 +195,36 @@ export default function ReviewsReel() {
                 </div>
                 <p className="text-sm text-gray-500">{getDate(e)}</p>
               </div>
-              { modify=== e._id?<><input
-              className={` bg-white border-b-2 border-gray-600 w-full py-1.5 px-2 focus:outline-none
-            md:${formReviews.comment && "w-3/4"}
-            ${error.comment && "border-2 focus:border-danger border-danger"} `}
-              type="text"
-              onChange={(e) => handleChange(e)}
-              name="comment"
-              value={formReviews.comment}
-              placeholder="Add your review..."
-            /><button
-            className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
-        md:w-1/4 
-        `}
-            onClick={handleSubmit}
-          >
-            <p>Send</p>
-            {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
-          </button>
-          <button
-            className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
-        md:w-1/4 
-        `}
-            onClick={()=>setModify("")}
-          >
-            <p>Cancel</p>
-            {/* <FontAwesomeIcon icon={faPaperPlane} /> */}
-          </button>
-        </>
-            :<p>{e.comment} </p>}
+              { modify=== e._id
+                ?<>
+                  <input
+                  className={` bg-white border-b-2 border-gray-600 w-full py-1.5 px-2 focus:outline-none
+                  lg:${formReviews.comment && "w-3/4"}
+                  ${error.comment && "border-2 focus:border-danger border-danger"} `}
+                  type="text"
+                  onChange={(e) => handleChange(e)}
+                  name="comment"
+                  value={formReviews.comment}
+                  placeholder="Add your review..."
+                  />
+                  <div className="mt-2 flex flex-col md:flex-row gap-3">
+                  <button
+                    className={`w-full p-1.5 bg-gray-800 text-gray-100 flex justify-center items-center gap-4
+                    md:w-1/4 `}
+                    onClick={handleSubmit}
+                  >
+                  <p>Send</p>
+                </button>
+                <button
+                  className={`w-full p-1.5 bg-danger text-gray-100 flex justify-center items-center gap-4
+                  md:w-1/4 `}
+                  onClick={()=>setModify("")}
+                >
+                  <p>Cancel</p>
+                  </button>
+                </div>
+                </>
+                :<p>{e.comment} </p>}
             </div>
           );
         })}
