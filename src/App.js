@@ -14,6 +14,11 @@ import DashUser from "./components/DashUser/DashUser";
 import BtnTop from "./components/btnTop/BtnTop";
 //import Home from "./components/home/Home";
 //import CreatePost from "./components/createPost/CreatePost";
+import Successful from "./components/payment/Successful";
+import ErrorPayment from "./components/payment/ErrorPayment";
+import CancelPayment from "./components/payment/CancelPayment";
+
+
 
 function App() {
   return (
@@ -29,8 +34,9 @@ function App() {
           <Route path="/newsDetail/:id" element={<NewsDetail />} />
           <Route path="/postDetail/:id" element={<PostDetail />} />
           <Route path="/createpost" element={<CreatePost />} />  */}
-
-          {/* <Route path="/payment" element={<Payment/>} /> */}
+          <Route path="/successful" element={<Successful />} />
+          <Route path="/errorPayment" element={<ErrorPayment />} />
+          <Route path="/cancelPayment" element={<CancelPayment />} /> 
         </Routes>
       </div>
     </BrowserRouter>    

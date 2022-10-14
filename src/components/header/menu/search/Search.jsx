@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getQueryPost } from "../../../../redux/slices/post/ordenAndFilterActions";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
-
+import { getAllUsers, getQueryUser } from "../../../../redux/slices/user/userActions";
+import { getAllProjects, getQueryProjects } from "../../../../redux/slices/project/projectActions";
+import { getAllPosts } from "../../../../redux/slices/post/postActions";
+import { getQueryNews } from "../../../../redux/slices/sliceNews/newsActions";
 function Search() {
   const [inputSearch, setInputSearch] = useState("");
   const {allPosts} = useSelector(state=>state.post)
+  const {allUsers} = useSelector(state=>state.user)
+  const {allProjects} = useSelector(state=>state.project)
+  const {news} = useSelector(state=>state.newsSlice)
   const [params, setParams] = useSearchParams()
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const handleChange = (e) => {
     setInputSearch(e.target.value)
   };
+  useEffect(() => {
+/*     dispatch(getAllPosts())
+    dispatch(getAllUsers()) */
+    dispatch(getAllProjects())
+  }, [dispatch])
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +38,9 @@ function Search() {
       s: inputSearch
     }) */
     dispatch(getQueryPost(allPosts,inputSearch))
+    dispatch(getQueryUser(allUsers,inputSearch))
+    dispatch(getQueryProjects(allProjects,inputSearch))
+    dispatch(getQueryNews(news,inputSearch))
   };
 
   const clearInputSearch = (e) => {
