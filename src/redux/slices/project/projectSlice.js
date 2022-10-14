@@ -6,6 +6,7 @@ export const projectSlice = createSlice({
     allProjects: [],
     project: [],
     response: {},
+    queryProjects:[],
   },
   reducers: {
     allProjects: (state, { payload }) => {
@@ -17,9 +18,12 @@ export const projectSlice = createSlice({
     responseProject: (state, { payload }) => {
       state.response = payload;
     },
+    queryProject:(state,{payload})=>{
+      state.queryProjects=payload;
+    }
   },
 });
 
-export const { allProjects, showProject, responseProject } = projectSlice.actions;
+export const { allProjects, showProject, responseProject, queryProject } = projectSlice.actions;
 
 export default projectSlice.reducer;
