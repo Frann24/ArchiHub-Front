@@ -41,24 +41,23 @@ export const useSignIn = () => {
     }
   }
   
-  if(user){
-    token = user.token
-  } 
-  if(token)window.location.reload()
-
   const toggleSignIn = (e) => {
     e.preventDefault()
     dispatch(showSigIn(!modalSignIn))
     dispatch(showSignUp(!modalSignUp))
   }
-
+  
   const closeModalSingIn = () => {
-    dispatch(showSigIn(!modalSignIn))
+    dispatch(showSigIn(false))
   }
+
+  if(user){
+    token = user.token
+  } 
+  if(token) closeModalSingIn()
 
   const handleCallbackResponse=async(response)=>{
     var userObject = jwt_decode(response.credential)
-    console.log(userObject);
     setGoogleUser(userObject)
     const userMail = userObject.email
     const avatar = userObject.picture
@@ -80,7 +79,6 @@ export const useSignIn = () => {
     )
     if(typeof googleUser === "object" && user._id) {
       dispatch(showSigIn(!modalSignIn))
-      window.location.reload()
       return () => {
         showSigIn(false)
       }

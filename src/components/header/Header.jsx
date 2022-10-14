@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "./logo/Logo";
 import Guest from "./guest/Guest";
 import Menu from "./menu/Menu";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Logged from "./logged/Logged";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../home/Home";
 import PostDetail from "../home/posts/PostDetail";
 import CreatePost from "../createPost/CreatePost";
 import NewsDetail from "../home/news/NewsDetail";
-/* import Navbar from "./navbar/Navbar"; */
 import BtnMenu from "./btnMenu/BtnMenu";
 import Footer from "../footer/Footer";
 import DashBoardAdmin from "../dashBoardAdmin/DashBoardAdmin";
@@ -22,7 +21,6 @@ import Payment from "../payment/payment";
 import ForgotPassword from "../resetPassword/ForgotPassword";
 import ResetPassword from "../resetPassword/ResetPassword";
 import DashBoardUser from "../dashBoardUser/DashBoardUser"
-import { getUser } from "../../redux/slices/user/userActions";
 import SearchContent from "../searchContent/SearchContent";
 
 
@@ -30,9 +28,10 @@ function Header() {
   const { pathname } = useLocation();
   const token = window.localStorage.getItem("token");
   const googleUser = window.localStorage.getItem("googleUser");
-  const isLoggin = token !== null && token !== "null" ? true : false || googleUser ? true : false
+  const { user } = useSelector(state => state.login)
+  const isLoggin = token !== null && token !== "null" ? true : false || googleUser ? true : false || user.token ? true : false
   const condition = useRef(isLoggin)
-  
+
   useEffect(()=>{
     condition.current = isLoggin
   },[isLoggin])
