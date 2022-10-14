@@ -32,30 +32,16 @@ const CheckoutForm = () => {
   const handleCancelSubscription = async (e) => {
     e.preventDefault();
     //console.log(token.userName)
-    
-       
-      try {
-        const res = await axios.post(PAYMENT, {
-          email: token.userMail,          
-        });
-        //console.log(res.data)
-        const { client_secret, status } = res.data;
 
-        if (status === "requires_action") {
-          stripe.confirmCardPayment(client_secret).then(function (result) {
-            if (result.error) {
-              //console.log("There was an issue");
-              //console.log(result.error);
-              navigate("/errorPayment");
-            } else {
-              //console.log("123You got the money")
-            }
-          });
-        } else {
-          //console.log("You got the money")
-          elements.getElement(CardElement).clear();
-          navigate("/successful");
-        }
+    const userId = token.userId   
+      try {
+        const res = await axios.post('http://localhost:3001/api/cancelPayment', {
+          userId: userId,          
+        });
+        console.log(res.data)
+        
+
+        
       } catch (error) {
         //console.log('Error Credit Card')
         navigate("/errorPayment");
@@ -63,22 +49,13 @@ const CheckoutForm = () => {
       //setLoading(false)
     }
     return (
-      <div className="contenedor-principal">
-        <div>
-          <h5>Membership For Month u$s10</h5>
-        </div>
-        <div>
-          <span>{token.userMail}</span>
-        </div>
-        <form onSubmit={handleCancelSubscription}>
+      <div>
           
-          <div className="contenedor-datos">
+          
             
-            <button disabled={!stripe}>Suscription</button>
-          </div>
-        </form>
-        </div>
-    );
+            <button onSubmit={handleCancelSubscription}>Suscription</button>
+            </div>
+    )
   };
 
 
@@ -86,7 +63,15 @@ const CheckoutForm = () => {
 function CancelSubscription() {
   return (
     <div>
-      Cancel Subscription
+      <Elements stripe={stripePromise}>
+        <div class="container-pago">
+          <div>
+            <div>
+              <CheckoutForm />
+            </div>
+          </div>
+        </div>
+      </Elements>
     </div>
   );
 }
