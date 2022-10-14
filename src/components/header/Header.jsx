@@ -27,6 +27,7 @@ import Chatbot from "react-chatbot-kit"
 import MessageParser from "../chatbot/MessageParser";
 import config from "../chatbot/config";
 import ActionProvider from "../chatbot/ActionProvider";
+import SearchContent from "../searchContent/SearchContent";
 
 
 function Header() {
@@ -79,7 +80,7 @@ function Header() {
         <Route path="forgotPassword" element={<ForgotPassword/>}/>
         <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
         <Route path= "chatbot" element={<Chatbot className="App-header" config={config} actionProvider={ActionProvider} messageParser={MessageParser} />}/>
-     
+        <Route path="search" element={<SearchContent/>}/>
       </Routes>
       <div className="bottom-0">
         <Footer/>

@@ -6,10 +6,12 @@ export const userSlice = createSlice({
     allUsers: [],
     user: [],
     response: {},
+    queryUsers: [],
   },
   reducers: {
     allUsers: (state, { payload }) => {
       state.allUsers = payload;
+      state.queryUsers = payload
     },
     showUser: (state, { payload }) => {
       state.user = payload;
@@ -17,9 +19,12 @@ export const userSlice = createSlice({
     responseUser: (state, { payload }) => {
       state.response = payload;
     },
+    queryUser: (state,{payload}) => {
+      state.queryUsers = payload
+    }
   },
 });
 
-export const { allUsers, showUser, responseUser } = userSlice.actions;
+export const { allUsers, showUser, responseUser, queryUser } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -60,7 +60,7 @@ class ActionProvider {
 
 
    handleNewsButton=()=>{
-    const message = this.createChatBotMessage(`You can see the breaking news here : ${BASE_URL}news` ,
+    const message = this.createChatBotMessage(`You can see the breaking news here: https://arquihub.vercel.app/news` ,
     {
         widget: "ShowNews",
         withAvatar:false,
@@ -118,6 +118,115 @@ class ActionProvider {
 
     }
    }
+
+
+   //loginOptions
+   handleLoginClick=()=>{
+    const message = this.createChatBotMessage(`You can login <a href="#">here</a>`,
+    {
+        widget: "LoginClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+   handleRegisterClick=()=>{
+    const message = this.createChatBotMessage(`You can register <a href="#">here</a>`,
+    {
+        widget: "RegisterClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+   handleForgotPasswordClick=()=>{
+    const message = this.createChatBotMessage(`You can start to reset your password <a href="https://arquihub.vercel.app/forgotPassword">here</a>`,
+    {
+        widget: "ForgotPasswordClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+   //PremiumOptions
+   handlePremiumClick=()=>{
+    const message = this.createChatBotMessage(`You can upgrade your account here : https://arquihub.vercel.app/payment"`,
+    {
+        widget: "PremiumClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+
+   handleBenefitsClick=()=>{
+    const message = this.createChatBotMessage(`Upgrading to pro user you can: `,
+    {
+        widget: "BenefitsClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+   handleCancelClick=()=>{
+    const message = this.createChatBotMessage(`You can cancel your premium here: https://arquihub.vercel.app/payment`,
+    {
+        widget: "CancelClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+   //Post/ProjectOptions
+
+   handleCreatePostClick=()=>{
+    const message = this.createChatBotMessage(`You can create a new post here: https://arquihub.vercel.app/createpost`,
+    {
+        widget: "CreatePostClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+
+   handleCreateProjectClick=()=>{
+    const message = this.createChatBotMessage(`You can create a new post here: https://arquihub.vercel.app/createproject`,
+    {
+        widget: "CreateProjectClick",
+        withAvatar:false,
+        delay: 500
+    })
+    this.updateChatbotState(message)
+   }
+
+//    handleUpdateProjectClick=()=>{
+//     const message = this.createChatBotMessage(`You can Update a new project here: https://arquihub.vercel.app/updateProject/${id}`,
+//     {
+//         widget: "UpdateProjectClick",
+//         withAvatar:false,
+//         delay: 500
+//     })
+//     this.updateChatbotState(message)
+//    }
+
+
+//    handleUpdatePostClick=()=>{
+//     const message = this.createChatBotMessage(`You can Update a new post here: https://arquihub.vercel.app/updatePost/${id}`,
+//     {
+//         widget: "UpdatePostClick",
+//         withAvatar:false,
+//         delay: 500
+//     })
+//     this.updateChatbotState(message)
+//    }
+
 
    updateChatbotState(message){
     this.setState(prevState=>({

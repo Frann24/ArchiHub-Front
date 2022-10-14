@@ -21,6 +21,7 @@ export const getPost = (id) => {
 };
 
 export const createPost = (info) => {
+  console.log(info);
   return (dispatch) => {
     axios
       .post(POST,info)

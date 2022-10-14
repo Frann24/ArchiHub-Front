@@ -2,36 +2,28 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getQueryPost } from "../../../../redux/slices/post/ordenAndFilterActions";
-import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 
-function Search() {
+
+function SearchbarContent() {
   const [inputSearch, setInputSearch] = useState("");
   const {allPosts} = useSelector(state=>state.post)
-  const [params, setParams] = useSearchParams()
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+
   const handleChange = (e) => {
     setInputSearch(e.target.value)
+    /* dispatch(getQueryPost(allPosts,e.target.value)) */
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setInputSearch("");
-    navigate({
-      pathname: "/search",
-      search: `?${createSearchParams({s:inputSearch})}`
-    })
-    /* setParams({
-      s: inputSearch
-    }) */
-    dispatch(getQueryPost(allPosts,inputSearch))
+    /* dispatch(getQueryPost(allPosts,inputSearch)) */
   };
 
   const clearInputSearch = (e) => {
     e.preventDefault();
     setInputSearch("");
-    dispatch(getQueryPost(allPosts,""))
+   /*  dispatch(getQueryPost(allPosts,"")) */
   };
 
   return (
@@ -79,4 +71,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchbarContent;

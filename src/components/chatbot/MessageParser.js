@@ -14,11 +14,11 @@ class MessageParser {
         this.actionProvider.greet()
       }
 
-      if(lowerCase.includes("1")|| lowerCase.includes("login") || lowerCase.includes("signup")){
+      if(lowerCase.includes("1")|| lowerCase.includes("login/signup")){
         this.actionProvider.handleLoginButton()
       }
 
-      if(lowerCase.includes("2")|| lowerCase.includes("suscribe") || lowerCase.includes("premium")){
+      if(lowerCase.includes("2")|| lowerCase.includes("suscribe/premium")){
         this.actionProvider.handleSuscribeButton()
       }
 
@@ -26,10 +26,10 @@ class MessageParser {
         this.actionProvider.handleNewsButton()
       }
 
-      if(lowerCase.includes("4")|| lowerCase.includes("project") || lowerCase.includes("post")){
+      if(lowerCase.includes("4")|| lowerCase.includes("projects/posts")){
         this.actionProvider.handleProjectsButton()
       }
-      if(lowerCase.includes("5")|| lowerCase.includes("my") || lowerCase.includes("profile")){
+      if(lowerCase.includes("5")|| lowerCase.includes("profile")){
         this.actionProvider.handleProfileButton()
       }
       if(lowerCase.includes("bye")|| lowerCase.includes("goodbye")){
