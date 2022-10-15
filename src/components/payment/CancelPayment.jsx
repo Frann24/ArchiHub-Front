@@ -33,27 +33,29 @@ const CheckoutForm = () => {
     e.preventDefault();
     //console.log(token.userName)
 
-    const userId = token.userId   
+        
       try {
         const res = await axios.post('http://localhost:3001/api/cancelPayment', {
-          userId: userId,          
+          userId: token.userId,          
         });
         console.log(res.data)
+        const { cancel_at_period_end } = res.data;
         
 
         
       } catch (error) {
-        //console.log('Error Credit Card')
-        navigate("/errorPayment");
+        console.log('Hubo un error, no se pudo procesar su solicitud')
+        //navigate("/errorPayment");
       }
       //setLoading(false)
     }
     return (
       <div>
-          
+          <form onSubmit={handleCancelSubscription}>
           
             
-            <button onSubmit={handleCancelSubscription}>Suscription</button>
+            <button >Suscription</button>
+            </form>
             </div>
     )
   };
