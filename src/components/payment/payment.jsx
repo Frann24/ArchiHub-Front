@@ -63,7 +63,7 @@ const CheckoutForm = () => {
 
     const result = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardElement),
+      card: elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement),
       billing_details: {
         email: token.userMail,
       },
@@ -91,12 +91,13 @@ const CheckoutForm = () => {
               //console.log(result.error);
               navigate("/errorPayment");
             } else {
-              //console.log("123You got the money")
+              console.log("You got the money")
+              navigate("/successful")
             }
           });
         } else {
           //console.log("You got the money")
-          elements.getElement(CardElement).clear();
+          elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement).clear();
           navigate("/successful");
         }
       } catch (error) {
