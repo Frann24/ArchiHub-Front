@@ -35,3 +35,4 @@ In principle, ARCHIHUB would serve as a work tool, organizing your files and as 
 
 
 03-10-2022 EL DIA QUE LUCIANO DOMINÓ REACT Y TOMAS SE MURIO DE ENVIDIA.
+15-10-2022 EL DIA QUE GONZALO VIO EL UPDATE ANTERIOR.
