@@ -3,16 +3,33 @@ import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/slices/user/userActions";
 import UploadPhotos from "./UploadPhotos";
 import Swal from "sweetalert2";
-// import FontAwesomeIcon from "@fortawesome/react-fontawesome"
-
+import { useDropzone } from "react-dropzone";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBuilding } from "@fortawesome/free-regular-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 export default function FormEditProfile({ id, user }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
   const [files, setFiles] = useState([]);
+  console.log("state: ", state);
+
   let image = "";
   //   const [image, setImage] = useState();
   //   console.log("files: ", files);
+  // const [isHovering, setIsHoverig] = useState(false);
 
+  // function handleMouseEnter() {
+  //   setIsHoverig(true);
+  // }
+  // function handleMouseLeave() {
+  //   setIsHoverig(false);
+  // }
+  // function textClass() {
+  //   return `absolute top-10 left-5 w-100% h-100% text-white flex flex-col content-center text-center justify-self-center ${
+  //     isHovering ? "" : "hidden"
+  //   }`;
+  // }
   const flatFile = files.flat();
   console.log(flatFile);
 
@@ -23,7 +40,7 @@ export default function FormEditProfile({ id, user }) {
       [e.target.name]: e.target.value,
     });
   }
-
+console.log("user.job", user.job)
   const uploadImage = async (flatFile, e) => {
     // e.preventDefault();
     const data = new FormData();
@@ -77,6 +94,20 @@ export default function FormEditProfile({ id, user }) {
   //     arrayCloud(files);
   //   };
 
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptedFiles) => {
+      setFiles([
+        ...files,
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
+        ),
+      ]);
+    },
+  });
+
   async function handleEditPerfil() {
     await uploadImage(flatFile);
     const newState = state;
@@ -113,17 +144,22 @@ export default function FormEditProfile({ id, user }) {
   }
 
   return (
-    <div className="w-1/2 mx-auto mt-6">
-      <div className="flex flex-col-2 mb-12 w-full">
-        <div className="mt-6 mr-12">
+    <div className="ml-32">
+      <div className="flex flex-col-2 mb-12 w-full gap-20">
+        <div {...getRootProps()} className="relative w-40 h-40">
+          <input {...getInputProps()} />
+
           <img
             // src={`${user.avatar}`}
-            src={user.avatar}
-            width="400px"
+            src={files[0] ? files[0][0].preview : user.avatar}
             className="rounded-full mt-16"
           />
+          {/* <div className="">
+            <div className="  font-bold ">drop image</div>
+            <div className="  mt-2 ">inside de circle</div>
+          </div> */}
         </div>
-        <div className="  ">
+        <div className=" flex flex-col ">
           <div className="font-bold text-lg capitalize mt-12">
             {user.name} {user.lastname}
           </div>
@@ -138,25 +174,41 @@ export default function FormEditProfile({ id, user }) {
             name="description"
             onChange={(e) => handleChange(e)}
           ></input>
-          <input
-            placeholder="Location"
-            name="location"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <input
-            placeholder="Job Title"
-            name="job"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          {/* <FontAwesomeIcon icon="fa-solid fa-link" /> */}
-          <input
-            placeholder="Webpage"
-            name="page"
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <UploadPhotos files={files} setFiles={setFiles} />
+          <div className="flex flex-row my-3">
+            <div className="pr-3">
+
+            <FontAwesomeIcon icon={faLocationDot} />
+            </div>
+            <input
+              placeholder="Location"
+              name="location"
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </div>
+          <div className="flex flex-row my-3">
+          <div className="pr-3">
+            <FontAwesomeIcon icon={faBuilding} />
+            </div>
+            <input
+              placeholder= "Job Title"
+              name="job"
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </div>
+
+          <div className="flex flex-row">
+          <div className="pr-3">
+            <FontAwesomeIcon icon={faLink} />
+            </div>
+            <input
+              placeholder="Webpage"
+              name="page"
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </div>
+
           <button
-            className="bg-slate-400 py-2 container"
+            className="bg-slate-300 cursor-pointer w-32 h-8 mt-6"
             onClick={() => handleEditPerfil()}
           >
             Save
