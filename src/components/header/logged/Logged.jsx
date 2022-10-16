@@ -23,7 +23,8 @@ function Logged() {
   }
   useEffect(()=> {
     const closeDropDown = e => {
-      if(e.path[1] !== btnRef.current) setCreateMenu(false)
+      const found = e.composedPath().find(e => e.id === "btnCreateMenu")
+      if(found !== btnRef.current) setCreateMenu(false)
     }
     document.body.addEventListener('click', closeDropDown)
     return () => document.body.removeEventListener('click', closeDropDown)
@@ -63,7 +64,7 @@ function Logged() {
   return (
     <div className="flex flex-row gap-8 items-center">
       <div className="hidden lg:inline-block relative p-4">
-        <button ref={btnRef} onClick={() => setCreateMenu(!createMenu)}  className={`flex border p-1 rounded-md lg:hover:bg-gray-100 ${createMenu && "bg-gray-100 border-b-gray-100 rounded-b-none"} text-sm`}  >
+        <button id="btnCreateMenu" ref={btnRef} onClick={() => setCreateMenu(!createMenu)}  className={`flex border p-1 rounded-md lg:hover:bg-gray-100 ${createMenu && "bg-gray-100 border-b-gray-100 rounded-b-none"} text-sm`}  >
           <FontAwesomeIcon className="px-1 cursor-pointer text-gray-500" icon={faPlus}/>
           <FontAwesomeIcon className="px-1 cursor-pointer text-gray-500" icon={createMenu ? faAngleUp : faAngleDown}/>
         </button>
