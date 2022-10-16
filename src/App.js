@@ -23,7 +23,7 @@ import CancelPayment from "./components/payment/CancelPayment";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App font-raleway">
+      <div className="App font-raleway ">
         {/* <Header /> */}
           <BtnTop/>
         <Routes>
@@ -38,6 +38,9 @@ function App() {
           <Route path="/errorPayment" element={<ErrorPayment />} />
           <Route path="/cancelPayment" element={<CancelPayment />} /> 
         </Routes>
+        {/* <div>
+          <Footer/>
+        </div> */}
       </div>
     </BrowserRouter>    
   );
