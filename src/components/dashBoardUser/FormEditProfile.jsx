@@ -146,11 +146,13 @@ console.log("user.job", user.job)
   return (
     <div className="ml-32">
       <div className="flex flex-col-2 mb-12 w-full gap-20">
-        <div {...getRootProps()} className="relative w-40 h-40">
+        <div {...getRootProps()} className="relative ">
           <input {...getInputProps()} />
 
           <img
             // src={`${user.avatar}`}
+            width="200px"
+            height="200px"
             src={files[0] ? files[0][0].preview : user.avatar}
             className="rounded-full mt-16"
           />

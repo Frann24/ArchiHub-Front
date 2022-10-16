@@ -18,10 +18,12 @@ export default function Profile({
   return (
     <div className="ml-32">
       <div className="flex flex-col-2 mb-12 w-full gap-20">
-        <div className="relative w-40 h-40">
+        <div className="relative ">
           <img
             // src={`${user.avatar}`}
             src={user.avatar}
+            width="200px"
+            height="200px"
             className="rounded-full mt-16"
           />
         </div>
