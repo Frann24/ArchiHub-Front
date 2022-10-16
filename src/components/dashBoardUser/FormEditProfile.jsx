@@ -13,6 +13,7 @@ export default function FormEditProfile({ id, user }) {
   const [state, setState] = useState({});
   const [files, setFiles] = useState([]);
   console.log("state: ", state);
+  console.log(files);
 
   let image = "";
   //   const [image, setImage] = useState();
@@ -30,6 +31,19 @@ export default function FormEditProfile({ id, user }) {
   //     isHovering ? "" : "hidden"
   //   }`;
   // }
+  const [isHovering, setIsHoverig] = useState(false);
+
+  function handleMouseEnter() {
+    setIsHoverig(true);
+  }
+  function handleMouseLeave() {
+    setIsHoverig(false);
+  }
+  function textClass() {
+    return `absolute top-10 left-5 w-100% h-100% text-white flex flex-col content-center text-center justify-self-center ${
+      isHovering ? "" : "hidden"
+    }`;
+  }
   const flatFile = files.flat();
   console.log(flatFile);
 
@@ -179,6 +193,7 @@ console.log("user.job", user.job)
 
             <FontAwesomeIcon icon={faLocationDot} />
             </div>
+            <FontAwesomeIcon icon={faLocationDot} />
             <input
               placeholder="Location"
               name="location"
@@ -191,6 +206,9 @@ console.log("user.job", user.job)
             </div>
             <input
               placeholder= "Job Title"
+            <FontAwesomeIcon icon={faBuilding} />
+            <input
+              placeholder="Job Title"
               name="job"
               onChange={(e) => handleChange(e)}
             ></input>
@@ -200,6 +218,7 @@ console.log("user.job", user.job)
           <div className="pr-3">
             <FontAwesomeIcon icon={faLink} />
             </div>
+            <FontAwesomeIcon icon={faLink} />
             <input
               placeholder="Webpage"
               name="page"

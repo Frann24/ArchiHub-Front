@@ -15,7 +15,6 @@ function SigIn() {
 
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
-    
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">Sign In</h3>
       <form className="space-y-6" onSubmit={handleInputSubmit}>
         <div>
@@ -60,7 +59,7 @@ function SigIn() {
             </label>
           </div>
           <NavLink to="/forgotPassword">
-           <span className="cursor-pointer text-sm text-gray-900 hover:underline">
+           <span onClick={closeModalSingIn} className="cursor-pointer text-sm text-gray-900 hover:underline">
             Forgot Password?
           </span> 
           </NavLink>
@@ -77,7 +76,11 @@ function SigIn() {
         >
           Sign in with Google
         </button> */}
-   
+        <div className="w-full flex items-center gap-4">
+          <div className="border w-1/2 border-gray-600"></div>
+          <p className="text-gray-800">Or</p>
+          <div className="border w-1/2 border-gray-600"></div>
+        </div>
         <div onClick={closeModalSingIn} id="signInDiv"></div>
         <div className="text-sm font-medium text-gray-900">
         {/* //NAVLINK  A SIGNUP*/}

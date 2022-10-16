@@ -33,6 +33,7 @@ export default function DashBoardUser() {
 
   return (
     <div className="mx-32">
+    <div className="ml-32">
       {/* <div className="w-1/2 mx-auto mt-6"> */}
       {profile ? (
         <div>
@@ -57,6 +58,8 @@ export default function DashBoardUser() {
       <div>
         <div className="divide-x">
           <div className="flex flex-row gap-16 mt-16  w-1/2">
+        <div>
+          <div className="flex flex-row gap-16 mt-16 ml-12 w-1/2">
             <div className="tracking-wider text-lg hover:border-b-2 border-slate-300">
               <button value="projects" onClick={(e) => handleChange(e)}>
                 Projects
@@ -89,6 +92,11 @@ export default function DashBoardUser() {
               <Projects id={userLogeado.userId} />
             </div>
           )}
+          {state === "user" && (
+            <div>
+              <Projects id={userLogeado.userId} />
+            </div>
+          )}
           {state === "posts" && (
             <div>
               <Post
@@ -101,6 +109,7 @@ export default function DashBoardUser() {
           {state === "reviews" && (
             <div>
               <Reviews />
+              <Reviews id={userLogeado.userId}/>
             </div>
           )}
           {state === "favourites" && (

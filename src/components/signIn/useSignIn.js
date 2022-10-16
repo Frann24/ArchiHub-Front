@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { clearUser, googleLogin, logUser } from '../../redux/slices/auth/loginActions';
 import { showSigIn, showSignUp } from '../../redux/slices/header/headerSlice';
 import { validate } from './validate';
@@ -13,12 +13,12 @@ export const useSignIn = () => {
   const [errors, setErrors] = useState({initial: ""});
   const {modalSignIn, modalSignUp} = useSelector(state => state.header)
   const navigate = useNavigate();
+  const location = useLocation()
   const dispatch = useDispatch();
   const google = window.google
   const [googleUser, setGoogleUser] = useLocalStorage("googleUser","")
   const {user} = useSelector(state => state.login)
   let token = false
-
   const handleInputChange = (e) => {
     setInput({
       ...input,
@@ -41,36 +41,33 @@ export const useSignIn = () => {
     }
   }
   
-  if(user){
-    token = user.token
-  } 
-  if(token)window.location.reload()
-
   const toggleSignIn = (e) => {
     e.preventDefault()
     dispatch(showSigIn(!modalSignIn))
     dispatch(showSignUp(!modalSignUp))
   }
-
+  
   const closeModalSingIn = () => {
-    dispatch(showSigIn(!modalSignIn))
+    dispatch(showSigIn(false))
   }
+
+  if(user){
+    token = user.token
+  } 
+  if(token) closeModalSingIn()
 
   const handleCallbackResponse=async(response)=>{
     var userObject = jwt_decode(response.credential)
-    console.log(userObject);
     setGoogleUser(userObject)
     const userMail = userObject.email
     const avatar = userObject.picture
     const name = userObject.given_name
     const lastname = userObject.family_name
     dispatch(googleLogin(userMail, avatar, name, lastname))
-    navigate("/home")
+    navigate(location.pathname)
   }
 
   useEffect(()=>{
-    /* setErrors({...errors,errEmail: user.err}) */
-    //global google login
     google.accounts.id.initialize({
       client_id: "168699059386-nhog3hm7cgg52demaihgsskd49r5aetq.apps.googleusercontent.com",
       callback: handleCallbackResponse
@@ -80,10 +77,8 @@ export const useSignIn = () => {
       document.getElementById("signInDiv"),
       {theme:"outline", size:"large"}
     )
-    if(typeof googleUser === "object") {
-      navigate("/home")
+    if(typeof googleUser === "object" && user._id) {
       dispatch(showSigIn(!modalSignIn))
-    
       return () => {
         showSigIn(false)
       }
