@@ -15,7 +15,6 @@ function SigIn() {
 
   return (
     <div className="py-6 px-6 lg:px-8 font-raleway">
-    
       <h3 className="mb-4 text-xl font-medium text-gray-900 text-center">Sign In</h3>
       <form className="space-y-6" onSubmit={handleInputSubmit}>
         <div>
@@ -60,7 +59,7 @@ function SigIn() {
             </label>
           </div>
           <NavLink to="/forgotPassword">
-           <span className="cursor-pointer text-sm text-gray-900 hover:underline">
+           <span onClick={closeModalSingIn} className="cursor-pointer text-sm text-gray-900 hover:underline">
             Forgot Password?
           </span> 
           </NavLink>
