@@ -40,7 +40,7 @@ export default function FormEditProfile({ id, user }) {
       [e.target.name]: e.target.value,
     });
   }
-console.log("user.job", user.job)
+  console.log("user.job", user.job);
   const uploadImage = async (flatFile, e) => {
     // e.preventDefault();
     const data = new FormData();
@@ -151,8 +151,8 @@ console.log("user.job", user.job)
 
           <img
             // src={`${user.avatar}`}
-            width="200px"
-            height="200px"
+            width="240px"
+            height="240px"
             src={files[0] ? files[0][0].preview : user.avatar}
             className="rounded-full mt-16"
           />
@@ -178,8 +178,7 @@ console.log("user.job", user.job)
           ></input>
           <div className="flex flex-row my-3">
             <div className="pr-3">
-
-            <FontAwesomeIcon icon={faLocationDot} />
+              <FontAwesomeIcon icon={faLocationDot} />
             </div>
             <input
               placeholder="Location"
@@ -188,19 +187,19 @@ console.log("user.job", user.job)
             ></input>
           </div>
           <div className="flex flex-row my-3">
-          <div className="pr-3">
-            <FontAwesomeIcon icon={faBuilding} />
+            <div className="pr-3">
+              <FontAwesomeIcon icon={faBuilding} />
             </div>
             <input
-              placeholder= "Job Title"
+              placeholder="Job Title"
               name="job"
               onChange={(e) => handleChange(e)}
             ></input>
           </div>
 
           <div className="flex flex-row">
-          <div className="pr-3">
-            <FontAwesomeIcon icon={faLink} />
+            <div className="pr-3">
+              <FontAwesomeIcon icon={faLink} />
             </div>
             <input
               placeholder="Webpage"

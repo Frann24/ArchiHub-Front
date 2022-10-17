@@ -22,8 +22,8 @@ export default function Profile({
           <img
             // src={`${user.avatar}`}
             src={user.avatar}
-            width="200px"
-            height="200px"
+            width="240px"
+            height="240px"
             className="rounded-full mt-16"
           />
         </div>

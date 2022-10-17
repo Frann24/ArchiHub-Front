@@ -43,12 +43,11 @@ export default function Projects(id) {
       ) : (
         <div></div>
       )}
-         <div className="flex items-end">
-
-      <Link to={"/createproject"}>
-        <button className="bg-green-600 text-white px-6 m-2 ">New</button>
-      </Link>
-         </div>
+      <div className="flex items-end">
+        <Link to={"/createproject"}>
+          <button className="bg-green-600 text-white px-6 m-2 ">New</button>
+        </Link>
+      </div>
       {search === "not found" ? (
         <div>
           <p>there are no matches with your search</p>
@@ -74,8 +73,8 @@ export default function Projects(id) {
           );
         })
       ) : (
-        <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-          <p>you have no projects created</p>
+        <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center  text-slate-400">
+          <p>You have no projects created, make one.</p>
           <Link to={"/createproject"}>
             <button className="bg-green-600 text-white px-6 mt-6">New</button>
           </Link>
