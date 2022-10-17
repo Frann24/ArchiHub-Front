@@ -63,10 +63,11 @@ export default function Reviews({ id }) {
   return (
     <div>
       {userReviews.length ? (
-        <div>
-          <label>Search post... </label>
-          <input type="text" onChange={(e) => handleSearch(e)} />
-          <button onClick={(e) => handleOrderDate(e)}>Date</button>
+        <div className="flex flex-wrap gap-16 items-end ml-20 my-6">
+          {/* <label>Search post... </label> */}
+          <input className="border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" type="text" 
+          placeholder= "Search post..." onChange={(e) => handleSearch(e)} />
+          <button className="bg-slate-300  px-3 py-1 text-slate-900" onClick={(e) => handleOrderDate(e)}>order DATE</button>
         </div>
       ) : (
         <div></div>
@@ -76,26 +77,34 @@ export default function Reviews({ id }) {
           <p>there are no matches with your search</p>
         </div>
       ) : userReviews.length ? (
+        
         state.length &&
         state.map((rev) => {
-
+          // <div className="flex flex-col-3">
+          
           return (
-            <div className="flex felx-col-3">
             <Link to={`/postDetail/${rev.postId}`}>
+              <div className="">
 
-              <div className="flex felx-col-3">
-                <img src={rev.image} width="150px" />
-                <div className="text-base font-semibold">{rev.title}</div>
-                <p className="text-base ">{rev.comment}</p>
-                <p className="text-base truncate text-slate-300">
+              <div className="flex flex-col-2 gap-6 my-6">
+                <img src={rev.image} width="250px" />
+                <div>
+                  <div className="text-base font-semibold">{rev.title}</div>
+                <p className="text-base  text-slate-300">
                   {rev.createdAt.slice(0, 10)}
                 </p>
+                <p className="text-base ">{rev.comment}</p>
+                  </div>
+              </div>
               </div>
             </Link>
-              </div>
           );
+        // </div>
         })
-      ) : (
+      ) 
+      
+      
+      : (
         <div>
           <p>you don't have any reviews</p>
         </div>
