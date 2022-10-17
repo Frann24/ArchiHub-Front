@@ -40,7 +40,7 @@ function SigIn() {
             id="password"
             placeholder="••••••••"
             className={`bg-gray-50 border-b-2 border-gray-50 text-gray-900 text-sm focus:outline-none block w-full p-2.5 focus:border-gray-500  ${conditionPassword && "border-2 focus:border-danger border-danger"}`}
-            value={input.password} onChange={handleInputChange}
+            value={input.password} onChange={handleInputChange} onBlur={handleBlur}
           />
           {conditionPassword && <span className="text-danger text-sm">{conditionPassword}</span>}
         </div>
