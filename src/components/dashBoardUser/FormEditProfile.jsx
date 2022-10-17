@@ -12,11 +12,25 @@ export default function FormEditProfile({ id, user }) {
   const dispatch = useDispatch();
   const [state, setState] = useState({});
   const [files, setFiles] = useState([]);
+  console.log("state: ", state);
   console.log(files);
 
   let image = "";
   //   const [image, setImage] = useState();
   //   console.log("files: ", files);
+  // const [isHovering, setIsHoverig] = useState(false);
+
+  // function handleMouseEnter() {
+  //   setIsHoverig(true);
+  // }
+  // function handleMouseLeave() {
+  //   setIsHoverig(false);
+  // }
+  // function textClass() {
+  //   return `absolute top-10 left-5 w-100% h-100% text-white flex flex-col content-center text-center justify-self-center ${
+  //     isHovering ? "" : "hidden"
+  //   }`;
+  // }
   const [isHovering, setIsHoverig] = useState(false);
 
   function handleMouseEnter() {
@@ -40,7 +54,7 @@ export default function FormEditProfile({ id, user }) {
       [e.target.name]: e.target.value,
     });
   }
-
+  console.log("user.job", user.job);
   const uploadImage = async (flatFile, e) => {
     // e.preventDefault();
     const data = new FormData();
@@ -146,11 +160,13 @@ export default function FormEditProfile({ id, user }) {
   return (
     <div className="ml-32">
       <div className="flex flex-col-2 mb-12 w-full gap-20">
-        <div {...getRootProps()} className="relative w-40 h-40">
+        <div {...getRootProps()} className="relative ">
           <input {...getInputProps()} />
 
           <img
             // src={`${user.avatar}`}
+            width="240px"
+            height="240px"
             src={files[0] ? files[0][0].preview : user.avatar}
             className="rounded-full mt-16"
           />
@@ -175,6 +191,9 @@ export default function FormEditProfile({ id, user }) {
             onChange={(e) => handleChange(e)}
           ></input>
           <div className="flex flex-row my-3">
+            <div className="pr-3">
+              <FontAwesomeIcon icon={faLocationDot} />
+            </div>
             <FontAwesomeIcon icon={faLocationDot} />
             <input
               placeholder="Location"
@@ -183,7 +202,9 @@ export default function FormEditProfile({ id, user }) {
             ></input>
           </div>
           <div className="flex flex-row my-3">
-            <FontAwesomeIcon icon={faBuilding} />
+            <div className="pr-3">
+              <FontAwesomeIcon icon={faBuilding} />
+            </div>
             <input
               placeholder="Job Title"
               name="job"
@@ -192,6 +213,9 @@ export default function FormEditProfile({ id, user }) {
           </div>
 
           <div className="flex flex-row">
+            <div className="pr-3">
+              <FontAwesomeIcon icon={faLink} />
+            </div>
             <FontAwesomeIcon icon={faLink} />
             <input
               placeholder="Webpage"
