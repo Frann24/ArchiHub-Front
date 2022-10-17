@@ -22,6 +22,7 @@ export default function DashBoardUser() {
   useEffect(() => {
     dispatch(getUser(userLogeado.userId));
     dispatch(getAllReviews());
+    dispatch(getAllPosts());
   }, [dispatch]);
 
   function handleChange(e) {
@@ -81,7 +82,7 @@ export default function DashBoardUser() {
               </button>
             </div>
           </div>
-          <hr className="mt-2"/>
+          <hr className="mt-2" />
         </div>
         <div>
           {state === "projects" && (
@@ -109,7 +110,6 @@ export default function DashBoardUser() {
             </div>
           )}
         </div>
-       
       </div>
     </div>
   );
