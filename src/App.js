@@ -17,10 +17,18 @@ import BtnTop from "./components/btnTop/BtnTop";
 import Successful from "./components/payment/Successful";
 import ErrorPayment from "./components/payment/ErrorPayment";
 import CancelPayment from "./components/payment/CancelPayment";
-
+import axios from "axios";
 
 
 function App() {
+
+  const auth = JSON.parse(localStorage.getItem("token"))
+  if (auth) {
+    axios.defaults.headers.common['x-access-token'] = auth.token;
+} else {
+    axios.defaults.headers.common['x-access-token'] = null;
+}
+
   return (
     <BrowserRouter>
       <div className="App font-raleway ">
