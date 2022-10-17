@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser, registerUser } from "../../redux/slices/auth/loginActions";
+import { registerUser } from "../../redux/slices/auth/loginActions";
 import { showSigIn, showSignUp } from "../../redux/slices/header/headerSlice";
 import { validate } from "./validate";
 
@@ -30,7 +30,6 @@ export const useSignUp = (err) => {
       ...input,
       [e.target.name]: e.target.value,
     });
-    if(user) dispatch(clearUser({}))
   };
 
   const hanldeBlur = (e) => {
