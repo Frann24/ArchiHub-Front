@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createUpdate } from "../../../../redux/slices/update/updateActions";
 import CreateFile from "../files/CreateFile";
-import "./createUpdate.css";
 
 const CreateUpdate = ({ project_id }) => {
   const fileData = useSelector((state) => state.storage.response);

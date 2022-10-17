@@ -1,6 +1,6 @@
 import { NEWS } from "../constants";
 import newsSlice from "./newsSlice";
-import { getNews } from "./newsSlice";
+import { getNews, queryNews } from "./newsSlice";
 const axios = require("axios");
 
 export function getNews1() {
@@ -11,3 +11,8 @@ export function getNews1() {
       .catch((error) => console.log(error));
   };
 }
+
+export function getQueryNews(allNews, name) {
+  const allNews2 = [...allNews]
+  return name?queryNews(allNews2.filter((e) => e.title && e.title.toLowerCase().includes(name.toLowerCase()))):queryNews(allNews)
+};
