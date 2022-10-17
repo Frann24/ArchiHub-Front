@@ -4,6 +4,7 @@ import {
   faCloudArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import pngPDF from "../../../../assets/icons/pdf.png";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +12,7 @@ import {
   createStorage,
   deleteStorage,
 } from "../../../../redux/slices/storage/storageActions";
-import pngDwg from "../../../../assets/icons/dwg.png";
+
 
 const CreateFile = ({ ext, setForm, form, onBlur }) => {
   const [file, setFile] = useState();
@@ -28,15 +29,15 @@ const CreateFile = ({ ext, setForm, form, onBlur }) => {
     dispatch(createStorage(data));
     setSucces(true);
     setTimeout(() => {
-      setSucces(false)
+      setSucces(false);
     }, 2000);
   };
   const handleDelete = (e) => {
     e.preventDefault();
     dispatch(deleteStorage(fileData._id));
-    setDeleted(true)
+    setDeleted(true);
     setTimeout(() => {
-      setDeleted(false)
+      setDeleted(false);
     }, 2000);
     setForm({
       storage_id: "",
@@ -45,25 +46,33 @@ const CreateFile = ({ ext, setForm, form, onBlur }) => {
 
   return (
     <div className="flex flex-row w-full">
-      <div className="flex flex-row w-auto">
+      <div className="flex flex-row w-auto" id="showtooltip">
         <input
           type="file"
           onChange={(e) => handleOnChange(e)}
           accept={ext}
-          className="opacity-0 absolute w-24 self-end"
+          className="opacity-0 absolute w-24 self-end cursor-pointer"
         />
-        <img src={pngDwg} alt="pdf" className="w-16"/>
+        <img src={pngPDF} alt="pdf" className="w-16" />
         <FontAwesomeIcon
           icon={faCloudArrowUp}
           className="mx-1 mb-1 self-end text-xl md:text-black"
         />
+      </div>
+      <div>
+        {
+
+        }
       </div>
       <button
         onClick={(e) => handleDelete(e)}
         disabled={!fileData}
         className="mx-1 cursor-pointer self-end"
       >
-        <FontAwesomeIcon icon={faTrash} className="text-2xl hover:text-danger" />
+        <FontAwesomeIcon
+          icon={faTrash}
+          className="text-2xl hover:text-danger"
+        />
       </button>
       <div>
         {succes && (
@@ -85,7 +94,7 @@ const CreateFile = ({ ext, setForm, form, onBlur }) => {
               <span className="sr-only">Check icon</span>
             </div>
             <div className="ml-3 text-sm font-normal">
-              File created successfully.
+            File created successfully.
             </div>
             <button
               onClick={() => setSucces(false)}

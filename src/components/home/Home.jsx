@@ -10,8 +10,8 @@ function Home() {
   return (
     <div>
       <div id="home_id"></div>
-        <Carousel/>
         <Search />
+        <Carousel/>
       <div >
         <div className="flex flex-col gap-2 pb-4 w-full
         sm:flex-row

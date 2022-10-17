@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ function Logged() {
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
   const {user} = useSelector(state => state.user)
- 
+  const btnRef = useRef();
   const dispatch = useDispatch()
 
   const handleLogout =  (e) => {
@@ -21,6 +21,14 @@ function Logged() {
     dispatch(clearUser({}))
     window.location.reload()
   }
+  useEffect(()=> {
+    const closeDropDown = e => {
+      const found = e.composedPath().find(e => e.id === "btnCreateMenu")
+      if(found !== btnRef.current) setCreateMenu(false)
+    }
+    document.body.addEventListener('click', closeDropDown)
+    return () => document.body.removeEventListener('click', closeDropDown)
+  })
 
   useEffect(()=>{
     const google = async () =>{
@@ -54,26 +62,23 @@ function Logged() {
   }
 
   return (
-    <>
-    {createMenu && <div onClick={() => setCreateMenu(!createMenu)} className="absolute w-full h-screen top-0 left-0"></div>}
-      <div onClick={() => setCreateMenu(!createMenu)} className={`hidden p-1 text-sm cursor-pointer text-gray-600 border rounded hover:bg-gray-200
-      ${createMenu && "bg-gray-200"}
-      xl:flex
-      `}>
-        <FontAwesomeIcon className="px-1 cursor-pointer" icon={faPlus}/>
-        <FontAwesomeIcon className="px-1 cursor-pointer" icon={createMenu ? faAngleUp : faAngleDown}/>
-        {createMenu && <div className="absolute mt-10 text-gray-600 w-[16vw] flex flex-col bg-gray-100 rounded gap-2 cursor-default
-        xl:w-[15vw] 2xl:w-[8vw]">
-          <Link to="/createpost" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New post</Link>
-          <Link to="/createproject" className="p-2 hover:bg-gray-200 cursor-pointer rounded">New project</Link>
-        </div>}
+    <div className="flex flex-row gap-8 items-center">
+      <div className="hidden lg:inline-block relative p-4">
+        <button id="btnCreateMenu" ref={btnRef} onClick={() => setCreateMenu(!createMenu)}  className={`flex border p-1 rounded-md lg:hover:bg-gray-100 ${createMenu && "bg-gray-100 border-b-gray-100 rounded-b-none"} text-sm`}  >
+          <FontAwesomeIcon className="px-1 cursor-pointer text-gray-500" icon={faPlus}/>
+          <FontAwesomeIcon className="px-1 cursor-pointer text-gray-500" icon={createMenu ? faAngleUp : faAngleDown}/>
+        </button>
+        <div className={`absolute ${createMenu ? "flex" : "hidden"} flex-col gap-2 bg-gray-100 w-36 rounded-tl-none shadow-md`}>
+          <Link to="/createpost" className="hover:bg-gray-200 py-1 px-2">New Post</Link>
+          <Link to="/createproject" className="hover:bg-gray-200 py-1 px-2">New Project</Link>
+        </div>
       </div>
       <div
       title="Open menu"
       onClick={() => [setShowSidebar(!showSidebar), setCreateMenu(false)]}
       className="cursor-pointer flex items-center gap-4" 
     >
-      <div className="flex order-2 items-center justify-center ">
+      <div className="flex order-2 items-center justify-center select-none">
         <AvatarUser img={user.avatar} className="w-10 h-10 sm:w-12 sm:h-12 xl:w-14 xl:h-14"/>
       </div>
       <div className="hidden sm:flex flex-col text-end">
@@ -158,13 +163,13 @@ function Logged() {
             <div className="m-4 px-4 py-2 bg-blue-600 text-gray-50 cursor-pointer">
               <button onClick={()=> setShowSidebar(false)} className="font-semibold"><Link to="/payment">Upgrade to Premium </Link></button>
             </div>
-            <div className="m-4 px-4 py-2 bg-gray-600 text-gray-50 cursor-pointer">
-              <button onClick={handleLogout} className="font-semibold">Log out</button>
+            <div onClick={handleLogout} className="m-4 px-4 py-2 bg-gray-600 text-gray-50 cursor-pointer">
+              <button className="font-semibold">Log out</button>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
