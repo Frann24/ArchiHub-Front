@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { forgotPass } from '../../redux/slices/auth/loginActions'
 
@@ -8,7 +8,12 @@ import { forgotPass } from '../../redux/slices/auth/loginActions'
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [error, setError] = useState({initial: ""})
-
+    const {user} = useSelector(state => state.login)
+    let conditionEmail
+    if(user){
+     conditionEmail = error.email || user.errEmail
+     /* user.success && alert("An email has been sent to " + email + " " + "follow the instructions from there to reset your password") */
+    }
     const validate = () => {
       let err = {}
       const regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/
@@ -33,7 +38,7 @@ import { forgotPass } from '../../redux/slices/auth/loginActions'
         if(Object.keys(err).length === 0){
           setEmail(email)
           dispatch(forgotPass(email))
-          navigate("/home") 
+/*           navigate("/home")  */
         }
     }
   return (
@@ -53,7 +58,7 @@ import { forgotPass } from '../../redux/slices/auth/loginActions'
               placeholder="name@example.com"
               value={email} name='email' onBlur={handleBlur} onChange={handleEmailChange}
             />
-            {error.email && <span className="text-danger text-sm">{error.email}</span>}
+            {conditionEmail && <span className="text-danger text-sm">{conditionEmail}</span>}
           </div>
         </div>
         <div onClick={handleSubmit} className={`w-full bg-gray-800 lg:hover:bg-gray-600 transition-all duration-200 ease-in text-center cursor-pointer lg:w-3/4 mx-auto xl:w-1/2`}>
