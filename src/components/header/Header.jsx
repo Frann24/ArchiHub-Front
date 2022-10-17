@@ -12,7 +12,7 @@ import NewsDetail from "../home/news/NewsDetail";
 /* import Navbar from "./navbar/Navbar"; */
 import BtnMenu from "./btnMenu/BtnMenu";
 import Footer from "../footer/Footer";
-import DashBoardAdmin from "../dashBoardAdmin/DashBoardAdmin";
+import DashBoard from "../dashBoardAdmin/DashBoard";
 import ProjectDetail from "../home/projects/ProjectDetail";
 import Navbar from "./navbar/Navbar";
 import { useEffect } from "react";
@@ -67,7 +67,7 @@ function Header() {
         <Route path="postDetail/:id" element={<PostDetail />} />
         <Route path="createpost" element={<CreatePost />} />
         <Route path="createproject" element={<CreateProject />} />
-        <Route path="/admin" element={<DashBoardAdmin />} />
+        <Route path="/admin" element={<DashBoard />} />
         <Route path="projectDetail/:id" element={<ProjectDetail />} />
         {/* <Route path="/dashuser" element={<DashUser />} /> */}
         <Route path="/user/:value" element={<DashBoardUser />} />

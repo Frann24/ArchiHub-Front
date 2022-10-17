@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/slices/user/userActions";
 import { updateUser } from "../../redux/slices/user/userActions";
-import { useState } from "react";
 import UserItem from "./UserItem";
 
-function DashBoardAdmin() {
+function Users() {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
 
@@ -41,7 +40,6 @@ function DashBoardAdmin() {
   return (
     <div className="">
       {/* ----------------pantallas LARGE------------------- */}
-
       <div className="lg:block hidden mx-16 xl:mx-32 2xl:mx-32">
         <div className=" grid grid-cols-6 mt-6 gap-6  font-bold">
           <h2>Members</h2>
@@ -166,4 +164,4 @@ function DashBoardAdmin() {
   );
 }
 
-export default DashBoardAdmin;
+export default Users;

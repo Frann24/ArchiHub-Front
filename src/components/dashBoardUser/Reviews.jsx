@@ -6,7 +6,6 @@ export default function Reviews({id}) {
   const allReviews = useSelector(state => state.review.allReviews)
   let userReviews = allReviews.filter(rev => rev.user[0]._id == id)
  
-  console.log(userReviews)
   userReviews = userReviews.map((rev) => {
     return (
       {
@@ -22,7 +21,7 @@ export default function Reviews({id}) {
     const [cambio, setCambio] = useState(false)
 
     useEffect(() => {
-      setState(userReviews)
+      setState(state)
     }, [cambio])
 
     function handleSearch(e) {
@@ -81,22 +80,28 @@ export default function Reviews({id}) {
         <div>
           <p>there are no matches with your search</p>
         </div> :
-        userReviews.length ? state.length && state.map((rev) => {
-          return (
-            <Link to={`/postDetail/${rev.postId}`}>
-            <div>
-              <img src={rev.image}/>
-              <h4>{rev.title}</h4>
-              <p>{rev.comment}</p>
-              <p>{rev.createdAt.slice(0, 10)}</p>
-            </div>
-            </Link>
-          )
-        }) :
-        <div>
+        state.length ? (
+         <div>
+          { userReviews.length &&
+             state.map((rev) => {
+              return (
+                <Link to={`/postDetail/${rev.postId}`}>
+                <div>
+                  <img src={rev.image}/>
+                  <h4>{rev.title}</h4>
+                  <p>{rev.comment}</p>
+                  <p>{rev.createdAt.slice(0, 10)}</p>
+                </div>
+                </Link>
+              )
+        })
+       }
+       </div>  )
+        :
+      <div>
         <p>you don't have any reviews</p>
       </div>
       }
     </div>
-  )
+  );
 }

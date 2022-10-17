@@ -22,6 +22,7 @@ export default function DashBoardUser() {
   useEffect(() => {
     dispatch(getUser(userLogeado.userId));
     dispatch(getAllReviews());
+    dispatch(getAllPosts())
   }, [dispatch]);
 
   function handleChange(e) {
