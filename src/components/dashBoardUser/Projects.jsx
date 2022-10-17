@@ -36,19 +36,20 @@ export default function Projects(id) {
   return (
     <div>
       {projectsUser.length ? (
-        <div>
-          <label>Search </label>
-          <input type="text" onChange={(e) => handleSearch(e)} />
+        <div className="flex flex-row">
+          <div>
+            <label>Search </label>
+            <input type="text" onChange={(e) => handleSearch(e)} />
+          </div>
+          <div className="flex items-end">
+            <Link to={"/createproject"}>
+              <button className="bg-green-600 text-white px-6 m-2 ">New</button>
+            </Link>
+          </div>
         </div>
       ) : (
         <div></div>
       )}
-      <div className="flex items-end">
-        <Link to={"/createproject"}>
-          <button className="bg-green-600 text-white px-6 m-2 ">New</button>
-        </Link>
-        <div></div>
-      </div>
       {search === "not found" ? (
         <div>
           <p>there are no matches with your search</p>
@@ -56,26 +57,34 @@ export default function Projects(id) {
       ) : search.length ? (
         search.map((project) => {
           return (
-            <div>
-              <img src={project.pdf_file} />
-              <h3>{project.title}</h3>
-              <p>{project.description.slice(0, 50)}</p>
+            <div className="flex flex-col-3">
+              <div>
+                <img src={project.pdf_file} width="50px" />
+                <h3 className="text-base font-semibold">{project.title}</h3>
+                <p className="text-base truncate">
+                  {project.description.slice(0, 50)}
+                </p>
+              </div>
             </div>
           );
         })
       ) : projectsUser.length ? (
         projectsUser.map((project) => {
           return (
-            <div>
-              <img src={project.pdf_file} />
-              <h3>{project.title}</h3>
-              <p>{project.description.slice(0, 50)}</p>
+            <div className="flex flex-col-3">
+              <div>
+                <img src={project.pdf_file} width="50px" />
+                <div className="text-base font-semibold">{project.title}</div>
+                <p className="text-base truncate">
+                  {project.description.slice(0, 50)}
+                </p>
+              </div>
             </div>
           );
         })
       ) : (
         <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-          <p className=" ">you have no projects created</p>
+          <p className=" text-base">you have no projects created</p>
           <Link to={"/createproject"}>
             <button className="bg-green-600 text-white px-6 mt-6">New</button>
           </Link>

@@ -83,10 +83,10 @@ export default function Reviews({id}) {
           return (
             <Link to={`/postDetail/${rev.postId}`}>
             <div>
-              <img src={rev.image}/>
-              <h4>{rev.title}</h4>
-              <p>{rev.comment}</p>
-              <p>{rev.createdAt.slice(0, 10)}</p>
+              <img src={rev.image} width="50px"/>
+              <div className="text-base font-semibold">{rev.title}</div>
+              <p className="text-base ">{rev.comment}</p>
+              <p className="text-base truncate text-slate-300">{rev.createdAt.slice(0, 10)}</p>
             </div>
             </Link>
           )
