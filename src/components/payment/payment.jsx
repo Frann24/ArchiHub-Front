@@ -24,35 +24,10 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const token = JSON.parse(localStorage.getItem("token"));
-  //const [userId, setUserId ] = useState("")
+  
   const navigate = useNavigate();
 
-  //console.log(token.userId)
-
-  // const handleSubmit = async (e) =>{
-  //   e.preventDefault();
-
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement)
-  //   });
-  //   setLoading(true)
-
-  //   if(!error) {
-  //     const { id } = paymentMethod;
-  //    try {
-  //      const {data} = await axios.post(PAYMENT, {
-  //       id,
-  //       amount: 1000
-  //      })
-  //      console.log(data)
-  //      elements.getElement(CardElement).clear()
-  //    } catch (error) {
-  //       console.log(error)
-  //    }
-  //    setLoading(false)
-  //   }
-  // }
+  
 
   const handleSubmitSubscription = async (e) => {
     e.preventDefault();
@@ -66,7 +41,7 @@ const CheckoutForm = () => {
       card: elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement),
       billing_details: {
         email: token.userMail,
-      },
+        },
     });
     //setLoading(true)
     //console.log(result.paymentMethod.billing_details.email);
