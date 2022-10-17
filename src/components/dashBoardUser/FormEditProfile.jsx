@@ -194,7 +194,7 @@ export default function FormEditProfile({ id, user }) {
             <div className="pr-3">
               <FontAwesomeIcon icon={faLocationDot} />
             </div>
-            <FontAwesomeIcon icon={faLocationDot} />
+            
             <input
               placeholder="Location"
               name="location"
@@ -216,7 +216,7 @@ export default function FormEditProfile({ id, user }) {
             <div className="pr-3">
               <FontAwesomeIcon icon={faLink} />
             </div>
-            <FontAwesomeIcon icon={faLink} />
+           
             <input
               placeholder="Webpage"
               name="page"

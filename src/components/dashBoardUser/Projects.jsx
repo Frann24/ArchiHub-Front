@@ -75,7 +75,7 @@ export default function Projects(id) {
         })
       ) : (
         <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-          <p className=" ">you have no projects created</p>
+          <p className=" text-base">you have no projects created</p>
           <Link to={"/createproject"}>
             <button className="bg-green-600 text-white px-6 mt-6">New</button>
           </Link>
