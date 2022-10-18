@@ -12,18 +12,15 @@ import { validate } from "./validateProject";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "../files/tooltip.css"
-
+import { Link } from "react-router-dom";
 const CreateProject = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
   const fileData = useSelector((state) => state.storage.response);
   const userToken = JSON.parse(window.localStorage.getItem("token"));
-
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
-
+    const {user} = useSelector(state=>state.user)
   const [errors, setErrors] = useState({});
+
   const [misingLabel, setMisingLabel] = useState(false);
   const [form, setForm] = useState({
     title: "",
@@ -33,8 +30,12 @@ const CreateProject = () => {
     users: "",
     pdf_file: "",
     project_file: "",
-  });
+  })
 
+  useEffect(() => {
+    dispatch(getAllUsers());
+
+  }, [dispatch]);
   useEffect(() => {
     if (
       fileData.newStorage &&
@@ -87,10 +88,13 @@ const CreateProject = () => {
       users: value,
     });
   };
-
+  const handleFormBlurVisibility = (e) => {
+    handleChange(e);
+    setErrors(validate(form, "visibility", errors, userToken.isPremium));
+  };
   const handleFormBlur = (e) => {
     handleChange(e);
-    setErrors(validate(form, e.target.name, errors));
+    setErrors(validate(form, e.target.name, errors, userToken.isPremium));
   };
   const handleMising = (e) => {
     if (Object.keys(errors).length !== 0 || !form.project_file || !form.pdf_file) {
@@ -112,6 +116,7 @@ const CreateProject = () => {
       pdf_file: form.pdf_file,
       project_file: form.project_file,
     };
+    
     if (Object.keys(errors).length === 0 || !form.project_file || !form.pdf_file) {
       dispatch(createProject(submitForm));
       setForm({
@@ -188,9 +193,14 @@ const CreateProject = () => {
             className="my-4"
             name="visibility"
             onChange={(e) => handleSelectVisibility(e)}
+            onBlur={handleFormBlurVisibility}
             options={options2}
             value={form.visibility}
-          />
+          /> {errors.visibility && (
+            <span className="text-danger text-sm my-1">
+              {errors.visibility} <Link to={"/payment"}>Click here to subscribe.</Link>
+            </span>
+          )}
           <div className="flex flex-row sm:items-center">
             <CreatePdfFile ext={".pdf"} onBlur={handleFormBlur} form={form}/>
             {errors.pdf_file && (
@@ -205,6 +215,7 @@ const CreateProject = () => {
               </span>
             )}
           </div>
+
           {form.title ||
           form.description ||
           form.pdf_file ||
@@ -219,9 +230,11 @@ const CreateProject = () => {
               Create
               <FontAwesomeIcon icon={faPlus} className="text-white mx-2" />
             </button>
+            
           ) : (
             <div></div>
           )}
+          
         </div>
       </form>
       <div className="hidden w-1/2 p-16 border-l-2 md:flex md:justify-center md:items-center md:text-5xl">
@@ -266,8 +279,10 @@ const CreateProject = () => {
               <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
             </svg>
           </button>
+
         </div>
       )}
+
     </div>
   );
 };

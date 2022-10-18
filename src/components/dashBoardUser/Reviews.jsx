@@ -3,18 +3,20 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Reviews({ id }) {
-  const allReviews = useSelector((state) => state.review.allReviews);
-  let userReviews = allReviews.filter((rev) => rev.user._id == id);
-  userReviews = userReviews.map((rev) => {
+  const user= useSelector((state) => state.user.viewUser);
+/*   const allReviews = useSelector((state) => state.review.allReviews);
+  let userReviews = allReviews.filter((rev) => rev.user._id == id); */
+/*   let userReviews = user.reviews
+  userReviews = userReviews.length && userReviews.map((rev) => {
     return {
       postId: rev.post_id,
       title: rev.post[0].title,
       comment: rev.comment,
-      createdAt: rev.createdAt,
+      createdAt: rev.createdAt, 
       image: rev.post[0].image[0],
     };
-  });
-  const [state, setState] = useState(userReviews);
+  }); */
+  const [state, setState] = useState(user.reviews);
   const [cambio, setCambio] = useState(false);
 
   useEffect(() => {
@@ -24,10 +26,10 @@ export default function Reviews({ id }) {
 
   function handleSearch(e) {
     e.preventDefault();
-    const postsSearch = userReviews.filter((posts) =>
-      posts.title.toLowerCase().includes(e.target.value.toLowerCase())
+    const reviewSearch = user.reviews.filter((review) =>
+      review.post[0].title.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    postsSearch.length ? setState(postsSearch) : setState("not found");
+    reviewSearch.length ? setState(reviewSearch) : setState("not found");
   }
 
   function handleOrderDate(e) {
@@ -63,7 +65,7 @@ export default function Reviews({ id }) {
 
   return (
     <div>
-      {userReviews.length ? (
+      {user.length!==0 && user.reviews.length ? (
         <div className="flex flex-wrap gap-16 items-end ml-20 my-6">
           {/* <label>Search post... </label> */}
           <input className="border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" type="text" 
@@ -77,20 +79,20 @@ export default function Reviews({ id }) {
         <div>
           <p>there are no matches with your search</p>
         </div>
-      ) : userReviews.length ? (
+      ) : user.reviews.length ? (
         
         state.length &&
         state.map((rev) => {
           // <div className="flex flex-col-3">
           
           return (
-            <Link to={`/postDetail/${rev.postId}`}>
+            <Link to={`/postDetail/${rev.post_id._id}`}>
               <div className="">
 
               <div className="flex flex-col-2 gap-6 my-6">
-                <img src={rev.image} width="250px" />
+                <img src={rev.post_id.image[0]} width="250px" />
                 <div>
-                  <div className="text-base font-semibold">{rev.title}</div>
+                  <div className="text-base font-semibold">{rev.post_id.title}</div>
                 <p className="text-base  text-slate-300">
                   {rev.createdAt.slice(0, 10)}
                 </p>

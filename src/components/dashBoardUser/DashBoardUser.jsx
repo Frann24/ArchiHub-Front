@@ -16,17 +16,15 @@ export default function DashBoardUser() {
   const dispatch = useDispatch();
   const { id } = useParams();
   // const userLogeado = JSON.parse(localStorage.getItem("token"));
-  const [state, setState] = useState(id);
+  const [state, setState] = useState("projects");
   const [profile, setProfile] = useState(false);
   const user = useSelector((state) => state.user.viewUser);
   
   useEffect(() => {
-    dispatch(getViewUser(id))
-    dispatch(getAllReviews());
-    dispatch(getAllPosts());
-  }, [dispatch, id]);
-  console.log(user);
-  // console.log(id);
+    dispatch(getViewUser(id));
+    /*     dispatch(getAllReviews());
+    dispatch(getAllPosts()); */
+  }, [dispatch]);
 
   function handleChange(e) {
     setState(e.target.value);
@@ -94,20 +92,22 @@ export default function DashBoardUser() {
           <hr className="mt-2" />
         </div>
         <div>
-          {state === "projects" && (user.projects.length ? 
-            <div>
-              <Projects id={id} />
-            </div>
-            :
-            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-            <p className=" text-base">you have no projects created</p>
-            <Link to={"/createproject"}>
-              <button className="bg-green-600 text-white px-6 mt-6">New</button>
-            </Link>
-          </div>
-
-          )}
-          {state === "posts" && (
+          {state === "projects" &&
+            (user.length !== 0 && user.projects.length ? (
+              <div>
+                <Projects id={id} />
+              </div>
+            ) : (
+              <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+                <p className=" text-base">you have no projects created</p>
+                <Link to={"/createproject"}>
+                  <button className="bg-green-600 text-white px-6 mt-6">
+                    New
+                  </button>
+                </Link>
+              </div>
+            ))}
+          {state === "posts" && (user.length !== 0 && user.posts.length ?(
             <div>
               <Post
                 id={id}
@@ -115,12 +115,25 @@ export default function DashBoardUser() {
                 user={user}
               />
             </div>
-          )}
-          {state === "reviews" && (
+          ): (
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+              <p className=" text-base">you have no posts created</p>
+              <Link to={"/createpost"}>
+                <button className="bg-green-600 text-white px-6 mt-6">
+                  New
+                </button>
+              </Link>
+            </div>
+          ))}
+          {state === "reviews" && (user.length !== 0 && user.reviews.length ?  ( 
             <div>
               <Reviews />
             </div>
-          )}
+          ) : (
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+              <p className=" text-base">you have no reviews created</p>
+            </div>
+          ))}
           {state === "favourites" && (
             <div>
               <Favourites />
