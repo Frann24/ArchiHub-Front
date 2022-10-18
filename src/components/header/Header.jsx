@@ -22,7 +22,8 @@ import ForgotPassword from "../resetPassword/ForgotPassword";
 import ResetPassword from "../resetPassword/ResetPassword";
 import DashBoardUser from "../dashBoardUser/DashBoardUser"
 import SearchContent from "../searchContent/SearchContent";
-
+import InviteProject from "../home/projects/InviteProject";
+import NotFound from "../errors/NotFound"
 
 function Header() {
   const { pathname } = useLocation();
@@ -71,11 +72,15 @@ function Header() {
           <Route path="/admin" element={<DashBoardAdmin />} />
           <Route path="projectDetail/:id" element={<ProjectDetail />} />
           {/* <Route path="/dashuser" element={<DashUser />} /> */}
-          <Route path="/user/:value" element={<DashBoardUser />} />
+          <Route path="/user/:id" element={<DashBoardUser />} />
           <Route path="/payment" element={<Payment/>} />
           <Route path="forgotPassword" element={<ForgotPassword/>}/>
           <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
           <Route path="search" element={<SearchContent/>}/>
+          <Route path="inviteProject/:projectId" element={<InviteProject/>}/>
+          {/* <Route path="inviteProject/:projectId" element={<inviteProject/>}/> */}
+          <Route path="*" element={<NotFound/>}/>
+
         </Routes>
       </div>
       <div>

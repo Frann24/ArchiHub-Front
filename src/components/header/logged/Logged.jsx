@@ -130,7 +130,7 @@ function Logged() {
                 </div>
               }
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/user`}>My profile</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
               </div>
               <div>
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/posts">My posts</Link>
