@@ -5,6 +5,7 @@ import {
   //useStripe,
   //useElements
 } from "@stripe/react-stripe-js";
+import { CANCEL_PAYMENT } from "../../redux/slices/constants";
 
 
 //import "bootswatch/dist/lux/bootstrap.min.css";
@@ -29,7 +30,7 @@ const CheckoutForm = () => {
     e.preventDefault();
             
       try {
-        const res = await axios.post('http://localhost:3001/api/cancelPayment', {
+        const res = await axios.post(CANCEL_PAYMENT, {
           userId: token.userId,
           emailUser: token.userMail          
         });

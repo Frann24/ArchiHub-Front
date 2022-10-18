@@ -33,3 +33,5 @@ export const PAYMENT = `${BASE_URL}api/payment`;
 export const FORGOT_PASSWORD = `${BASE_URL}api/auth/forgotPassword`;
 
 export const RESET_PASSWORD = `${BASE_URL}api/auth/resetPassword/:id/:token`;
+
+export const CANCEL_PAYMENT = `${BASE_URL}api/cancelPayment`;
