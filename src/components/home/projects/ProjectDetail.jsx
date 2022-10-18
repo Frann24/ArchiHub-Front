@@ -51,7 +51,7 @@ const ProjectDetail = () => {
                   {project.users?.map((user) => {
                     return (
                       <div>
-                        <Link to={`/dashboard/${user._id}`}>
+                        <Link to={`/user/${user._id}`}>
                           <div
                             className="flex w-full items-center my-2 border shadow-md
                             md:w-fit md:pr-2
@@ -90,7 +90,7 @@ const ProjectDetail = () => {
               </div>
             </div>
             <div>
-              <CreateUpdate project_id={project._id} />
+              <CreateUpdate project_id={project._id} project={project}/>
             </div>
           </div>
         )}

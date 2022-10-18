@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/slices/user/userActions";
+import { getUser, getViewUser } from "../../redux/slices/user/userActions";
 import FormEditProfile from "./FormEditProfile";
 import Post from "./Post";
 import Projects from "./Projects";
@@ -10,20 +10,23 @@ import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
 import { Link, useParams } from "react-router-dom";
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch();
-  const { value } = useParams();
-  const userLogeado = JSON.parse(localStorage.getItem("token"));
-  const user = useSelector((state) => state.user.user);
-  const [state, setState] = useState(value);
+  const { id } = useParams();
+  // const userLogeado = JSON.parse(localStorage.getItem("token"));
+  const [state, setState] = useState(id);
   const [profile, setProfile] = useState(false);
-
+  const user = useSelector((state) => state.user.viewUser);
+  
   useEffect(() => {
-    dispatch(getUser(userLogeado.userId));
+    dispatch(getViewUser(id))
     dispatch(getAllReviews());
-    dispatch(getAllPosts())
-  }, [dispatch]);
+    dispatch(getAllPosts());
+  }, [dispatch, id]);
+  console.log(user);
+  // console.log(id);
 
   function handleChange(e) {
     setState(e.target.value);
@@ -39,11 +42,12 @@ export default function DashBoardUser() {
          <button>Cancel Suscription</button>
         </Link>
       </div>
+    <div className="mx-32">
       {/* <div className="w-1/2 mx-auto mt-6"> */}
       {profile ? (
         <div>
           <div>
-            <FormEditProfile id={userLogeado.userId} user={user} />
+            <FormEditProfile id={id} user={user} />
           </div>
         </div>
       ) : (
@@ -55,14 +59,14 @@ export default function DashBoardUser() {
               handleChange={handleChange}
               handleEditProfile={handleEditProfile}
               // id={{ id: userLogeado.userId }}
-              id={userLogeado.userId}
+              id={id}
             />
           </div>
         </div>
       )}
       <div>
-        <div>
-          <div className="flex flex-row gap-16 mt-16 ml-12 w-1/2">
+        <div className="divide-x">
+          <div className="flex flex-row gap-16 mt-16  w-1/2">
             <div className="tracking-wider text-lg hover:border-b-2 border-slate-300">
               <button value="projects" onClick={(e) => handleChange(e)}>
                 Projects
@@ -87,30 +91,34 @@ export default function DashBoardUser() {
               </button>
             </div>
           </div>
+          <hr className="mt-2" />
         </div>
         <div>
-          {state === "projects" && (
+          {state === "projects" && (user.projects.length ? 
             <div>
-              <Projects id={userLogeado.userId} />
+              <Projects id={id} />
             </div>
-          )}
-          {state === "user" && (
-            <div>
-              <Projects id={userLogeado.userId} />
-            </div>
+            :
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+            <p className=" text-base">you have no projects created</p>
+            <Link to={"/createproject"}>
+              <button className="bg-green-600 text-white px-6 mt-6">New</button>
+            </Link>
+          </div>
+
           )}
           {state === "posts" && (
             <div>
               <Post
-                id={userLogeado.userId}
-                key={userLogeado.userId}
+                id={id}
+                key={id}
                 user={user}
               />
             </div>
           )}
           {state === "reviews" && (
             <div>
-              <Reviews id={userLogeado.userId}/>
+              <Reviews />
             </div>
           )}
           {state === "favourites" && (
@@ -120,6 +128,7 @@ export default function DashBoardUser() {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

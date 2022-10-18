@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AUTH_SIGNUP, AUTH_LOGIN, GOOGLE_LOGIN, FORGOT_PASSWORD, RESET_PASSWORD } from "../constants";
-import { login, logout, register, googleLog, clearLogin, forgotPassword, resetPassword  } from "./loginSlice";
+import { login, logout, register, googleLog, clearLogin, forgotPassword, resetPassword,  } from "./loginSlice";
 
 
 export const logUser=(email,password)=>(dispatch)=>{
@@ -44,12 +44,11 @@ export const clearUser = (state) =>{
                 
 export const forgotPass=(email)=>(dispatch)=>{
     axios.post(FORGOT_PASSWORD, {email: email})
-   .then(res=>dispatch(forgotPassword(res.data)))
-   .then(alert("An email has been sent to " + email + " " + "follow the instructions from there to reset your password"))
+   .then(res=> dispatch(forgotPassword(res.data)))
    .catch(e=>console.log(e.response.data)
 );
 }
-
+ 
 
 export const resetPass=(id, token ,email, password, password2)=>(dispatch)=>{
     axios.post(RESET_PASSWORD, {id: id , token: token , email: email, password:password, password2:password2})

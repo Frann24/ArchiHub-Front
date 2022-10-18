@@ -24,35 +24,10 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const token = JSON.parse(localStorage.getItem("token"));
-  //const [userId, setUserId ] = useState("")
+  
   const navigate = useNavigate();
 
-  //console.log(token.userId)
-
-  // const handleSubmit = async (e) =>{
-  //   e.preventDefault();
-
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement)
-  //   });
-  //   setLoading(true)
-
-  //   if(!error) {
-  //     const { id } = paymentMethod;
-  //    try {
-  //      const {data} = await axios.post(PAYMENT, {
-  //       id,
-  //       amount: 1000
-  //      })
-  //      console.log(data)
-  //      elements.getElement(CardElement).clear()
-  //    } catch (error) {
-  //       console.log(error)
-  //    }
-  //    setLoading(false)
-  //   }
-  // }
+  
 
   const handleSubmitSubscription = async (e) => {
     e.preventDefault();
@@ -66,7 +41,7 @@ const CheckoutForm = () => {
       card: elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement),
       billing_details: {
         email: token.userMail,
-      },
+        },
     });
     //setLoading(true)
     //console.log(result.paymentMethod.billing_details.email);
@@ -109,16 +84,61 @@ const CheckoutForm = () => {
   };
 
   return (
-    <div className="contenedor-principal">
-      <div>
-        <h5>Membership For Month u$s10</h5>
-      </div>
-      <div>
-        <span>{token.userMail}</span>
-      </div>
+    
+        <div className="container mx-auto">
+      <div className="container mx-auto grid justify-items-center">
+        <h1>Choose the right plan for you:</h1>
+      </div>    
+     
+         <div className="container max-width: 640px grid justify-items-center ">   
+        <div className="container bg-gray-100 max-width: 640px 
+                        grid grid-cols-3
+                        justify-items-center
+                        h-64 w-2/3">
+          <div className="w-40 justify-content-center">
+            1
+          </div>
+          <div className="w-40 text-center">
+            Free
+          </div>
+          <div className="w-40 text-center">
+            Premium
+          </div>          
+          <div className="w-40 text-center">
+            Publication
+          </div>
+          <div className="w-40 text-center">
+            X 
+          </div>
+          <div className="w-40 text-center">
+            tilde          
+          </div>
+          <div className="w-40 text-center">
+            Number of Projects
+          </div>
+          <div className="w-40 text-center">
+            3
+          </div>
+          <div className="w-40 text-center">
+            Unlimited
+          </div>          
+          <div className="w-40 text-center">
+            Project Privacy
+          </div>
+          <div className="w-40 text-center">
+            Public only 
+          </div>
+          <div className="w-40 text-center">
+            Public/Private          
+          </div>    
+        </div> 
+        </div>       
+      
+      
+
+      <div className="container mx-auto">
       <form onSubmit={handleSubmitSubscription}>
-        <div></div>
-        <div className="contenedor-datos">
+        <div className="container mx-auto justify-items-center max-width: 640px h-64 w-2/5">
           {/* <CardElement /> */}
           <div className="card-number">
             <CardNumberElement />
@@ -141,60 +161,9 @@ const CheckoutForm = () => {
           <button disabled={!stripe}>Suscription</button>
         </div>
       </form>
-      <div className="contenedor-ofertas-general">
-
-      <div className="contenedor-premium-free" >
-        <div>
-          Why be Premium?
-        </div>
-        <div className="cont-oferta">
-          <div className="cajaL">
-            <p>Publication:</p>
-          </div>
-          <div className="cajaD">
-            <p>Unlimit</p>
-          </div>
-          <div className="cajaL">
-            <p>Number of Projects:</p>
-          </div>          
-          <div className="cajaD">
-            <p>Unlimit</p>
-          </div>
-          <div className="cajaL">
-            <p>Project Privacy:</p> 
-          </div>
-          <div className="cajaD">
-            <p>Public and Private</p>          
-          </div>  
-        </div>
-      </div>
-      <div className="contenedor-premium-free">
-      <div>
-          Free
-        </div>
-        <div className="cont-oferta">
-          <div className="cajaL">
-            Publication:
-          </div>
-          <div className="cajaD">
-            None
-          </div>
-          <div className="cajaL">
-            Number of Projects:
-          </div>          
-          <div className="cajaD">
-            3
-          </div>
-          <div className="cajaL">
-            Project Privacy: 
-          </div>
-          <div className="cajaD">
-            Public          
-          </div>  
-        </div>        
       </div>
       </div>
-    </div>
+    
   );
 };
 
@@ -202,7 +171,7 @@ function Payment() {
   return (
     <div>
       <Elements stripe={stripePromise}>
-        <div class="container-pago">
+        <div>
           <div>
             <div>
               <CheckoutForm className={CardSectionStyles} />
