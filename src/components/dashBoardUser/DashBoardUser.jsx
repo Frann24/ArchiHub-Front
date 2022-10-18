@@ -10,7 +10,6 @@ import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
 import { Link, useParams } from "react-router-dom";
 import Profile from "./Profile";
-import { Link } from "react-router-dom";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch();
@@ -24,13 +23,9 @@ export default function DashBoardUser() {
     dispatch(getViewUser(id))
     dispatch(getAllReviews());
     dispatch(getAllPosts());
-<<<<<<< HEAD
   }, [dispatch, id]);
   console.log(user);
   // console.log(id);
-=======
-  }, [dispatch]);
->>>>>>> ea30de397554a77804b42ce85fe07fce6ce3fb9a
 
   function handleChange(e) {
     setState(e.target.value);
