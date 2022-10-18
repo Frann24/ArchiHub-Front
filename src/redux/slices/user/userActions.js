@@ -49,5 +49,5 @@ export const deleteUser = (id) => {
 
 export function getQueryUser(allUsers, name) {
   const allUsers2 = [...allUsers]
-  return name?queryUser(allUsers2.filter((e) => {(e.nickname && e.nickname.toLowerCase().includes(name.toLowerCase())) || (e.name && e.lastname && (e.name + " "+ e.lastname).toLowerCase().includes(name.toLowerCase())) ||( e.email && e.email.toLowerCase().includes(name.toLowerCase())) })):queryUser(allUsers)
+  return name?queryUser(allUsers2.filter((e) => {return(e.nickname && e.nickname.toLowerCase().includes(name.toLowerCase())) || (e.name && e.lastname && (e.name + " "+ e.lastname).toLowerCase().includes(name.toLowerCase())) ||( e.email && e.email.toLowerCase().includes(name.toLowerCase())) })):queryUser(allUsers)
 };
