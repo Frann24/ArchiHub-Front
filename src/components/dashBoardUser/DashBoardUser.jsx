@@ -8,7 +8,7 @@ import { getAllPosts } from "../../redux/slices/post/postActions";
 import Favourites from "./Favourites";
 import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
 
@@ -24,9 +24,13 @@ export default function DashBoardUser() {
     dispatch(getViewUser(id))
     dispatch(getAllReviews());
     dispatch(getAllPosts());
+<<<<<<< HEAD
   }, [dispatch, id]);
   console.log(user);
   // console.log(id);
+=======
+  }, [dispatch]);
+>>>>>>> ea30de397554a77804b42ce85fe07fce6ce3fb9a
 
   function handleChange(e) {
     setState(e.target.value);
@@ -36,6 +40,12 @@ export default function DashBoardUser() {
   }
 
   return (
+    <div className="ml-32">
+      <div>
+        <Link to={'/cancelSubscription'}>
+         <button>Cancel Suscription</button>
+        </Link>
+      </div>
     <div className="mx-32">
       {/* <div className="w-1/2 mx-auto mt-6"> */}
       {profile ? (
@@ -122,6 +132,7 @@ export default function DashBoardUser() {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

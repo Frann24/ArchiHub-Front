@@ -17,9 +17,15 @@ export default function Reviews({ id }) {
   const [state, setState] = useState(userReviews);
   const [cambio, setCambio] = useState(false);
 
+<<<<<<< HEAD
   useEffect(() => {
     setState(userReviews);
   }, [cambio]);
+=======
+    useEffect(() => {
+      setState(state)
+    }, [cambio])
+>>>>>>> ea30de397554a77804b42ce85fe07fce6ce3fb9a
 
   function handleSearch(e) {
     e.preventDefault();
