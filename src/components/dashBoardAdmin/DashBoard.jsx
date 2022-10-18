@@ -10,8 +10,8 @@ function handleChange(e) {
     setState(e.target.value)
 }
     return (
-        <div>
-        <div>
+        <div className="sm:mx-4 md:mx-8 lg:mx-16 xl:mx-32">
+        <div className="flex flex-col-2 gap-6 mb-6">
             <button value='dashboard' onClick={(e) => handleChange(e)}>DashBoard</button>
             <button value='users' onClick={(e) => handleChange(e)}>Users</button>
         </div>

@@ -78,7 +78,10 @@ function ChartUsers () {
         labels,
     }
     return (
+      <div className="w-40">
+
         <Bar data={data} options={options}/>
+      </div>
     )
 }
 

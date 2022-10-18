@@ -83,7 +83,10 @@ function ChartPayments () {
         labels,
     }
     return (
+      <div className="w-96">
+
         <Bar data={data} options={options}/>
+      </div>
     )
 }
 
