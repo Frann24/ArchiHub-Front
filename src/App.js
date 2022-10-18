@@ -17,10 +17,20 @@ import BtnTop from "./components/btnTop/BtnTop";
 import Successful from "./components/payment/Successful";
 import ErrorPayment from "./components/payment/ErrorPayment";
 import CancelPayment from "./components/payment/CancelPayment";
-
+import CancelPaymentOk from "./components/payment/CancelPaymentOK"
+import CancelPaymentError from "./components/payment/CancelPaymentError"
+import axios from "axios";
 
 
 function App() {
+
+  const auth = JSON.parse(localStorage.getItem("token"))
+  if (auth) {
+    axios.defaults.headers.common['x-access-token'] = auth.token;
+} else {
+    axios.defaults.headers.common['x-access-token'] = null;
+}
+
   return (
     <BrowserRouter>
       <div className="App font-raleway ">
@@ -36,7 +46,9 @@ function App() {
           <Route path="/createpost" element={<CreatePost />} />  */}
           <Route path="/successful" element={<Successful />} />
           <Route path="/errorPayment" element={<ErrorPayment />} />
-          <Route path="/cancelPayment" element={<CancelPayment />} /> 
+          <Route path="/cancelPayment" element={<CancelPayment />} />
+          <Route path="/cancelPaymentOk" element={<CancelPaymentOk />} />
+          <Route path="/cancelPaymentError" element={<CancelPaymentError />} /> 
         </Routes>
         {/* <div>
           <Footer/>
