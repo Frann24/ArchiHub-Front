@@ -12,6 +12,7 @@ import updateReducer from "./slices/update/updateSlice"
 import storageReducer from "./slices/storage/storageSlice"
 import reviewReportReducer from "./slices/reviewReport/reviewReportSlice";
 import downloadReducer from "./slices/downolad/downloadSlice";
+import paymentReducer from "./slices/payment/paymentSlice"
 export const store = configureStore({
   reducer:{
     post: postReducer,
@@ -27,5 +28,6 @@ export const store = configureStore({
     storage: storageReducer,
     reviewReport:reviewReportReducer,
     download: downloadReducer,
+    payment: paymentReducer,
   },
 });
