@@ -7,7 +7,7 @@ import { getAllProjects } from "../../redux/slices/project/projectActions";
 
 export default function Projects(id) {
   const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.viewUser);
   const projects = useSelector((state) => state.project.allProjects);
   const projectsUser = projects.filter((project) => project.created_by === id);
   const [search, setSearch] = useState("");

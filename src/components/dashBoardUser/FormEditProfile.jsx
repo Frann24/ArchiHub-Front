@@ -10,7 +10,10 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 export default function FormEditProfile({ id, user }) {
   const dispatch = useDispatch();
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    nickname:user.nickname,
+    description:user.description,
+  });
   const [files, setFiles] = useState([]);
   console.log("state: ", state);
   console.log(files);
@@ -183,11 +186,13 @@ export default function FormEditProfile({ id, user }) {
             className=""
             placeholder="Nickname"
             name="nickname"
+            value = {state.nickname}
             onChange={(e) => handleChange(e)}
           ></input>
           <input
-            placeholder="Description"
+            placeholder={state.description}
             name="description"
+            value = {state.description}
             onChange={(e) => handleChange(e)}
           ></input>
           <div className="flex flex-row my-3">

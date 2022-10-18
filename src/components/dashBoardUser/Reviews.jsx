@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Reviews({ id }) {
-  const {user}= useSelector((state) => state.user);
+  const user= useSelector((state) => state.user.viewUser);
 /*   const allReviews = useSelector((state) => state.review.allReviews);
   let userReviews = allReviews.filter((rev) => rev.user._id == id); */
 /*   let userReviews = user.reviews

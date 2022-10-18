@@ -1,5 +1,5 @@
 export function validate (form, value = undefined, err = false, premium){
-    const {title, description, project_file, pdf_file, visibility} = form
+    const {title, description, project_file, pdf_file, visibility,projects} = form
     let errors = {};
     
   /* ----- Email validate ----- */
@@ -10,9 +10,9 @@ export function validate (form, value = undefined, err = false, premium){
   if(value === "description" || err.description || value === undefined ){
     if(!description.trim()) errors.description = "Description is required"
   }
-    
-  if(value=== "visibility" || err.visibility || value === undefined){
-    if(visibility === "private" && !premium ) errors.visibility = "Private project is a premiun functionality."
+    console.log(visibility)
+  if(value=== "visibility" || err.visibility && err.visibility.value || value === undefined){
+    if(visibility.value === "private" && !premium ) errors.visibility = "Private project is a premiun functionality."
   }
   return errors
   }
