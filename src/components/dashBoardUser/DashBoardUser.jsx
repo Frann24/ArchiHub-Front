@@ -24,9 +24,13 @@ export default function DashBoardUser() {
     dispatch(getViewUser(id))
     dispatch(getAllReviews());
     dispatch(getAllPosts());
+<<<<<<< HEAD
   }, [dispatch, id]);
   console.log(user);
   // console.log(id);
+=======
+  }, [dispatch]);
+>>>>>>> ea30de397554a77804b42ce85fe07fce6ce3fb9a
 
   function handleChange(e) {
     setState(e.target.value);
