@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/slices/user/userActions";
+import { getUser, getViewUser } from "../../redux/slices/user/userActions";
 import FormEditProfile from "./FormEditProfile";
 import Post from "./Post";
 import Projects from "./Projects";
@@ -13,17 +13,19 @@ import Profile from "./Profile";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch();
-  const { value } = useParams();
-  const userLogeado = JSON.parse(localStorage.getItem("token"));
-  const user = useSelector((state) => state.user.user);
-  const [state, setState] = useState(value);
+  const { id } = useParams();
+  // const userLogeado = JSON.parse(localStorage.getItem("token"));
+  const [state, setState] = useState(id);
   const [profile, setProfile] = useState(false);
-
+  const user = useSelector((state) => state.user.viewUser);
+  
   useEffect(() => {
-    dispatch(getUser(userLogeado.userId));
+    dispatch(getViewUser(id))
     dispatch(getAllReviews());
     dispatch(getAllPosts());
-  }, [dispatch]);
+  }, [dispatch, id]);
+  console.log(user);
+  // console.log(id);
 
   function handleChange(e) {
     setState(e.target.value);
@@ -38,7 +40,7 @@ export default function DashBoardUser() {
       {profile ? (
         <div>
           <div>
-            <FormEditProfile id={userLogeado.userId} user={user} />
+            <FormEditProfile id={id} user={user} />
           </div>
         </div>
       ) : (
@@ -50,7 +52,7 @@ export default function DashBoardUser() {
               handleChange={handleChange}
               handleEditProfile={handleEditProfile}
               // id={{ id: userLogeado.userId }}
-              id={userLogeado.userId}
+              id={id}
             />
           </div>
         </div>
@@ -87,14 +89,14 @@ export default function DashBoardUser() {
         <div>
           {state === "projects" && (
             <div>
-              <Projects id={userLogeado.userId} />
+              <Projects id={id} />
             </div>
           )}
           {state === "posts" && (
             <div>
               <Post
-                id={userLogeado.userId}
-                key={userLogeado.userId}
+                id={id}
+                key={id}
                 user={user}
               />
             </div>
