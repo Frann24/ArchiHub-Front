@@ -13,8 +13,7 @@ import {
   Legend,
   Filler,
 } from "chart.js";
-  
-  
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -26,63 +25,71 @@ ChartJS.register(
   Filler
 );
 
-function ChartUsers () {
-    const users = useSelector(state => state.user.allUsers)
-    const options = {
-      fill: false,              //pinta de color por debajo de las lineas
-      responsive: false,
-      plugins: {
-        legend: {
-          display: false,
-      }},
-      scales: {
-        y: {
-          min:0,
-          max:100,
-          beginAtZero: false,
-          ticks: {
-            stepSize: 10
-        }
-        }
-      }
-    };
-    const dispatch = useDispatch()
-    let active = 0
-    let inactive = 0
-    let banned = 0
-    useEffect(() => {
-      dispatch(getAllUsers());
-    },[dispatch])
+function ChartUsers() {
+  const users = useSelector((state) => state.user.allUsers);
+  const options = {
+    fill: false, //pinta de color por debajo de las lineas
+    responsive: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      y: {
+        min: 0,
+        max: 100,
+        beginAtZero: false,
+        ticks: {
+          stepSize: 10,
+        },
+      },
+    },
+  };
+  const dispatch = useDispatch();
+  let active = 0;
+  let inactive = 0;
+  let banned = 0;
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
-    users.map((user) => {
-      user.status === 'active' && active++
-      user.status === 'inactive' && inactive++
-      user.status === 'banned' && banned++
-    })
-  
+  users.map((user) => {
+    user.status === "active" && active++;
+    user.status === "inactive" && inactive++;
+    user.status === "banned" && banned++;
+  });
 
-  const score = [users.length, active, inactive, banned]
-  const labels = [`Total: ${users.length}`, `Active: ${active}`, `Inactive: ${inactive}`, `Banned: ${banned}`]
+  const score = [users.length, active, inactive, banned];
+  const labels = [
+    `Total: ${users.length}`,
+    `Active: ${active}`,
+    `Inactive: ${inactive}`,
+    `Banned: ${banned}`,
+  ];
 
   const data = {
-        datasets: [
-            {
-              label: "Users",
-              data: score,
-              // tension: 0.1,
-              borderColor: "rgb(75, 192, 192)",
-              // pointRadius: 6,
-              pointBackgroundColor: "rgb(75, 192, 192)",
-              backgroundColor: "rgba(75, 192, 192, 0.3)",
-            }],
-        labels,
-    }
-    return (
-      <div className="w-40">
-
-        <Bar data={data} options={options}/>
+    datasets: [
+      {
+        label: "Users",
+        data: score,
+        // tension: 0.1,
+        borderColor: "rgb(75, 192, 192)",
+        // pointRadius: 6,
+        pointBackgroundColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgba(75, 192, 192, 0.3)",
+      },
+    ],
+    labels,
+  };
+  return (
+    <div className="">
+      <p className="font-bold mb-4">Total Users: active/inactive/banned</p>
+      <div className="w-96">
+        <Bar data={data} options={options} />
       </div>
-    )
+    </div>
+  );
 }
 
-export default ChartUsers
+export default ChartUsers;
