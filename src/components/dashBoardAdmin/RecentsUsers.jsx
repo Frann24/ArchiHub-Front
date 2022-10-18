@@ -10,19 +10,23 @@ function RecentsUsers () {
     }, [dispatch])
 
     return (
-        <div>
-            <h2>Recents users created</h2>
+        <div className="">
+            <h2 className="mt-10 font-bold">Recents users:</h2>
+            <div className=" ">
             {
                 recentsUsers && recentsUsers.map((user) => {
                     return (
-                        <div>
-                            <p>{user.name}</p>
+                        <div className="">
+                        <div className=" gap-10 my-6">
+                            <p className="capitalize">{user.name}</p>
                             <p>{user.email}</p>
                             <p>{user.createdAt.slice(0, 10)}</p>
+                        </div>
                         </div>
                     )
                 })
             }
+            </div>
         </div>
     )
 }

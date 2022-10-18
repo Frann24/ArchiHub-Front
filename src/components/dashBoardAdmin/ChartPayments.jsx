@@ -83,7 +83,10 @@ function ChartPayments () {
         labels,
     }
     return (
+      <div className="w-96">
+<p className="font-bold my-4">Payments per day:</p>
         <Bar data={data} options={options}/>
+      </div>
     )
 }
 
