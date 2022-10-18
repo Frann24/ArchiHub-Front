@@ -64,20 +64,20 @@ const CheckoutForm = () => {
             if (result.error) {
               console.log("There was an issue");
               console.log(result.error);
-              navigate("/errorPayment");
+              //navigate("/errorPayment");
             } else {
               console.log("You got the money")
-              navigate("/successful")
+              //navigate("/successful")
             }
           });
         } else {
           console.log("You got the money")
           elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement).clear();
-          navigate("/successful");
+          //navigate("/successful");
         }
       } catch (error) {
         console.log(error)
-        navigate("/errorPayment");
+        //navigate("/errorPayment");
       }
       //setLoading(false)
     }
