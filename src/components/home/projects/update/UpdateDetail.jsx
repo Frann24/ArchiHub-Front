@@ -1,8 +1,18 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { createDownload } from "../../../../redux/slices/downolad/downloadActions";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const UpdateDetail = ({ update }) => {
+  const {id} = useParams()
+  const token = JSON.parse(localStorage.getItem("token"))
+  const dispatch = useDispatch();
+  const handleClick = (e,update_id)=>{
+/*     e.preventDefault(); */
+    dispatch(createDownload({user_id:token.userId, project_id:id, update_id}))
+  }
   return (
     <div
       className="grid my-4 grid-cols-4 w-full items-center bg-gray-100 shadow-lg 
@@ -46,7 +56,7 @@ const UpdateDetail = ({ update }) => {
         {update.storage?.map((updateStorage) => {
           return (
             <div>
-              <a href={updateStorage.url} target="blank">
+              <a href={updateStorage.url}  onClick={(e)=>handleClick(e,update._id)} target="blank">
                 <FontAwesomeIcon icon={faDownload} className="text-2xl" />
               </a>
             </div>

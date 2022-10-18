@@ -12,13 +12,14 @@ import VisualizePDF from "./VisualizePDF";
 
 const ProjectDetail = () => {
   const response = useSelector((state) => state.update.response)
+  const responseDownload = useSelector((state)=>state.download.response)
   const { id } = useParams();
   const dispatch = useDispatch();
   const project = useSelector((state) => state.project.project);
 
   useEffect(() => {
     dispatch(getProject(id));
-  }, [dispatch,response]);
+  }, [dispatch,response,responseDownload]);
   return (
     <div>
       <div

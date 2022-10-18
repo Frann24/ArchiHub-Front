@@ -22,7 +22,7 @@ export const orderPosts = (filter, type) => {
 export function getQueryPost(allPosts, name) {
   const allPosts2 = [...allPosts]
   return name?getQuery(allPosts2.filter((e) => e.title.toLowerCase().includes(name.toLowerCase()))):getQuery(allPosts)
-  };
+};
 
 export const  clearAllPosts = ()=> clearAll();
 

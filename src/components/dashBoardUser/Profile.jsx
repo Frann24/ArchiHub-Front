@@ -1,5 +1,8 @@
 import React from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBuilding } from "@fortawesome/free-regular-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 export default function Profile({
   user,
   userLogeado,
@@ -13,22 +16,23 @@ export default function Profile({
   id,
 }) {
   return (
-    <div className="w-1/2 mx-auto mt-6">
-      <div className="flex flex-col-2 mb-12 w-full">
-        <div className="mt-6 mr-12">
+    <div className="ml-32">
+      <div className="flex flex-col-2 mb-12 w-full gap-20">
+        <div className="relative ">
           <img
             // src={`${user.avatar}`}
             src={user.avatar}
-            width="400px"
+            width="240px"
+            height="240px"
             className="rounded-full mt-16"
           />
         </div>
-        <div>
+        <div className="">
           <div className="font-bold text-lg capitalize mt-12 ">
             {user.name} {user.lastname}
           </div>
           <div className="text-lg">{user.nickname} </div>
-         
+
           {user.description ? (
             <div>{user.description}</div>
           ) : (
@@ -36,20 +40,40 @@ export default function Profile({
           )}
 
           {user.location ? (
-            <div>{user.location}</div>
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faLocationDot} />
+              <div>{user.location}</div>
+            </div>
           ) : (
-            <div className="text-slate-200">Location</div>
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faLocationDot} />
+              <div className="text-slate-200">Location</div>
+            </div>
           )}
           {user.job ? (
-            <div>{user.job}</div>
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faBuilding} />
+              <div>{user.job}</div>
+            </div>
           ) : (
-            
-            <div className="text-slate-200">Job Title</div>
+            <div className="flex flex-row my-3">
+              <FontAwesomeIcon icon={faBuilding} />
+              <div className="text-slate-200">Job Title</div>
+            </div>
           )}
           {user.page ? (
-            <div>{user.page}</div>
+            <div>
+              <div className="flex flex-wrap">
+                <FontAwesomeIcon icon="fa-solid fa-link" />
+              </div>
+              <div>{user.page}</div>
+            </div>
           ) : (
-            <div className="text-slate-200">Webpage</div>
+            <div className="flex flex-row">
+              <FontAwesomeIcon icon={faLink} />
+
+              <div className="text-slate-200">Webpage</div>
+            </div>
           )}
           <button
             onClick={(e) => handleEditProfile(e)}
