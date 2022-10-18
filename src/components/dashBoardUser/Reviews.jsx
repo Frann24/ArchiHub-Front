@@ -21,6 +21,7 @@ export default function Reviews({ id }) {
     setState(userReviews);
   }, [cambio]);
 
+
   function handleSearch(e) {
     e.preventDefault();
     const postsSearch = userReviews.filter((posts) =>
