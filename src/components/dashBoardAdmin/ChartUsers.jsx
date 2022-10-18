@@ -30,13 +30,18 @@ function ChartUsers () {
     const users = useSelector(state => state.user.allUsers)
     const options = {
       fill: false,              //pinta de color por debajo de las lineas
-      responsive: true,
+      responsive: false,
+      plugins: {
+        legend: {
+          display: false,
+      }},
       scales: {
         y: {
           min:0,
+          max:100,
           beginAtZero: false,
           ticks: {
-            stepSize: 0
+            stepSize: 10
         }
         }
       }

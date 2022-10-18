@@ -16,7 +16,7 @@ function Users() {
   //     dispatch(getAllUsers());
   //   }, [handleClick]);
 
-  console.log(allUsers);
+  // console.log(allUsers);
   function handleChangeStatus(id, e) {
     dispatch(updateUser(id, { status: e.target.value }));
   }

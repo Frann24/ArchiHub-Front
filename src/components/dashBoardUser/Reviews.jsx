@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 export default function Reviews({id}) {
   const allReviews = useSelector(state => state.review.allReviews)
   let userReviews = allReviews.filter(rev => rev.user[0]._id == id)
- 
   userReviews = userReviews.map((rev) => {
     return (
       {

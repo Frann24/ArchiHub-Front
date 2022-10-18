@@ -1,14 +1,14 @@
 import { useState } from "react"
 import Users from "./Users"
 import ChartUsers from "./ChartUsers"
-import ChartPosts from "./ChartPosts"
-
+import ChartPayments from "./ChartPayments"
+import RecentsUsers from "./RecentsUsers"
 
 function DashBoard () {
 const [state, setState] = useState('dashboard')
-    function handleChange(e) {
-        setState(e.target.value)
-    }
+function handleChange(e) {
+    setState(e.target.value)
+}
     return (
         <div>
         <div>
@@ -20,7 +20,8 @@ const [state, setState] = useState('dashboard')
             state === 'dashboard' && 
                 <div>
                     <ChartUsers />
-                    <ChartPosts />
+                    <ChartPayments />
+                    <RecentsUsers />
                 </div>
             }
             {

@@ -8,7 +8,7 @@ import { getAllPosts } from "../../redux/slices/post/postActions";
 import Favourites from "./Favourites";
 import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Profile from "./Profile";
 
 export default function DashBoardUser() {
@@ -34,6 +34,11 @@ export default function DashBoardUser() {
 
   return (
     <div className="ml-32">
+      <div>
+        <Link to={'/cancelSubscription'}>
+         <button>Cancel Suscription</button>
+        </Link>
+      </div>
       {/* <div className="w-1/2 mx-auto mt-6"> */}
       {profile ? (
         <div>
