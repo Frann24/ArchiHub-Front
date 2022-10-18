@@ -90,7 +90,7 @@ const ProjectDetail = () => {
               </div>
             </div>
             <div>
-              <CreateUpdate project_id={project._id} />
+              <CreateUpdate project_id={project._id} project={project}/>
             </div>
           </div>
         )}
