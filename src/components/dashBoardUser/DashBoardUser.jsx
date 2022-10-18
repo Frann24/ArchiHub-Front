@@ -10,6 +10,7 @@ import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
 import { useParams } from "react-router-dom";
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 
 export default function DashBoardUser() {
   const dispatch = useDispatch();
@@ -85,10 +86,18 @@ export default function DashBoardUser() {
           <hr className="mt-2" />
         </div>
         <div>
-          {state === "projects" && (
+          {state === "projects" && (user.projects.length ? 
             <div>
               <Projects id={userLogeado.userId} />
             </div>
+            :
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+            <p className=" text-base">you have no projects created</p>
+            <Link to={"/createproject"}>
+              <button className="bg-green-600 text-white px-6 mt-6">New</button>
+            </Link>
+          </div>
+
           )}
           {state === "posts" && (
             <div>
