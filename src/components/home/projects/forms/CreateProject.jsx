@@ -90,7 +90,7 @@ const CreateProject = () => {
 
   const handleFormBlur = (e) => {
     handleChange(e);
-    setErrors(validate(form, e.target.name, errors));
+    setErrors(validate(form, e.target.name, errors, userToken.isPremium));
   };
   const handleMising = (e) => {
     if (Object.keys(errors).length !== 0 || !form.project_file || !form.pdf_file) {

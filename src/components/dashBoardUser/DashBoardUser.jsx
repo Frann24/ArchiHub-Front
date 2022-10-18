@@ -22,8 +22,8 @@ export default function DashBoardUser() {
 
   useEffect(() => {
     dispatch(getUser(userLogeado.userId));
-    dispatch(getAllReviews());
-    dispatch(getAllPosts());
+    /*     dispatch(getAllReviews());
+    dispatch(getAllPosts()); */
   }, [dispatch]);
 
   function handleChange(e) {
@@ -86,19 +86,21 @@ export default function DashBoardUser() {
           <hr className="mt-2" />
         </div>
         <div>
-          {state === "projects" && (user.projects.length ? 
-            <div>
-              <Projects id={userLogeado.userId} />
-            </div>
-            :
-            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-            <p className=" text-base">you have no projects created</p>
-            <Link to={"/createproject"}>
-              <button className="bg-green-600 text-white px-6 mt-6">New</button>
-            </Link>
-          </div>
-
-          )}
+          {state === "projects" &&
+            (user.length !== 0 && user.projects.length ? (
+              <div>
+                <Projects id={userLogeado.userId} />
+              </div>
+            ) : (
+              <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+                <p className=" text-base">you have no projects created</p>
+                <Link to={"/createproject"}>
+                  <button className="bg-green-600 text-white px-6 mt-6">
+                    New
+                  </button>
+                </Link>
+              </div>
+            ))}
           {state === "posts" && (
             <div>
               <Post
@@ -108,11 +110,15 @@ export default function DashBoardUser() {
               />
             </div>
           )}
-          {state === "reviews" && (
+          {state === "reviews" && (user.length !== 0 && user.reviews.length ?  ( 
             <div>
               <Reviews />
             </div>
-          )}
+          ) : (
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+              <p className=" text-base">you have no reviews created</p>
+            </div>
+          ))}
           {state === "favourites" && (
             <div>
               <Favourites />
