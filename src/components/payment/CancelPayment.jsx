@@ -1,18 +1,14 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
-  CardElement,
-  useStripe,
-  useElements,
-  CardNumberElement,
-  CardExpiryElement,
-  CardCvcElement,
+  //useStripe,
+  //useElements
 } from "@stripe/react-stripe-js";
-import CardSectionStyles from "./CardSectionStyles.css";
+
+
 //import "bootswatch/dist/lux/bootstrap.min.css";
-import { PAYMENT } from "../../redux/slices/constants";
+
 const axios = require("axios");
 
 const stripePromise = loadStripe(
@@ -20,32 +16,38 @@ const stripePromise = loadStripe(
 );
 
 const CheckoutForm = () => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const [loading, setLoading] = useState(false);
+  // const stripe = useStripe();
+  // const elements = useElements();
+  // const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
   const token = JSON.parse(localStorage.getItem("token"));
-  //const [userId, setUserId ] = useState("")
-  const navigate = useNavigate();
+  
 
   
 
   const handleCancelSubscription = async (e) => {
     e.preventDefault();
-    //console.log(token.userName)
-
-        
+            
       try {
         const res = await axios.post('http://localhost:3001/api/cancelPayment', {
-          userId: token.userId,          
+          userId: token.userId,
+          emailUser: token.userMail          
         });
         console.log(res.data)
         const { cancel_at_period_end } = res.data;
         
+        if(cancel_at_period_end === true){
+          console.log("Suscripcion cancelada!!!")
+            navigate("/cancelPaymentOk")
+        } else {
+          console.log("Error Suscripcion!!!")
+          navigate("/cancelPaymentError")
+        }
 
         
       } catch (error) {
         console.log('Hubo un error, no se pudo procesar su solicitud')
-        //navigate("/errorPayment");
+        
       }
       //setLoading(false)
     }
@@ -54,7 +56,7 @@ const CheckoutForm = () => {
           <form onSubmit={handleCancelSubscription}>
           
             
-            <button >Suscription</button>
+            <button >Cancel Suscription</button>
             </form>
             </div>
     )
