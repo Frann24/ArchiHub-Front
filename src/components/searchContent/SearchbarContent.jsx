@@ -1,72 +1,70 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
+import { getQueryPost } from "../../redux/slices/post/ordenAndFilterActions";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import { getQueryUser } from "../../redux/slices/user/userActions";
+import { getQueryProjects } from "../../redux/slices/project/projectActions";
+import { getQueryNews } from "../../redux/slices/sliceNews/newsActions";
 
 
 function SearchbarContent() {
-  const [inputSearch, setInputSearch] = useState("");
-  const {allPosts} = useSelector(state=>state.post)
+  const { allPosts } = useSelector((state) => state.post);
+  const { allUsers } = useSelector((state) => state.user);
+  const { allProjects } = useSelector((state) => state.project);
+  const { news } = useSelector((state) => state.newsSlice);
+  const [params] = useSearchParams();
+  const search = params.get("s")
+  const com = params.get("c")
+  const [inputSearch, setInputSearch] = useState(search);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
   const handleChange = (e) => {
     setInputSearch(e.target.value)
-    /* dispatch(getQueryPost(allPosts,e.target.value)) */
+    navigate({
+      pathname: "/search",
+      search: `?${createSearchParams({ s: e.target.value,c:com })}`,
+    });
+    dispatch(getQueryPost(allPosts,e.target.value))
+    dispatch(getQueryUser(allUsers,e.target.value))
+    dispatch(getQueryProjects(allProjects,e.target.value))
+    dispatch(getQueryNews(news,e.target.value))
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setInputSearch("");
-    /* dispatch(getQueryPost(allPosts,inputSearch)) */
   };
 
   const clearInputSearch = (e) => {
     e.preventDefault();
     setInputSearch("");
-   /*  dispatch(getQueryPost(allPosts,"")) */
+    navigate({
+      pathname: "/search",
+      search: `?${createSearchParams({ s: "",c:com })}`,
+      
+    });
+    dispatch(getQueryPost(allPosts,e.target.value))
+    dispatch(getQueryUser(allUsers,e.target.value))
+    dispatch(getQueryProjects(allProjects,e.target.value))
+    dispatch(getQueryNews(news,e.target.value))
   };
 
   return (
-    <div className="">
-      <form className="">
-        <div className="m-4 flex justify-center text-sm
-        md:mx-8
-        lg:mx-16 lg:text-base
-        xl:mx-32 xl:text-lg
-        ">
-          <div className="flex w-3/4 justify-between py-2 border border-gray-100 shadow-lg ">
-            <div className="w-11/12">
-              <FontAwesomeIcon
-                className="px-2 text-base text-gray-400 lg:px-4"
-                icon={faMagnifyingGlass}
-              />
-              <input
-                className=" w-4/5 outline-none
-                sm:w-11/12
-                "
-                type="text"
-                placeholder="Search..."
-                value={inputSearch}
-                onChange={e=>{handleChange(e)}}
-              />
-            </div>
-            <span
-              title="Search clean"
-              className=" px-2 text-gray-300 cursor-pointer"
-            >
-              {inputSearch && (
-                <FontAwesomeIcon onClick={clearInputSearch} icon={faXmark} />
-              )}
-            </span> 
+    <div className="w-full p-2">
+      <form onSubmit={handleSubmit} className="w-full flex flex-row justify-between items-center">
+        <label className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+        <div className="relative w-full">
+          <div className="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none">
+              <svg aria-hidden="true" className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
           </div>
-          <div onClick={handleSubmit} className="w-12 md:w-16 bg-gray-100 text-center text-gray-50 cursor-pointer shadow-lg hover:bg-gray-200 flex justify-center items-center">
-            <button><FontAwesomeIcon className="text-gray-400" icon={faSearch}/></button>
-          </div>
+          <input type="text" id="default-search" className="block border-b-2 border-gray-300 px-4 py-2 pl-10 w-full text-base text-gray-900 focus:outline-none focus:border-gray-700 pr-8" placeholder="Search Posts, Users..."  onChange={handleChange} value={inputSearch}/>
+ 
+          <span title="Search clean" className="absolute right-2.5 bottom-2.5 text-gray-500 cursor-pointer">
+            {inputSearch && <FontAwesomeIcon onClick={clearInputSearch} icon={faXmark} />}
+          </span> 
         </div>
       </form>
-      {/* <div>
-        {inputSearch.length ? <div className="w-full flex justify-center py-2"><p className="text-">{`Results for "${inputSearch}"`}</p></div> : <></>}
-      </div> */}
     </div>
   );
 }
