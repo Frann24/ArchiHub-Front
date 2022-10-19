@@ -13,7 +13,7 @@ export default function Projects(id) {
   const projectsUser = projects.filter((project) => project.created_by === id);
   const [search, setSearch] = useState("");
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     dispatch(getAllProjects());
   }, [dispatch]); */
 
@@ -51,7 +51,9 @@ export default function Projects(id) {
       ) : (
         <div></div>
       )}
-      {search === "not found" ? (
+     <div className="grid grid-cols-3 my-6">
+    
+       {search === "not found" ? (
         <div>
           <p>there are no matches with your search</p>
         </div>
@@ -60,8 +62,11 @@ export default function Projects(id) {
           return (
             <div className="flex flex-col-3">
               <div>
-                <VisualizePDFDash url={""}/>
-                <h3 className="text-base font-semibold">{project.title}</h3>
+                {/* <VisualizePDFDash url={""}/> */}
+                {project.pdf_file && (
+                  <VisualizePDFDash url={project.pdf_file.url} />
+                )}
+                <h3 className="text-base font-semibold mt-6">{project.title}</h3>
                 <p className="text-base truncate">
                   {project.description.slice(0, 50)}
                 </p>
@@ -74,7 +79,10 @@ export default function Projects(id) {
           return (
             <div className="flex flex-col-3">
               <div>
-                <VisualizePDFDash url={""}/>
+                {/* <VisualizePDFDash url={project.pdf_file.url}/> */}
+                {project.pdf_file && (
+                  <VisualizePDFDash url={project.pdf_file.url} />
+                )}
                 <div className="text-base font-semibold">{project.title}</div>
                 <p className="text-base truncate">
                   {project.description.slice(0, 50)}
@@ -91,6 +99,7 @@ export default function Projects(id) {
           </Link>
         </div>
       )}
+        </div>
     </div>
 
     //     <div >

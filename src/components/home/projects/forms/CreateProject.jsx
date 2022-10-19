@@ -25,7 +25,7 @@ const CreateProject = () => {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    visibility: "",
+    visibility: "public",
     created_by: userToken ? userToken.userId : "",
     users: "",
     pdf_file: "",
@@ -71,6 +71,7 @@ const CreateProject = () => {
     },
   ];
   const handleSelectVisibility = (value) => {
+    setErrors(validate({...form, visibility:value}, "visibility", errors, userToken.isPremium));
     setForm({
       ...form,
       visibility: value,
@@ -88,10 +89,7 @@ const CreateProject = () => {
       users: value,
     });
   };
-  const handleFormBlurVisibility = (e) => {
-    handleChange(e);
-    setErrors(validate(form, "visibility", errors, userToken.isPremium));
-  };
+
   const handleFormBlur = (e) => {
     handleChange(e);
     setErrors(validate(form, e.target.name, errors, userToken.isPremium));
@@ -192,8 +190,7 @@ const CreateProject = () => {
           <Select
             className="my-4"
             name="visibility"
-            onChange={(e) => handleSelectVisibility(e)}
-            onBlur={handleFormBlurVisibility}
+            onChange={(e) =>handleSelectVisibility(e)}
             options={options2}
             value={form.visibility}
           /> {errors.visibility && (

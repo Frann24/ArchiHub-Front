@@ -47,8 +47,8 @@ export default function FormEditProfile({ id, user }) {
   const uploadImage = async (flatFile, e) => {
     // e.preventDefault();
     const data = new FormData();
-    console.log(flatFile[0]);
-    data.append("file", flatFile[0]);
+    console.log(flatFile);
+    data.append("file", flatFile);
     data.append("upload_preset", "Arquihub");
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/dfcd64nhm/image/upload",
@@ -58,13 +58,8 @@ export default function FormEditProfile({ id, user }) {
       }
     );
     const file = await res.json();
-    // .then((r) => (image = r.secure_url));
-    // console.log(image);
     console.log(file);
-    // image = await res.json().secure_url;
-    image = file.secure_url;
-    // console.log(file);
-    console.log(image);
+    return file.secure_url;
   };
 
   //     const arrayCloud = (data) => {
@@ -108,44 +103,21 @@ export default function FormEditProfile({ id, user }) {
           })
         ),
       ]);
+      acceptedFiles.map(async (e) => {
+        const fileImage = await uploadImage(e);
+        setState({
+          ...state,
+          ["avatar"]: fileImage, 
+        });
+      });
     },
   });
 
   async function handleEditPerfil() {
-    await uploadImage(flatFile);
-    const newState = state;
-    const imageState = image;
-    newState.avatar = imageState;
-    console.log(newState);
-    // newState.name = "Paula";
-    // newState.lastname = "Celman";
-
-    // Swal.fire({
-    //   title: "Are you sure?",
-    //   // text: "You won't be able to revert this!",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes, update!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    console.log(newState);
-    dispatch(updateUser(id, newState));
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
-    //   if (Object.keys(errors).length === 0) {
-    //     dispatch(createPost(displayForm));
-    //     setResponse(true);
-    //   }
-    //   navigate("/home");
-    //   setTimeout(() => {
-    //     setResponse(null);
-    //   }, 2000);
-    // Swal.fire("Updated!", "Your profile has been modified.", "success");
-    // }
-    // });
+    console.log(state);
+    const profile = dispatch(updateUser(id, state));
+    console.log(profile);
+    window.location.reload();
   }
 
   return (
@@ -153,20 +125,23 @@ export default function FormEditProfile({ id, user }) {
       <div className="flex flex-col-2 mb-12 w-full gap-20">
         <div {...getRootProps()} className="relative ">
           <input {...getInputProps()} />
-<div className="w-60 h-60 relative ">
-
+          <div className="w-60 h-60 relative ">
           <img
-            // src={`${user.avatar}`}
-            width="240px"
-            height="240px"
-            src={files[0] ? files[0][0].preview : user.avatar}
-            className="rounded-full mt-16 opacity-50"
+              src={files[0] ? files[files.length - 1][0].preview : user.avatar}
+              width="240px"
+              height="240px"
+              className="xl:w-full xl:h-full  object-cover rounded-full mt-16 opacity-50"
             />
-            </div>
-           <div className="absolute bottom-20 left-12">
+            {/* <img
+              // src={`${user.avatar}`}
+            
+              src={files[0] ? files[files.length - 1][0].preview : user.avatar}
+              className="rounded-full mt-16 opacity-50"
+            /> */}
+          </div>
+          <div className="absolute bottom-20 left-12">
             <div className="  font-bold ">drop image here</div>
-         
-          </div> 
+          </div>
         </div>
         <div className=" flex flex-col ">
           <div className="font-bold text-lg capitalize mt-12">
@@ -180,7 +155,7 @@ export default function FormEditProfile({ id, user }) {
             onChange={(e) => handleChange(e)}
           ></input>
           <input
-            placeholder={state.description ? state.description : "description"}
+            placeholder="description"
             name="description"
             // value={state.description}
             onChange={(e) => handleChange(e)}
