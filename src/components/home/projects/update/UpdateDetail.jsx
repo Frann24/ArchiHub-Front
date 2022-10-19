@@ -10,7 +10,8 @@ const UpdateDetail = ({ update }) => {
   const token = JSON.parse(localStorage.getItem("token"))
   const dispatch = useDispatch();
   const handleClick = (e,update_id)=>{
-/*     e.preventDefault(); */
+    // e.preventDefault();
+    console.log(update_id);
     dispatch(createDownload({user_id:token.userId, project_id:id, update_id}))
   }
   return (
@@ -40,18 +41,6 @@ const UpdateDetail = ({ update }) => {
         </div>
         <h3 className="text-base w-full">{update.comments}</h3>
       </div>
-      {/* <div className="col-span-2 p-2 w-auto hidden md:grid">
-        <div className="flex flex-row">
-          <h2 className="text-xl font-semibold">{update.title}</h2>
-          <h3 className="text-sm w-full md:text-xs md:ml-2">
-            {update.createdAt.substring(0, 10)}
-          </h3>
-          <h3 className="text-sm w-full md:text-xs">
-            {update.createdAt.substring(11, 16)}
-          </h3>
-        </div>
-        <h3 className="text-base w-full">{update.comments}</h3>
-      </div> */}
       <div className="m-auto">
         {update.storage?.map((updateStorage) => {
           return (

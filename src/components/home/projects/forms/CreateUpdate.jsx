@@ -64,7 +64,7 @@ const CreateUpdate = ({ project_id, project }) => {
           md:w-3/4"
       >
         <div
-          className="hidden m-2 place-items-center
+          className="hidden m-2 place-items-center rounded
             md:flex md:w-16 md:justify-self-center
             "
         >
