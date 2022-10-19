@@ -83,40 +83,42 @@ export default function Reviews({ id }) {
       ) : (
         <div></div>
       )}
-      {state === "not found" ? (
-        <div>
-          <p>there are no matches with your search</p>
-        </div>
-      ) : user.reviews.length ? (
-        state.length &&
-        state.map((rev) => {
-          // <div className="flex flex-col-3">
+      <div className="flex flex-col-3 gap-6 my-6">
+        {state === "not found" ? (
+          <div>
+            <p>there are no matches with your search</p>
+          </div>
+        ) : user.reviews.length ? (
+          state.length &&
+          state.map((rev) => {
+            // <div className="flex flex-col-3">
 
-          return (
-            <Link to={`/postDetail/${rev.post_id._id}`}>
-              <div className="">
-                <div className="flex flex-col-2 gap-6 my-6">
-                  <img src={rev.post_id.image[0]} width="250px" />
-                  <div>
-                    <div className="text-base font-semibold">
-                      {rev.post_id.title}
+            return (
+              <Link to={`/postDetail/${rev.post_id._id}`}>
+                <div className="">
+                  <div className="">
+                    <img src={rev.post_id.image[0]} width="250px" />
+                    <div>
+                      <div className="text-base font-semibold">
+                        {rev.post_id.title}
+                      </div>
+                      <p className="text-base  text-slate-300">
+                        {rev.createdAt.slice(0, 10)}
+                      </p>
+                      <p className="text-base ">{rev.comment}</p>
                     </div>
-                    <p className="text-base  text-slate-300">
-                      {rev.createdAt.slice(0, 10)}
-                    </p>
-                    <p className="text-base ">{rev.comment}</p>
                   </div>
                 </div>
-              </div>
-            </Link>
-          );
-          // </div>
-        })
-      ) : (
-        <div>
-          <p>you don't have any reviews</p>
-        </div>
-      )}
+              </Link>
+            );
+            // </div>
+          })
+        ) : (
+          <div>
+            <p>you don't have any reviews</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
