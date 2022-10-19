@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -6,7 +6,6 @@ import {
   //useElements
 } from "@stripe/react-stripe-js";
 import { CANCEL_PAYMENT } from "../../redux/slices/constants";
-
 
 //import "bootswatch/dist/lux/bootstrap.min.css";
 
@@ -20,50 +19,53 @@ const CheckoutForm = () => {
   // const stripe = useStripe();
   // const elements = useElements();
   // const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token"));
-  
-
-  
 
   const handleCancelSubscription = async (e) => {
     e.preventDefault();
-            
-      try {
-        const res = await axios.post(CANCEL_PAYMENT, {
-          userId: token.userId,
-          emailUser: token.userMail          
-        });
-        console.log(res.data)
-        const { cancel_at_period_end } = res.data;
-        
-        if(cancel_at_period_end === true){
-          console.log("Suscripcion cancelada!!!")
-            navigate("/cancelPaymentOk")
-        } else {
-          console.log("Error Suscripcion!!!")
-          navigate("/cancelPaymentError")
-        }
 
-        
-      } catch (error) {
-        console.log(error)
-        
+    try {
+      const res = await axios.post(CANCEL_PAYMENT, {
+        userId: token.userId,
+        emailUser: token.userMail,
+      });
+      console.log(res.data);
+      const { cancel_at_period_end } = res.data;
+
+      if (cancel_at_period_end === true) {
+        console.log("Suscripcion cancelada!!!");
+        navigate("/cancelPaymentOk");
+      } else {
+        console.log("Error Suscripcion!!!");
+        navigate("/cancelPaymentError");
       }
-      //setLoading(false)
+    } catch (error) {
+      console.log(error);
     }
-    return (
-      <div>
-          <form onSubmit={handleCancelSubscription}>
-          
-            
-            <button >Cancel Suscription</button>
-            </form>
-            </div>
-    )
+    //setLoading(false)
   };
-
-
+  return (
+    <div>
+      <div>
+      <div>
+        By canceling the subscription you will continue to enjoy the benefits of
+        being Premium until the end of the subscription period. Once the
+        subscription period is over you will have the benefits of a Free
+        account. Remember, you can go back to Premium anytime you want.
+      </div>
+      <div>
+        <Link to="/home">Home</Link>
+      </div>
+      <div>
+        <form onSubmit={handleCancelSubscription}>
+          <button>Cancel Suscription</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  );
+};
 
 function CancelSubscription() {
   return (
