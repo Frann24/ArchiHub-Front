@@ -1,8 +1,6 @@
-
 export const BASE_URL = "http://localhost:3001/";
 
-//export const BASE_URL = "https://backend-arquihub-production.up.railway.app/";
-
+// export const BASE_URL = "https://backend-arquihub-production.up.railway.app/";
 
 export const USERS = `${BASE_URL}api/user`;
 

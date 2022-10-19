@@ -7,7 +7,7 @@ import { clearUser, logOutUser } from "../../../redux/slices/auth/loginActions";
 import { getUser } from "../../../redux/slices/user/userActions";
 import AvatarUser from "../../avatarUser/AvatarUser";
 
-function Logged() {
+function LoggedWhite() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
@@ -64,9 +64,9 @@ function Logged() {
   return (
     <div className="flex flex-row gap-8 items-center">
       <div className="hidden lg:inline-block relative p-4">
-        <button id="btnCreateMenu" ref={btnRef} onClick={() => setCreateMenu(!createMenu)}  className={`flex border p-1 rounded-md lg:hover:bg-gray-100 ${createMenu && "bg-gray-100 border-b-gray-100 rounded-b-none"} text-sm`}  >
-          <FontAwesomeIcon className="px-1 cursor-pointer text-gray-500" icon={faPlus}/>
-          <FontAwesomeIcon className="px-1 cursor-pointer text-gray-500" icon={createMenu ? faAngleUp : faAngleDown}/>
+        <button id="btnCreateMenu" ref={btnRef} onClick={() => setCreateMenu(!createMenu)}  className={`flex text-white hover:text-gray-500 border p-1 rounded-md lg:hover:bg-gray-100 ${createMenu && "bg-gray-100 border-b-gray-100 rounded-b-none"} text-sm`}  >
+          <FontAwesomeIcon className="px-1 cursor-pointer" icon={faPlus}/>
+          <FontAwesomeIcon className="px-1 cursor-pointer" icon={createMenu ? faAngleUp : faAngleDown}/>
         </button>
         <div className={`absolute ${createMenu ? "flex" : "hidden"} flex-col gap-2 bg-gray-100 w-36 rounded-tl-none shadow-md`}>
           <Link to="/createpost" className="hover:bg-gray-200 py-1 px-2">New Post</Link>
@@ -82,8 +82,8 @@ function Logged() {
         <AvatarUser img={user.avatar} className="w-10 h-10 sm:w-12 sm:h-12 xl:w-14 xl:h-14"/>
       </div>
       <div className="hidden sm:flex flex-col text-end">
-        <p className="text-sm lg:text-base font-medium">{user.nickname}</p>
-        <p className="text-xs lg:text-sm text-gray-600">{user.email}</p>
+        <p className="text-sm lg:text-base font-medium text-white">{user.nickname}</p>
+        <p className="text-xs lg:text-sm text-white">{user.email}</p>
       </div>
     </div> 
       {showSidebar && <div onClick={()=> setShowSidebar(!showSidebar)} className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50"></div>}
@@ -133,10 +133,10 @@ function Logged() {
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/posts/${user._id}`}>My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/posts">My posts</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/projects/${user._id}`}>My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/projects">My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
@@ -150,7 +150,7 @@ function Logged() {
                     <p className="hover:underline"><Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/createproject">Create now</Link></p>
                     </div>
                   : user.projects.map((e, i) => (
-                      <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to={`/projectDetail/${e._id}`}>{e.title}</Link>
+                      <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to="">{e.name}</Link>
                   ))}
                 </div>}
               </div>
@@ -173,4 +173,4 @@ function Logged() {
   );
 }
 
-export default Logged;
+export default LoggedWhite;

@@ -25,12 +25,18 @@ export default function Profile({
         <div className="relative ">
           <div className="w-60 h-60">
             <img
-              // src={`${user.avatar}`}
               src={user.avatar}
               width="240px"
               height="240px"
-              className="rounded-full mt-16"
+              className="xl:w-full xl:h-full  object-cover rounded-full mt-16 "
             />
+
+            {/* <img
+              // src={`${user.avatar}`}
+              src={user.avatar}
+         
+              className="rounded-full mt-16"
+            /> */}
           </div>
         </div>
         <div className="">
@@ -48,14 +54,14 @@ export default function Profile({
           {user.location ? (
             <div className="flex flex-row my-3">
               <div className="pr-4">
-              <FontAwesomeIcon icon={faLocationDot} />
+                <FontAwesomeIcon icon={faLocationDot} />
               </div>
               <div>{user.location}</div>
             </div>
           ) : (
             <div className="flex flex-row my-3">
               <div className="pr-4">
-              <FontAwesomeIcon icon={faLocationDot} />
+                <FontAwesomeIcon icon={faLocationDot} />
               </div>
               <div className="text-slate-200">Location</div>
             </div>
@@ -81,7 +87,7 @@ export default function Profile({
                 <div className="pr-4">
                   <FontAwesomeIcon icon={faLink} />
                 </div>
-              <div>{user.page}</div>
+                <div>{user.page}</div>
               </div>
             </div>
           ) : (
