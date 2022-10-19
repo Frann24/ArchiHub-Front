@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding } from "@fortawesome/free-regular-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router-dom";
 export default function Profile({
   user,
   userLogeado,
@@ -14,7 +15,12 @@ export default function Profile({
   Reviews,
   state,
   id,
-}) {
+}
+) 
+{
+  let userToken  = JSON.parse(localStorage.getItem("token"))
+  let loggedId = userToken? userToken.userId : ""
+
   return (
     <div className="ml-32">
       <div className="flex flex-col-2 mb-12 w-full gap-20">
@@ -75,13 +81,18 @@ export default function Profile({
               <div className="text-slate-200">Webpage</div>
             </div>
           )}
-          <button
-            onClick={(e) => handleEditProfile(e)}
+
+{loggedId.length && loggedId === id?
+      <button
+      onClick={(e) => handleEditProfile(e)}
             className="bg-slate-300 cursor-pointer w-32 h-8 mt-6"
-          >
+            >
             Edit Profile
           </button>
-        </div>
+        :
+        null
+      }
+      </div>
       </div>
       {/* <div>
         <div>

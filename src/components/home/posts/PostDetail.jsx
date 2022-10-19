@@ -48,6 +48,8 @@ function PostDetail() {
     currentMonth = Math.abs(year.split("-")[1] - current_month) 
     if(currentMonth > 1) currentMonth += " Months ago"
     else{currentMonth += " Month ago"}
+
+    console.log(postDetail);
   }
   return (
     <div className="mx-4 flex flex-col gap-4 overflow-x-hidden select-text

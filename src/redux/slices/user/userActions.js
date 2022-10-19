@@ -1,5 +1,5 @@
 import { USERS } from "../constants";
-import { allUsers, showUser, responseUser,order, queryUser } from "./userSlice";
+import { allUsers, showUser, responseUser,order, queryUser, showUserProfile } from "./userSlice";
 const axios = require("axios");
 
 export const getAllUsers = () => {
@@ -30,6 +30,7 @@ export const createUser = (id, info) => {
 };
 
 export const updateUser = (id, info) => {
+  console.log(info);
   return (dispatch) => {
     axios
       .put(`${USERS}/${id}`, info)
@@ -60,4 +61,13 @@ export const orderUsers = (filter, type) => {
   };
   const filterF = [...filter];
   return type?order(filterF.sort(orderMethod[type].method)):order(filter);
+};
+
+export const getViewUser = (id) => {
+  return (dispatch) => {
+    axios
+      .get(`${USERS}/${id}`)
+      .then((info) => dispatch(showUserProfile(info.data)))
+      .catch((err) => console.log(err));
+  };
 };

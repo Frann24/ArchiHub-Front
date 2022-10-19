@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Post({ id }) {
-  let allPosts = useSelector((state) => state.post.allPosts);
-  let postsUser = allPosts.filter((posts) => posts.created_by == id);
-
-  postsUser = postsUser.map((post) => {
+/*   let allPosts = useSelector((state) => state.post.allPosts);
+  let postsUser = allPosts.filter((posts) => posts.created_by == id); */
+  const user = useSelector((state) => state.user.viewUser);
+/*   postsUser = postsUser.map((post) => {
     return {
       id: post._id,
       title: post.title.toUpperCase(),
@@ -14,9 +14,9 @@ export default function Post({ id }) {
       createdAt: post.createdAt,
       image: post.image[0],
     };
-  });
+  }); */
 
-  const [state, setState] = useState(postsUser);
+  const [state, setState] = useState(user.posts);
   const [cambio, setCambio] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Post({ id }) {
 
   function handleSearch(e) {
     e.preventDefault();
-    const postsSearch = postsUser.filter((posts) =>
+    const postsSearch = user.posts.filter((posts) =>
       posts.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
     postsSearch.length ? setState(postsSearch) : setState("not found");
@@ -64,7 +64,7 @@ export default function Post({ id }) {
 
   return (
     <div>
-      {postsUser.length ? (
+      {user.length ? (
         <div className="flex flex-wrap gap-16 items-end ml-20 my-6">
           {/* <label className="text-base">Search post... </label> */}
           <input className="border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" type="text" 
@@ -88,16 +88,16 @@ export default function Post({ id }) {
         </div>
       ) : state.length ? (
         <div>
-          {postsUser.length &&
+          {user.length!==0 &&
             state.map((post) => {
               return (
-                <Link to={`/postDetail/${post.id}`}>
+                <Link to={`/postDetail/${post._id}`}>
                   <div className="flex flex-col-2 gap-6 my-6">
-                   { post.image ? <img src={post.image} width="250px" />
+                   { post.image.length ? <img src={post.image[0]} width="250px" />
                    : <img src="https://res.cloudinary.com/dfcd64nhm/image/upload/v1664674482/Arquihub/4e36ead625b16bac653d2b07c7a57005_if3usp.png" width="250px"/> }
                     <div>
                       <div className="text-slate-500 text-base ">{post.createdAt.slice(0, 10)}</div>
-                    <div className=" text-base ">{post.title}</div>
+                    <div className=" text-base ">{post.title.toUpperCase()}</div>
                     <div className="text-slate-500 text-base ">{post.description.slice(0, 70)}...</div>
                       </div>
                   </div>
@@ -117,3 +117,4 @@ export default function Post({ id }) {
     </div>
   );
 }
+

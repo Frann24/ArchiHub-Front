@@ -3,6 +3,7 @@ import { UPDATE } from "../constants";
 import { allUpdates, showUpdate, responseUpdate } from "./updateSlice";
 
 export const createUpdate = (info) => {
+  console.log(info);
   return function (dispatch) {
     axios
       .post(UPDATE, info)
