@@ -23,26 +23,25 @@ function Users() {
   //   }, [handleClick]);
 
   const usersInPage = ()=>{
-    if(currentPage === 0 && search.length === 0 )return allUsers.slice(currentPage, currentPage+10)
+    if(currentPage === 0 && search.length === 0 )return allUsers.slice(currentPage, currentPage+12)
     let filteredUsers = allUsers.filter(user => user.email.toLowerCase().includes(search.toLowerCase()))
 
     if(currentPage === 0){
       // console.log(filteredUsers);
-      return filteredUsers.slice(currentPage, currentPage+10)
+      return filteredUsers.slice(currentPage, currentPage+12)
     }
     // console.log(filteredUsers);
-    return filteredUsers.slice(currentPage, currentPage+10)
+    return filteredUsers.slice(currentPage, currentPage+12)
   }
 
   const nextPage =(e)=>{
-    if(allUsers.filter(user=>user.email.includes(search)).length> currentPage+10){
-      setCurrentPage(currentPage+10)
+    if(allUsers.filter(user=>user.email.includes(search)).length> currentPage+12){
+      setCurrentPage(currentPage+12)
     }
   }
-
   const prevPage =(e)=>{
-    if(currentPage >0 ){
-      setCurrentPage(currentPage-10)
+    if(currentPage < 0 ){
+      setCurrentPage(currentPage-12)
     }
   }
   
@@ -79,7 +78,7 @@ function Users() {
     <div className="">
       {/* ----------------pantallas LARGE------------------- */}
       <div className="lg:block hidden mx-16 xl:mx-32 2xl:mx-32">
-      <input className='w-full text-center' onChange={handleSearch} placeholder="Search users..." name='searchBar' />
+      <input className='w-full text-center border-b-2' onChange={handleSearch} placeholder="Search users..." name='searchBar' />
 
         <div className=" grid grid-cols-6 mt-6 gap-6  font-bold">
           <h2>Member</h2>

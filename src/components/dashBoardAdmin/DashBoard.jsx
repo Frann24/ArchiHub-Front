@@ -28,7 +28,7 @@ function DashBoard() {
     // <div className="sm:mx-4 md:mx-8 lg:mx-16 xl:mx-32">
     <div className=" flex flex-row">
       
-      <aside className="w-fit  h-screen bg-gray-50	p-3" aria-label="Sidebar">
+      <aside className="w-fit  h-screen bg-gray-50	p-3 border-r-4" aria-label="Sidebar">
        
 
       <div className="flex flex-col order-2 items-center gap-9 my-5 justify-center select-none ">
@@ -36,8 +36,8 @@ function DashBoard() {
       <div className="flex flex-row items-center gap-4 text-sm">
         <img className="object-cover rounded-full w-10 h-10 sm:w-10 sm:h-10 xl:w-10 xl:h-10" src={user.avatar} alt="userImg"/>
         <div className="lex flex-column items-center gap-4">
-          <h3 className="font-semibold">{user.name? user.name : user.nickname}</h3>
-          <p>{user.email}</p>
+          <h3 className="font-semibold text-xs">{user.name? user.name : user.nickname}</h3>
+          <p className="text-xs">{user.email}</p>
         </div>
       </div>
       :
@@ -48,7 +48,7 @@ function DashBoard() {
         <ul>
           <li className="">
             <button
-              className=" tracking-wider text-lg hover:border-b-2 border-slate-300"
+              className=" tracking-wider text-lg hover:border-b-2 border-slate-300  "
               value="dashboard"
               onClick={(e) => handleChange(e)}
             >
@@ -58,7 +58,7 @@ function DashBoard() {
           </li>
           <li>
             <button
-              className="tracking-wider text-lg   hover:border-b-2 border-slate-300"
+              className="tracking-wider text-lg   hover:border-b-2 border-slate-300 "
               value="users"
               onClick={(e) => handleChange(e)}
             >
