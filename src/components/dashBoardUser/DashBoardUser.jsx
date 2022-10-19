@@ -14,6 +14,8 @@ import Profile from "./Profile";
 export default function DashBoardUser() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const a = useParams();
+  console.log(a)
   // const userLogeado = JSON.parse(localStorage.getItem("token"));
   const [state, setState] = useState("projects");
   const [profile, setProfile] = useState(false);
