@@ -133,7 +133,7 @@ export default function FormEditProfile({ id, user }) {
     console.log(newState);
     dispatch(updateUser(id, newState));
     setTimeout(() => {
-      // window.location.reload();
+      window.location.reload();
     }, 3000);
     //   if (Object.keys(errors).length === 0) {
     //     dispatch(createPost(displayForm));
@@ -153,18 +153,20 @@ export default function FormEditProfile({ id, user }) {
       <div className="flex flex-col-2 mb-12 w-full gap-20">
         <div {...getRootProps()} className="relative ">
           <input {...getInputProps()} />
+<div className="w-60 h-60 relative ">
 
           <img
             // src={`${user.avatar}`}
             width="240px"
             height="240px"
             src={files[0] ? files[0][0].preview : user.avatar}
-            className="rounded-full mt-16"
-          />
-          {/* <div className="">
-            <div className="  font-bold ">drop image</div>
-            <div className="  mt-2 ">inside de circle</div>
-          </div> */}
+            className="rounded-full mt-16 opacity-50"
+            />
+            </div>
+           <div className="absolute bottom-20 left-12">
+            <div className="  font-bold ">drop image here</div>
+         
+          </div> 
         </div>
         <div className=" flex flex-col ">
           <div className="font-bold text-lg capitalize mt-12">
@@ -178,24 +180,24 @@ export default function FormEditProfile({ id, user }) {
             onChange={(e) => handleChange(e)}
           ></input>
           <input
-            placeholder={state.description}
+            placeholder={state.description ? state.description : "description"}
             name="description"
-            value={state.description}
+            // value={state.description}
             onChange={(e) => handleChange(e)}
           ></input>
           <div className="flex flex-row my-3">
-            <div className="pr-3">
+            <div className="pr-4">
               <FontAwesomeIcon icon={faLocationDot} />
             </div>
 
             <input
-              placeholder="Location"
+              placeholder={state.location ? state.location : "Location"}
               name="location"
               onChange={(e) => handleChange(e)}
             ></input>
           </div>
           <div className="flex flex-row my-3">
-            <div className="pr-3">
+            <div className="pr-4">
               <FontAwesomeIcon icon={faBuilding} />
             </div>
             <input
@@ -205,8 +207,8 @@ export default function FormEditProfile({ id, user }) {
             ></input>
           </div>
 
-          <div className="flex flex-row">
-            <div className="pr-3">
+          <div className="flex flex-row my-3">
+            <div className="pr-4">
               <FontAwesomeIcon icon={faLink} />
             </div>
 
