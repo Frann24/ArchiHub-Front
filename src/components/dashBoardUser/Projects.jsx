@@ -7,18 +7,19 @@ import { getAllProjects } from "../../redux/slices/project/projectActions";
 
 export default function Projects(id) {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.viewUser);
   const projects = useSelector((state) => state.project.allProjects);
   const projectsUser = projects.filter((project) => project.created_by === id);
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
+/*   useEffect(() => {
     dispatch(getAllProjects());
-  }, [dispatch]);
+  }, [dispatch]); */
 
   function handleSearch(e) {
     e.preventDefault();
-    const projectsSearch = projectsUser.filter((posts) =>
-      posts.title.toLowerCase().includes(e.target.value.toLowerCase())
+    const projectsSearch = user.projects.filter((project) =>
+      project.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
     projectsSearch.length ? setSearch(projectsSearch) : setSearch("not found");
   }
@@ -35,7 +36,7 @@ export default function Projects(id) {
 
   return (
     <div>
-      {projectsUser.length ? (
+      {user.length ? (
         <div className="flex flex-row">
           <div>
             <label>Search </label>
@@ -68,8 +69,8 @@ export default function Projects(id) {
             </div>
           );
         })
-      ) : projectsUser.length ? (
-        projectsUser.map((project) => {
+      ) : user.projects.length ? (
+        user.projects.map((project) => {
           return (
             <div className="flex flex-col-3">
               <div>

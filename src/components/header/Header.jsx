@@ -11,7 +11,7 @@ import CreatePost from "../createPost/CreatePost";
 import NewsDetail from "../home/news/NewsDetail";
 import BtnMenu from "./btnMenu/BtnMenu";
 import Footer from "../footer/Footer";
-import DashBoardAdmin from "../dashBoardAdmin/DashBoardAdmin";
+import DashBoard from "../dashBoardAdmin/DashBoard";
 import ProjectDetail from "../home/projects/ProjectDetail";
 import Navbar from "./navbar/Navbar";
 import { useEffect } from "react";
@@ -22,7 +22,9 @@ import ForgotPassword from "../resetPassword/ForgotPassword";
 import ResetPassword from "../resetPassword/ResetPassword";
 import DashBoardUser from "../dashBoardUser/DashBoardUser"
 import SearchContent from "../searchContent/SearchContent";
-
+import CancelPayment from "../payment/CancelPayment"
+import InviteProject from "../home/projects/InviteProject";
+import NotFound from "../errors/NotFound"
 
 function Header() {
   const { pathname } = useLocation();
@@ -68,19 +70,24 @@ function Header() {
           <Route path="postDetail/:id" element={<PostDetail />} />
           <Route path="createpost" element={<CreatePost />} />
           <Route path="createproject" element={<CreateProject />} />
-          <Route path="/admin" element={<DashBoardAdmin />} />
+          <Route path="/admin" element={<DashBoard />} />
           <Route path="projectDetail/:id" element={<ProjectDetail />} />
           {/* <Route path="/dashuser" element={<DashUser />} /> */}
-          <Route path="/user/:value" element={<DashBoardUser />} />
+          <Route path="/user/:id" element={<DashBoardUser />} />
           <Route path="/payment" element={<Payment/>} />
           <Route path="forgotPassword" element={<ForgotPassword/>}/>
           <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
           <Route path="search" element={<SearchContent/>}/>
+          <Route path="/cancelSubscription" element={ <CancelPayment />} />
+          <Route path="inviteProject/:projectId" element={<InviteProject/>}/>
+          {/* <Route path="inviteProject/:projectId" element={<inviteProject/>}/> */}
+          <Route path="*" element={<NotFound/>}/>
+
         </Routes>
-      </div>
-      <div>
+      <div className="bottom-0">
         <Footer/>
       </div>
+    </div>
     </div>
   );
 }
