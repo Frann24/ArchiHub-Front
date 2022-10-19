@@ -1,19 +1,14 @@
-import { current } from "@reduxjs/toolkit";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/slices/user/userActions";
 import { updateUser } from "../../redux/slices/user/userActions";
 import UserItem from "./UserItem";
 
-function Users() {
+function Admins() {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
-  // const notAdmins = allUsers.filter((user)=> user.type !== "admin")
-  const [currentPage, setCurrentPage]= useState(0)
-  const [search, setSearch]= useState("")
-
-
-
+  const notUsers = allUsers.filter((user)=> user.type !== "user")
+  console.log(notUsers);
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
@@ -22,38 +17,7 @@ function Users() {
   //     dispatch(getAllUsers());
   //   }, [handleClick]);
 
-  const usersInPage = ()=>{
-    if(currentPage === 0 && search.length === 0 )return allUsers.slice(currentPage, currentPage+10)
-    let filteredUsers = allUsers.filter(user => user.email.toLowerCase().includes(search.toLowerCase()))
-
-    if(currentPage === 0){
-      // console.log(filteredUsers);
-      return filteredUsers.slice(currentPage, currentPage+10)
-    }
-    // console.log(filteredUsers);
-    return filteredUsers.slice(currentPage, currentPage+10)
-  }
-
-  const nextPage =(e)=>{
-    if(allUsers.filter(user=>user.email.includes(search)).length> currentPage+10){
-      setCurrentPage(currentPage+10)
-    }
-  }
-
-  const prevPage =(e)=>{
-    if(currentPage >0 ){
-      setCurrentPage(currentPage-10)
-    }
-  }
-  
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
-    setCurrentPage(0)
-}
-
-
-  //  console.log(usersInPage());
+  // console.log(allUsers);
   function handleChangeStatus(id, e) {
     dispatch(updateUser(id, { status: e.target.value }));
   }
@@ -79,8 +43,6 @@ function Users() {
     <div className="">
       {/* ----------------pantallas LARGE------------------- */}
       <div className="lg:block hidden mx-16 xl:mx-32 2xl:mx-32">
-      <input className='w-full text-center' onChange={handleSearch} placeholder="Search users..." name='searchBar' />
-
         <div className=" grid grid-cols-6 mt-6 gap-6  font-bold">
           <h2>Member</h2>
           <h2>email</h2>
@@ -90,8 +52,8 @@ function Users() {
           <h2>Status</h2>
         </div>
         
-        {
-          usersInPage()?.map((el) => {
+        {notUsers.length &&
+          notUsers.map((el) => {
             const statusUser = el.status;
             const statusOptions = [];
             statusUser === "active" && statusOptions.push("banned", "inactive");
@@ -138,9 +100,8 @@ function Users() {
           <h2>Type</h2>
           <h2>Status</h2>
         </div>
-
-        { usersInPage[0]&&
-          usersInPage()?.map((el) => {
+        {notUsers.length &&
+          notUsers.map((el) => {
             const statusUser = el.status;
             const statusOptions = [];
             statusUser === "active" && statusOptions.push("banned", "inactive");
@@ -185,7 +146,8 @@ function Users() {
           <h2>Members</h2>
           <h2>Mail</h2>
         </div>
-        {usersInPage()?.map((el) => {
+        {notUsers.length &&
+          notUsers.map((el) => {
             // const statusUser = el.status;
 
             // const newEl = { ...el, show: false };
@@ -201,19 +163,8 @@ function Users() {
             );
           })}
       </div>
-
-      <div className="flex flex-row space-x-8 w-50% flex justify-center self-center pt-8">
-
-        <button className="btn	bg-gray-800 h-10	w-40 text-gray-200	" onClick={prevPage}> ← Prev Page</button>
-        {/* <button className="flex  justify-center pt-10 pl-10 bg-gray-200 w-fit h-fit font-bold align-middle	 text-center	" onClick={prevPage}> ← Prev Page</button> */}
-
-        <button className="btn bg-gray-800 h-10	w-40 text-gray-200	" onClick={nextPage}>Next Page →</button>
-        {/* <button className="flex   justify-center pt-10 pr-10 bg-gray-200 w-fit h-fit font-bold align-middle	 text-center	" onClick={nextPage}>Next Page →</button> */}
-      </div>
-
-</div>
-   
+    </div>
   );
 }
 
-export default Users;
+export default Admins;
