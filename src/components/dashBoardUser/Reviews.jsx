@@ -83,7 +83,7 @@ export default function Reviews({ id }) {
       ) : (
         <div></div>
       )}
-      <div className="flex flex-col-3 gap-6 my-6">
+      <div className="grid grid-cols-3 gap-6 my-6">
         {state === "not found" ? (
           <div>
             <p>there are no matches with your search</p>
@@ -99,7 +99,7 @@ export default function Reviews({ id }) {
                   <div className="">
                     <img src={rev.post_id.image[0]} width="250px" />
                     <div>
-                      <div className="text-base font-semibold">
+                      <div className="text-base font-semibold mt-6">
                         {rev.post_id.title}
                       </div>
                       <p className="text-base  text-slate-300">
