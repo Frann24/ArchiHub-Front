@@ -126,13 +126,18 @@ export default function FormEditProfile({ id, user }) {
         <div {...getRootProps()} className="relative ">
           <input {...getInputProps()} />
           <div className="w-60 h-60 relative ">
-            <img
-              // src={`${user.avatar}`}
+          <img
+              src={files[0] ? files[files.length - 1][0].preview : user.avatar}
               width="240px"
               height="240px"
+              className="xl:w-full xl:h-full  object-cover rounded-full mt-16 opacity-50"
+            />
+            {/* <img
+              // src={`${user.avatar}`}
+            
               src={files[0] ? files[files.length - 1][0].preview : user.avatar}
               className="rounded-full mt-16 opacity-50"
-            />
+            /> */}
           </div>
           <div className="absolute bottom-20 left-12">
             <div className="  font-bold ">drop image here</div>
