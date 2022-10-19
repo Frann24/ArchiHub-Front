@@ -48,7 +48,7 @@ function DashBoard() {
         <ul>
           <li className="">
             <button
-              className=" tracking-wider text-lg hover:border-b-2 border-slate-300  "
+              className=" tracking-wider text-lg hover:border-l-4  focus:border-l-4 pl-2"
               value="dashboard"
               onClick={(e) => handleChange(e)}
             >
@@ -58,7 +58,7 @@ function DashBoard() {
           </li>
           <li>
             <button
-              className="tracking-wider text-lg   hover:border-b-2 border-slate-300 "
+              className="tracking-wider text-lg   hover:border-l-4  focus:border-l-4 pl-2"
               value="users"
               onClick={(e) => handleChange(e)}
             >

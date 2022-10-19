@@ -40,7 +40,7 @@ function Users() {
     }
   }
   const prevPage =(e)=>{
-    if(currentPage < 0 ){
+    if(currentPage > 0 ){
       setCurrentPage(currentPage-12)
     }
   }
@@ -203,7 +203,7 @@ function Users() {
 
       <div className="flex flex-row space-x-8 w-50% flex justify-center self-center pt-8">
 
-        <button className="btn	bg-gray-800 h-10	w-40 text-gray-200	" onClick={prevPage}> ← Prev Page</button>
+        <button className="btn	bg-gray-800 h-10	w-40 text-gray-200	" disabled={currentPage == 0} onClick={prevPage}> ← Prev Page</button>
         {/* <button className="flex  justify-center pt-10 pl-10 bg-gray-200 w-fit h-fit font-bold align-middle	 text-center	" onClick={prevPage}> ← Prev Page</button> */}
 
         <button className="btn bg-gray-800 h-10	w-40 text-gray-200	" onClick={nextPage}>Next Page →</button>
