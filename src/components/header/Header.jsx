@@ -72,7 +72,6 @@ function Header() {
           <Route path="createproject" element={<CreateProject />} />
           <Route path="/admin" element={<DashBoard />} />
           <Route path="projectDetail/:id" element={<ProjectDetail />} />
-          {/* <Route path="/dashuser" element={<DashUser />} /> */}
           <Route path="/user/:id" element={<DashBoardUser />} />
           <Route path="/payment" element={<Payment/>} />
           <Route path="forgotPassword" element={<ForgotPassword/>}/>
@@ -80,7 +79,6 @@ function Header() {
           <Route path="search" element={<SearchContent/>}/>
           <Route path="/cancelSubscription" element={ <CancelPayment />} />
           <Route path="inviteProject/:projectId" element={<InviteProject/>}/>
-          {/* <Route path="inviteProject/:projectId" element={<inviteProject/>}/> */}
           <Route path="*" element={<NotFound/>}/>
 
         </Routes>
