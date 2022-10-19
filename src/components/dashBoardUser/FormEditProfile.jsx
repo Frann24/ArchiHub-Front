@@ -117,7 +117,7 @@ export default function FormEditProfile({ id, user }) {
     console.log(state);
     const profile = dispatch(updateUser(id, state));
     console.log(profile);
-    // window.location.reload();
+    window.location.reload();
   }
 
   return (
