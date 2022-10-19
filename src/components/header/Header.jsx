@@ -82,10 +82,10 @@ function Header() {
           <Route path="*" element={<NotFound/>}/>
 
         </Routes>
-      <div className="bottom-0">
+        </div>
+      <div>
         <Footer/>
       </div>
-    </div>
     </div>
   );
 }
