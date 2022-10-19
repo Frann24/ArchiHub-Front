@@ -1,5 +1,5 @@
 import { USERS } from "../constants";
-import { allUsers, showUser, responseUser, queryUser } from "./userSlice";
+import { allUsers, showUser, responseUser,order, queryUser } from "./userSlice";
 const axios = require("axios");
 
 export const getAllUsers = () => {
@@ -50,4 +50,14 @@ export const deleteUser = (id) => {
 export function getQueryUser(allUsers, name) {
   const allUsers2 = [...allUsers]
   return name?queryUser(allUsers2.filter((e) => {return(e.nickname && e.nickname.toLowerCase().includes(name.toLowerCase())) || (e.name && e.lastname && (e.name + " "+ e.lastname).toLowerCase().includes(name.toLowerCase())) ||( e.email && e.email.toLowerCase().includes(name.toLowerCase())) })):queryUser(allUsers)
+};
+
+export const orderUsers = (filter, type) => {
+  const orderMethod = {
+    default: { method: (a, b) => (a.id > b.id ? 1 : -1) },
+    Az: { method: (a, b) => (a.nickname> b.nickname ? -1 : 1) },
+    Za: { method: (a, b) => (a.nickname > b.nickname ? 1 : -1) },
+  };
+  const filterF = [...filter];
+  return type?order(filterF.sort(orderMethod[type].method)):order(filter);
 };

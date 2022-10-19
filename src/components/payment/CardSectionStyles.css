@@ -24,45 +24,49 @@
     background-color: #fefde5 !important;
   }
   
-  .contenedor-principal{
+  /* .contenedor-principal{
     display: flex;
-    flex-direction: row;
     width: auto;
     height: 100vh;
-    align-items: flex-start;
+  }
+
+  .sub-contenedor-principal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20%;
+       
   }
 
   .contenedor-datos{
     width: 250px;
     height: 300px;
-    margin-left: 15px;
+    margin-left: 80%;
   }
-
-  .container-pago{
-    width: 500px;
-  }
-
+  
   .contenedor-ofertas-general{
     display: flex;
     flex-direction: column;
     width: 400px;
-    height: 300px;
+    height: 350px;
   }
 
   .contenedor-premium-free{
+    display: flex;
     flex-direction: columns;
-    width: 400px;
-    height: 300px;
+    width: 200%;
+    height: 190%;
   }
 
   .cont-oferta{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     width: 100%;
     margin: 0 auto;
     background-color: white;
     padding: 20px;
     border: 1px solid black;
+    justify-items: center;
   }
 
   .cajaL{        
@@ -76,9 +80,10 @@
 
   .cajaD{        
     background-color: white;    
-    text-align: center;
+    text-align: left;
     line-height: 50px;
-
+    font-size: 24px;
+    font-family: raleway;
   }
 
   .contenedor-free{
@@ -90,7 +95,7 @@
 
   p{
     font-size: 10px;
-  }
+  } */
 
   
   

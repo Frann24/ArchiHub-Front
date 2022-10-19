@@ -8,44 +8,49 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate;
   const { id, token } = useParams();
+  const [errors, setErrors] = useState({initial: ""})
+  const [input, setInput] = useState({
+    password:"",
+    confirmPassword:"",
+  })
+  const {user} = useSelector(state => state.login)
+  let conditionPassword
 
+  if(user){
+   conditionPassword = errors.password || user.errPassword
+   /* user.success && alert("An email has been sent to " + email + " " + "follow the instructions from there to reset your password") */
+  }
   useEffect(() => {
     dispatch(getUser(id));
   }, [dispatch]);
 
   const email = useSelector((state) => state.user.user.email);
-
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [errors, setErrors] = useState({initial: ""})
+ 
 
   const validate = (value = undefined) => {
     let err = {}
-    if(value === "password" || err.password || value === undefined){
-        if(!password.trim()) err.password = "*Password is required"
-        else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(password)) err.password="* Password must contain at least 8 characters, one uppercase, one lowercase and one number"
+    if(value === "password" || errors.password || value === undefined){
+        if(!input.password.trim()) err.password = "*Password is required"
+        else if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(input.password)) err.password="* Password must contain at least 8 characters, one uppercase, one lowercase and one number"
       }
       /* ----- confirmPassword validate ----- */
-      if(value === "confirmPassword" || err.confirmPassword || value === undefined){
-        if(password2 !== password) err.confirmPassword= "* The password confirmation does not match"
-        if(!password2.trim()) err.confirmPassword = "* Confirm password is required"
+      if(value === "confirmPassword" || errors.confirmPassword || value === undefined){
+        if(input.confirmPassword !== input.password) err.confirmPassword= "* The password confirmation does not match"
+        if(!input.confirmPassword.trim()) err.confirmPassword = "* Confirm password is required"
       }
     return err
   }
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handlePassword2Change = (e) => {
-    setPassword2(e.target.value);
+  const handleInputChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleBlur = (e) => {
-    handlePasswordChange(e)
-    handlePassword2Change(e)
+    handleInputChange(e)
     setErrors(validate(e.target.name));
-    console.log(e.target.name)
   }
 
   const handleSubmit = (e) => {
@@ -53,8 +58,8 @@ const ResetPassword = () => {
     setErrors(validate());
     const error = validate();
     if (Object.keys(error).length === 0) {
-      dispatch(resetPass(id, token, email, password, password2));
-      navigate("/home");
+      dispatch(resetPass(id, token, email, input.password, input.confirmPassword));
+/*       navigate("/home"); */
     }
   };
 
@@ -79,11 +84,11 @@ const ResetPassword = () => {
             id="password"
             placeholder="••••••••"
             className={`bg-gray-100 border-2 border-gray-100 border-b-gray-200 text-gray-900 text-base outline-none focus:outline-none block w-full px-2 pt-2.5 pb-1 focus:border-b-gray-500 ${errors.password && "border-2 focus:border-danger focus:border-b-danger border-danger border-b-danger"}`}
-            value={password}
-            onChange={handlePasswordChange}
+            value={input.password}
+            onChange={handleInputChange}
             onBlur={handleBlur}
           />
-          {errors.password && <span className="text-danger text-sm">{errors.password}</span>}
+          {conditionPassword && <span className="text-danger text-sm">{conditionPassword}</span>}
         </div>
         <div>
           <label for="password2" className="block mb-2 text-base font-medium text-gray-900">
@@ -95,8 +100,8 @@ const ResetPassword = () => {
             id="confirmPassword"
             placeholder="••••••••"
             className={`bg-gray-100 border-2 border-gray-100 border-b-gray-200 text-gray-900 text-base outline-none focus:outline-none block w-full px-2 pt-2.5 pb-1 focus:border-b-gray-500 ${errors.confirmPassword && "border-2 focus:border-danger focus:border-b-danger border-danger border-b-danger"}`}
-            onChange={handlePassword2Change}
-            value={password2}
+            onChange={handleInputChange}
+            value={input.confirmPassword}
             onBlur={handleBlur}
           />
           {errors.confirmPassword && <span className="text-danger text-sm">{errors.confirmPassword}</span>}

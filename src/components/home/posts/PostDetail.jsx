@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faStarHalfStroke as half, faStar as solid } from "@fortawesome/free-solid-svg-icons";
 import  {faStar as regular} from '@fortawesome/free-regular-svg-icons';
 import Modal from "../../modal/Modal";
-
 function PostDetail() {
   const dispatch = useDispatch();
   const [desc, setDesc] = useState(false)
