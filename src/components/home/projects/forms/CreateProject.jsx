@@ -71,6 +71,7 @@ const CreateProject = () => {
     },
   ];
   const handleSelectVisibility = (value) => {
+    setErrors(validate({...form, visibility:value}, "visibility", errors, userToken.isPremium));
     setForm({
       ...form,
       visibility: value,
@@ -88,10 +89,7 @@ const CreateProject = () => {
       users: value,
     });
   };
-  const handleFormBlurVisibility = (e) => {
-    handleChange(e);
-    setErrors(validate(form, "visibility", errors, userToken.isPremium));
-  };
+
   const handleFormBlur = (e) => {
     handleChange(e);
     setErrors(validate(form, e.target.name, errors, userToken.isPremium));
@@ -193,7 +191,6 @@ const CreateProject = () => {
             className="my-4"
             name="visibility"
             onChange={(e) =>handleSelectVisibility(e)}
-            onFocus={handleFormBlurVisibility}
             options={options2}
             value={form.visibility}
           /> {errors.visibility && (
