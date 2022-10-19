@@ -107,7 +107,7 @@ export default function FormEditProfile({ id, user }) {
         const fileImage = await uploadImage(e);
         setState({
           ...state,
-          ["avatar"]: fileImage,
+          ["avatar"]: fileImage, 
         });
       });
     },
