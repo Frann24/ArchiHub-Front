@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllProjects } from "../../redux/slices/project/projectActions";
+import VisualizePDFDash from "../dashBoardUser/VisualizePDFDash";
 
 export default function Projects(id) {
   const dispatch = useDispatch();
@@ -33,7 +34,6 @@ export default function Projects(id) {
   //     function paginado() {
   //       setPage(page + 1);
   //     }
-
   return (
     <div>
       {user.length ? (
@@ -60,7 +60,7 @@ export default function Projects(id) {
           return (
             <div className="flex flex-col-3">
               <div>
-                <img src={project.pdf_file} width="50px" />
+                <VisualizePDFDash url={""}/>
                 <h3 className="text-base font-semibold">{project.title}</h3>
                 <p className="text-base truncate">
                   {project.description.slice(0, 50)}
@@ -74,7 +74,7 @@ export default function Projects(id) {
           return (
             <div className="flex flex-col-3">
               <div>
-                <img src={project.pdf_file} width="50px" />
+                <VisualizePDFDash url={""}/>
                 <div className="text-base font-semibold">{project.title}</div>
                 <p className="text-base truncate">
                   {project.description.slice(0, 50)}

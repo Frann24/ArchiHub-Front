@@ -10,7 +10,6 @@ import Payment from "./components/payment/payment"
 import Home from "./components/home/Home";
 import CreatePost from "./components/createPost/CreatePost";
 import Footer from "./components/footer/Footer";
-import DashUser from "./components/DashUser/DashUser";
 import BtnTop from "./components/btnTop/BtnTop";
 //import Home from "./components/home/Home";
 //import CreatePost from "./components/createPost/CreatePost";
