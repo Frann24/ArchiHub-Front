@@ -25,7 +25,7 @@ const CreateProject = () => {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    visibility: "",
+    visibility: "public",
     created_by: userToken ? userToken.userId : "",
     users: "",
     pdf_file: "",
@@ -192,8 +192,8 @@ const CreateProject = () => {
           <Select
             className="my-4"
             name="visibility"
-            onChange={(e) => handleSelectVisibility(e)}
-            onBlur={handleFormBlurVisibility}
+            onChange={(e) =>handleSelectVisibility(e)}
+            onFocus={handleFormBlurVisibility}
             options={options2}
             value={form.visibility}
           /> {errors.visibility && (
