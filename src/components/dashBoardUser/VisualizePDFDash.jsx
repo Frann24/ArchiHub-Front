@@ -34,7 +34,7 @@ const VisualizePDF = ({ url }) => {
           </p>
         </div>
       </Document>
-      <button
+     {/*  <button
         disabled={pageNumber === 1}
         onClick={changePageBack}
         className="absolute mx-6 w-auto h-4/8 left-0 float-left cursor-pointer my-2 border text-white p-2 bg-gray-800 opacity-20
@@ -55,7 +55,7 @@ const VisualizePDF = ({ url }) => {
         2xl:mx-96"
       >
         {`>`}
-      </button>
+      </button> */}
     </div>
   );
 };

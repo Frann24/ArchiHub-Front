@@ -133,10 +133,10 @@ function Logged() {
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/posts">My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/posts/${user._id}`}>My posts</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/projects">My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/projects/${user._id}`}>My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
@@ -150,7 +150,7 @@ function Logged() {
                     <p className="hover:underline"><Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/createproject">Create now</Link></p>
                     </div>
                   : user.projects.map((e, i) => (
-                      <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to="">{e.name}</Link>
+                      <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to={`/projectDetail/${e._id}`}>{e.title}</Link>
                   ))}
                 </div>}
               </div>
