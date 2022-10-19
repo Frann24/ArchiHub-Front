@@ -8,6 +8,8 @@ import infoTypePost from "../../api/projectTypeData";
 import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import { validationsForm } from "./validatePost";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const CreatePost = () => {
   const [files, setFiles] = useState([]);
@@ -64,15 +66,30 @@ const CreatePost = () => {
       project_type: value,
     });
   };
-  const images =
-    form.image.flat()?.map((element) => (
-      <div key={element.public_id}>
-        <div>
-          <img src={element.url} style={{ width: "200px" }} alt="preview" />
-          <button onClick={(e) => handleDelete(element, e)}>X</button>
-        </div>
+  const images = form.image.flat()?.map((element) => (
+    <div key={element.public_id} className="flex justify-center">
+      <div className="inline-block relative">
+        <img src={element.url} style={{ width: "200px" }} alt="preview" />
+        <button
+          className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
+          data-modal-toggle="authentication-modal"
+          onClick={(e) => handleDelete(element, e)}
+        >
+          {" "}
+          <svg
+            aria-hidden="true"
+            className="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
+          </svg>
+          <span className="sr-only">Close modal</span>
+        </button>
       </div>
-    ));
+    </div>
+  ));
 
   const handleFormChange = (e) => {
     let regexNum = /^[0-9,-]+$/;
@@ -103,9 +120,9 @@ const CreatePost = () => {
   };
   const handleDelete = (element, e) => {
     e.preventDefault();
-    let afterDelete = form.image.flat().filter(
-      (e) => e.public_id !== element.public_id
-    );
+    let afterDelete = form.image
+      .flat()
+      .filter((e) => e.public_id !== element.public_id);
     setForm({
       ...form,
       ["image"]: afterDelete,
@@ -264,7 +281,7 @@ const CreatePost = () => {
           )}
           <label>Project Type</label>
           <Select
-            className={`w-full my-2 p-2  ${
+            className={`w-full my-2 ${
               errors.project_type &&
               "border-2 focus:border-danger border-danger"
             }
@@ -284,7 +301,7 @@ const CreatePost = () => {
             <div className="">
               <label className="">Year</label>
               <input
-                className={`w-full my-2 p-2  ${
+                className={`w-full my-2 p-2 border-b-2  ${
                   errors.year && "border-2 focus:border-danger border-danger"
                 }
               `}
@@ -299,42 +316,79 @@ const CreatePost = () => {
                   {errors.year}
                 </span>
               )}
-              {(form.project_type === "Residential Architecture" || form.project_type === "Interior Design")&& (
-                  <div>
+              {(form.project_type === "Residential Architecture" ||
+                form.project_type === "Interior Design") && (
+                <div className="flex flex-row w-full">
+                  <div className="w-full">
                     <label className="">Rooms</label>
-                    <input
-                      className={`w-full my-2 p-2  ${
-                        errors.rooms &&
-                        "border-2 focus:border-danger border-danger"
-                      }
+                    <div className="flex flex-row">
+                      <input
+                        className={`w-full my-2 p-2 mr-2  ${
+                          errors.rooms &&
+                          "border-2 focus:border-danger border-danger"
+                        }
                 `}
-                      type="text"
-                      name="rooms"
-                      placeholder="Amount..."
-                      onBlur={handleFormBlur}
-                      onChange={handleFormChange}
-                      value={form.rooms}
-                    />
+                        type="range"
+                        name="rooms"
+                        min="1"
+                        max="20"
+                        placeholder="Amount..."
+                        onBlur={handleFormBlur}
+                        onChange={handleFormChange}
+                        value={form.rooms}
+                      />
+                      <input
+                        type="text"
+                        placeholder={form.rooms}
+                        maxLength="2"
+                        className={`w-8 p-2 max-h-8 mx-1 ${
+                          errors.rooms &&
+                          "border-2 focus:border-danger border-danger"
+                        }`}
+                        name="rooms"
+                        onBlur={(e) => handleFormBlur(e)}
+                        value={form.rooms}
+                        onChange={(e) => handleFormChange(e)}
+                      />
+                    </div>
                     {errors.rooms && (
                       <span className="text-danger text-sm my-1 block">
                         {errors.rooms}
                       </span>
                     )}
-
+                  </div>
+                  <div className="w-full">
                     <label className="">Bathrooms</label>
-                    <input
-                      className={`w-full my-2 p-2  ${
-                        errors.bathrooms &&
-                        "border-2 focus:border-danger border-danger"
-                      }
+                    <div className="flex flex-row">
+                      <input
+                        className={`w-full my-2 p-2 mr-2 ${
+                          errors.bathrooms &&
+                          "border-2 focus:border-danger border-danger"
+                        }
                 `}
-                      type="text"
-                      name="bathrooms"
-                      placeholder="Amount..."
-                      onBlur={handleFormBlur}
-                      onChange={handleFormChange}
-                      value={form.bathrooms}
-                    />
+                        type="range"
+                        min="1"
+                        max="10"
+                        name="bathrooms"
+                        placeholder="Amount..."
+                        onBlur={handleFormBlur}
+                        onChange={handleFormChange}
+                        value={form.bathrooms}
+                      />
+                      <input
+                        type="text"
+                        placeholder={form.bathrooms}
+                        maxLength="2"
+                        className={`w-8 p-2 max-h-8 mx-1 ${
+                          errors.bathrooms &&
+                          "border-2 focus:border-danger border-danger"
+                        }`}
+                        name="bathrooms"
+                        onBlur={(e) => handleFormBlur(e)}
+                        value={form.bathrooms}
+                        onChange={(e) => handleFormChange(e)}
+                      />
+                    </div>
 
                     {errors.bathrooms && (
                       <span className="text-danger text-sm my-1 block">
@@ -342,12 +396,13 @@ const CreatePost = () => {
                       </span>
                     )}
                   </div>
-                )}
+                </div>
+              )}
             </div>
           </div>
-          <div className="">Collaborators:</div>
+          <div className="my-2">Collaborators:</div>
           <Select
-            className=""
+            className="w-full my-2"
             // onBlur={handleFormBlur}
             onChange={handleSelectAuthors}
             isMulti
@@ -355,12 +410,10 @@ const CreatePost = () => {
             value={form.authors}
           />
           <div className="">Images</div>
-          <div {...getRootProps()}>
+          <div {...getRootProps()} className="border my-4">
             <input {...getInputProps()} />
             <div className="w-62 h-40 bg-white mt-6  ">
-              <div className=" text-center pt-6">
-                Drop your files here{" "}
-              </div>
+              <div className=" text-center pt-6">Drop your files here </div>
               <div className=" text-center pt-6">
                 {" "}
                 or click to choose from your folders
@@ -376,12 +429,12 @@ const CreatePost = () => {
               </div>
             </div>
           </div>
-          <div className="mx-2 my-2 w-40">{images}</div>
+          <div className="w-full my-4">{images}</div>
 
           <div className="">Additional Data</div>
 
           <textarea
-            className=""
+            className="w-full my-2 border-b-2"
             type="text"
             name="additional_data"
             placeholder="Type additional data"
@@ -392,12 +445,14 @@ const CreatePost = () => {
             rows="2"
           ></textarea>
           <button
-            className=""
+            className="bg-gray-900 text-white w-full p-2 mt-8 mb-4 shadow-lg border 
+            hover:bg-gray-800"
             id="send"
             type="submit"
             disabled={Object.keys(errors).length !== 0}
           >
-            <span>Create</span>
+            Create
+            <FontAwesomeIcon icon={faPlus} className="text-white mx-2" />
           </button>
         </div>
       </form>
@@ -407,5 +462,6 @@ const CreatePost = () => {
     </div>
   );
 };
+
 
 export default CreatePost;
