@@ -7,10 +7,10 @@ import SearchProjects from './SearchProjects'
 import SearchUsers from './SearchUsers';
 
 function SearchAll() {
-  const { allPosts, queryPost } = useSelector((state) => state.post);
-  const { allUsers, queryUsers } = useSelector((state) => state.user);
-  const { allProjects, queryProjects } = useSelector((state) => state.project);
-  const { news, queryNews } = useSelector((state) => state.newsSlice);
+  const { queryPost } = useSelector((state) => state.post);
+  const { queryUsers } = useSelector((state) => state.user);
+  const { queryProjects } = useSelector((state) => state.project);
+  const { queryNews } = useSelector((state) => state.newsSlice);
   return (
     <div className='flex flex-col gap-8'>
       {queryPost.length ?

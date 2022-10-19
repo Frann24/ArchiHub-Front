@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getQueryPost } from "../../redux/slices/post/ordenAndFilterActions";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
@@ -48,19 +48,11 @@ function SearchbarContent() {
     dispatch(getQueryUser(allUsers,e.target.value))
     dispatch(getQueryProjects(allProjects,e.target.value))
     dispatch(getQueryNews(news,e.target.value))
-   /*  dispatch(getQueryPost(allPosts,"")) */
   };
 
   return (
     <div className="w-full p-2">
       <form onSubmit={handleSubmit} className="w-full flex flex-row justify-between items-center">
-        {/* <FontAwesomeIcon className="" icon={faSearch}/>
-        <input 
-        className="w-full border-b-2 px-4 py-1 border-gray-400 outline-none focus:outline-none focus:border-gray-600" 
-        type="text" onChange={handleChange} placeholder={`Search...`} value={inputSearch}/>
-        <span title="Search clean" className=" -ml-8 text-gray-300 cursor-pointer">
-          {inputSearch && <FontAwesomeIcon onClick={clearInputSearch} icon={faXmark} />}
-        </span> */}
         <label className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
         <div className="relative w-full">
           <div className="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none">
