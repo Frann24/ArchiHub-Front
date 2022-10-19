@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { getUser } from "../../redux/slices/user/userActions";
 
 export default function Favourites() {
-/*   const dispatch = useDispatch(); */
-/*   const userLogeado = JSON.parse(localStorage.getItem("token"));
- */
-/*   useEffect(() => {
+  /*   const dispatch = useDispatch(); */
+  /*   const userLogeado = JSON.parse(localStorage.getItem("token"));
+   */
+  /*   useEffect(() => {
     dispatch(getUser(userLogeado.userId));
   }, [dispatch]); */
   const user = useSelector((state) => state.user.viewUser);
@@ -87,32 +87,39 @@ export default function Favourites() {
       ) : (
         <div></div>
       )}
-      {state === "not found" ? (
-        <div>
-          <p>there are no matches with your search</p>
-        </div>
-      ) : postsFav.length ? (
-        state.length &&
-        state.map((post) => {
-          return (
-            <div className="flex flex-row-3 gap-6">
-              <Link to={`/postDetail/${post.id}`}>
-                <div className="flex flex-col-2 gap-6 my-6">
-                  <img src={post.image[0]} width="250px"></img>
-                  <div className="">
-                    <h3>{post.title}</h3>
-                    <p>{post.createdAt.slice(0, 10)}</p>
-                  </div>
+
+      <div className="flex flex-col-3 gap-6">
+        {
+          // state === "not found" ? (
+          //   <div>
+          //     <p>there are no matches with your search</p>
+          //   </div>
+          // ) :
+
+          postsFav.length ? (
+            state.length &&
+            state.map((post) => {
+              return (
+                <div className="">
+                  <Link to={`/postDetail/${post.id}`}>
+                    <div className="">
+                      <img src={post.image[0]} width="250px"></img>
+                      <div className="">
+                        <h3>{post.title}</h3>
+                        <p>{post.createdAt.slice(0, 10)}</p>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
+              );
+            })
+          ) : (
+            <div>
+              <p>you don't have any saved post</p>
             </div>
-          );
-        })
-      ) : (
-        <div>
-          <p>you don't have any saved post</p>
-        </div>
-      )}
+          )
+        }
+      </div>
     </div>
   );
 }

@@ -15,23 +15,23 @@ export default function Profile({
   Reviews,
   state,
   id,
-}
-) 
-{
-  let userToken  = JSON.parse(localStorage.getItem("token"))
-  let loggedId = userToken? userToken.userId : ""
+}) {
+  let userToken = JSON.parse(localStorage.getItem("token"));
+  let loggedId = userToken ? userToken.userId : "";
 
   return (
     <div className="ml-32">
       <div className="flex flex-col-2 mb-12 w-full gap-20">
         <div className="relative ">
-          <img
-            // src={`${user.avatar}`}
-            src={user.avatar}
-            width="240px"
-            height="240px"
-            className="rounded-full mt-16"
-          />
+          <div className="w-60 h-60">
+            <img
+              // src={`${user.avatar}`}
+              src={user.avatar}
+              width="240px"
+              height="240px"
+              className="rounded-full mt-16"
+            />
+          </div>
         </div>
         <div className="">
           <div className="font-bold text-lg capitalize mt-12 ">
@@ -47,52 +47,61 @@ export default function Profile({
 
           {user.location ? (
             <div className="flex flex-row my-3">
+              <div className="pr-4">
               <FontAwesomeIcon icon={faLocationDot} />
+              </div>
               <div>{user.location}</div>
             </div>
           ) : (
             <div className="flex flex-row my-3">
+              <div className="pr-4">
               <FontAwesomeIcon icon={faLocationDot} />
+              </div>
               <div className="text-slate-200">Location</div>
             </div>
           )}
           {user.job ? (
-            <div className="flex flex-row my-3">
-              <FontAwesomeIcon icon={faBuilding} />
+            <div className="flex flex-row my-3 ">
+              <div className="pr-4">
+                <FontAwesomeIcon icon={faBuilding} />
+              </div>
               <div>{user.job}</div>
             </div>
           ) : (
             <div className="flex flex-row my-3">
-              <FontAwesomeIcon icon={faBuilding} />
+              <div className="pr-4">
+                <FontAwesomeIcon icon={faBuilding} />
+              </div>
               <div className="text-slate-200">Job Title</div>
             </div>
           )}
           {user.page ? (
             <div>
               <div className="flex flex-wrap">
-                <FontAwesomeIcon icon="fa-solid fa-link" />
-              </div>
+                <div className="pr-4">
+                  <FontAwesomeIcon icon={faLink} />
+                </div>
               <div>{user.page}</div>
+              </div>
             </div>
           ) : (
             <div className="flex flex-row">
-              <FontAwesomeIcon icon={faLink} />
-
+              <div className="pr-4">
+                <FontAwesomeIcon icon={faLink} />
+              </div>
               <div className="text-slate-200">Webpage</div>
             </div>
           )}
 
-{loggedId.length && loggedId === id?
-      <button
-      onClick={(e) => handleEditProfile(e)}
-            className="bg-slate-300 cursor-pointer w-32 h-8 mt-6"
+          {loggedId.length && loggedId === id ? (
+            <button
+              onClick={(e) => handleEditProfile(e)}
+              className="bg-slate-300 cursor-pointer w-32 h-8 mt-6"
             >
-            Edit Profile
-          </button>
-        :
-        null
-      }
-      </div>
+              Edit Profile
+            </button>
+          ) : null}
+        </div>
       </div>
       {/* <div>
         <div>

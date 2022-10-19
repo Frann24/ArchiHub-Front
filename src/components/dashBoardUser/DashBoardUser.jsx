@@ -99,7 +99,7 @@ export default function DashBoardUser() {
               </div>
             ) : (
               <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-                <p className=" text-base">you have no projects created</p>
+                <p className=" text-base">You have no projects created, start one here.</p>
                 <Link to={"/createproject"}>
                   <button className="bg-green-600 text-white px-6 mt-6">
                     New
@@ -117,7 +117,7 @@ export default function DashBoardUser() {
             </div>
           ): (
             <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-              <p className=" text-base">you have no posts created</p>
+              <p className=" text-base">You have no posts created, start one here.</p>
               <Link to={"/createpost"}>
                 <button className="bg-green-600 text-white px-6 mt-6">
                   New
@@ -131,13 +131,22 @@ export default function DashBoardUser() {
             </div>
           ) : (
             <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-              <p className=" text-base">you have no reviews created</p>
+              <p className=" text-base">You have no reviews created</p>
             </div>
           ))}
-          {state === "favourites" && (
+          {state === "favourites" && (user.length !== 0 && user.reviews.length ? (
             <div>
               <Favourites />
             </div>
+          ) : (
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+              <p className=" text-base">You don´t have any favourite posts yet.</p>
+            </div>
+          )
+          
+          
+          
+          
           )}
         </div>
       </div>

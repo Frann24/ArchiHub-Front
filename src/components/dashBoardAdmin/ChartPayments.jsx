@@ -84,8 +84,8 @@ function ChartPayments () {
     }
     return (
       <div className="w-96">
-<p className="font-bold my-4">Payments per day:</p>
         <Bar data={data} options={options}/>
+<p className="font-bold my-2 ml-16">Payments per day:</p>
       </div>
     )
 }
