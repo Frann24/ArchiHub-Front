@@ -17,10 +17,9 @@ import BtnTop from "./components/btnTop/BtnTop";
 import Successful from "./components/payment/Successful";
 import ErrorPayment from "./components/payment/ErrorPayment";
 import CancelPayment from "./components/payment/CancelPayment";
+import axios from "axios";
 import CancelPaymentOk from "./components/payment/CancelPaymentOK"
 import CancelPaymentError from "./components/payment/CancelPaymentError"
-import axios from "axios";
-
 
 function App() {
 

@@ -44,7 +44,7 @@ function Search() {
     setInputSearch("");
     navigate({
       pathname: "/search",
-      search: `?${createSearchParams({ s: inputSearch })}`,
+      search: `?${createSearchParams({ s: inputSearch, c:"all" })}`,
     });
     /* setParams({
       s: inputSearch
