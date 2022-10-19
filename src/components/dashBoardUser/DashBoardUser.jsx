@@ -25,7 +25,7 @@ export default function DashBoardUser() {
     dispatch(getViewUser(id));
     /*     dispatch(getAllReviews());
     dispatch(getAllPosts()); */
-  }, [dispatch]);
+  }, [dispatch,id]);
 
   function handleChange(e) {
     setState(e.target.value);
