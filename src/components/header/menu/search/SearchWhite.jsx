@@ -21,7 +21,8 @@ import { getAllProjects } from "../../../../redux/slices/project/projectActions"
 import { getQueryProjects } from "../../../../redux/slices/project/projectActions";
 import { getAllPosts } from "../../../../redux/slices/post/postActions";
 import { getQueryNews } from "../../../../redux/slices/sliceNews/newsActions";
-function Search() {
+
+function SearchWhite() {
   const [inputSearch, setInputSearch] = useState("");
   const { allPosts } = useSelector((state) => state.post);
   const { allUsers } = useSelector((state) => state.user);
@@ -65,10 +66,9 @@ function Search() {
     <div className="">
       <form className="">
         <div className="flex text-sm">
-          <div className="flex items-center justify-between w-full py-2 border border-gray-100 shadow-lg ">
+          <div className="flex items-center  py-2 ">
             <input
-              className=" mx-4 w-4/5 outline-none bg-transparent
-                sm:w-11/12
+              className="block border-2 pr-16 bg-transparent placeholder-gray-300 border-white px-4 py-2 w-3/4 focus:w-full duration-700 text-base text-white focus:outline-none
                 "
               // onKeyDown={handlesubmit}
               type="text"
@@ -80,16 +80,16 @@ function Search() {
             />
             <span
               title="Search clean"
-              className=" px-2 text-gray-300 cursor-pointer"
+              className="text-white cursor-pointer"
             >
               {inputSearch && (
-                <FontAwesomeIcon onClick={clearInputSearch} icon={faXmark} />
+                <FontAwesomeIcon onClick={clearInputSearch} icon={faXmark}  className="-ml-14"/>
               )}
             </span>
             <FontAwesomeIcon
               onClick={handleSubmit}
               cursor="pointer"
-              className="px-2 text-base text-gray-400 lg:px-4"
+              className="-ml-8 text-base text-white"
               icon={faMagnifyingGlass}
             />
           </div>
@@ -110,4 +110,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchWhite;
