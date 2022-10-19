@@ -56,27 +56,27 @@ const CheckoutForm = () => {
           email: token.userMail,
           userId: token.userId,
         });
-        console.log(res.data)
+        //console.log(res.data)
         const { client_secret, status } = res.data;
 
         if (status === "requires_action") {
           stripe.confirmCardPayment(client_secret).then(function (result) {
             if (result.error) {
-              //console.log("There was an issue");
-              //console.log(result.error);
+              console.log("There was an issue");
+              console.log(result.error);
               navigate("/errorPayment");
             } else {
               console.log("You got the money")
-              navigate("/successful")
+              //navigate("/successful")
             }
           });
         } else {
-          //console.log("You got the money")
+          console.log("You got the money")
           elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement).clear();
           navigate("/successful");
         }
       } catch (error) {
-        //console.log('Error Credit Card')
+        console.log(error)
         navigate("/errorPayment");
       }
       //setLoading(false)

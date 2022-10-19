@@ -47,7 +47,7 @@ const CheckoutForm = () => {
 
         
       } catch (error) {
-        console.log('Hubo un error, no se pudo procesar su solicitud')
+        console.log(error)
         
       }
       //setLoading(false)
