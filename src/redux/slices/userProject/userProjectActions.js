@@ -2,19 +2,19 @@ import { USER_PROJECT } from "../constants";
 import { responseUserProject } from "./userProjectSlice";
 const axios = require("axios");
 
-export const updateProject = (project_id, user_id) => {
+export const updateUserProject = (project_id, info) => {
   return (dispatch) => {
     axios
-      .put(`${USER_PROJECT}/${project_id}`, user_id)
+      .put(`${USER_PROJECT}/${project_id}`, info)
       .then((res) => dispatch(responseUserProject(res.data)))
       .catch((err) => console.log(err));
   };
 };
 
-export const deleteProject = (project_id,user_id) => {
+export const deleteUserProject = (project_id,info) => {
   return (dispatch) => {
     axios
-      .delete(`${USER_PROJECT}/${project_id}`,user_id)
+      .delete(`${USER_PROJECT}/${project_id}`,info)
       .then((res) => dispatch(responseUserProject(res.data)))
       .catch((err) => console.log(err));
   };

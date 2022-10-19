@@ -56,7 +56,7 @@ const CheckoutForm = () => {
           email: token.userMail,
           userId: token.userId,
         });
-        console.log(res.data)
+        //console.log(res.data)
         const { client_secret, status } = res.data;
 
         if (status === "requires_action") {
@@ -64,7 +64,7 @@ const CheckoutForm = () => {
             if (result.error) {
               console.log("There was an issue");
               console.log(result.error);
-              //navigate("/errorPayment");
+              navigate("/errorPayment");
             } else {
               console.log("You got the money")
               //navigate("/successful")
@@ -73,11 +73,11 @@ const CheckoutForm = () => {
         } else {
           console.log("You got the money")
           elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement).clear();
-          //navigate("/successful");
+          navigate("/successful");
         }
       } catch (error) {
         console.log(error)
-        //navigate("/errorPayment");
+        navigate("/errorPayment");
       }
       //setLoading(false)
     }
