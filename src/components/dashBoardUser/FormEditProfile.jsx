@@ -115,8 +115,9 @@ export default function FormEditProfile({ id, user }) {
 
   async function handleEditPerfil() {
     console.log(state);
-    dispatch(updateUser(id, state));
-    window.location.reload();
+    const profile = dispatch(updateUser(id, state));
+    console.log(profile);
+    // window.location.reload();
   }
 
   return (
@@ -149,7 +150,7 @@ export default function FormEditProfile({ id, user }) {
             onChange={(e) => handleChange(e)}
           ></input>
           <input
-            placeholder={state.description ? state.description : "description"}
+            placeholder="description"
             name="description"
             // value={state.description}
             onChange={(e) => handleChange(e)}

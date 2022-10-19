@@ -27,7 +27,7 @@ export default function Reviews({ id }) {
   function handleSearch(e) {
     e.preventDefault();
     const reviewSearch = user.reviews.filter((review) =>
-      review.post[0].title.toLowerCase().includes(e.target.value.toLowerCase())
+      review.post_id.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
     reviewSearch.length ? setState(reviewSearch) : setState("not found");
   }
