@@ -6,15 +6,19 @@ import { useParams } from "react-router-dom";
 import { createUpdate } from "../../../../redux/slices/update/updateActions";
 import CreateFile from "../files/CreateFile";
 
-const CreateUpdate = ({ project_id }) => {
+const CreateUpdate = ({ project_id, project }) => {
   const fileData = useSelector((state) => state.storage.response);
   const userToken = JSON.parse(window.localStorage.getItem("token"));
+  const users = project.users.map((e) => {
+    return e
+  })
   const [form, setForm] = useState({
     storage_id: "",
     title: "",
     comments: "",
     project_id: project_id,
     user_id: userToken ? userToken.userId : "",
+    users: [...users]
   });
   useEffect(() => {
     fileData.newStorage &&
@@ -60,7 +64,7 @@ const CreateUpdate = ({ project_id }) => {
           md:w-3/4"
       >
         <div
-          className="hidden m-2 place-items-center
+          className="hidden m-2 place-items-center rounded
             md:flex md:w-16 md:justify-self-center
             "
         >

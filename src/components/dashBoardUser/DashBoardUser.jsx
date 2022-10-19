@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/slices/user/userActions";
+import { getUser, getViewUser } from "../../redux/slices/user/userActions";
 import FormEditProfile from "./FormEditProfile";
 import Post from "./Post";
 import Projects from "./Projects";
@@ -8,21 +8,22 @@ import { getAllPosts } from "../../redux/slices/post/postActions";
 import Favourites from "./Favourites";
 import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Profile from "./Profile";
+
 
 export default function DashBoardUser() {
   const dispatch = useDispatch();
-  const { value } = useParams();
-  const userLogeado = JSON.parse(localStorage.getItem("token"));
-  const user = useSelector((state) => state.user.user);
-  const [state, setState] = useState(value);
+  const { id } = useParams();
+  // const userLogeado = JSON.parse(localStorage.getItem("token"));
+  const [state, setState] = useState("projects");
   const [profile, setProfile] = useState(false);
-
+  const user = useSelector((state) => state.user.viewUser);
+  
   useEffect(() => {
-    dispatch(getUser(userLogeado.userId));
-    dispatch(getAllReviews());
-    dispatch(getAllPosts());
+    dispatch(getViewUser(id));
+    /*     dispatch(getAllReviews());
+    dispatch(getAllPosts()); */
   }, [dispatch]);
 
   function handleChange(e) {
@@ -33,12 +34,18 @@ export default function DashBoardUser() {
   }
 
   return (
+    <div className="ml-32">
+      <div>
+        <Link to={'/cancelSubscription'}>
+         <button>Cancel Suscription</button>
+        </Link>
+      </div>
     <div className="mx-32">
       {/* <div className="w-1/2 mx-auto mt-6"> */}
       {profile ? (
         <div>
           <div>
-            <FormEditProfile id={userLogeado.userId} user={user} />
+            <FormEditProfile id={id} user={user} />
           </div>
         </div>
       ) : (
@@ -50,7 +57,7 @@ export default function DashBoardUser() {
               handleChange={handleChange}
               handleEditProfile={handleEditProfile}
               // id={{ id: userLogeado.userId }}
-              id={userLogeado.userId}
+              id={id}
             />
           </div>
         </div>
@@ -85,32 +92,65 @@ export default function DashBoardUser() {
           <hr className="mt-2" />
         </div>
         <div>
-          {state === "projects" && (
-            <div>
-              <Projects id={userLogeado.userId} />
-            </div>
-          )}
-          {state === "posts" && (
+          {state === "projects" &&
+            (user.length !== 0 && user.projects.length ? (
+              <div>
+                <Projects id={id} />
+              </div>
+            ) : (
+              <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+                <p className=" text-base">You have no projects created, start one here.</p>
+                <Link to={"/createproject"}>
+                  <button className="bg-green-600 text-white px-6 mt-6">
+                    New
+                  </button>
+                </Link>
+              </div>
+            ))}
+          {state === "posts" && (user.length !== 0 && user.posts.length ?(
             <div>
               <Post
-                id={userLogeado.userId}
-                key={userLogeado.userId}
+                id={id}
+                key={id}
                 user={user}
               />
             </div>
-          )}
-          {state === "reviews" && (
+          ): (
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+              <p className=" text-base">You have no posts created, start one here.</p>
+              <Link to={"/createpost"}>
+                <button className="bg-green-600 text-white px-6 mt-6">
+                  New
+                </button>
+              </Link>
+            </div>
+          ))}
+          {state === "reviews" && (user.length !== 0 && user.reviews.length ?  ( 
             <div>
               <Reviews />
             </div>
-          )}
-          {state === "favourites" && (
+          ) : (
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+              <p className=" text-base">You have no reviews created</p>
+            </div>
+          ))}
+          {state === "favourites" && (user.length !== 0 && user.reviews.length ? (
             <div>
               <Favourites />
             </div>
+          ) : (
+            <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+              <p className=" text-base">You don´t have any favourite posts yet.</p>
+            </div>
+          )
+          
+          
+          
+          
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 }

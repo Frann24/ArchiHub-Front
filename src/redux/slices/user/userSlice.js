@@ -8,6 +8,7 @@ export const userSlice = createSlice({
     response: {},
     queryUsers: [],
     orderUsers:[],
+    viewUser:[]
   },
   reducers: {
     allUsers: (state, { payload }) => {
@@ -26,10 +27,13 @@ export const userSlice = createSlice({
     },
     queryUser: (state,{payload}) => {
       state.queryUsers = payload
+    },
+    showUserProfile:(state,{payload})=>{
+      state.viewUser = payload
     }
   },
 });
 
-export const { allUsers, showUser, responseUser,order, queryUser } = userSlice.actions;
+export const { allUsers, showUser, responseUser,order, queryUser, showUserProfile } = userSlice.actions;
 
 export default userSlice.reducer;
