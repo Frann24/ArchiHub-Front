@@ -56,7 +56,7 @@ function InviteProject() {
             >
               <form onSubmit={handleSubmit} className="flex flex-col w-full">
                 <button
-                  className="w-full p-2 text-white bg-green-600 lg:hover:bg-green-700 transition-all duration-200 ease-in text-center cursor-pointer lg:w-3/4 mx-auto"
+                  className="w-full p-2 text-white bg-green-600 lg:hover:bg-green-700 transition-all duration-200 ease-in text-center cursor-pointer lg:w-3/4 mx-auto xl:w-1/2"
                   type="submit"
                   onClick={(e) => setInvite(true)}
                   value={true}
