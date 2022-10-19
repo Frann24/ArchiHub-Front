@@ -71,14 +71,12 @@ function Header() {
           <Route path="createproject" element={<CreateProject />} />
           <Route path="/admin" element={<DashBoardAdmin />} />
           <Route path="projectDetail/:id" element={<ProjectDetail />} />
-          {/* <Route path="/dashuser" element={<DashUser />} /> */}
           <Route path="/user/:id" element={<DashBoardUser />} />
           <Route path="/payment" element={<Payment/>} />
           <Route path="forgotPassword" element={<ForgotPassword/>}/>
           <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
           <Route path="search" element={<SearchContent/>}/>
           <Route path="inviteProject/:projectId" element={<InviteProject/>}/>
-          {/* <Route path="inviteProject/:projectId" element={<inviteProject/>}/> */}
           <Route path="*" element={<NotFound/>}/>
 
         </Routes>
