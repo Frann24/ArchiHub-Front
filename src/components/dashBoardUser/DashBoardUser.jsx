@@ -84,7 +84,7 @@ export default function DashBoardUser() {
               </div>
               <div className="ml-32">
                 <Link to={"/cancelSubscription"}>
-                  <button>Edit Suscription</button>
+                  <button>Edit Suscription </button>
                 </Link>
               </div>
             </div>
