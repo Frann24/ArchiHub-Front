@@ -41,12 +41,12 @@ function GuestWhite() {
         </div> 
         <div className="lg:hidden"><BtnMenu /></div>
       </ul>
-      <Modal active={modalSignIn} toggle={toggleSignIn}>
+      {/* <Modal active={modalSignIn} toggle={toggleSignIn}>
         <SigIn/>
       </Modal>
       <Modal active={modalSignUp} toggle={toggleSignUp}>
         <SignUp/>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "./logo/Logo";
 import Guest from "./guest/Guest";
 import Menu from "./menu/Menu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Logged from "./logged/Logged";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../home/Home";
@@ -32,12 +32,18 @@ import Successful from "../payment/Successful";
 import ErrorPayment from "../payment/ErrorPayment";
 import CancelPaymentError from "../payment/CancelPaymentError";
 import CancelPaymentOK from "../payment/CancelPaymentOK";
+import SigIn from "../signIn/SigIn";
+import SignUp from "../signUp/SignUp";
+import Modal from "../modal/Modal";
+import { changeShowSingIn, changeShowSingUp } from "../../redux/slices/header/headerActions";
 
 function Header() {
   const { pathname } = useLocation();
+  const {modalSignIn, modalSignUp} = useSelector(state => state.header)
   const token = window.localStorage.getItem("token");
   const googleUser = window.localStorage.getItem("googleUser");
   const { user } = useSelector((state) => state.login);
+  const dispatch = useDispatch()
   const [scroll, setScroll] = useState(0);
   const onlyWidth = useWindowWidth();
   const isLoggin =
@@ -58,6 +64,14 @@ function Header() {
     condition.current = isLoggin;
   }, [isLoggin]);
 
+  const toggleSignIn = (e) => {
+    e.preventDefault()
+    dispatch(changeShowSingIn(!modalSignIn))
+  }
+  const toggleSignUp = (e) => {
+    e.preventDefault()
+    dispatch(changeShowSingUp(!modalSignUp))
+  }
   const { menu } = useSelector((state) => state.header);
   return (
     <div className="flex flex-col justify-between h-screen w-full">
@@ -84,15 +98,15 @@ function Header() {
                   </div>
                 </div>
               <div className=" xl:hidden">
-                {token ? <Logged /> : <BtnMenu />}
+                {condition.current ? <Logged /> : <BtnMenu />}
               </div>
               <div className="hidden xl:flex gap-8 items-center pt-1">
                 {condition.current ? <Logged /> : <Guest />}
               </div>
             </div>
-            <div className="bg-gray-100 bg-opacity-50 lg:hidden">
+            {/* <div className="bg-gray-100 bg-opacity-50 lg:hidden">
               {menu && <Menu path={pathname} />}
-            </div>
+            </div> */}
             </div>
           </div>
         )}
@@ -123,6 +137,12 @@ function Header() {
           <Route path="/cancelPaymentOK" element={<CancelPaymentOK />} />   
           <Route path="/about" element={<AboutUs />} />
         </Routes>
+        <Modal active={modalSignIn} toggle={toggleSignIn}>
+        <SigIn/>
+      </Modal>
+      <Modal active={modalSignUp} toggle={toggleSignUp}>
+        <SignUp/>
+      </Modal>
       </div>
       <div>
         <Footer />

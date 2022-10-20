@@ -60,9 +60,9 @@ const HeaderDos = () => {
             {condition.current ? <LoggedWhite /> : <GuestWhite />}
           </div>
         </div>
-        <div className="bg-gray-100 bg-opacity-50 lg:hidden">
+        {/* <div className="bg-gray-100 bg-opacity-50 lg:hidden">
           {menu && <Menu path={pathname} />}
-        </div>
+        </div> */}
       </div>
     </div>
   );
