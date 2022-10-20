@@ -8,7 +8,7 @@ export const postSlice = createSlice({
     filterType: [],
     orderPosts: [],
     post: [],
-    response: {},
+    response: [],
   },
   reducers: {
     allPosts: (state, { payload }) => {

@@ -74,7 +74,7 @@ export default function Projects(id) {
           return (
             <div className="flex flex-col-3">
               <div>
-                <VisualizePDFDash url={project.pdf_file.url}/>
+                {project.pdf_file &&<VisualizePDFDash url={project.pdf_file.url}/>}
                 <div className="text-base font-semibold">{project.title}</div>
                 <p className="text-base truncate">
                   {project.description.slice(0, 50)}

@@ -23,10 +23,9 @@ const ProjectDetail = () => {
     allData.sort((a, b) =>
       new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1
     );
-  console.log(sortData);
   useEffect(() => {
     dispatch(getProject(id));
-  }, [dispatch, response, responseDownload]);
+  }, [dispatch, response, responseDownload,id]);
   return (
     <div>
       <div
