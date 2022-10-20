@@ -5,6 +5,7 @@ import {
   showProject,
   responseProject,
   queryProject,
+  clear,
 } from "./projectSlice";
 
 export const getAllProjects = () => {
@@ -62,4 +63,8 @@ export function getQueryProjects(allProjects, name) {
         )
       )
     : queryProject(allProjects);
+}
+
+export const clearResponseProject=(id)=>{
+  return clear() 
 }

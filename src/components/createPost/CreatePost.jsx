@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Select from "react-select";
-import { getAllUsers } from "../../redux/slices/user/userActions";
-import { createPost } from "../../redux/slices/post/postActions";
+import { getAllUsers, getUser } from "../../redux/slices/user/userActions";
+import { clearResponsePost, createPost } from "../../redux/slices/post/postActions";
 import infoTypePost from "../../api/projectTypeData";
 import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
@@ -33,17 +33,22 @@ const CreatePost = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [response, setResponse] = useState(null);
+  const {user} = useSelector(state=>state.user)
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
+  const Users = [...allUsers]
+  const filterUsers = Users.filter(e=>!(!e.isPremium && e.posts.length>=3)&& e._id!==user._id)
 const responsePost = useSelector(state=>state.post.response)
   useEffect(() => {
     dispatch(getAllUsers());
-
   }, []);
 useEffect(()=>{
-  responsePost._id && navigate(`/postDetail/${responsePost._id}`);
+  if(responsePost._id){  
+    navigate(`/postDetail/${responsePost._id}`);
+  dispatch(clearResponsePost())
+  dispatch(getUser(userToken.userId))}
 },[responsePost])
-  const options = allUsers.map((e) => {
+  const options = filterUsers.map((e) => {
     return {
       value: e._id,
       label: e.nickname,
@@ -193,7 +198,14 @@ useEffect(()=>{
     }
 
   };
-
+  if(!userToken){
+    navigate("/home")
+    return
+  }
+   if(userToken && !userToken.isPremium && user.posts.length>=3){
+    navigate("/payment")
+    return
+  } 
   return (
     <div className="flex flex-row my-8">
       <form
@@ -283,7 +295,7 @@ useEffect(()=>{
             </span>
           )}
           <label>Project Type</label>
-          <Select
+          <Select 
             className={`w-full my-2 ${
               errors.project_type &&
               "border-2 focus:border-danger border-danger"

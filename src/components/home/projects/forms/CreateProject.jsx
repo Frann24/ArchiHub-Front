@@ -4,10 +4,10 @@ import CreateFile from "../files/CreateFile";
 import CreatePdfFile from "../files/CreatePdfFile";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../../../redux/slices/user/userActions";
+import { getAllUsers, getUser } from "../../../../redux/slices/user/userActions";
 import { useEffect } from "react";
 import { getStorageById } from "../../../../redux/slices/storage/storageActions";
-import { createProject } from "../../../../redux/slices/project/projectActions";
+import { clearResponseProject, createProject } from "../../../../redux/slices/project/projectActions";
 import { validate } from "./validateProject";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +21,8 @@ const CreateProject = () => {
 const [createdSuccessful, setCreatedSuccessful] = useState(false);
   const userToken = JSON.parse(window.localStorage.getItem("token"));
     const {user} = useSelector(state=>state.user)
+    const users = [...allUsers]
+    const filterUsers = users.filter(e=>!(!e.isPremium && e.posts.length>=3)&& e._id!==user._id)
   const [errors, setErrors] = useState({});
   const {response} = useSelector(state=>state.project)
 const navigate = useNavigate()
@@ -37,11 +39,15 @@ const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getAllUsers());
-
   }, [dispatch]);
 
 useEffect(()=>{
-  response._id && navigate(`/projectDetail/${response._id}`);
+  if(response._id){
+    navigate(`/projectDetail/${response._id}`); 
+  dispatch(clearResponseProject())
+  dispatch(getUser(userToken.userId))
+  }
+  
 },[response]) 
   useEffect(() => {
     if (
@@ -84,7 +90,7 @@ useEffect(()=>{
       visibility: value,
     });
   };
-  const options = allUsers.map((e) => {
+  const options = filterUsers.map((e) => {
     return {
       value: e._id,
       label: e.nickname,
@@ -143,6 +149,14 @@ useEffect(()=>{
       }
     }
   };
+  if(!userToken){
+    navigate("/home")
+    return
+  }
+  if(userToken && !userToken.isPremium && user.projects.length>=3){
+    navigate("/payment")
+    return
+  }
   return (
     <div className="flex flex-row my-8">
       <form onSubmit={(e) => handleSubmit(e)} className="w-full md:w-1/2">

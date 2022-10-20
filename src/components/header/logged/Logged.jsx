@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { getUser } from "../../../redux/slices/user/userActions";
 import AvatarUser from "../../avatarUser/AvatarUser";
 
 function Logged() {
+  const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(false);
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
@@ -19,7 +20,9 @@ function Logged() {
     dispatch(logOutUser())
     localStorage.removeItem("googleUser")
     dispatch(clearUser({}))
+    navigate("/home")
     window.location.reload()
+    
   }
   useEffect(()=> {
     const closeDropDown = e => {
@@ -133,10 +136,10 @@ function Logged() {
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/posts/${user._id}`}>My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}/posts`}>My posts</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/projects/${user._id}`}>My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}/projects`}>My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
@@ -149,7 +152,7 @@ function Logged() {
                     <p>You don't have projects!</p>
                     <p className="hover:underline"><Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/createproject">Create now</Link></p>
                     </div>
-                  : user.projects.map((e, i) => (
+                  : user.projects.slice(user.projects.length-3,user.projects.length).map((e, i) => (
                       <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" key={i} to={`/projectDetail/${e._id}`}>{e.title}</Link>
                   ))}
                 </div>}

@@ -6,9 +6,9 @@ import {
   order,
   queryUser,
   showUserProfile,
+  clear,
 } from "./userSlice";
 const axios = require("axios");
-
 export const getAllUsers = () => {
   return (dispatch) => {
     axios
@@ -95,3 +95,7 @@ export const getViewUser = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const clearResponseUser=(id)=>{
+  return clear() 
+}
