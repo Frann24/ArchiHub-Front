@@ -14,7 +14,6 @@ function ContentCarousel({data}) {
   const ratingFormat = (rating) => {
     return Number.parseFloat(rating).toFixed(1)
   }
-  console.log(data);
  
   return (
     <div className='relative h-[100vw] sm:h-[95vw] md:h-[80vw] lg:h-[60vw] xl:h-[45vw] 2xl:h-[43vw]'>
