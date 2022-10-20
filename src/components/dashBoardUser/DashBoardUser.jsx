@@ -17,7 +17,7 @@ export default function DashBoardUser(props) {
   const { id } = useParams();
   const a = useParams();
   
-  // const userLogeado = JSON.parse(localStorage.getItem("token"));
+  const userLogeado = JSON.parse(localStorage.getItem("token"));
   const [state, setState] = useState("Posts");
   const [profile, setProfile] = useState(false);
   const user = useSelector((state) => state.user.viewUser);
@@ -117,11 +117,11 @@ export default function DashBoardUser(props) {
                   onClick={(e) => handleChange(e)}
                 />
               </div>
-              <div className="">
+            {user.length!==0 && userLogeado && userLogeado.userId==user._id && user.premium ? <div className="">
                 <Link to={"/cancelSubscription"}>
-                  <button>Edit Subscription </button>
+                  <button>Cancel Subscription </button>
                 </Link>
-              </div>
+              </div>:<></>}
             </div>
             <hr className="mt-2" />
           </div>
@@ -133,14 +133,16 @@ export default function DashBoardUser(props) {
                 </div>
               ) : (
                 <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-                  <p className=" text-base text-center  text-gray-500">
+                  {user.length!==0 && userLogeado && userLogeado.userId==user._id ?<><p className=" text-base text-center  text-gray-500">
                     You have no project created ? make a new one.
                   </p>
                   <Link to={"/createproject"}>
                     <button className="bg-green-600 text-white px-6 mt-6">
                       New
                     </button>
-                  </Link>
+                  </Link></>:<p className=" text-base text-center text-gray-400">
+                  The user doesn´t has any project.
+                  </p>}
                 </div>
               ))}
             {state === "Posts" &&
@@ -150,14 +152,16 @@ export default function DashBoardUser(props) {
                 </div>
               ) : (
                 <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-                  <p className=" text-base text-center text-gray-400">
+                  {user.length!==0 && userLogeado && userLogeado.userId==user._id ?<><p className=" text-base text-center text-gray-400">
                     You have no posts created ? make a new one.
                   </p>
                   <Link to={"/createpost"}>
                     <button className="bg-green-600 text-white px-6 mt-6">
                       New
                     </button>
-                  </Link>
+                  </Link></>:<p className=" text-base text-center text-gray-400">
+                    The user doesn´t has any post.
+                  </p>}
                 </div>
               ))}
             {state === "Reviews" &&
@@ -167,7 +171,8 @@ export default function DashBoardUser(props) {
                 </div>
               ) : (
                 <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center text-center">
-                  <p className=" text-base">You have no reviews created</p>
+                  <p className=" text-base text-center text-gray-400">
+                  {user.length!==0 && userLogeado && userLogeado.userId==user._id ?"You don´t have any reviews yet.":"the user doesn´t has any reviews yet"}</p>
                 </div>
               ))}
             {state === "Favourites" &&
@@ -177,8 +182,8 @@ export default function DashBoardUser(props) {
                 </div>
               ) : (
                 <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-                  <p className=" text-base">
-                    You don´t have any favourite posts yet.
+                  <p className=" text-base text-center text-gray-400">
+                    {user.length!==0 && userLogeado && userLogeado.userId==user._id ?"You don´t have any favourite posts yet.":"the user doesn´t has any favourite posts yet"}
                   </p>
                 </div>
               ))}
