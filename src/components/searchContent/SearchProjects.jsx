@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import NoFound from './NoFound';
 
 function SearchProjects({projects,numberProject=6}) {
@@ -28,7 +29,7 @@ function SearchProjects({projects,numberProject=6}) {
         return(
           <div key={i} className="border-b border-gray-300 py-4">
             <div className='flex flex-row items-center lg:gap-4'>
-              <p className='text-gray-900 text-lg font-bold w-full lg:w-auto uppercase'>{e.title}</p>
+              <Link to={`/projectDetail/${e._id}`}><p className='text-gray-900 text-lg font-bold w-full lg:w-auto uppercase'>{e.title}</p></Link>
               <p className='border text-gray-600 border-gray-400 rounded-lg px-2 text-sm'>{e.visibility}</p>
             </div>
             <p className='line-clamp-1'>{e.description}</p>

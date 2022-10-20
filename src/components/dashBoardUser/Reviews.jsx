@@ -23,7 +23,6 @@ export default function Reviews({ id }) {
     setState(state);
   }, [cambio]);
 
-
   function handleSearch(e) {
     e.preventDefault();
     const reviewSearch = user.reviews.filter((review) =>
