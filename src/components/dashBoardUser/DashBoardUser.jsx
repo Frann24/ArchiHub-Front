@@ -10,25 +10,38 @@ import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
 import { Link, useParams } from "react-router-dom";
 import Profile from "./Profile";
+import { useLocation } from "react-router-dom";
 
-export default function DashBoardUser() {
+export default function DashBoardUser(props) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const a = useParams();
-  console.log(a)
+   console.log(a)
   // const userLogeado = JSON.parse(localStorage.getItem("token"));
   const [state, setState] = useState("projects");
   const [profile, setProfile] = useState(false);
   const user = useSelector((state) => state.user.viewUser);
+  let location = useLocation()
+  let locationState = location.state
+  
+  console.log(locationState);
 
   useEffect(() => {
     dispatch(getViewUser(id));
-    /*     dispatch(getAllReviews());
-    dispatch(getAllPosts()); */
+    if(locationState === "posts"){
+      setState(locationState)
+    }
+    if(locationState === "projects"){
+      setState(locationState)
+    }else{
+      setState("projects")
+    }
     return()=>{
       dispatch(clearResponseUser())
-    }
-  }, [dispatch,id]);
+  }}
+  , [dispatch,id, locationState]);
+
+
 
   function handleChange(e) {
     setState(e.target.value);

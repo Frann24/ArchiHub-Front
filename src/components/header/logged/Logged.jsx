@@ -7,6 +7,7 @@ import { clearUser, logOutUser } from "../../../redux/slices/auth/loginActions";
 import { getUser } from "../../../redux/slices/user/userActions";
 import AvatarUser from "../../avatarUser/AvatarUser";
 
+
 function Logged() {
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(false);
@@ -15,6 +16,8 @@ function Logged() {
   const {user} = useSelector(state => state.user)
   const btnRef = useRef();
   const dispatch = useDispatch()
+  const datas = { projects:"projects", posts:"posts"}
+  const userUrl = `user/${user._id}`
 
   const handleLogout =  (e) => {
     dispatch(logOutUser())
@@ -136,10 +139,10 @@ function Logged() {
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}/posts`}>My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400"  to={userUrl} state={datas.posts}>My posts</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}/projects`}>My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={userUrl} state={datas.projects}>My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>

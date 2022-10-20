@@ -14,6 +14,9 @@ function LoggedWhite() {
   const {user} = useSelector(state => state.user)
   const btnRef = useRef();
   const dispatch = useDispatch()
+  const datas = { projects:"projects", posts:"posts"}
+  const userUrl = `user/${user._id}`
+
 
   const handleLogout =  (e) => {
     dispatch(logOutUser())
@@ -133,10 +136,10 @@ function LoggedWhite() {
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/posts">My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400"  to={userUrl} state={datas.posts}>My posts</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to="/user/projects">My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={userUrl} state={datas.projects}>My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>
