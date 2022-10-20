@@ -88,8 +88,8 @@ export default function FormEditProfile({ id }) {
   });
 
   async function handleEditPerfil(e) {
-    e.preventDefault()
     dispatch(updateUser(id, state));
+    window.location.reload();
   }
 
   return (
