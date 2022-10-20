@@ -30,10 +30,14 @@ export const userSlice = createSlice({
     },
     showUserProfile:(state,{payload})=>{
       state.viewUser = payload
+    },
+    clear:(state)=>{
+      state.viewUser = [];
+      state.response = [];
     }
   },
 });
 
-export const { allUsers, showUser, responseUser,order, queryUser, showUserProfile } = userSlice.actions;
+export const { allUsers, showUser, responseUser,order, queryUser, showUserProfile,clear } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -85,8 +85,8 @@ function ChartUsers() {
   return (
     <div className="">
       <div className="w-96">
+        <p className="font-bold mt-2 mb-7 ml-16">Users</p>
         <Bar data={data} options={options} />
-      <p className="font-bold mt-2 mb-7 ml-16">Total Users: active/inactive/banned</p>
       </div>
     </div>
   );

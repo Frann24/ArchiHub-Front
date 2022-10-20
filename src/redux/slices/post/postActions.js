@@ -1,5 +1,5 @@
 import { POST } from "../constants";
-import { allPosts, showPost, responsePost } from "./postSlice";
+import { allPosts, showPost, responsePost,clear } from "./postSlice";
 const axios = require("axios");
 
 export const getAllPosts = () => {
@@ -46,3 +46,7 @@ export const deletePost = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const clearResponsePost=(id)=>{
+  return clear() 
+}
