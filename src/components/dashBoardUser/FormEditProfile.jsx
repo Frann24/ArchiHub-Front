@@ -25,7 +25,7 @@ export default function FormEditProfile({ id }) {
   let image = "";
 
   const [isHovering, setIsHoverig] = useState(false);
-
+  const {response} = useSelector(state=> state.user)
   function handleMouseEnter() {
     setIsHoverig(true);
   }
@@ -87,11 +87,15 @@ export default function FormEditProfile({ id }) {
     },
   });
 
+  useEffect(()=>{
+
+  },[response])
   async function handleEditPerfil(e) {
-    e.preventDefault()
+    /* e.preventDefault() */
     dispatch(updateUser(id, state));
   }
-
+  if(response._id) window.location.reload() 
+  
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col items-center gap-8 mb-2 w-full">
