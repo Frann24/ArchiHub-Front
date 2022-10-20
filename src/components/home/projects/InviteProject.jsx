@@ -10,21 +10,23 @@ import { NavLink } from "react-router-dom";
 function InviteProject() {
   const dispatch = useDispatch();
   const { projectId } = useParams();
-  const user = JSON.parse(localStorage.getItem("token"));
-  let { userId } = user;
+  // const user = JSON.parse(localStorage.getItem("token"));
+  // let { userId } = user;
   const logged = useSelector((state) => state.user.user);
   const project = useSelector((state) => state.project.project);
   const [invite, setInvite] = useState(null);
+  
+  // console.log(logged._id);
 
   const navigate = useNavigate();
   useEffect(() => {
-    dispatch(getUser(userId));
+    dispatch(getUser(logged._id));
     dispatch(getProject(projectId));
-  }, [dispatch, userId, projectId]);
+  }, [dispatch, projectId, logged._id]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (invite === true) {
-      const objetonto = { user_id: userId };
+      const objetonto = { user_id: logged._id };
       dispatch(updateUserProject(projectId, objetonto));
       alert("Now you are part of the project");
       navigate("/home");
@@ -36,7 +38,7 @@ function InviteProject() {
 
   return (
     <div>
-      {!userId.length ? (
+      {!logged._id ? (
         <div>
           <Unauthorized />
         </div>

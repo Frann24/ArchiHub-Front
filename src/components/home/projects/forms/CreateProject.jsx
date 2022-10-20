@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "../files/tooltip.css"
 import { Link } from "react-router-dom";
+import Unauthorized from "../../../errors/Unauthorized";
 const CreateProject = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
@@ -130,6 +131,9 @@ const CreateProject = () => {
   };
   return (
     <div className="flex flex-row my-8">
+      {!user? 
+      <Unauthorized/>
+      :
       <form onSubmit={(e) => handleSubmit(e)} className="w-full md:w-1/2">
         <div
           className="mx-4
@@ -233,7 +237,9 @@ const CreateProject = () => {
           )}
           
         </div>
+
       </form>
+      }
       <div className="hidden w-1/2 p-16 border-l-2 md:flex md:justify-center md:items-center md:text-5xl">
         <h1>If you can imagine, Arquihub helps you to make it.</h1>
       </div>
