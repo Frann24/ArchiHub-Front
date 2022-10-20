@@ -29,7 +29,6 @@ const ProjectDetail = () => {
     return()=>{
       dispatch(clearResponseProject())
     }
-
   }, [dispatch, response, responseDownload,id]);
   return (
     <div>
