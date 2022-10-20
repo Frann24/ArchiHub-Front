@@ -20,6 +20,7 @@ import axios from "axios";
 import CancelPaymentOk from "./components/payment/CancelPaymentOK"
 //import CancelPaymentError from "./components/payment/CancelPaymentError"
 
+
 function App() {
 
   const auth = JSON.parse(localStorage.getItem("token"))

@@ -24,7 +24,8 @@ import DashBoardUser from "../dashBoardUser/DashBoardUser";
 import SearchContent from "../searchContent/SearchContent";
 import CancelPayment from "../payment/CancelPayment";
 import InviteProject from "../home/projects/InviteProject";
-import NotFound from "../errors/NotFound";
+import NotFound from "../errors/NotFound"
+import AboutUs from "../AboutUs";
 import HeaderDos from "./HeaderDos";
 import { useWindowWidth } from "@react-hook/window-size";
 import Successful from "../payment/Successful";
@@ -68,7 +69,7 @@ function Header() {
             className={`sticky  bg-white shadow-lg w-full top-0 z-10`}
           >
             <div
-              className="flex justify-between items-center h-16
+              className="flex justify-between mx-4 items-center h-16
           md:mx-8
           lg:mx-16 lg:h-16
           xl:mx-32 xl:h-20
@@ -117,7 +118,8 @@ function Header() {
           <Route path="/successful" element={<Successful />} />
           <Route path="/errorPayment" element={<ErrorPayment />} />
           <Route path="/cancelPaymentError" element={<CancelPaymentError />} />
-          <Route path="/cancelPaymentOK" element={<CancelPaymentOK />} />
+          <Route path="/cancelPaymentOK" element={<CancelPaymentOK />} />   
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </div>
       <div>

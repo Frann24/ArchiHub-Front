@@ -20,11 +20,11 @@ const CreatePost = () => {
   const [form, setForm] = useState({
     title: "",
     description: "",
-    project_type: [],
+    project_type: "default",
     mts2: "",
-    rooms: "",
+    rooms: "0",
     year: "",
-    bathrooms: "",
+    bathrooms: "0",
     image: [],
     authors: [],
     additional_data: "",
@@ -35,11 +35,14 @@ const CreatePost = () => {
   const [response, setResponse] = useState(null);
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
-
+const responsePost = useSelector(state=>state.post.response)
   useEffect(() => {
     dispatch(getAllUsers());
-  }, []);
 
+  }, []);
+useEffect(()=>{
+  responsePost._id && navigate(`/postDetail/${responsePost._id}`);
+},[responsePost])
   const options = allUsers.map((e) => {
     return {
       value: e._id,
@@ -129,7 +132,6 @@ const CreatePost = () => {
     });
   };
   const uploadImage = async (files) => {
-    console.log(form.image);
     const data = new FormData();
     data.append("file", files);
     data.append("upload_preset", "Arquihub");
@@ -171,24 +173,25 @@ const CreatePost = () => {
   const handleFormSubmit = async (files, e) => {
     e.preventDefault();
     const displayForm = form;
-
-    if (Object.keys(errors).length === 0) {
+    const error = validationsForm(form)
+    setErrors(validationsForm(form));
+    if (Object.keys(error).length === 0) {
       dispatch(createPost(displayForm));
       setResponse(true);
+      setForm({
+        title: "",
+        description: "",
+        project_type: [],
+        mts2: "",
+        rooms: "",
+        year: "",
+        image: [],
+        bathrooms: "",
+        authors: [],
+        additional_data: "",
+      });
     }
-    setForm({
-      title: "",
-      description: "",
-      project_type: [],
-      mts2: "",
-      rooms: "",
-      year: "",
-      image: [],
-      bathrooms: "",
-      authors: [],
-      additional_data: "",
-    });
-    navigate("/home");
+
   };
 
   return (
