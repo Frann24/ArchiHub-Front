@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Search from "../menu/search/Search"
+import SearchWhite from "../menu/search/SearchWhite"
 
-function Navbar() {
+function NavBarDos() {
   const naviagete = useNavigate()
 
   const handleClick = (e,id) => {
@@ -12,7 +12,7 @@ function Navbar() {
   };
   return (
     <div className=''>
-      <Search />
+      <SearchWhite />
         {/* <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#home_id")}><Link to="/home">Home</Link></div>
         <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#posts_id")}><Link to="/home">Posts</Link></div>
         <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#news_id")}><Link to="/home">News</Link></div> */}
@@ -21,4 +21,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default NavBarDos

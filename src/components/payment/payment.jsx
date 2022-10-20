@@ -13,6 +13,9 @@ import {
 import CardSectionStyles from "./CardSectionStyles.css";
 //import "bootswatch/dist/lux/bootstrap.min.css";
 import { PAYMENT } from "../../redux/slices/constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCheck } from "@fortawesome/free-solid-svg-icons"; //este es para solid
+import { faXmark } from "@fortawesome/free-solid-svg-icons"; //este es para solid
 const axios = require("axios");
 
 const stripePromise = loadStripe(
@@ -87,48 +90,49 @@ const CheckoutForm = () => {
     
         <div className="container mx-auto">
       <div className="container mx-auto grid justify-items-center">
-        <h1>Choose the right plan for you:</h1>
+        <h1 className="text-2xl mt-0.5 mb-0.5 ">Choose the right plan for you:</h1>
       </div>    
      
-         <div className="container max-width: 640px grid justify-items-center ">   
+         <div className="container mx-auto max-width: 640px grid justify-items-center ">   
         <div className="container bg-gray-100 max-width: 640px 
                         grid grid-cols-3
                         justify-items-center
-                        h-64 w-2/3">
-          <div className="w-40 justify-content-center">
-            1
+                        items-center
+                        h-64 w-2/3 my-4">
+          <div className="w-40">
+            
           </div>
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-semibold">
             Free
           </div>
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-semibold">
             Premium
           </div>          
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-semibold">
             Publication
           </div>
-          <div className="w-40 text-center">
-            X 
+          <div className="font-red-400">
+          <FontAwesomeIcon icon={faXmark}  />
           </div>
-          <div className="w-40 text-center">
-            tilde          
+          <div className="font-green-400">
+          <FontAwesomeIcon icon={faCheck} />          
           </div>
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-semibold">
             Number of Projects
           </div>
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-medium">
             3
           </div>
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-medium">
             Unlimited
           </div>          
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-semibold">
             Project Privacy
           </div>
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-medium">
             Public only 
           </div>
-          <div className="w-40 text-center">
+          <div className="w-40 text-center font-medium">
             Public/Private          
           </div>    
         </div> 
@@ -137,28 +141,35 @@ const CheckoutForm = () => {
       
 
       <div className="container mx-auto">
+      <div className="container grid justify-items-center mb-4">
+        <h1 className="text-2xl my-1 ">Day subscription: $1</h1>
+        <p>Automatically renued can be stopped anytime</p>
+      </div>
       <form onSubmit={handleSubmitSubscription}>
         <div className="container mx-auto justify-items-center max-width: 640px h-64 w-2/5">
-          {/* <CardElement /> */}
-          <div className="card-number">
+          <div className="container mx-auto w-96 justify-items-center">
+          <div>
+              <p className="text-xs">Card Number</p>
+            </div>
+          <div className="mb-4">
             <CardNumberElement />
-            <div>
-              <p>Card Number</p>
-            </div>
           </div>
-          <div className="card-expire">
+            <div>
+              <p className="text-xs">Expires</p>
+            </div>
+          <div className="mb-4">
             <CardExpiryElement />
-            <div>
-              <p>Expires</p>
-            </div>
           </div>
-          <div className="card-cvc">
+            <div>
+              <p className="text-xs">Code Security</p>
+            </div>
+          <div className="mb-4">
             <CardCvcElement />
-            <div>
-              <p>Code Security</p>
-            </div>
+          </div>  
+        <div className="container mx-auto">
+          <button className="ml-36 px-3 py-1 bg-green-400 rounded border-solid" disabled={!stripe}>Suscription</button>
           </div>
-          <button disabled={!stripe}>Suscription</button>
+         </div>         
         </div>
       </form>
       </div>
