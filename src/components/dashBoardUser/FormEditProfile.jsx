@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../redux/slices/user/userActions";
 import UploadPhotos from "./UploadPhotos";
 import Swal from "sweetalert2";
