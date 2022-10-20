@@ -47,20 +47,22 @@ const HeaderDos = () => {
     2xl:mx-64 2xl:h-24
     "
         >
-          <div className="text-2xl lg:text-3xl text-white">
-            <Logo />
-          </div>
-          <div className="hidden lg:ml-40 xl:ml-60 2xl:ml-80 lg:flex">
-            <NavBarDos path={pathname} />
+          <div className="flex items-center gap-8 xl:gap-16 2xl:gap-32 w-7/12 2xl:w-8/12 ">
+            <div className="text-2xl lg:text-3xl text-white">
+              <Logo />
+            </div>
+            <div className="hidden lg:inline w-full">
+              <NavBarDos path={pathname} />
+            </div>
           </div>
           <div className=" xl:hidden">{token ? <LoggedWhite /> : <BtnMenu />}</div>
           <div className="hidden xl:flex gap-8 items-center pt-1">
             {condition.current ? <LoggedWhite /> : <GuestWhite />}
           </div>
         </div>
-        <div className="bg-gray-100 bg-opacity-50 lg:hidden">
+        {/* <div className="bg-gray-100 bg-opacity-50 lg:hidden">
           {menu && <Menu path={pathname} />}
-        </div>
+        </div> */}
       </div>
     </div>
   );
