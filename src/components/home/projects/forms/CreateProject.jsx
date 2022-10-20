@@ -12,12 +12,8 @@ import { validate } from "./validateProject";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "../files/tooltip.css"
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
 import Unauthorized from "../../../errors/Unauthorized";
-=======
 import { Link, useNavigate } from "react-router-dom";
->>>>>>> 4ecdfedd6cf7c34035cd6616dcaf6b54aff1a3cd
 const CreateProject = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.user.allUsers);
