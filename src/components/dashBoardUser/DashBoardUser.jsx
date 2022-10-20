@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getViewUser } from "../../redux/slices/user/userActions";
+import { clearResponseUser, getUser, getViewUser } from "../../redux/slices/user/userActions";
 import FormEditProfile from "./FormEditProfile";
 import Post from "./Post";
 import Projects from "./Projects";
@@ -36,9 +36,12 @@ export default function DashBoardUser(props) {
     }else{
       setState("projects")
     }
-    /*     dispatch(getAllReviews());
-    dispatch(getAllPosts()); */
-  }, [dispatch,id, locationState]);
+    return()=>{
+      dispatch(clearResponseUser())
+  }}
+  , [dispatch,id, locationState]);
+
+
 
   function handleChange(e) {
     setState(e.target.value);

@@ -2,15 +2,19 @@ import { Link } from "react-router-dom";
 
 const CancelPaymentOk = () => {
   return (
-    <div>
-      <div>
-        <div>
-          The subscription has been cancelled. You will continue to enjoy the
-          benefits of a Free client. Remember that you can go back to being
-          Premium whenever you want.
+    <div className="sm:mx-4 md:mx-8 lg:mx-16  xl:mx-32">      
+        <div className="mt-20 text-xl">
+          The subscription has been cancelled successfully. 
+          <br/>Remember that you can go back to being
+          Premium anytime.
         </div>
-        <Link to="/home">Home</Link>
-      </div>      
+        <div>
+          <Link to="/home">
+          <button className="bg-black text-white px-6 mt-6">
+              Home
+          </button>    
+          </Link>    
+        </div>  
     </div>
   );
 };

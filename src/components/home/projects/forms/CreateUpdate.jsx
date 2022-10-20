@@ -4,10 +4,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createUpdate } from "../../../../redux/slices/update/updateActions";
+import AvatarUser from "../../../avatarUser/AvatarUser";
 import CreateFile from "../files/CreateFile";
 
 const CreateUpdate = ({ project_id, project }) => {
   const fileData = useSelector((state) => state.storage.response);
+  const {user} = useSelector(state=>state.user)
   const userToken = JSON.parse(window.localStorage.getItem("token"));
   const users = project.users.map((e) => {
     return e
@@ -65,10 +67,10 @@ const CreateUpdate = ({ project_id, project }) => {
       >
         <div
           className="hidden m-2 place-items-center rounded
-            md:flex md:w-16 md:justify-self-center
+            md:flex md:w-20 md:justify-self-center
             "
         >
-          <img src={userToken && userToken.userAvatar} alt="" />
+          {user.length!==0 && <AvatarUser img={user.avatar} className="w-20 h-20" ></AvatarUser>}
         </div>
         <div className="col-span-4 md:col-span-2 md:col-start-2">
           <input

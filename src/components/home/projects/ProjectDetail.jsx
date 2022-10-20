@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getProject } from "../../../redux/slices/project/projectActions";
+import { clearResponseProject, getProject } from "../../../redux/slices/project/projectActions";
 import { getUser } from "../../../redux/slices/user/userActions";
 import Loader from "../../loader/Loader";
 import UpdateDetail from "./update/UpdateDetail";
@@ -9,6 +9,7 @@ import UpdateDetailCollab from "./update/UpdateDetailCollab";
 import ProjectFile from "./files/ProjectFile";
 import CreateUpdate from "./forms/CreateUpdate";
 import VisualizePDF from "./VisualizePDF";
+import AvatarUser from "../../avatarUser/AvatarUser";
 
 const ProjectDetail = () => {
   const response = useSelector((state) => state.update.response);
@@ -23,10 +24,13 @@ const ProjectDetail = () => {
     allData.sort((a, b) =>
       new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1
     );
-  console.log(sortData);
   useEffect(() => {
     dispatch(getProject(id));
-  }, [dispatch, response, responseDownload]);
+    return()=>{
+      dispatch(clearResponseProject())
+    }
+
+  }, [dispatch, response, responseDownload,id]);
   return (
     <div>
       <div
@@ -66,11 +70,7 @@ const ProjectDetail = () => {
                             md:w-fit md:pr-2
                             "
                           >
-                            <img
-                              src={`${user.avatar}`}
-                              // alt={user.nickname}
-                              className="rounded-full w-8 m-2"
-                            />
+                    <AvatarUser img={user.avatar} className="w-16 h-16 p-2" ></AvatarUser>
                             <p className="">{user.nickname}</p>
                           </div>
                         </Link>

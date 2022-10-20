@@ -11,6 +11,9 @@ function ContentCarousel({data}) {
   useEffect(()=>{
     dispatch(getPost(data._id))
   },[dispatch]) */
+  const ratingFormat = (rating) => {
+    return Number.parseFloat(rating).toFixed(1)
+  }
  
   return (
     <div className='relative h-[100vw] sm:h-[95vw] md:h-[80vw] lg:h-[60vw] xl:h-[45vw] 2xl:h-[43vw]'>
@@ -22,7 +25,10 @@ function ContentCarousel({data}) {
             <p className='font-medium text-sm sm:text-base lg:text-lg text-center'>{data.project_type}</p>
           </div>
           <div className='bottom-0 mx-4 sm:mx-8 lg:mx-16 xl:mx-32 2xl:mx-64 py-2 lg:py-4 xl:py-2'>
-            <p className='text-gray-50 font-medium text-xl sm:text-2xl xl:text-3xl uppercase'>{data.title}</p>
+            <div className='flex flex-row'>
+              <p className='text-gray-50 font-medium text-xl sm:text-2xl xl:text-3xl uppercase'>{data.title}</p>
+              <span className='text-white opacity-50 px-2 font-medium text-base sm:text-xl xl:text-2xl uppercase'>{ratingFormat(data.rating)}</span>
+            </div>
             <p className='text-gray-50 line-clamp-1 lg:line-clamp-2 font-light text-xs sm:text-base lg:text-lg xl:text-base 2xl:line-clamp-3'>{data.description}</p>
           </div>
         </div>

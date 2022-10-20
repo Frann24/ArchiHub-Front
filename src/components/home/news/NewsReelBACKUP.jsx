@@ -20,16 +20,33 @@ export default function NewsReel() {
   function paginado() {
     setPage(page + 1);
   }
-  /* console.log("newsPaginado: ", newsPaginado); */
   return (
-    <div >
+    <div>
       <h4 className="mb-6 font-semibold font-size:26px">News</h4>
       <div className="container mx-auto margin-top: 16px">
+        <Link to={newsPaginado.length !== 0 && `/newsDetail/${newsPaginado[0].id}`}>
+          <div className="hidden my-8 lg:flex">
+            {newsPaginado.length !== 0 && (
+              <div className="flex flex-row items-center">
+                <img src={newsPaginado[0].image} alt="" className="w-4/6" />
+                <div className="flex justify-between flex-col mx-4 gap-2">
+                  <div className="">
+                    <div className="text-2xl font-medium">{newsPaginado[0].title}</div>
+                    <div className="my-2 italic text-gray-400">{newsPaginado[0].date}</div>
+                  </div>
+                  <div className="">
+                    {newsPaginado[0].description}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </Link>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
-          {newsPaginado.map((e,index) => (
+          {newsPaginado.map((e, index) => (
             <Link key={index} to={`/newsDetail/${e.id}`}>
               <div>
-                {e.id === 2 ? (
+                {e.id === 0 ? (
                   <img
                     src="https://res.cloudinary.com/do3dbemlj/image/upload/v1664405309/news/Screen_Shot_2022-09-28_at_19.44.45_zocf1r.png"
                     className="w-full aspect-[3/2]"
@@ -47,7 +64,7 @@ export default function NewsReel() {
                 <p className="font-semibold truncate text-transform: uppercase ">
                   {e.title}
                 </p>
-                <div className="font-light truncate" >{e.description}</div>
+                <div className="font-light truncate">{e.description}</div>
               </div>
             </Link>
           ))}

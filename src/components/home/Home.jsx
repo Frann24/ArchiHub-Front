@@ -2,13 +2,13 @@ import React from "react";
 import NewsReelBACKUP from "./news/NewsReelBACKUP";
 import PostsReel from "./posts/PostsReel";
 import Carousel from "./carousel/Carousel";
-import Search from "../header/menu/search/Search";
+import SearchCelu from "../header/menu/search/SearchCelu";
 
 function Home() {
   return (
     <div>
       <div id="home_id" className="w-full  lg:hidden">
-        <Search />
+        <SearchCelu />
       </div>
       <Carousel />
       <div
@@ -19,10 +19,10 @@ function Home() {
     2xl:mx-64"
       >
         <div>
-          <PostsReel />
+          <NewsReelBACKUP />
         </div>
         <div>
-          <NewsReelBACKUP />
+          <PostsReel />
         </div>
       </div>
     </div>
