@@ -16,7 +16,7 @@ export default function DashBoardUser(props) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const a = useParams();
-  
+
   // const userLogeado = JSON.parse(localStorage.getItem("token"));
   const [state, setState] = useState("Posts");
   const [profile, setProfile] = useState(false);
@@ -28,13 +28,13 @@ export default function DashBoardUser(props) {
 
   useEffect(() => {
     dispatch(getViewUser(id));
-    if(locationState === "posts"){
+    if(locationState === "Posts"){
       setState(locationState)
     }
-    if(locationState === "projects"){
+    if(locationState === "Projects"){
       setState(locationState)
     }else{
-      setState("projects")
+      setState("Posts")
     }
     return()=>{
       dispatch(clearResponseUser())

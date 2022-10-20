@@ -17,7 +17,7 @@ function Logged() {
   const {user} = useSelector(state => state.user)
   const btnRef = useRef();
   const dispatch = useDispatch()
-  const datas = { projects:"projects", posts:"posts"}
+  const datas = { projects:"Projects", posts:"Posts"}
   const userUrl = `user/${user._id}`
 
   const handleLogout =  (e) => {
