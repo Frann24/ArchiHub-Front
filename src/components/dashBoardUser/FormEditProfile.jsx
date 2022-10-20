@@ -13,6 +13,9 @@ export default function FormEditProfile({ id, user }) {
   const [state, setState] = useState({
     nickname: user.nickname,
     description: user.description,
+    location: user.location,
+    job: user.job,
+    page: user.page
   });
   const [files, setFiles] = useState([]);
   console.log("state: ", state);
@@ -62,8 +65,6 @@ export default function FormEditProfile({ id, user }) {
     return file.secure_url;
   };
 
-  
-
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -79,30 +80,29 @@ export default function FormEditProfile({ id, user }) {
         const fileImage = await uploadImage(e);
         setState({
           ...state,
-          ["avatar"]: fileImage, 
+          ["avatar"]: fileImage,
         });
       });
     },
   });
 
   async function handleEditPerfil() {
-    console.log(state);
     const profile = dispatch(updateUser(id, state));
-    console.log(profile);
+
     window.location.reload();
   }
 
   return (
-    <div className="ml-32">
-      <div className="flex flex-col-2 mb-12 w-full gap-20">
-        <div {...getRootProps()} className="relative ">
+    <div className="flex flex-col w-full">
+      <div className="flex flex-col items-center gap-8 mb-2 w-full">
+        <div {...getRootProps()} className="relative">
           <input {...getInputProps()} />
-          <div className="w-60 h-60 relative ">
-          <img
+          <div className="relative">
+            <img
               src={files[0] ? files[files.length - 1][0].preview : user.avatar}
-              width="240px"
-              height="240px"
-              className="xl:w-full xl:h-full  object-cover rounded-full mt-16 opacity-50"
+              width="256px"
+              height="256px"
+              className="xl:w-full xl:h-full border object-cover rounded-full mt-16 opacity-50"
             />
             {/* <img
               // src={`${user.avatar}`}
@@ -115,7 +115,7 @@ export default function FormEditProfile({ id, user }) {
             <div className="  font-bold ">drop image here</div>
           </div>
         </div>
-        <div className=" flex flex-col ">
+        <div className="flex justify-center flex-col text-center">
           <div className="font-bold text-lg capitalize mt-12">
             {user.name} {user.lastname}
           </div>
@@ -129,6 +129,7 @@ export default function FormEditProfile({ id, user }) {
           <input
             placeholder="description"
             name="description"
+            value={state.description}
             // value={state.description}
             onChange={(e) => handleChange(e)}
           ></input>
@@ -140,6 +141,7 @@ export default function FormEditProfile({ id, user }) {
             <input
               placeholder={state.location ? state.location : "Location"}
               name="location"
+              value={state.location}
               onChange={(e) => handleChange(e)}
             ></input>
           </div>
@@ -149,6 +151,7 @@ export default function FormEditProfile({ id, user }) {
             </div>
             <input
               placeholder="Job Title"
+              value={state.job}
               name="job"
               onChange={(e) => handleChange(e)}
             ></input>
@@ -161,6 +164,7 @@ export default function FormEditProfile({ id, user }) {
 
             <input
               placeholder="Webpage"
+              value={state.page}
               name="page"
               onChange={(e) => handleChange(e)}
             ></input>
