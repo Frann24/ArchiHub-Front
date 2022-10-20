@@ -28,6 +28,10 @@ import NotFound from "../errors/NotFound"
 import AboutUs from "../AboutUs";
 import HeaderDos from "./HeaderDos";
 import { useWindowWidth } from "@react-hook/window-size";
+import Successful from "../payment/Successful";
+import ErrorPayment from "../payment/ErrorPayment";
+import CancelPaymentError from "../payment/CancelPaymentError";
+import CancelPaymentOK from "../payment/CancelPaymentOK";
 
 function Header() {
   const { pathname } = useLocation();
@@ -65,7 +69,7 @@ function Header() {
             className={`sticky  bg-white shadow-lg w-full top-0 z-10`}
           >
             <div
-              className="flex justify-between items-center h-16
+              className="flex justify-between mx-4 items-center h-16
           md:mx-8
           lg:mx-16 lg:h-16
           xl:mx-32 xl:h-20
@@ -104,15 +108,18 @@ function Header() {
           <Route path="/admin" element={<DashBoard />} />
           <Route path="projectDetail/:id" element={<ProjectDetail />} />
           <Route path="/user/:id" element={<DashBoardUser />} />
-          <Route path="/payment" element={<Payment/>} />
-          <Route path="forgotPassword" element={<ForgotPassword/>}/>
-          <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
-          <Route path="search" element={<SearchContent/>}/>
-          <Route path="/cancelSubscription" element={ <CancelPayment />} />
-          <Route path="inviteProject/:projectId" element={<InviteProject/>}/>
-          <Route path="*" element={<NotFound/>}/>
+          <Route path="/payment" element={<Payment />} />
+          <Route path="forgotPassword" element={<ForgotPassword />} />
+          <Route path="resetPassword/:id/:token" element={<ResetPassword />} />
+          <Route path="search" element={<SearchContent />} />
+          <Route path="/cancelSubscription" element={<CancelPayment />} />
+          <Route path="inviteProject/:projectId" element={<InviteProject />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/successful" element={<Successful />} />
+          <Route path="/errorPayment" element={<ErrorPayment />} />
+          <Route path="/cancelPaymentError" element={<CancelPaymentError />} />
+          <Route path="/cancelPaymentOK" element={<CancelPaymentOK />} />   
           <Route path="/about" element={<AboutUs />} />
-
         </Routes>
       </div>
       <div>

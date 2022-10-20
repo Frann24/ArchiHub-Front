@@ -46,23 +46,20 @@ const CheckoutForm = () => {
     //setLoading(false)
   };
   return (
-    <div>
-      <div>
-      <div>
-        By canceling the subscription you will continue to enjoy the benefits of
-        being Premium until the end of the subscription period. Once the
-        subscription period is over you will have the benefits of a Free
-        account. Remember, you can go back to Premium anytime you want.
-      </div>
-      <div>
-        <Link to="/home">Home</Link>
-      </div>
-      <div>
-        <form onSubmit={handleCancelSubscription}>
-          <button>Cancel Suscription</button>
-        </form>
-      </div>
-      </div>
+    <div className="sm:mx-4 md:mx-8 lg:mx-16  xl:mx-32">
+        <div className="mt-20 text-xl">
+          By canceling your subscription you will continue to enjoy Premium
+          benefits until the end of the subscription period. 
+          <br/>Remember, you can
+          go back to Premium anytime.
+        </div>
+        <div>
+          <form onSubmit={handleCancelSubscription}>
+            <button className="bg-black text-white px-6 mt-6">
+              Cancel Subscription
+            </button>
+          </form>
+        </div>
     </div>
   );
 };
