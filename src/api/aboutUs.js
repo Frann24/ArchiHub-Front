@@ -37,18 +37,18 @@ const aboutUs = [
   },
   {
     image:
+      "https://res.cloudinary.com/do3dbemlj/image/upload/v1666224072/aboutUs/Screen_Shot_2022-10-19_at_20.59.53_exf4ae.png",
+    name: "Tomas Pastore",
+    linkedIn: "https://www.linkedin.com/in/tomas-federico-pastore-3082971ba/",
+    gitHub: "https://github.com/Jvmpers",
+  },
+  {
+    image:
       "https://res.cloudinary.com/do3dbemlj/image/upload/v1666224118/aboutUs/Screen_Shot_2022-10-19_at_20.58.28_sggkhd.png",
     name: "Gonzalo Pirovano",
     linkedIn:
       "https://www.linkedin.com/in/gonzalo-nicol%C3%A1s-pirovano-87a18b201/",
     gitHub: "https://github.com/gnz6",
-  },
-  {
-    image:
-      "https://res.cloudinary.com/do3dbemlj/image/upload/v1666224072/aboutUs/Screen_Shot_2022-10-19_at_20.59.53_exf4ae.png",
-    name: "Tomas Pastore",
-    linkedIn: "https://www.linkedin.com/in/tomas-federico-pastore-3082971ba/",
-    gitHub: "https://github.com/Jvmpers",
   },
 ];
 

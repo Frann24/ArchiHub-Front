@@ -12,7 +12,7 @@ export default function AboutUs() {
 
   return (
     <div className="sm:mx-4 md:mx-8 lg:mx-16  xl:mx-32">
-      <div className="text-center mt-12 text-2xl font-bold">Our team</div>
+      <div className="text-center mt-12 text-2xl font-bold  text-gray-500">Our team</div>
       {/* <div className="grid auto-rows-auto gap-12 my-6"> */}
       <div className="flex flex-wrap justify-center gap-16 my-6">
         {aboutUs.map((e, index) => (
