@@ -88,9 +88,8 @@ export default function FormEditProfile({ id }) {
   });
 
   async function handleEditPerfil(e) {
+    e.preventDefault()
     dispatch(updateUser(id, state));
-
-    window.location.reload();
   }
 
   return (
@@ -177,7 +176,7 @@ export default function FormEditProfile({ id }) {
 
           <button
             className="bg-slate-300 cursor-pointer w-32 h-8 mt-6"
-            onClick={() => handleEditPerfil()}
+            onClick={(e) => handleEditPerfil(e)}
           >
             Save
           </button>
