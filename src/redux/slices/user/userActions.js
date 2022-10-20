@@ -28,6 +28,7 @@ export const getUser = (id) => {
 };
 
 export const createUser = (id, info) => {
+  console.log(info)
   return (dispatch) => {
     axios
       .post(`${USERS}/${id}`, info)
