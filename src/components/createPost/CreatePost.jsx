@@ -202,7 +202,7 @@ useEffect(()=>{
     navigate("/home")
     return
   }
-   if(userToken && !userToken.isPremium && user.posts.length>=3){
+   if(user && !user.premium && user.posts.length>=3){
     navigate("/payment")
     return
   } 

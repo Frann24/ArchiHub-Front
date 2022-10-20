@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -16,6 +16,8 @@ import { PAYMENT } from "../../redux/slices/constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons"; //este es para solid
 import { faXmark } from "@fortawesome/free-solid-svg-icons"; //este es para solid
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../redux/slices/user/userActions";
 const axios = require("axios");
 
 const stripePromise = loadStripe(
@@ -27,8 +29,14 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const token = JSON.parse(localStorage.getItem("token"));
-
+const {user} = useSelector(state=>state.user)
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    
+    token && dispatch(getUser(token.userId))
+  }, [dispatch])
 
   const handleSubmitSubscription = async (e) => {
     e.preventDefault();
@@ -36,6 +44,8 @@ const CheckoutForm = () => {
     if (!stripe || !elements) {
       return;
     }
+
+
 
     const result = await stripe.createPaymentMethod({
       type: "card",
@@ -51,10 +61,7 @@ const CheckoutForm = () => {
     //setLoading(true)
     //console.log(result.paymentMethod.billing_details.email);
     //pm_1LsJmlAfxOW2aSoALMIBcJ5f
-    if(token.isPremium){
-      navigate("/home")
-      return
-    }
+
     if (result.error) {
       //console.log(result.error.message);
     } else {
@@ -90,9 +97,14 @@ const CheckoutForm = () => {
         navigate("/errorPayment");
       }
       //setLoading(false)
-    }
+    } 
   };
 //className="container md:mx-8 lg:mx-16 xl:mx-32"
+
+if(user.length===0 && !token || user.premium){
+  navigate("/home")
+  return
+}
   return (
     <div>
       <div >
