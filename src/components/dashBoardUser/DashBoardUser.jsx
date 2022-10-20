@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getViewUser } from "../../redux/slices/user/userActions";
+import { clearResponseUser, getUser, getViewUser } from "../../redux/slices/user/userActions";
 import FormEditProfile from "./FormEditProfile";
 import Post from "./Post";
 import Projects from "./Projects";
@@ -10,22 +10,38 @@ import Reviews from "./Reviews";
 import { getAllReviews } from "../../redux/slices/review/reviewActions";
 import { Link, useParams } from "react-router-dom";
 import Profile from "./Profile";
+import { useLocation } from "react-router-dom";
 
-export default function DashBoardUser() {
+export default function DashBoardUser(props) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const a = useParams();
-  console.log(a);
+  
   // const userLogeado = JSON.parse(localStorage.getItem("token"));
   const [state, setState] = useState("Posts");
   const [profile, setProfile] = useState(false);
   const user = useSelector((state) => state.user.viewUser);
+  let location = useLocation()
+  let locationState = location.state
+  
+  console.log(locationState);
 
   useEffect(() => {
     dispatch(getViewUser(id));
-    /*     dispatch(getAllReviews());
-    dispatch(getAllPosts()); */
-  }, [dispatch, id]);
+    if(locationState === "posts"){
+      setState(locationState)
+    }
+    if(locationState === "projects"){
+      setState(locationState)
+    }else{
+      setState("projects")
+    }
+    return()=>{
+      dispatch(clearResponseUser())
+  }}
+  , [dispatch,id, locationState]);
+
+
 
   function handleChange(e) {
     setState(e.target.value);

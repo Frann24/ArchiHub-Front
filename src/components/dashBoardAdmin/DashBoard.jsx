@@ -19,7 +19,7 @@ function DashBoard() {
   
   useEffect(()=>{
     dispatch(getUser(userId))
-  },[dispatch, user])
+  },[dispatch, user, userId])
   
   // console.log(user);
 
