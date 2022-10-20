@@ -63,10 +63,10 @@ function SearchWhite() {
   };
 
   return (
-    <div className="">
-      <form className="">
-        <div className="flex text-sm">
-          <div className="flex items-center  py-2 ">
+    <div className="w-full">
+      <form className="w-full">
+        <div className="flex text-sm w-full">
+          <div className="flex items-center py-2 w-full">
             <input
               className="block border-2 pr-16 bg-transparent placeholder-gray-300 border-white px-4 py-2 w-3/4 focus:w-full duration-700 text-base text-white focus:outline-none
                 "

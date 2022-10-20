@@ -63,10 +63,10 @@ function Search() {
   };
 
   return (
-    <div className="">
-      <form className="" onSubmit={handleSubmit}>
+    <div className="w-full">
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="flex text-sm">
-          <div className="flex items-center  py-2 ">
+          <div className="flex items-center py-2 w-full">
             <input
               className="block border-2 pr-16 bg-transparent placeholder-gray-400 border-gray-600 px-4 py-2 w-3/4 focus:w-full duration-700 text-base text-gray-600  focus:outline-none
                 "

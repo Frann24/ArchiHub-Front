@@ -11,6 +11,7 @@ function Logged() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [projectMenu, setProjectMenu] = useState(false);
   const [createMenu, setCreateMenu] = useState(false)
+  const [createMenuRes, setCreateMenuRes] = useState(false)
   const {user} = useSelector(state => state.user)
   const btnRef = useRef();
   const dispatch = useDispatch()
@@ -79,7 +80,7 @@ function Logged() {
       className="cursor-pointer flex items-center gap-4" 
     >
       <div className="flex order-2 items-center justify-center select-none">
-        <AvatarUser img={user.avatar} className="w-10 h-10 sm:w-12 sm:h-12 xl:w-14 xl:h-14"/>
+        <AvatarUser img={user.avatar} className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-14 xl:h-14"/>
       </div>
       <div className="hidden sm:flex flex-col text-end">
         <p className="text-sm lg:text-base font-medium">{user.nickname}</p>
@@ -114,16 +115,7 @@ function Logged() {
               <p className="text-gray-400">{user.email}</p>
             </div>
             <div className="text-start pl-4 mt-8 flex flex-col gap-4 lg:text-lg xl:text-xl">
-              <div className="flex flex-col items-start lg:hidden">
-                <div onClick={() => setCreateMenu(!createMenu)}>
-                  <span className="pr-2">Create</span>
-                  <FontAwesomeIcon className="text-gray-600" icon={faAngleDown} />
-               </div>
-                {createMenu && <div className="pl-4 w-auto text-gray-600 text-sm flex flex-col gap-2">
-                  <Link onClick={() => setShowSidebar(!showSidebar)} to="/createpost">New post</Link>
-                  <Link onClick={() => setShowSidebar(!showSidebar)} to="/createproject">New project</Link>
-                </div>}
-              </div>
+              
               {user.type === "admin" &&
                 <div>
                   <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/admin`}>Dashboard admin</Link>
@@ -131,6 +123,16 @@ function Logged() {
               }
               <div>
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
+              </div>
+              <div className="flex flex-col items-start lg:hidden">
+                <div onClick={() => setCreateMenuRes(!createMenuRes)}>
+                  <span className="pr-2">Create</span>
+                  <FontAwesomeIcon className="text-gray-600" icon={faAngleDown} />
+               </div>
+                {createMenuRes && <div className="pl-4 w-auto text-gray-600 text-sm flex flex-col gap-2">
+                  <Link onClick={() => [setShowSidebar(!showSidebar),setCreateMenuRes(false)]} to="/createpost">New post</Link>
+                  <Link onClick={() => [setShowSidebar(!showSidebar),setCreateMenuRes(false)]} to="/createproject">New project</Link>
+                </div>}
               </div>
               <div>
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/posts/${user._id}`}>My posts</Link>

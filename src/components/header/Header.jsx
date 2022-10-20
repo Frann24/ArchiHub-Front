@@ -60,14 +60,12 @@ function Header() {
 
   const { menu } = useSelector((state) => state.header);
   return (
-    <div className="flex flex-col justify-between h-screen">
-      <div>
+    <div className="flex flex-col justify-between h-screen w-full">
+      <div className="w-full">
         {(scroll > 300 ||
           location.pathname !== "/home" ||
           onlyWidth < 1024) && (
-          <div
-            className={`sticky  bg-white shadow-lg w-full top-0 z-10`}
-          >
+          <div className={`sticky  bg-white shadow-lg w-full top-0 z-10`}>
             <div
               className="flex justify-between mx-4 items-center h-16
           md:mx-8
@@ -76,12 +74,15 @@ function Header() {
           2xl:mx-64 2xl:h-24
           "
             >
-              <div className="text-2xl lg:text-3xl">
-                <Logo />
-              </div>
-              <div className="hidden lg:ml-40 xl:ml-60 2xl:ml-80 lg:inline-block">
-                <Navbar path={pathname} />
-              </div>
+              <div className="w-full flex justify-between items-center ">
+                <div className="flex items-center gap-8 xl:gap-16 2xl:gap-32 w-7/12 2xl:w-8/12 ">
+                  <div className="text-2xl lg:text-3xl ">
+                    <Logo />
+                  </div>
+                  <div className="hidden lg:inline w-full ">
+                    <Navbar path={pathname} />
+                  </div>
+                </div>
               <div className=" xl:hidden">
                 {token ? <Logged /> : <BtnMenu />}
               </div>
@@ -91,6 +92,7 @@ function Header() {
             </div>
             <div className="bg-gray-100 bg-opacity-50 lg:hidden">
               {menu && <Menu path={pathname} />}
+            </div>
             </div>
           </div>
         )}
