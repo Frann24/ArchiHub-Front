@@ -12,7 +12,7 @@ export default function AboutUs() {
 
   return (
     <div className="sm:mx-4 md:mx-8 lg:mx-16  xl:mx-32">
-      <div className="text-center mt-12 text-2xl font-bold">Our team</div>
+      <div className="text-center mt-12 text-2xl font-bold text-gray-500">Our team</div>
       {/* <div className="grid auto-rows-auto gap-12 my-6"> */}
       <div className="flex flex-wrap justify-center gap-16 my-6">
         {aboutUs.map((e, index) => (
@@ -28,11 +28,11 @@ export default function AboutUs() {
             <div className="font-semibold mt-6">{e.name}</div>
 
             <div className="mt-3">
-              <a className="text-2xl mr-5" onClick={() => handleLink(e.linkedIn)}>
+              <a className="text-2xl mr-5 cursor-pointer hover:text-gray-700" onClick={() => handleLink(e.linkedIn)}>
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
 
-              <a className="text-2xl" onClick={() => handleLink(e.gitHub)}>
+              <a className="text-2xl cursor-pointer hover:text-gray-700" onClick={() => handleLink(e.gitHub)}>
                 <FontAwesomeIcon icon={faGithub} />
               </a>
             </div>
