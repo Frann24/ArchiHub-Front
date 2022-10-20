@@ -25,6 +25,7 @@ import SearchContent from "../searchContent/SearchContent";
 import CancelPayment from "../payment/CancelPayment"
 import InviteProject from "../home/projects/InviteProject";
 import NotFound from "../errors/NotFound"
+import AboutUs from "../AboutUs";
 
 function Header() {
   const { pathname } = useLocation();
@@ -80,7 +81,7 @@ function Header() {
           <Route path="/cancelSubscription" element={ <CancelPayment />} />
           <Route path="inviteProject/:projectId" element={<InviteProject/>}/>
           <Route path="*" element={<NotFound/>}/>
-
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
         </div>
       <div>

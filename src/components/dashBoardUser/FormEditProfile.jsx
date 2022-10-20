@@ -62,35 +62,7 @@ export default function FormEditProfile({ id, user }) {
     return file.secure_url;
   };
 
-  //     const arrayCloud = (data) => {
-  //       data.forEach(async (element) => {
-  //         const filesCloud = element;
-  //         const data = new FormData();
-  //         data.append("file", filesCloud[0]);
-  //         data.append("upload_preset", "Arquihub");
-  //         setLoading(true);
-  //         const res = await fetch(
-  //           "https://api.cloudinary.com/v1_1/dfcd64nhm/image/upload",
-  //           {
-  //             method: "POST",
-  //             body: data,
-  //           }
-  //         );
-  //         const file = await res.json();
-  //         setImage(file.secure_url);
-  //         setLoading(false);
-  //         const cloudinary = { public_id: file.public_id, url: file.secure_url };
-  //         pushCloud.push(cloudinary.url);
-  //         setCloudinary(cloudinary);
-  //         setForm({
-  //           ...form,
-  //           ["image"]: pushCloud,
-  //         });
-  //       });
-  //     };
-
-  //     arrayCloud(files);
-  //   };
+  
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
