@@ -49,7 +49,10 @@ const CheckoutForm = () => {
     //setLoading(true)
     //console.log(result.paymentMethod.billing_details.email);
     //pm_1LsJmlAfxOW2aSoALMIBcJ5f
-
+    if(token.isPremium){
+      navigate("/home")
+      return
+    }
     if (result.error) {
       //console.log(result.error.message);
     } else {

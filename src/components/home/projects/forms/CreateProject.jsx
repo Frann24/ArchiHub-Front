@@ -37,7 +37,6 @@ const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getAllUsers());
-
   }, [dispatch]);
 
 useEffect(()=>{
@@ -143,6 +142,11 @@ useEffect(()=>{
       }
     }
   };
+  if(!user.isPremium){
+    
+    navigate("/payment")
+    return
+  }
   return (
     <div className="flex flex-row my-8">
       <form onSubmit={(e) => handleSubmit(e)} className="w-full md:w-1/2">
