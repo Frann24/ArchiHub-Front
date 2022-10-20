@@ -15,9 +15,9 @@ export default function DashBoardUser() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const a = useParams();
-  console.log(a)
+  console.log(a);
   // const userLogeado = JSON.parse(localStorage.getItem("token"));
-  const [state, setState] = useState("projects");
+  const [state, setState] = useState("Posts");
   const [profile, setProfile] = useState(false);
   const user = useSelector((state) => state.user.viewUser);
 
@@ -25,7 +25,7 @@ export default function DashBoardUser() {
     dispatch(getViewUser(id));
     /*     dispatch(getAllReviews());
     dispatch(getAllPosts()); */
-  }, [dispatch,id]);
+  }, [dispatch, id]);
 
   function handleChange(e) {
     setState(e.target.value);
@@ -35,8 +35,14 @@ export default function DashBoardUser() {
   }
 
   return (
-    <div className="ml-32">
-      <div className="mx-32">
+    <div
+      className="m-4
+    md:mx-8
+    lg:mx-16
+    xl:mx-32
+    2xl:mx-64"
+    >
+      <div className="flex flex-col">
         {/* <div className="w-1/2 mx-auto mt-6"> */}
         {profile ? (
           <div>
@@ -60,31 +66,42 @@ export default function DashBoardUser() {
         )}
         <div>
           <div className="divide-x">
-            <div className="flex flex-row gap-16 mt-16  w-1/2">
-              <div className="tracking-wider text-lg hover:border-b-2 border-slate-300">
-                <button value="projects" onClick={(e) => handleChange(e)}>
-                  Projects
-                </button>
+            <div className="flex flex-row justify-between gap-4 mt-16 w-full overflow-hidden overflow-x-auto">
+              <div className="">
+                <input
+                  value="Projects"
+                  type="button"
+                  className={`focus:border-b-2 tracking-wider text-lg hover:border-b-2  border-gray-400`}
+                  onClick={(e) => handleChange(e)}
+                />
+              </div>
+              <div className="">
+                <input
+                  value="Posts"
+                  type="button"
+                  className={`focus:border-b-2 tracking-wider text-lg hover:border-b-2  border-gray-400`}
+                  onClick={(e) => handleChange(e)}
+                />
               </div>
 
-              <div className="tracking-wider text-lg hover:border-b-2 border-slate-300">
-                <button value="posts" onClick={(e) => handleChange(e)}>
-                  Posts
-                </button>
+              <div className="">
+                <input
+                  value="Reviews"
+                  type="button"
+                  className={`focus:border-b-2 tracking-wider text-lg hover:border-b-2  border-gray-400`}
+                  onClick={(e) => handleChange(e)}
+                />
               </div>
 
-              <div className="tracking-wider text-lg border-b-2 border-white hover:border-b-2 hover:border-slate-300">
-                <button value="reviews" onClick={(e) => handleChange(e)}>
-                  Reviews
-                </button>
+              <div className="">
+              <input
+                  value="Favourites"
+                  type="button"
+                  className={`focus:border-b-2 tracking-wider text-lg hover:border-b-2  border-gray-400`}
+                  onClick={(e) => handleChange(e)}
+                />
               </div>
-
-              <div className="tracking-wider text-lg border-b-2 border-white hover:border-b-2 hover:border-slate-300">
-                <button value="favourites" onClick={(e) => handleChange(e)}>
-                  Favourites
-                </button>
-              </div>
-              <div className="ml-32">
+              <div className="">
                 <Link to={"/cancelSubscription"}>
                   <button>Edit Subscription </button>
                 </Link>
@@ -93,15 +110,15 @@ export default function DashBoardUser() {
             <hr className="mt-2" />
           </div>
           <div>
-            {state === "projects" &&
+            {state === "Projects" &&
               (user.length !== 0 && user.projects.length ? (
                 <div>
                   <Projects id={id} />
                 </div>
               ) : (
                 <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-                  <p className=" text-base">
-                    You have no projects created, start one here.
+                  <p className=" text-base text-center  text-gray-500">
+                    You have no project created ? make a new one.
                   </p>
                   <Link to={"/createproject"}>
                     <button className="bg-green-600 text-white px-6 mt-6">
@@ -110,15 +127,15 @@ export default function DashBoardUser() {
                   </Link>
                 </div>
               ))}
-            {state === "posts" &&
+            {state === "Posts" &&
               (user.length !== 0 && user.posts.length ? (
                 <div>
                   <Post id={id} key={id} user={user} />
                 </div>
               ) : (
                 <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
-                  <p className=" text-base">
-                    You have no posts created, start one here.
+                  <p className=" text-base text-center text-gray-400">
+                    You have no posts created ? make a new one.
                   </p>
                   <Link to={"/createpost"}>
                     <button className="bg-green-600 text-white px-6 mt-6">
@@ -127,17 +144,17 @@ export default function DashBoardUser() {
                   </Link>
                 </div>
               ))}
-            {state === "reviews" &&
+            {state === "Reviews" &&
               (user.length !== 0 && user.reviews.length ? (
                 <div>
                   <Reviews />
                 </div>
               ) : (
-                <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center">
+                <div className="box-content  h-72 p-7 mt-5 mb-12 bg-slate-100 flex flex-col justify-center items-center text-center">
                   <p className=" text-base">You have no reviews created</p>
                 </div>
               ))}
-            {state === "favourites" &&
+            {state === "Favourites" &&
               (user.length !== 0 && user.reviews.length ? (
                 <div>
                   <Favourites />

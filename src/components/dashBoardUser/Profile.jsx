@@ -4,6 +4,7 @@ import { faBuilding } from "@fortawesome/free-regular-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
+import AvatarUser from "../avatarUser/AvatarUser";
 export default function Profile({
   user,
   userLogeado,
@@ -20,27 +21,14 @@ export default function Profile({
   let loggedId = userToken ? userToken.userId : "";
 
   return (
-    <div className="ml-32">
-      <div className="flex flex-col-2 mb-12 w-full gap-20">
-        <div className="relative ">
-          <div className="w-60 h-60">
-            <img
-              src={user.avatar}
-              width="240px"
-              height="240px"
-              className="xl:w-full xl:h-full  object-cover rounded-full mt-16 "
-            />
-
-            {/* <img
-              // src={`${user.avatar}`}
-              src={user.avatar}
-         
-              className="rounded-full mt-16"
-            /> */}
-          </div>
-        </div>
+    <div className="flex flex-col w-full">
+      <div className="flex flex-col mb-2 items-center w-full gap-8">
         <div className="">
-          <div className="font-bold text-lg capitalize mt-12 ">
+          <AvatarUser img={user.avatar} className="w-64 h-64 border" />
+        </div>
+
+        <div className="text-center">
+          <div className="font-bold text-lg capitalize">
             {user.name} {user.lastname}
           </div>
           <div className="text-lg">{user.nickname} </div>
