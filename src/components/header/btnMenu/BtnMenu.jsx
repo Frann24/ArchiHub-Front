@@ -24,6 +24,10 @@ function BtnMenu() {
     /* window.location.reload() */
   }
 
+  const handleNavigateHome = () => {
+    navigate("/home")
+  }
+
   const toggleSignIn = (e) => {
     e.preventDefault();
     dispatch(showSigIn(!modalSignIn));
@@ -46,7 +50,7 @@ function BtnMenu() {
       >
         <div className="w-full h-[90vh] flex flex-col pt-4 gap-16 justify-between">
           <div className="text-gray-700 text-xl flex flex-col gap-4 items-center">
-            <Link onClick={closeMenu} to="/home"><p>Home</p></Link>
+            <Link onClick={(e)=>[closeMenu(e),handleNavigateHome()]}><p>Home</p></Link>
             <Link onClick={(e)=>[closeMenu(e),handleNavigate("posts")]}><p>Posts</p></Link>
             <Link onClick={(e)=>[closeMenu(e),handleNavigate("news")]}><p>News</p></Link>
           </div>
