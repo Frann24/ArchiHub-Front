@@ -99,8 +99,8 @@ const CheckoutForm = () => {
           </h1>
         </div>
 
-        <div className="lg:block hidden">
-          <div className="container mx-auto max-width: 640px grid justify-items-center ">
+        <div className="container mx-auto max-width: 640px grid justify-items-center ">
+          <div className="lg:block hidden">
             <div
               className="container bg-gray-100 max-width: 640px 
                         grid grid-cols-3
