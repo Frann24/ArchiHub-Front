@@ -72,7 +72,7 @@ export default function Projects(id) {
       ) : user.projects.length ? (
         user.projects.map((project) => {
           return (
-            <div className="flex flex-col-3">
+            <div className="flex flex-col-3"> 
               <div>
                 {project.pdf_file &&<VisualizePDFDash url={project.pdf_file.url}/>}
                 <div className="text-base font-semibold">{project.title}</div>
@@ -91,7 +91,7 @@ export default function Projects(id) {
           </Link>
         </div>
       )}
-    </div>
+        </div>
 
     //     <div >
     //     <div className="font-bold text-lg capitalize mt-12">Favourites</div>

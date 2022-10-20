@@ -14,7 +14,11 @@ export default function PostsReel() {
 
   const [page, setPage] = useState(1);
   const indexLastCard = 3 * page;
-  const currentCards =posts.slice(0, indexLastCard) 
+  const postSort = [...posts]
+  const currentCards = postSort.reverse().slice(0, indexLastCard)
+  const date = new Date()
+  const today = date.getDate()
+  const month = date.getMonth() + 1
 
   function paginado() {
     setPage(page + 1);
@@ -22,7 +26,7 @@ export default function PostsReel() {
 
   return (
     <div>
-      <h4 className="ml-6 mb-6 font-semibold ">Posts</h4>
+      <h4 className="mb-6 font-semibold ">Latest posts created at {today}/{month}</h4>
       <div className="container mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
           {currentCards.length > 0 ? (

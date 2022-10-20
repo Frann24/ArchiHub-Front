@@ -1,33 +1,29 @@
 import React from "react";
-import Search from "../header/menu/search/Search";
-import NewsReel from "./news/NewsReel";
-import FilterType from "./posts/filterType/FilterType";
-import Order from "./posts/order/Order";
+import NewsReelBACKUP from "./news/NewsReelBACKUP";
 import PostsReel from "./posts/PostsReel";
 import Carousel from "./carousel/Carousel";
+import Search from "../header/menu/search/Search";
 
 function Home() {
   return (
     <div>
-      <div id="home_id"></div>
+      <div id="home_id" className="w-full  lg:hidden">
         <Search />
-        <Carousel/>
-      <div >
-        <div className="flex flex-col gap-2 pb-4 w-full
-        sm:flex-row
-        xl:w-2/5 xl:mx-auto
-        ">
-          <div id="posts_id" className="mx-4 sm:w-1/2">
-            <FilterType />
-          </div>
-          <div className="mx-4 sm:w-1/2">
-            <Order />
-          </div>
-        </div>
-        <PostsReel />
       </div>
-      <div>
-        <NewsReel />
+      <Carousel />
+      <div
+        className="m-4
+    md:mx-8
+    lg:mx-16
+    xl:mx-32
+    2xl:mx-64"
+      >
+        <div>
+          <PostsReel />
+        </div>
+        <div>
+          <NewsReelBACKUP />
+        </div>
       </div>
     </div>
   );

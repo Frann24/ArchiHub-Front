@@ -7,6 +7,7 @@ import { createSearchParams, useNavigate, useSearchParams } from "react-router-d
 import { getQueryUser } from "../../redux/slices/user/userActions";
 import { getQueryProjects } from "../../redux/slices/project/projectActions";
 import { getQueryNews } from "../../redux/slices/sliceNews/newsActions";
+import { useEffect } from "react";
 
 
 function SearchbarContent() {
@@ -31,6 +32,10 @@ function SearchbarContent() {
     dispatch(getQueryProjects(allProjects,e.target.value))
     dispatch(getQueryNews(news,e.target.value))
   };
+
+  useEffect(()=>{
+    setInputSearch(search)
+  },[search])
 
   const handleSubmit = (e) => {
     e.preventDefault();

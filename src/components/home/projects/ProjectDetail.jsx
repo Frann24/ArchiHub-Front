@@ -122,7 +122,7 @@ const ProjectDetail = () => {
                     })}
                   </div>
                 ) : (
-                  <Loader />
+                  <div></div>
                 )}
               </div>
             </div>

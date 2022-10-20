@@ -23,7 +23,7 @@ export default function NewsReel() {
   /* console.log("newsPaginado: ", newsPaginado); */
   return (
     <div >
-      <h4 className="ml-6 mb-6 font-semibold font-size:26px">News</h4>
+      <h4 className="mb-6 font-semibold font-size:26px">News</h4>
       <div className="container mx-auto margin-top: 16px">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-9">
           {newsPaginado.map((e,index) => (

@@ -88,7 +88,7 @@ export default function Favourites() {
         <div></div>
       )}
 
-      <div className="flex flex-col-3 gap-6">
+      <div className="grid grid-cols-3 gap-6 my-6">
         {
           // state === "not found" ? (
           //   <div>
@@ -103,10 +103,14 @@ export default function Favourites() {
                 <div className="">
                   <Link to={`/postDetail/${post.id}`}>
                     <div className="">
-                      <img src={post.image[0]} width="250px"></img>
-                      <div className="">
-                        <h3>{post.title}</h3>
-                        <p>{post.createdAt.slice(0, 10)}</p>
+                      <img
+                        src={post.image[0]}
+                        width="250px"
+                        
+                      ></img>
+                      <div className="mt-6">
+                        <div className="font-bold text-base mt-6">{post.title}</div>
+                        <p className="text-slate-500 text-base">{post.createdAt.slice(0, 10)}</p>
                       </div>
                     </div>
                   </Link>
