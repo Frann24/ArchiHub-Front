@@ -39,6 +39,7 @@ const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getAllUsers());
+    dispatch(getUser(userToken.userId))
   }, [dispatch]);
 
 useEffect(()=>{
@@ -84,7 +85,7 @@ useEffect(()=>{
     },
   ];
   const handleSelectVisibility = (value) => {
-    setErrors(validate({...form, visibility:value}, "visibility", errors, userToken.isPremium));
+    setErrors(validate({...form, visibility:value}, "visibility", errors, user.premium));
     setForm({
       ...form,
       visibility: value,
@@ -105,7 +106,7 @@ useEffect(()=>{
 
   const handleFormBlur = (e) => {
     handleChange(e);
-    setErrors(validate(form, e.target.name, errors, userToken.isPremium));
+    setErrors(validate(form, e.target.name, errors, user.premium));
   };
   const handleMising = (e) => {
     if (Object.keys(errors).length !== 0 || !form.project_file || !form.pdf_file) {
@@ -127,7 +128,7 @@ useEffect(()=>{
       pdf_file: form.pdf_file,
       project_file: form.project_file,
     };
-    setErrors(validate(form,undefined,false, userToken.isPremium));
+    setErrors(validate(form,undefined,false, user.premium));
 
     
     if (Object.keys(errors).length === 0 && form.project_file && form.pdf_file) {
@@ -153,7 +154,7 @@ useEffect(()=>{
     navigate("/home")
     return
   }
-  if(userToken && !userToken.isPremium && user.projects.length>=3){
+  if(user && !user.premium && user.projects.length>=3){
     navigate("/payment")
     return
   }

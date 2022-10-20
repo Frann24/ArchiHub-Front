@@ -163,9 +163,9 @@ function Logged() {
             </div>
           </div>
           <div>
-            <div className="m-4 px-4 py-2 bg-blue-600 text-gray-50 cursor-pointer">
+          {!user.premium  ? <div className="m-4 px-4 py-2 bg-blue-600 text-gray-50 cursor-pointer">
               <button onClick={()=> setShowSidebar(false)} className="font-semibold"><Link to="/payment">Upgrade to Premium </Link></button>
-            </div>
+            </div>:<></>}
             <div onClick={handleLogout} className="m-4 px-4 py-2 bg-gray-600 text-gray-50 cursor-pointer">
               <button className="font-semibold">Log out</button>
             </div>

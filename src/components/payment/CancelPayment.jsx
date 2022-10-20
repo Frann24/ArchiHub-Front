@@ -6,6 +6,9 @@ import {
   //useElements
 } from "@stripe/react-stripe-js";
 import { CANCEL_PAYMENT } from "../../redux/slices/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUser } from "../../redux/slices/user/userActions";
 
 //import "bootswatch/dist/lux/bootstrap.min.css";
 
@@ -14,13 +17,17 @@ const axios = require("axios");
 const stripePromise = loadStripe(
   "pk_test_51LoIVcAfxOW2aSoAIaQduZj78BZ0WSIkqQ6HtJ7eLxdgVvUgP1VQzKUvKp4Cxvqb1IGxfwGdDckLpNODYg6BJ51k00iHLR6VrB"
 );
-
 const CheckoutForm = () => {
   // const stripe = useStripe();
   // const elements = useElements();
   // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token"));
+const {user} = useSelector(state=>state.user)
+const dispatch = useDispatch()
+useEffect(() => {
+  dispatch(getUser(token.userId))
+}, [dispatch])
 
   const handleCancelSubscription = async (e) => {
     e.preventDefault();
@@ -45,7 +52,7 @@ const CheckoutForm = () => {
     }
     //setLoading(false)
   };
-  if(!token.isPremium){
+  if(!user.premium){
     navigate("/home")
     return
   }
