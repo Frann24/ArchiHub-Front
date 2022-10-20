@@ -20,12 +20,12 @@ export function getQueryNews(allNews, name) {
 export const orderNews = (filter, type) => {
   const orderMethod = {
     default: { method: (a, b) => (a.id > b.id ? 1 : -1) },
-    Az: { method: (a, b) => (a.title> b.title ? -1 : 1) },
-    Za: { method: (a, b) => (a.title > b.title ? 1 : -1) },
+    Az: { method: (a, b) => (a.title> b.title ? 1 : -1) },
+    Za: { method: (a, b) => (a.title > b.title ? -1 : 1) },
     recent: {
-      method: (a, b) => (new Date(a.date) > new Date(b.date) ? 1 : -1),
+      method: (a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1),
     },
-    old: { method: (a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1) },
+    old: { method: (a, b) => (new Date(a.date) > new Date(b.date) ? 1 : -1) },
   };
   const filterF = [...filter];
   return type?order(filterF.sort(orderMethod[type].method)):order(filter);
