@@ -68,11 +68,11 @@ function ChartPayments () {
       }
     }
   }
- for (let i = 0; i < score.length; i++) {
-    if (score[i] !== 0){
-      labels[i] =  ` $${score[i]*10}- ` + labels[i]
-    } 
- }
+//  for (let i = 0; i < score.length; i++) {
+//     if (score[i] !== 0){
+//       labels[i] =  ` $${score[i]*10}- ` + labels[i]
+//     } 
+//  }
   const data = {
         datasets: [
             {
