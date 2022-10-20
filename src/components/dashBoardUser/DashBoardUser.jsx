@@ -25,7 +25,7 @@ export default function DashBoardUser() {
     dispatch(getViewUser(id));
     /*     dispatch(getAllReviews());
     dispatch(getAllPosts()); */
-  }, [dispatch]);
+  }, [dispatch,id]);
 
   function handleChange(e) {
     setState(e.target.value);
@@ -86,7 +86,7 @@ export default function DashBoardUser() {
               </div>
               <div className="ml-32">
                 <Link to={"/cancelSubscription"}>
-                  <button>Edit Suscription </button>
+                  <button>Edit Subscription </button>
                 </Link>
               </div>
             </div>
