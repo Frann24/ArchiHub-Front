@@ -19,10 +19,10 @@ function Home() {
     2xl:mx-64"
       >
         <div>
-          <PostsReel />
+          <NewsReelBACKUP />
         </div>
         <div>
-          <NewsReelBACKUP />
+          <PostsReel />
         </div>
       </div>
     </div>
