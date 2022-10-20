@@ -20,6 +20,7 @@ import axios from "axios";
 import CancelPaymentOk from "./components/payment/CancelPaymentOK"
 import CancelPaymentError from "./components/payment/CancelPaymentError"
 
+
 function App() {
 
   const auth = JSON.parse(localStorage.getItem("token"))
@@ -47,6 +48,8 @@ function App() {
           <Route path="/cancelPayment" element={<CancelPayment />} />
           <Route path="/cancelPaymentOk" element={<CancelPaymentOk />} />
           <Route path="/cancelPaymentError" element={<CancelPaymentError />} /> 
+         
+          
         </Routes>
         {/* <div>
           <Footer/>

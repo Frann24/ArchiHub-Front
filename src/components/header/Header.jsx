@@ -24,7 +24,8 @@ import DashBoardUser from "../dashBoardUser/DashBoardUser";
 import SearchContent from "../searchContent/SearchContent";
 import CancelPayment from "../payment/CancelPayment";
 import InviteProject from "../home/projects/InviteProject";
-import NotFound from "../errors/NotFound";
+import NotFound from "../errors/NotFound"
+import AboutUs from "../AboutUs";
 import HeaderDos from "./HeaderDos";
 import { useWindowWidth } from "@react-hook/window-size";
 
@@ -103,13 +104,15 @@ function Header() {
           <Route path="/admin" element={<DashBoard />} />
           <Route path="projectDetail/:id" element={<ProjectDetail />} />
           <Route path="/user/:id" element={<DashBoardUser />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="forgotPassword" element={<ForgotPassword />} />
-          <Route path="resetPassword/:id/:token" element={<ResetPassword />} />
-          <Route path="search" element={<SearchContent />} />
-          <Route path="/cancelSubscription" element={<CancelPayment />} />
-          <Route path="inviteProject/:projectId" element={<InviteProject />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/payment" element={<Payment/>} />
+          <Route path="forgotPassword" element={<ForgotPassword/>}/>
+          <Route path="resetPassword/:id/:token" element={<ResetPassword/>}/>
+          <Route path="search" element={<SearchContent/>}/>
+          <Route path="/cancelSubscription" element={ <CancelPayment />} />
+          <Route path="inviteProject/:projectId" element={<InviteProject/>}/>
+          <Route path="*" element={<NotFound/>}/>
+          <Route path="/about" element={<AboutUs />} />
+
         </Routes>
       </div>
       <div>
