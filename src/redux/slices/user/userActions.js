@@ -1,7 +1,14 @@
 import { USERS } from "../constants";
-import { allUsers, showUser, responseUser,order, queryUser, showUserProfile } from "./userSlice";
+import {
+  allUsers,
+  showUser,
+  responseUser,
+  order,
+  queryUser,
+  showUserProfile,
+  clear,
+} from "./userSlice";
 const axios = require("axios");
-
 export const getAllUsers = () => {
   return (dispatch) => {
     axios
@@ -21,6 +28,7 @@ export const getUser = (id) => {
 };
 
 export const createUser = (id, info) => {
+  console.log(info)
   return (dispatch) => {
     axios
       .post(`${USERS}/${id}`, info)
@@ -35,6 +43,7 @@ export const updateUser = (id, info) => {
     axios
       .put(`${USERS}/${id}`, info)
       .then((res) => dispatch(responseUser(res.data)))
+      .then((r) => console.log(r))
       .catch((err) => console.log(err));
   };
 };
@@ -49,18 +58,33 @@ export const deleteUser = (id) => {
 };
 
 export function getQueryUser(allUsers, name) {
-  const allUsers2 = [...allUsers]
-  return name?queryUser(allUsers2.filter((e) => {return(e.nickname && e.nickname.toLowerCase().includes(name.toLowerCase())) || (e.name && e.lastname && (e.name + " "+ e.lastname).toLowerCase().includes(name.toLowerCase())) ||( e.email && e.email.toLowerCase().includes(name.toLowerCase())) })):queryUser(allUsers)
-};
+  const allUsers2 = [...allUsers];
+  return name
+    ? queryUser(
+        allUsers2.filter((e) => {
+          return (
+            (e.nickname &&
+              e.nickname.toLowerCase().includes(name.toLowerCase())) ||
+            (e.name &&
+              e.lastname &&
+              (e.name + " " + e.lastname)
+                .toLowerCase()
+                .includes(name.toLowerCase())) ||
+            (e.email && e.email.toLowerCase().includes(name.toLowerCase()))
+          );
+        })
+      )
+    : queryUser(allUsers);
+}
 
 export const orderUsers = (filter, type) => {
   const orderMethod = {
     default: { method: (a, b) => (a.id > b.id ? 1 : -1) },
-    Az: { method: (a, b) => (a.nickname> b.nickname ? -1 : 1) },
+    Az: { method: (a, b) => (a.nickname > b.nickname ? -1 : 1) },
     Za: { method: (a, b) => (a.nickname > b.nickname ? 1 : -1) },
   };
   const filterF = [...filter];
-  return type?order(filterF.sort(orderMethod[type].method)):order(filter);
+  return type ? order(filterF.sort(orderMethod[type].method)) : order(filter);
 };
 
 export const getViewUser = (id) => {
@@ -71,3 +95,7 @@ export const getViewUser = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const clearResponseUser=(id)=>{
+  return clear() 
+}

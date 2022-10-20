@@ -5,6 +5,7 @@ import {
   showProject,
   responseProject,
   queryProject,
+  clear,
 } from "./projectSlice";
 
 export const getAllProjects = () => {
@@ -26,6 +27,7 @@ export const getProject = (id) => {
 };
 
 export const createProject = (info) => {
+  console.log(info)
   return (dispatch) => {
     axios
       .post(PROJECT, info)
@@ -61,4 +63,8 @@ export function getQueryProjects(allProjects, name) {
         )
       )
     : queryProject(allProjects);
+}
+
+export const clearResponseProject=(id)=>{
+  return clear() 
 }

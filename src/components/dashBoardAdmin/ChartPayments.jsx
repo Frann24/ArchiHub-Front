@@ -68,11 +68,11 @@ function ChartPayments () {
       }
     }
   }
- for (let i = 0; i < score.length; i++) {
-    if (score[i] !== 0){
-      labels[i] =  ` $${score[i]*10}- ` + labels[i]
-    } 
- }
+//  for (let i = 0; i < score.length; i++) {
+//     if (score[i] !== 0){
+//       labels[i] =  ` $${score[i]*10}- ` + labels[i]
+//     } 
+//  }
   const data = {
         datasets: [
             {
@@ -83,11 +83,11 @@ function ChartPayments () {
         labels,
     }
     return (
-      <div className="w-96">
-        <Bar data={data} options={options}/>
-<p className="font-bold my-2 ml-16">Payments per day:</p>
-      </div>
-    )
+        <div className="w-96">
+          <p className="font-bold my-2 ml-16">Payments October: ${allPayments.length} </p>
+          <Bar data={data} options={options}/>
+        </div>
+      )
 }
 
 export default ChartPayments

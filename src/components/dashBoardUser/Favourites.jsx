@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUser } from "../../redux/slices/user/userActions";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Favourites() {
   /*   const dispatch = useDispatch(); */
@@ -69,14 +71,17 @@ export default function Favourites() {
   return (
     <div>
       {postsFav.length ? (
-        <div className="flex flex-wrap gap-16 items-end ml-20 my-6">
+        <div className="flex flex-col lg:flex-row justify-between gap-4 my-6">
           {/* <label>Search post... </label> */}
-          <input
-            className="border border-slate-200 rounded-md shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
-            type="text"
-            placeholder="Search post..."
-            onChange={(e) => handleSearch(e)}
-          />
+          <div className="flex flex-row items-center w-full relative">
+            <input
+              className="border lg:px-2 border-slate-200 p-1 w-full lg:w-3/4 shadow-sm placeholder:slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              type="text"
+              placeholder="Search post..."
+              onChange={(e) => handleSearch(e)}
+            />
+            <FontAwesomeIcon icon={faSearch} className="absolute right-0 pr-4 lg:pr-32 text-gray-400"/>
+          </div>
           <button
             className="bg-slate-300  px-3 py-1 text-slate-900"
             onClick={(e) => handleOrderDate(e)}
@@ -88,7 +93,7 @@ export default function Favourites() {
         <div></div>
       )}
 
-      <div className="flex flex-col-3 gap-6">
+      <div className="flex flex-col w-full lg:flex-row gap-6 justify-between my-6">
         {
           // state === "not found" ? (
           //   <div>
@@ -100,13 +105,17 @@ export default function Favourites() {
             state.length &&
             state.map((post) => {
               return (
-                <div className="">
-                  <Link to={`/postDetail/${post.id}`}>
+                <div className="w-full">
+                  <Link to={`/postDetail/${post.id}`} className="w-full">
                     <div className="">
-                      <img src={post.image[0]} width="250px"></img>
-                      <div className="">
-                        <h3>{post.title}</h3>
-                        <p>{post.createdAt.slice(0, 10)}</p>
+                      <img src={post.image[0]} className="w-full object-cover h-[42vw] lg:h-[16vw] 2xl:h-[12vw]"></img>
+                      <div className="mt-6">
+                        <div className="font-bold text-base mt-6">
+                          {post.title}
+                        </div>
+                        <p className="text-slate-500 text-base">
+                          {post.createdAt.slice(0, 10)}
+                        </p>
                       </div>
                     </div>
                   </Link>

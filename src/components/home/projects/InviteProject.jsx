@@ -10,21 +10,23 @@ import { NavLink } from "react-router-dom";
 function InviteProject() {
   const dispatch = useDispatch();
   const { projectId } = useParams();
-  const user = JSON.parse(localStorage.getItem("token"));
-  let { userId } = user;
-  const logged = useSelector((state) => state.user.user);
+  // const user = JSON.parse(localStorage.getItem("token"));
+  // let { userId } = user;
+  const user = useSelector((state) => state.user.user);
   const project = useSelector((state) => state.project.project);
   const [invite, setInvite] = useState(null);
+  
+  // console.log(logged._id);
 
   const navigate = useNavigate();
   useEffect(() => {
-    dispatch(getUser(userId));
+    dispatch(getUser(user._id));
     dispatch(getProject(projectId));
-  }, [dispatch, userId, projectId]);
+  }, [dispatch, projectId, user._id]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (invite === true) {
-      const objetonto = { user_id: userId };
+      const objetonto = { user_id: user._id };
       dispatch(updateUserProject(projectId, objetonto));
       alert("Now you are part of the project");
       navigate("/home");
@@ -33,10 +35,13 @@ function InviteProject() {
       navigate("/home");
     }
   };
-
+  if(user && !user.isPremium && user.length!==0 && user.projects.length>=3){
+    navigate("/payment")
+    return
+  } 
   return (
     <div>
-      {!userId.length ? (
+      {!user._id ? (
         <div>
           <Unauthorized />
         </div>
@@ -44,7 +49,7 @@ function InviteProject() {
         <div className="mx-4 md:mx-8 lg:mx-16 xl:mx-32 2xl:mx-64">
           <div className="text-center flex flex-col  justify-center items-center">
             <div className="xl:text-lg flex flex-col gap-4">
-              <span className="font-semibold">{`${logged.nickname}`}</span> You
+              <span className="font-semibold">{`${user.nickname}`}</span> You
               have been invited to project:{" "}
               <span className="font-semibold"> {project.title} </span>
             </div>

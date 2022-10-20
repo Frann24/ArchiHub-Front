@@ -12,7 +12,9 @@ function Carousel() {
   const { allPosts } = useSelector((state) => state.post);
   useEffect(() => {
     const posts = [...allPosts]
-    if(allPosts.length!==0){ orderPostsRating = posts.sort((a, b) => (a.rating > b.rating ? -1 : 1))}
+    if(allPosts.length!==0){ 
+/*       orderPostsRating = posts.filter(e=>e.reviews.length>5) */
+      orderPostsRating = posts.sort((a, b) => (a.rating > b.rating ? -1 : 1))}
   }, [allPosts])
   
 

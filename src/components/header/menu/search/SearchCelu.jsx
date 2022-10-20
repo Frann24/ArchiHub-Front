@@ -22,7 +22,7 @@ import { getQueryProjects } from "../../../../redux/slices/project/projectAction
 import { getAllPosts } from "../../../../redux/slices/post/postActions";
 import { getQueryNews } from "../../../../redux/slices/sliceNews/newsActions";
 
-function Search() {
+function SearchCelu() {
   const [inputSearch, setInputSearch] = useState("");
   const { allPosts } = useSelector((state) => state.post);
   const { allUsers } = useSelector((state) => state.user);
@@ -63,14 +63,13 @@ function Search() {
   };
 
   return (
-    <div className="w-full">
+    <div className="">
       <form className="w-full" onSubmit={handleSubmit}>
-        <div className="flex text-sm">
-          <div className="flex items-center py-2 w-full">
+        <div className="flex text-sm ">
+          <div className="flex items-center w-full">
             <input
-              className="block border-2 pr-16 bg-transparent placeholder-gray-400 border-gray-600 px-4 py-2 w-3/4 focus:w-full duration-700 text-base text-gray-600  focus:outline-none
+              className="w-full p-2 border-b-2 bg-transparent placeholder-gray-400 border-gray-400 duration-700 text-base text-gray-400  focus:outline-none
                 "
-              // onKeyDown={handlesubmit}
               type="text"
               placeholder="Search..."
               value={inputSearch}
@@ -80,7 +79,7 @@ function Search() {
             />
             <span
               title="Search clean"
-              className="text-gray-600 cursor-pointer"
+              className="text-gray-300 cursor-pointer"
             >
               {inputSearch && (
                 <FontAwesomeIcon onClick={clearInputSearch} icon={faXmark}  className="-ml-14"/>
@@ -89,7 +88,7 @@ function Search() {
             <FontAwesomeIcon
               onClick={handleSubmit}
               cursor="pointer"
-              className="-ml-8 text-base text-gray-600"
+              className="-ml-8 text-base text-gray-300"
               icon={faMagnifyingGlass}
             />
           </div>
@@ -110,4 +109,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchCelu;
