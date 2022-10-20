@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding } from "@fortawesome/free-regular-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-export default function FormEditProfile({ id, user }) {
+export default function FormEditProfile({ id }) {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.viewUser);
   const [state, setState] = useState({
     nickname: user.nickname,
     description: user.description,

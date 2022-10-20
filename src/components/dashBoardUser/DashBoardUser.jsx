@@ -63,7 +63,7 @@ export default function DashBoardUser(props) {
         {profile ? (
           <div>
             <div>
-              <FormEditProfile id={id} user={user} />
+              <FormEditProfile id={id}/>
             </div>
           </div>
         ) : (
