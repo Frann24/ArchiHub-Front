@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function Post({ id }) {
   /*   let allPosts = useSelector((state) => state.post.allPosts);
   let postsUser = allPosts.filter((posts) => posts.created_by == id); */
+  const userLogeado = JSON.parse(localStorage.getItem("token"));
   const user = useSelector((state) => state.user.viewUser);
   /*   postsUser = postsUser.map((post) => {
     return {
@@ -82,9 +83,9 @@ export default function Post({ id }) {
             <button onClick={(e) => handleOrderDate(e)} className="mr-4 bg-gray-300 px-4">
               Date
             </button>
-            <Link to={"/createpost"} className="w-1/2">
+           { user.length!==0 && userLogeado && userLogeado.userId==user._id ?<Link to={"/createpost"} className="w-1/2">
               <button className="bg-green-600 text-white px-6">New</button>
-            </Link>
+            </Link>:<></>}
           </div>
         </div>
       ) : (
