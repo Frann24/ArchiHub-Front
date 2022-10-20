@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "../header/logo/Logo";
 
 function Footer() {
@@ -42,14 +43,15 @@ function Footer() {
             <ul class="text-gray-300 text-opacity-50 dark:text-gray-300 ">
               <li class="mb-4">
                 <a
-                  href="https://github.com/themesberg/flowbite"
+                  href="https://github.com/BalbianoLuciano/backend-arquihub"
                   class="hover:underline "
+                  target="blank"
                 >
                   Github
                 </a>
               </li>
               <li>
-                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">
+                <a href="https://discord.gg/YwPGpCFD" target="blank" class="hover:underline">
                   Discord
                 </a>
               </li>
@@ -57,13 +59,13 @@ function Footer() {
           </div>
           <div>
             <h2 class="mb-6 text-sm font-semibold text-gray-100 uppercase dark:text-white">
-              Legal
+              Info
             </h2>
             <ul class="text-gray-300 text-opacity-50 dark:text-gray-300">
               <li class="mb-4">
-                <a href="#" class="hover:underline">
-                  Privacy Policy
-                </a>
+                <Link to="/about" className="hover:underline">
+                  About Us
+                </Link>
               </li>
               <li>
                 <a href="#" class="hover:underline">
