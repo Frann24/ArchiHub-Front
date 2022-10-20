@@ -27,6 +27,10 @@ import InviteProject from "../home/projects/InviteProject";
 import NotFound from "../errors/NotFound";
 import HeaderDos from "./HeaderDos";
 import { useWindowWidth } from "@react-hook/window-size";
+import Successful from "../payment/Successful";
+import ErrorPayment from "../payment/ErrorPayment";
+import CancelPaymentError from "../payment/CancelPaymentError";
+import CancelPaymentOK from "../payment/CancelPaymentOK";
 
 function Header() {
   const { pathname } = useLocation();
@@ -110,6 +114,10 @@ function Header() {
           <Route path="/cancelSubscription" element={<CancelPayment />} />
           <Route path="inviteProject/:projectId" element={<InviteProject />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/successful" element={<Successful />} />
+          <Route path="/errorPayment" element={<ErrorPayment />} />
+          <Route path="/cancelPaymentError" element={<CancelPaymentError />} />
+          <Route path="/cancelPaymentOK" element={<CancelPaymentOK />} />
         </Routes>
       </div>
       <div>

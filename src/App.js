@@ -13,12 +13,12 @@ import Footer from "./components/footer/Footer";
 import BtnTop from "./components/btnTop/BtnTop";
 //import Home from "./components/home/Home";
 //import CreatePost from "./components/createPost/CreatePost";
-import Successful from "./components/payment/Successful";
-import ErrorPayment from "./components/payment/ErrorPayment";
-import CancelPayment from "./components/payment/CancelPayment";
+//import Successful from "./components/payment/Successful";
+//import ErrorPayment from "./components/payment/ErrorPayment";
+//import CancelPayment from "./components/payment/CancelPayment";
 import axios from "axios";
 import CancelPaymentOk from "./components/payment/CancelPaymentOK"
-import CancelPaymentError from "./components/payment/CancelPaymentError"
+//import CancelPaymentError from "./components/payment/CancelPaymentError"
 
 function App() {
 
@@ -42,11 +42,11 @@ function App() {
           <Route path="/newsDetail/:id" element={<NewsDetail />} />
           <Route path="/postDetail/:id" element={<PostDetail />} />
           <Route path="/createpost" element={<CreatePost />} />  */}
-          <Route path="/successful" element={<Successful />} />
-          <Route path="/errorPayment" element={<ErrorPayment />} />
-          <Route path="/cancelPayment" element={<CancelPayment />} />
-          <Route path="/cancelPaymentOk" element={<CancelPaymentOk />} />
-          <Route path="/cancelPaymentError" element={<CancelPaymentError />} /> 
+          {/* <Route path="/successful" element={<Successful />} /> */}
+          {/* <Route path="/errorPayment" element={<ErrorPayment />} /> */}
+          {/* <Route path="/cancelPayment" element={<CancelPayment />} /> */}
+          {/* <Route path="/cancelPaymentOk" element={<CancelPaymentOk />} /> */}
+          {/* <Route path="/cancelPaymentError" element={<CancelPaymentError />} />  */}
         </Routes>
         {/* <div>
           <Footer/>
