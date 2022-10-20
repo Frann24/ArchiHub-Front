@@ -65,7 +65,7 @@ function Header() {
             className={`sticky  bg-white shadow-lg w-full top-0 z-10`}
           >
             <div
-              className="flex justify-between items-center h-16
+              className="flex justify-between mx-4 items-center h-16
           md:mx-8
           lg:mx-16 lg:h-16
           xl:mx-32 xl:h-20
