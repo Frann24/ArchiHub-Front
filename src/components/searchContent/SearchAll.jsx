@@ -16,8 +16,8 @@ function SearchAll() {
       {queryPost.length ?
       <div className='flex flex-col gap-4 bg-gray-100 px-2 py-2 shadow-md rounded-md'>
         <p className='text-lg font-medium text-gray-600 border-b-2 border-gray-300'>Posts</p>
-        <div className=' 2xl:hidden'><SearchPost posts={queryPost} numberPost={4}/></div>
-        <div className='hidden 2xl:block'><SearchPost posts={queryPost} numberPost={3}/></div>
+        <div className=' 2xl:hidden'><SearchPost posts={queryPost} numberPost={3}/></div>
+        <div className='hidden 2xl:block'><SearchPost posts={queryPost} numberPost={4}/></div>
       </div>:<></>}
       {queryProjects.length ?
       <div className='flex flex-col gap-4 bg-gray-100 px-2 py-2 shadow-md rounded-md'>
