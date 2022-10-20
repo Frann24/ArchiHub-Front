@@ -37,11 +37,15 @@ export const postSlice = createSlice({
     },
     clearAll:(state,{payload})=>{
       state.orderPosts = [];
-    }
+    },
+    clear:(state)=>{
+      state.post=[];
+      state.response=[];
+    },
   },
 });
 
-export const { allPosts, showPost, responsePost, order, filterType,getQuery, clearDetail, clearAll } =
+export const { allPosts, showPost, responsePost, order, filterType,getQuery, clearDetail, clearAll, clear } =
   postSlice.actions;
 
 export default postSlice.reducer;

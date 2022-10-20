@@ -136,10 +136,10 @@ function Logged() {
                 <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}`}>My profile</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/posts/${user._id}`}>My posts</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}/posts`}>My posts</Link>
               </div>
               <div>
-                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/projects/${user._id}`}>My projects</Link>
+                <Link onClick={() => setShowSidebar(!showSidebar)} className="hover:text-gray-400" to={`/user/${user._id}/projects`}>My projects</Link>
               </div>
               <div>
                 <div className="cursor-pointer hover:text-gray-400" onClick={() => setProjectMenu(!projectMenu)}>

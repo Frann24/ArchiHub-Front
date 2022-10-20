@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getProject } from "../../../redux/slices/project/projectActions";
+import { clearResponseProject, getProject } from "../../../redux/slices/project/projectActions";
 import { getUser } from "../../../redux/slices/user/userActions";
 import Loader from "../../loader/Loader";
 import UpdateDetail from "./update/UpdateDetail";
@@ -26,6 +26,10 @@ const ProjectDetail = () => {
     );
   useEffect(() => {
     dispatch(getProject(id));
+    return()=>{
+      dispatch(clearResponseProject())
+    }
+
   }, [dispatch, response, responseDownload,id]);
   return (
     <div>

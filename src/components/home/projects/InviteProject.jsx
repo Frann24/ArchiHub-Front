@@ -33,7 +33,10 @@ function InviteProject() {
       navigate("/home");
     }
   };
-
+  if(user && !user.isPremium && logged.length!==0 && logged.projects.length>=3){
+    navigate("/payment")
+    return
+  } 
   return (
     <div>
       {!userId.length ? (
