@@ -18,7 +18,7 @@ function RecentsUsers () {
             {
                 recentsUsers && recentsUsers.map((user) => {
                     return (
-                        <div className=" bg-gray-100	pl-0 flex  justify-center items-center p-2 pr-0 pl-2 my-3">
+                        <div className=" bg-gray-100 flex  justify-center items-center p-2 pr-0 pl-2 my-3">
                             <p className="capitalize w-1/4">{user.name}</p>
                             <p className="font-semibold w-2/4">{user.email}</p>
                             <p className="w-1/4">{user.createdAt.slice(0, 10)}</p>

@@ -16,7 +16,7 @@ export default function FormEditProfile({ id }) {
     description: user.description,
     location: user.location,
     job: user.job,
-    page: user.page
+    page: user.page,
   });
   const [files, setFiles] = useState([]);
   console.log("state: ", state);
@@ -87,8 +87,8 @@ export default function FormEditProfile({ id }) {
     },
   });
 
-  async function handleEditPerfil() {
-    const profile = dispatch(updateUser(id, state));
+  async function handleEditPerfil(e) {
+    dispatch(updateUser(id, state));
 
     window.location.reload();
   }
@@ -121,13 +121,14 @@ export default function FormEditProfile({ id }) {
             {user.name} {user.lastname}
           </div>
           <input
-            className=""
+            className="p-1"
             placeholder="Nickname"
             name="nickname"
             value={state.nickname}
             onChange={(e) => handleChange(e)}
           ></input>
           <input
+            className="p-1"
             placeholder="description"
             name="description"
             value={state.description}
@@ -140,6 +141,7 @@ export default function FormEditProfile({ id }) {
             </div>
 
             <input
+              className="px-2"
               placeholder={state.location ? state.location : "Location"}
               name="location"
               value={state.location}
@@ -151,6 +153,7 @@ export default function FormEditProfile({ id }) {
               <FontAwesomeIcon icon={faBuilding} />
             </div>
             <input
+              className="px-2"
               placeholder="Job Title"
               value={state.job}
               name="job"
@@ -164,6 +167,7 @@ export default function FormEditProfile({ id }) {
             </div>
 
             <input
+              className="px-2"
               placeholder="Webpage"
               value={state.page}
               name="page"

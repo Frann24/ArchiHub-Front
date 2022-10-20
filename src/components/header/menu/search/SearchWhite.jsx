@@ -64,7 +64,7 @@ function SearchWhite() {
 
   return (
     <div className="w-full">
-      <form className="w-full">
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="flex text-sm w-full">
           <div className="flex items-center py-2 w-full">
             <input
