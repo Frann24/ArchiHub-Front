@@ -11,7 +11,7 @@ function Navbar() {
     anchor.scrollIntoView({ behavior: "smooth", block: "center" });
   };
   return (
-    <div className=''>
+    <div className='w-full'>
       <Search />
         {/* <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#home_id")}><Link to="/home">Home</Link></div>
         <div className='menu-link text-base 2xl:text-lg' onClick={(e)=> handleClick(e,"#posts_id")}><Link to="/home">Posts</Link></div>
