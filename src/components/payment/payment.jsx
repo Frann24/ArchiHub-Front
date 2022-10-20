@@ -92,30 +92,30 @@ const CheckoutForm = () => {
       //setLoading(false)
     }
   };
-
+//className="container md:mx-8 lg:mx-16 xl:mx-32"
   return (
     <div>
-      <div className="container sm:mx-1 md:mx-8 lg:mx-16  xl:mx-32">
+      <div >
         <div className="container mx-auto grid justify-items-center">
           <h1 className="text-2xl mt-12 mb-6 ">
             Choose the right plan for you
           </h1>
         </div>
 
-        <div className="container mx-auto max-width: 640px grid justify-items-center ">
+        <div className="container mx-auto ">
           <div className="lg:block hidden">
             <div
-              className="container bg-gray-100 max-width: 640px 
+              className="container bg-gray-100 
                         grid grid-cols-3
                         justify-items-center
                         items-center
-                        h-64 w-2/3 my-4"
+                        h-64 w-full my-4 mr-30 ml-50"
             >
               <div className="w-40"></div>
-              <div className="w-40 text-center font-medium sm:text-sm">
+              <div className="w-40 text-center font-medium sm:text-sm underline">
                 Free
               </div>
-              <div className="w-40 text-center font-medium sm:text-sm">
+              <div className="w-40 text-center font-medium sm:text-sm underline">
                 Premium
               </div>
               <div className="w-40 text-center font-medium sm:text-sm">
@@ -143,17 +143,17 @@ const CheckoutForm = () => {
           {/* segundo  */}
           <div className="lg:hidden md:block hidden">
             <div
-              className="container bg-gray-100 max-width: 640px 
+              className="container bg-gray-100
                         grid grid-cols-3
                         justify-items-center
                         items-center
-                        h-64 w-2/3 my-4"
+                        h-64 w-full my-4 mr-6"
             >
               <div className="w-40"></div>
-              <div className="w-40 text-center font-medium sm:text-sm">
-                Fruuuu
+              <div className="w-40 text-center font-medium sm:text-sm underline">
+                Free
               </div>
-              <div className="w-40 text-center font-medium sm:text-sm">
+              <div className="w-40 text-center font-medium sm:text-sm underline">
                 Premium
               </div>
               <div className="w-40 text-center font-medium sm:text-sm">
@@ -183,37 +183,71 @@ const CheckoutForm = () => {
         <div className="block md:hidden">
             <div
               className="container bg-gray-100 max-width: 640px 
-                        grid grid-cols-3
+                        grid grid-cols-
                         justify-items-center
                         items-center
-                        h-64 w-2/3 my-4"
+                        h-64 w-full my-4"
             >
               <div className="w-40"></div>
-              <div className="w-40 text-center font-medium sm:text-sm">
-                Frooooo chiquito
+              <div className="w-40 text-center font-medium sm:text-sm underline">
+                Free
               </div>
-              <div className="w-40 text-center font-medium sm:text-sm">
+              {/* <div className="w-40 text-center font-medium sm:text-sm">
                 Premium
-              </div>
+              </div> */}
               <div className="w-40 text-center font-medium sm:text-sm">
                 Publication
               </div>
               <div className="text-red-600">
                 <FontAwesomeIcon icon={faXmark} />
               </div>
+              {/* <div className="text-green-600">
+                <FontAwesomeIcon icon={faCheck} />
+              </div> */}
+              <div className="w-40 text-center font-medium sm:text-sm">
+                Number of Projects
+              </div>
+              <div className="w-40 text-center sm:text-sm font-light">3</div>
+              {/* <div className="w-40 text-center sm:text-sm">Unlimited</div> */}
+              <div className="w-40 text-center font-medium sm:text-sm">
+                Project Privacy
+              </div>
+              <div className="w-40 text-center sm:text-sm font-light">Public only</div>
+              {/* <div className="w-40 text-center sm:text-sm">Public/Private</div> */}
+            </div>
+            <div
+              className="container bg-gray-100 max-width: 640px 
+                        grid grid-cols-
+                        justify-items-center
+                        items-center
+                        h-64 w-full my-4"
+            >
+              <div className="w-40"></div>
+              {/* <div className="w-40 text-center font-medium sm:text-sm">
+                Frooooo chiquito
+              </div> */}
+              <div className="w-40 text-center font-medium sm:text-sm underline">
+                Premium
+              </div>
+              <div className="w-40 text-center font-medium sm:text-sm">
+                Publication
+              </div>
+              {/* <div className="text-red-600">
+                <FontAwesomeIcon icon={faXmark} />
+              </div> */}
               <div className="text-green-600">
                 <FontAwesomeIcon icon={faCheck} />
               </div>
               <div className="w-40 text-center font-medium sm:text-sm">
                 Number of Projects
               </div>
-              <div className="w-40 text-center sm:text-sm">3</div>
-              <div className="w-40 text-center sm:text-sm">Unlimited</div>
+              {/* <div className="w-40 text-center sm:text-sm">3</div> */}
+              <div className="w-40 text-center sm:text-sm font-light">Unlimited</div>
               <div className="w-40 text-center font-medium sm:text-sm">
                 Project Privacy
               </div>
-              <div className="w-40 text-center sm:text-sm">Public only</div>
-              <div className="w-40 text-center sm:text-sm">Public/Private</div>
+              {/* <div className="w-40 text-center sm:text-sm">Public only</div> */}
+              <div className="w-40 text-center sm:text-sm font-light">Public/Private</div>
             </div>
           </div>
 
@@ -225,7 +259,7 @@ const CheckoutForm = () => {
             <p className="mb-6">Automatically renued, can be stopped anytime</p>
           </div>
           <form onSubmit={handleSubmitSubscription}>
-            <div className="container mx-auto justify-items-center max-width: 640px h-64 w-2/5">
+            <div className="container mx-auto justify-items-center max-width: 640px h-64 w-full">
               <div className="container mx-auto w-96 justify-items-center">
                 <div>
                   <p className="text-xs">Card Number</p>
