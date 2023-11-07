@@ -128,13 +128,10 @@ useEffect(()=>{
   };
   const handleDelete = (element, e) => {
     e.preventDefault();
-    let afterDelete = form.image
-      .flat()
-      .filter((e) => e.public_id !== element.public_id);
-    setForm({
-      ...form,
-      ["image"]: afterDelete,
-    });
+    setForm((currentForm) => ({
+      ...currentForm,
+      image: currentForm.image.filter((img) => img.public_id !== element.public_id),
+    }));
   };
   const uploadImage = async (files) => {
     const data = new FormData();
@@ -158,19 +155,12 @@ useEffect(()=>{
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
-      acceptedFiles.map((file) =>
-        Object.assign(file, {
-          preview: URL.createObjectURL(file),
-        })
-      );
-      const photos = [];
-      acceptedFiles.map(async (e) => {
-        const pedro = await uploadImage(e);
-        photos.push(pedro);
-        setForm({
-          ...form,
-          ["image"]: [...form.image, photos],
-        });
+      acceptedFiles.forEach(async (file) => {
+        const cloudinaryImage = await uploadImage(file);
+        setForm((currentForm) => ({
+          ...currentForm,
+          image: [...currentForm.image, cloudinaryImage],
+        }));
       });
     },
   });
